@@ -217,7 +217,7 @@
   </li>
 </ol>
 
-<p>Pour cet exercice, le <a href="%22/l2cod/static_files/docs/gdb5-refcard.pdf%22">document de référence GDB</a> vous sera très utile. GDB signifie « <strong>G</strong>NU <strong>D</strong>e-<strong>B</strong>ugger ». D’abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et <a href="https://itsfoss.com/unzip-linux/">décompressez</a> son contenu avec la commande <code class="language-plaintext highlighter-rouge">unzip</code> (cette commande est déjà installée sur la machine) dans le répertoire de votre choix. Compilez ensuite le fichier <code class="language-plaintext highlighter-rouge">hello.c</code> avec le drapeau <code class="language-plaintext highlighter-rouge">-g</code> (indiquez le chemin complet du fichier <code class="language-plaintext highlighter-rouge">hello.c</code> si différent du répertoire actuel ) :</p>
+<p>Pour cet exercice, le <a href="/l2cod/static_files/docs/gdb5-refcard.pdf">document de référence GDB</a> vous sera très utile. GDB signifie « <strong>G</strong>NU <strong>D</strong>e-<strong>B</strong>ugger ». D’abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et <a href="https://itsfoss.com/unzip-linux/">décompressez</a> son contenu avec la commande <code class="language-plaintext highlighter-rouge">unzip</code> (cette commande est déjà installée sur la machine) dans le répertoire de votre choix. Compilez ensuite le fichier <code class="language-plaintext highlighter-rouge">hello.c</code> avec le drapeau <code class="language-plaintext highlighter-rouge">-g</code> (indiquez le chemin complet du fichier <code class="language-plaintext highlighter-rouge">hello.c</code> si différent du répertoire actuel ) :</p>
 
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>gcc <span class="nt">-g</span> <span class="nt">-o</span> hello hello.c
 </code></pre></div></div>
@@ -247,7 +247,7 @@
   </li>
 </ol>
 
-<p>Tapez help depuis <code class="language-plaintext highlighter-rouge">gdb</code> pour connaître les commandes permettant d’effectuer ces opérations ou utilisez le <a href="%22/l2cod/static_files/docs/gdb5-refcard.pdf%22">document de référence GDB</a>.</p>
+<p>Tapez help depuis <code class="language-plaintext highlighter-rouge">gdb</code> pour connaître les commandes permettant d’effectuer ces opérations ou utilisez le <a href="/l2cod/static_files/docs/gdb5-refcard.pdf">document de référence GDB</a>.</p>
 
 <p>Si vous voyez un message d’erreur comme <strong>« printf.c: No such file or directory »</strong>, vous êtes probablement entré dans une fonction <code class="language-plaintext highlighter-rouge">printf</code> ! Si vous continuez l’exécution pas-à-pas, vous aurez l’impression d’aller nulle part ! CGDB se plaint parce que vous n’avez pas le fichier source où <code class="language-plaintext highlighter-rouge">printf</code> est défini. Pour sortir de cette impasse, utilisez la commande <code class="language-plaintext highlighter-rouge">finish</code> pour exécuter le programme jusqu’au retour de la fonction non définie (dans ce cas, jusqu’à ce que <code class="language-plaintext highlighter-rouge">printf</code> soit terminée). Pour éviter ce genre de mésaventure la PROCHAINE fois, utilisez la commande <code class="language-plaintext highlighter-rouge">next</code> pour sauter la ligne où <code class="language-plaintext highlighter-rouge">printf</code> est affichée.</p>
 
