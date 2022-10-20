@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Convention d'appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022 </title>
+  <meta name="description" content="Convention d'appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022">
+
+  <link rel="shortcut icon" href="https://benhadid.github.io//l2ado/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io//l2ado/static_files/docs/MIPS%20Calling%20Convention">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io//l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2022</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Convention d'appel de fonctions dans MIPS</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p>Le processeur MIPS R3000 possède 32 registres dont 24 seulement peuvent être “librement” utilisés pour le stockage de données par votre programme. Vous pourriez penser que cela constitue un problème si jamais nous prévoyons d’implémenter des programmes complexes qui utilisent des dizaines, voir des centaines de variables. Cela n’est, cependant, pas vraiment une limitation parce que nous avons accès à la mémoire de la pile que nous pouvons également utiliser pour le stockage temporaire des données.</p>
+
+<p>En effet, les données des registres peuvent être sauvegardées sur la pile, de sorte que ces mêmes registres puissent être réutilisés par d’autres fonctions appelées dans le programme. Au retour de la fonction appelée, les données enregistrées dans la pile sont récupérées et rétablis dans les registres initiaux afin que la fonction appelante puisse continuer son exécution normale. Il y a une convention établie qui dicte qui (entre l’appelant et l’appelé) est responsable de la sauvegarde des registres dans la pile. C’est ce qu’on appelle la « convention d’appel MIPS ».</p>
+
+<h1 id="gestion-des-registres-par-les-fonctions-appelante-et-appelée">Gestion des registres par les fonctions <em>appelante</em> et <em>appelée</em></h1>
+
+<p>Les registres standard du MIPS sont divisés en deux groupes : les registres sauvegardés/restaurés par la fonction <em>appelante</em> et les registres sauvegardés/restaurés par la fonction <em>appelée</em>. Le tableau suivant les met en évidence.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Numéro</th>
+<th style="text-align:center">Nom</th>
+<th style="text-align:center">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0</td>
+<td style="text-align:center">$0</td>
+<td style="text-align:left">Toujours égal à 0</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$1</td>
+<td style="text-align:center">$at</td>
+<td style="text-align:left">Est utilisé par l’outil assembleur pour l’expansion des pseudo instructions</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$2-$3</td>
+<td style="text-align:center">$v0-$v1</td>
+<td style="text-align:left">Contiennent les valeurs retournées par les fonctions appelées</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$4-$7</td>
+<td style="text-align:center">$a0-$a3</td>
+<td style="text-align:left">Utilisés pour passer des arguments aux fonctions appelées</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$8-$15 , $24-$25</td>
+<td style="text-align:center">$t0-$t9</td>
+<td style="text-align:left">Utilisés pour manipuler des données temporaires</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$16-$23</td>
+<td style="text-align:center">$s0-$s7</td>
+<td style="text-align:left">Utilisés pour manipuler des données locales aux fonctions appelées</td>
+</tr>
+
+<tr>
+<td style="text-align:center">$26-$27</td>
+<td style="text-align:center">$k0-$k1</td>
+<td style="text-align:left">Registres Noyaux utilisés par les routines d’exceptions / interruptions</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$28</td>
+<td style="text-align:center">$gp</td>
+<td style="text-align:left">Pointeur pour adresser les données globale du programme</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$29</td>
+<td style="text-align:center">$sp</td>
+<td style="text-align:left">Pointeur de pile</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$30</td>
+<td style="text-align:center">$fp</td>
+<td style="text-align:left">Pointeur de trame</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$31</td>
+<td style="text-align:center">$ra</td>
+<td style="text-align:left">Pointeur stockant l’adresse de retour à la fonction appelante</td>
+</tr>
+</tbody>
+</table>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td class="appelee-highlight" style="text-align:left"></td>
+<td style="text-align:left">Sauvegardés/restaurés par la fonction appelée</td>
+</tr>
+<tr>
+<td class="appelante-highlight" style="text-align:left"></td>
+<td style="text-align:left">Sauvegardés/restaurés par la fonction appelante</td>
+</tr>    
+</tbody>
+</table>
+
+<p>En général, les registres temporaires (<code class="language-plaintext highlighter-rouge">$t0</code>-<code class="language-plaintext highlighter-rouge">$t9</code>), les registres d’arguments de fonction (<code class="language-plaintext highlighter-rouge">a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>) et les registres de retour de valeurs (<code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code>) sont sauvegardés par la fonction <em>appelante</em>. Cela signifie qu’il est de la responsabilité de la fonction courante de sauvegarder ces registres dans la pile avant d’appeler une autre fonction. Cette dernière, a la liberté de modifier n’importe lequel de ces registres. Lorsque la fonction <em>appelée</em> s’achève, ces registres peuvent éventuellement avoir changé de valeurs. De ce fait, il est de la responsabilité de la fonction appelante de restaurer les valeurs initiales de ces registres depuis la pile.</p>
+
+<p>En revanche, les registres surlignés en <span style="background-color:#ffd6b0bb">couleur saumon</span> dans la table ci-dessus, sont sauvegardés et restaurés par la fonction <em>appelée</em>. C’est à dire qu’il est de la responsabilité de la fonction appelée de sauvegarder ces registres dans la pile avant d’éventuellement modifier leurs contenus. Ensuite, cette fonction est libre d’utiliser ces registres. Toutefois, avant le retour de la fonction, si jamais ces registres ont effectivement été modifiés, la fonction appelée doit restaurer les valeurs initiales de ces registres depuis la pile.</p>
+
+<p>Avec cette convention d’appel, nous observons ce qui suit : 1) La fonction appelante suppose que les valeurs dans les registres « <span style="background-color:#ffd6b0bb">couleur saumon</span> » ne changeront pas après un appel de fonction (parce que la fonction appelée devrait les sauvegarder en premier) ; 2) La fonction appelée suppose que les valeurs dans les registres « <span style="background-color:#c5e4f0d5">bleu ciel</span> » sont libres d’être modifiées de quelque manière que ce soit (car l’appelant doit d’abord les enregistrer).</p>
+
+<h1 id="sauvegarde--restauration-des-registres-entre-appels-de-fonctions">Sauvegarde / restauration des registres entre appels de fonctions</h1>
+
+<p>Essayons maintenant de mettre cette convention d’appel en pratique. Soit la structure de code assembleur ci-dessous pour une fonction nommée <code class="language-plaintext highlighter-rouge">func1</code>. Supposons que <code class="language-plaintext highlighter-rouge">func1</code> est une fonction appelée par une autre fonction (par exemple, la fonction <code class="language-plaintext highlighter-rouge">main</code>). En examinant le code, nous observons que <code class="language-plaintext highlighter-rouge">func1</code> appelle également une autre fonction nommée <code class="language-plaintext highlighter-rouge">func2</code>. Lorsque <code class="language-plaintext highlighter-rouge">func1</code> avait été appelé par la fonction <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">func1</code> était l’<em>appelée</em>. Cependant, lorsque <code class="language-plaintext highlighter-rouge">func1</code> appelle <code class="language-plaintext highlighter-rouge">func2</code>, <code class="language-plaintext highlighter-rouge">func1</code> devient l’<em>appelante</em>. Par conséquent, <code class="language-plaintext highlighter-rouge">func1</code> devra assumer les responsabilités d’être une fonction <em>appelée</em> et une fonction <em>appelante</em> selon la convention d’appel MIPS.</p>
+
+<pre><code class="language-mips">func1: # modifies $a0, $t0, $v0 and $s0. ($ra) points to the `main` function.
+    # Checkpoint 1: What do you need to do before you start modifying registers?
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 2: What do you need to do before you call another function?
+    
+    # input argument at $a0, return value at $v0  
+    jal func2   # call func2
+    # Checkpoint 3: What do you need to do after a function call?
+    
+    # Some block of code using $v0, $t0, and $s0
+    # Checkpoint 4: What do you need to do before this function returns?
+    
+    jr $ra   # function return
+</code></pre>
+
+<p>La sauvegarde de valeurs dans la pile se fait en utilisant l’instruction <code class="language-plaintext highlighter-rouge">sw</code> vers le pointeur de pile <code class="language-plaintext highlighter-rouge">($sp)</code> ajusté avec un <em>offset</em> approprié. Inversement, la récupération des valeurs depuis la pile se fait à l’aide de l’instruction <code class="language-plaintext highlighter-rouge">lw</code>. Ainsi, chaque fois que nous souhaitons enregistrer des valeurs dans la pile, nous devons ajuster le pointeur de pile en le diminuant. En revanche, chaque fois que nous souhaitons récupérer des valeurs depuis la pile, le pointeur de pile est ajusté en sens inverse (c.-à-d. en augmentant le pointeur de pile). Le respect de ces procédures garantira que <code class="language-plaintext highlighter-rouge">($sp)</code> pointe vers la même position dans la mémoire au début et à la fin de l’appel de fonction. C’est ainsi que les fonctions utilisent la mémoire de la pile comme stockage temporaire.</p>
+
+<p>Essayons de completer le code en chaque point de contrôle (Checkpoint) indiqué.</p>
+
+<p><strong>Pour le point de contrôle 1</strong>, comme <code class="language-plaintext highlighter-rouge">func1</code> est appelée ici (par <code class="language-plaintext highlighter-rouge">main</code> ou toute autre fonction), elle doit sauvegarder 
+tous les registres « <span style="background-color:#ffd6b0bb">couleur saumon</span> » qu’elle est susceptible de modifier. En particulier, puisque <code class="language-plaintext highlighter-rouge">func1</code> utilise l’instruction <code class="language-plaintext highlighter-rouge">jal func2</code>, elle doit donc sauvegarder <code class="language-plaintext highlighter-rouge">$ra</code> dans la pile (rappelons que l’instruction <code class="language-plaintext highlighter-rouge">jal</code> modifie le contenu du registre <code class="language-plaintext highlighter-rouge">$ra</code>). Ainsi, comme nous devons sauvegarder deux registres (le deuxième étant <code class="language-plaintext highlighter-rouge">$s0</code>), le pointeur <code class="language-plaintext highlighter-rouge">$sp</code> est ajusté (décrémenté) de deux mots (8 octets) :</p>
+
+<pre><code class="language-mips">    # Checkpoint 1: What do you need to do before you start modifying registers?
+    addi $sp $sp -8   # Push the stack pointer down by 2 words (8 bytes)
+    sw $ra 0($sp)     # Save the return address register (ra)
+    sw $s0 4($sp)     # Save the saved register (s0)
+</code></pre>
+
+<p><br />
+<strong>Pour le point de contrôle 2</strong>, nous remarquons que les registres <code class="language-plaintext highlighter-rouge">$a0</code>, <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$s0</code> ont potentiellement été modifiés, et nous sommes maintenant sur le point d’appeler la fonction <code class="language-plaintext highlighter-rouge">func2</code> (<code class="language-plaintext highlighter-rouge">func1</code> devient maintenant l’<em>appelant</em>). Nous remarquons également que plus tard dans le code (après le point de contrôle 3), nous utilisons à nouveau les registres <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$s0</code>.</p>
+
+<p>Ainsi, dans la perspective de <code class="language-plaintext highlighter-rouge">func1</code>, ces deux registres devraient être inchangés après l’appel de <code class="language-plaintext highlighter-rouge">func2</code>. Nous savons que si <code class="language-plaintext highlighter-rouge">func2</code> suit la convention d’appel, elle devrait enregistrer le registre <code class="language-plaintext highlighter-rouge">$s0</code> dans la pile et récupérer sa valeur initiale avant de quitter et retourner à <code class="language-plaintext highlighter-rouge">func1</code>… cela coincide avec notre objectif vis-à-vis <code class="language-plaintext highlighter-rouge">$s0</code> ! Cependant, selon cette même convention, le contenu de <code class="language-plaintext highlighter-rouge">$t0</code> ne sera pas enregistré/restauré par <code class="language-plaintext highlighter-rouge">func2</code>. Au fait, la fonction <code class="language-plaintext highlighter-rouge">func2</code> a la liberté totale d’utiliser et modifier le contenu de ce registre sans se soucier de son état initial avant l’appel. Ainsi, en tant qu’appelant de <code class="language-plaintext highlighter-rouge">func2</code>, la fonction <code class="language-plaintext highlighter-rouge">func1</code> est également responsable de sauvegarder le contenu de <code class="language-plaintext highlighter-rouge">$t0</code> dans la pile. En conséquence, nous avons le code suivant :</p>
+
+<!-- Selon la convention d'appel MIPS, les arguments d'une fonction doivent être passés via les registres `$a0`-`$a3` et tout éventuel retour de données doit être effectué à travers les registres `$v0`-`$v1`. Ainsi, concernant `func2`, le registre `$a0` est utilisé pour lui passer des arguments et le retour des données sera effectué via le registre `$v0`.
+-->
+
+<pre><code class="language-mips">    # Checkpoint 2: What do you need to do before you call another function?
+    addi $sp $sp -4   # Push the stack pointer down by 1 word (4 bytes)
+    sw $t0 0($sp)     # Save the temporary register (t0)
+</code></pre>
+
+<p><br />
+<strong>Pour le point de contrôle 3</strong>, la fonction <code class="language-plaintext highlighter-rouge">func2</code> est achevée et <code class="language-plaintext highlighter-rouge">$v0</code> contient la valeur retournée par cette fonction. <code class="language-plaintext highlighter-rouge">func1</code> est maintenant sur le point d’effectuer certaines opérations en utilisant cette valeur et les données contenues dans les registres <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$s0</code>. Encore une fois, si <code class="language-plaintext highlighter-rouge">func2</code> ait suivi la convention d’appel, la valeur du registre <code class="language-plaintext highlighter-rouge">$s0</code> serait inchangée dans la perspective de <code class="language-plaintext highlighter-rouge">func1</code>. Cependant, <code class="language-plaintext highlighter-rouge">$t0</code> peut avoir été modifié. Heureusement que nous avons sauvegardé son contenu dans la pile avant d’appeler <code class="language-plaintext highlighter-rouge">func2</code> ! Il ne nous reste donc qu’à récupérer et restaurer cette valeur. En conséquence, nous avons le code suivant :</p>
+
+<pre><code class="language-mips">    # Checkpoint 3: What do you need to do after a function call?
+    lw $t0 0($sp)     # Retrieve the saved temporary register from the stack
+    addi $sp $sp 4    # Return the stack pointer up by 1 word (4 bytes)
+</code></pre>
+<p><br />
+<strong>Enfin, pour le point de contrôle 4</strong>, nous sommes maintenant au point où <code class="language-plaintext highlighter-rouge">func1</code> a terminé ses opérations et s’apprête à quitter et retourner vers <code class="language-plaintext highlighter-rouge">main</code>. Cependant, avant d’executer l’instruction de retour, <code class="language-plaintext highlighter-rouge">func1</code> doit s’assurer qu’elle a également accompli ses responsabilités de fonction <em>appelée</em>. Plus tôt dans le point de contrôle 1, nous avons sauvegardé les registres <code class="language-plaintext highlighter-rouge">$ra</code> et <code class="language-plaintext highlighter-rouge">$s0</code> dans la pile. Il est maintenant temps de les récupérer. Effectivement, pendant l’exécution de <code class="language-plaintext highlighter-rouge">func1</code>, la fonction a modifié le registre <code class="language-plaintext highlighter-rouge">$s0</code> et le registre <code class="language-plaintext highlighter-rouge">$ra</code> (à cause de l’appel de la fonction <code class="language-plaintext highlighter-rouge">func2</code>). En tant que fonction <em>appelée</em>, <code class="language-plaintext highlighter-rouge">func1</code> a la responsabilité de ramener les valeurs de ces registres à leurs états initiales de sorte que dans la perspective de la fonction <code class="language-plaintext highlighter-rouge">main</code>, ces registres soient inchangés. En conséquence, nous avons le code suivant :</p>
+
+<pre><code class="language-mips"># Checkpoint 4: What do you need to do before this function returns?
+    lw $s0 4($sp)     # Retrieve the original saved register (s0)
+    lw $ra 0($sp)     # Retrieve the original return address (ra). This points back to the main function.
+    addi $sp $sp 8    # Return the stack pointer up by 2 words (8 bytes)
+</code></pre>
+
+<p><br />
+Ceci achève notre implémentation de la convention d’appel MIPS pour <code class="language-plaintext highlighter-rouge">func1</code>. Voici le code complet :</p>
+
+<pre><code class="language-mips">func1: # modifies $a0, $t0, $v0 and $s0. $ra points to the `main` function.
+    # Checkpoint 1: What do you need to do before you start modifying registers?
+    addi $sp $sp -8   # Push the stack pointer down by 2 words (8 bytes)
+    sw $ra 0($sp)     # Save the return address register ($ra)
+    sw $s0 4($sp)     # Save the saved register ($s0)
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 2: What do you need to do before you call another function?
+    addi $sp $sp -4   # Push the stack pointer down by 1 word (4 bytes)
+    sw $t0 0($sp)     # Save the temporary register ($t0)
+    
+    # input argument at $a0, return value at $v0  
+    jal func2  # call func2
+    # Checkpoint 3: What do you need to do after a function call?
+    lw $t0 0($sp)     # Retrieve the saved temporary register from the stack
+    addi $sp $sp 4    # Return the stack pointer up by 1 word (4 bytes)
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 4: What do you need to do before this function returns?
+    lw $s0 4($sp)     # Retrieve the original saved register ($s0)
+    lw $ra 0($sp)     # Retrieve the original return address ($ra). This points back to the main function.
+    addi $sp $sp 8    # Return the stack pointer up by 2 words (8 bytes)
+    
+    jr $ra   # function return
+</code></pre>
+
+<p><br />
+Supposons  que le registre <code class="language-plaintext highlighter-rouge">$sp</code> pointe à l’adresse mémoire <code class="language-plaintext highlighter-rouge">0x7FFFFFF0</code> au début de <code class="language-plaintext highlighter-rouge">func1</code>.</p>
+
+<fieldset class="checkoff">
+ <legend>Contrôle</legend>
+
+<details>
+<summary>
+À quelle adresse mémoire <code class="language-plaintext highlighter-rouge">$s0</code> est-il enregistré ?
+</summary>
+<p style="color: firebrick">
+Le pointeur de pile a été ajusté de <code class="language-plaintext highlighter-rouge">-8</code>, mais <code class="language-plaintext highlighter-rouge">$s0</code> est stocké à <code class="language-plaintext highlighter-rouge">$sp + 4</code>. Ainsi, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0 - 8 + 4 = 0x7FFFFFEC</code>.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+À quelle adresse mémoire <code class="language-plaintext highlighter-rouge">$t0</code> est-il enregistré ?
+</summary>
+<p style="color: firebrick">
+Le pointeur de pile a été ajusté de <code class="language-plaintext highlighter-rouge">-8</code> au début, puis avant d’enregistrer <code class="language-plaintext highlighter-rouge">$t0</code>, nous l’ajustons à nouveau de <code class="language-plaintext highlighter-rouge">-4</code>. Ainsi, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0 - 8 - 4 = 0x7FFFFFE4</code>
+</p>
+</details>
+      <br />
+<details>
+<summary>
+À la fin de <code class="language-plaintext highlighter-rouge">func1</code> (à la ligne <code class="language-plaintext highlighter-rouge">jr $ra</code>), à quelle adresse le registre <code class="language-plaintext highlighter-rouge">$sp</code> pointe maintenant ?
+</summary>
+<p style="color: firebrick">
+Il devrait être de retour à la valeur initiale puisque nous avons récupéré les données enregistrées et ajusté le pointeur de pile en conséquence. Ainsi, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0</code>.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+Si nous n’avons pas implémenté le code dans les points de contrôle 2 et 3, quelles seraient les conséquences ?
+</summary>
+<p style="color: firebrick">
+Après le point de contrôle 3, nous remarquons que <code class="language-plaintext highlighter-rouge">func1</code> utilise à nouveau <code class="language-plaintext highlighter-rouge">$t0</code>. Comme <code class="language-plaintext highlighter-rouge">$t0</code> est un registre géré par l’appelant, <code class="language-plaintext highlighter-rouge">func2</code> (qui est la fonction <em>appelée</em>) a la liberté de modifier <code class="language-plaintext highlighter-rouge">$t0</code> sans se soucier à rétablir sa valeur initiale. Si <code class="language-plaintext highlighter-rouge">$t0</code> a bien été modifié par <code class="language-plaintext highlighter-rouge">func2</code>, alors les calculs effectués par <code class="language-plaintext highlighter-rouge">func1</code> seront erronés puisque l’appel de la fonction <code class="language-plaintext highlighter-rouge">func2</code> a changé une de ses variables temporaires.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+Si nous n’avons pas sauvegardé le registre <code class="language-plaintext highlighter-rouge">$ra</code> au début, quelles seraient les conséquences ?
+</summary>
+<p style="color: firebrick">
+Au début de <code class="language-plaintext highlighter-rouge">func1</code>, le registre <code class="language-plaintext highlighter-rouge">$ra</code> pointe vers l’instruction qui succède à l’instruction <code class="language-plaintext highlighter-rouge">jal func1</code> dans le <code class="language-plaintext highlighter-rouge">main</code>. Chaque fois que l’instruction <code class="language-plaintext highlighter-rouge">jal</code> ou <code class="language-plaintext highlighter-rouge">jalr</code> est exécutée, le contenu du registre <code class="language-plaintext highlighter-rouge">$ra</code> est modifié de sorte qu’il pointe vers l’instruction qui vient juste après ce <code class="language-plaintext highlighter-rouge">jal</code>/<code class="language-plaintext highlighter-rouge">jalr</code>. De ce fait, lorsque <code class="language-plaintext highlighter-rouge">jr $ra</code> est exécuté à la fin de la fonction appelée, la fonction appelante poursuit son exécution là où pointe le registre <code class="language-plaintext highlighter-rouge">$ra</code> (C-à-d. à l’instruction qui succède le <code class="language-plaintext highlighter-rouge">jal/jalr</code>). 
+<br /><br />
+Dans notre exemple, <code class="language-plaintext highlighter-rouge">func1</code> appelle <code class="language-plaintext highlighter-rouge">func2</code> avec <code class="language-plaintext highlighter-rouge">jal func2</code>. Cela modifie le contenu de <code class="language-plaintext highlighter-rouge">$ra</code> de sorte qu’il pointe vers l’instruction qui vient juste après (c.-à-d. <code class="language-plaintext highlighter-rouge">lw $t0 0($sp)</code>). Ainsi, si nous avions omis de sauvegarder <code class="language-plaintext highlighter-rouge">$ra</code> avant l’appel de <code class="language-plaintext highlighter-rouge">func2</code>, lorsque <code class="language-plaintext highlighter-rouge">func1</code> exécute l’instruction <code class="language-plaintext highlighter-rouge">jr $ra</code> à la fin, nous allons boucler sur l’instruction (<code class="language-plaintext highlighter-rouge">lw $t0 0($sp)</code>) au lieu de retourner vers la fonction <code class="language-plaintext highlighter-rouge">main</code>. Ce n’est pas le flux d’exécution prévu.
+</p>
+</details>
+      
+</fieldset>
+
+<h1 id="exemple--du-c-au-mips-avec-convention-dappel">Exemple : Du C au MIPS avec convention d’appel</h1>
+
+<p>Comme dans l’exemple <a href="__">précédent</a>, nous allons traduire le programme C ci-dessous en langage assembleur MIPS. La difficulté en plus ici, est que nous devons suivre la convention d’appel MIPS lors de la traduction du code C.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">source</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">dest</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"sum: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Commençons d’abord par réécrire ce code sous une <a href="/l2ado/static_files/docs/non_structured_programming.html">forme non structurée</a> équivalente.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">source</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">dest</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nl">WHILE:</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="p">;</span>
+    <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">WHILE</span><span class="p">;</span>    
+<span class="nl">ELIHW:</span>    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"sum: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Passons maintenant à la conversion MIPS. Tout comme nous l’avons fait dans un <a href="_____">exemple précédent</a>, commençons par initialiser les tableaux <code class="language-plaintext highlighter-rouge">source</code> et <code class="language-plaintext highlighter-rouge">dest</code>. Nous devons déclarer nos tableaux dans la section <code class="language-plaintext highlighter-rouge">.data</code> comme indiqué ci-dessous :</p>
+
+<pre><code class="language-mips">.data
+source:
+    .word   3, 1, 4, 1, 5, 9, 0
+dest:
+    .word   0, 0, 0, 0, 0, 0, 0, 0, 0, 0   # alternatively, you could also put:   .space  40    # ( 10 x 4 bytes )
+</code></pre>
+
+<p>Ensuite, passons à la traduction de la fonction <code class="language-plaintext highlighter-rouge">fun</code>.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>La convention d’appel MIPS stipule que</p>
+<ul>
+  <li>La valeur de <code class="language-plaintext highlighter-rouge">x</code> peut être récupérée à partir du registre <code class="language-plaintext highlighter-rouge">$a0</code>.</li>
+  <li>La valeur retournée doit être écrite dans le registre <code class="language-plaintext highlighter-rouge">$v0</code>.</li>
+</ul>
+
+<p>La version MIPS de <code class="language-plaintext highlighter-rouge">fun</code> est donnée ci-dessous avec des commentaires exhaustifs.</p>
+
+<pre><code class="language-mips">.text
+fun:
+    addi $t0, $a0, 1    # $t0 = x + 1
+    sub  $t1, $0, $a0   # $t1 = -x
+    mul  $v0, $t0, $t1  # $v0 = (x + 1) * (-x)
+    jr $ra              # retour à l'appelant
+</code></pre>
+
+<fieldset class="checkoff">
+ <legend>Contrôle</legend>
+<details>
+<summary>
+Pourquoi les contenus de <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$t1</code> n’ont pas été sauvegardés avant que ces registres ne soit utilisés ?
+</summary>
+<p style="color: firebrick">
+<code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$t1</code> sont des registres gérés par la fonction <em>appelante</em>. La convention d’appel MIPS ne garantit pas que les registres gérés par l’appelant resteront inchangés après un appel de fonction. Par conséquent, <code class="language-plaintext highlighter-rouge">fun</code> peut modifier <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$t1</code> sans se soucier de leurs anciennes valeurs. Si la fonction qui a appelé <code class="language-plaintext highlighter-rouge">fun</code> avait des valeurs stockées dans <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$t1</code> qu’elle souhaite utiliser après le retour de <code class="language-plaintext highlighter-rouge">fun</code>, elle devrait enregistrer <code class="language-plaintext highlighter-rouge">$t0</code> et <code class="language-plaintext highlighter-rouge">$t1</code> avant d’appeler <code class="language-plaintext highlighter-rouge">fun </code>.
+</p>
+</details>
+</fieldset>
+
+<p>Passons à la fonction <code class="language-plaintext highlighter-rouge">main</code> (Nous allons ignorer la convention d’appel pour un moment).</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Le code C ci-dessus devient le suivant en MIPS :</p>
+
+<pre><code class="language-mips">main:
+    addi $t0, $0, 0   # $t0 &lt;-&gt; k   = 0
+    addi $s0, $0, 0   # $s0 &lt;-&gt; sum = 0
+</code></pre>
+
+<p>Ensuite, récupérons les adresses des deux tableaux <code class="language-plaintext highlighter-rouge">source[]</code> et <code class="language-plaintext highlighter-rouge">dest[]</code>.</p>
+
+<pre><code class="language-mips">    la $s1, source
+    la $s2, dest
+</code></pre>
+
+<p>Rappelons que l’instruction <code class="language-plaintext highlighter-rouge">la</code> récupère l’adresse de l’étiquette donnée en paramètre. C’est la <strong>seule façon</strong> d’accéder aux adresses de <code class="language-plaintext highlighter-rouge">source</code> et <code class="language-plaintext highlighter-rouge">dest</code>. <code class="language-plaintext highlighter-rouge">$s1</code> est maintenant un pointeur vers le tableau <code class="language-plaintext highlighter-rouge">source[]</code> et <code class="language-plaintext highlighter-rouge">$s2</code> est un pointeur vers le tableau <code class="language-plaintext highlighter-rouge">dest[]</code>.</p>
+
+<p>Passons à la traduction de la boucle</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">WHILE:</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="p">;</span>
+    <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">WHILE</span><span class="p">;</span>    
+<span class="n">ELIHW</span><span class="o">:</span>    
+</code></pre></div></div>
+
+<p>Tout d’abord, nous allons construire le corps extérieur de la boucle.</p>
+
+<pre><code class="language-mips">WHILE:
+    sll $s3, $t0, 2        #1
+    add $t1, $s1, $s3      #2
+    lw  $t2, 0($t1)        #3
+    beq $t2, $0, ELIHW     #4
+    
+    ...
+
+    addi t0, t0, 1         #5
+    j WHILE                #6
+ELIHW:
+</code></pre>
+
+<ol>
+  <li>Les lignes 1 à 3 sont nécessaires pour accéder à l’élément <code class="language-plaintext highlighter-rouge">k</code> dans le tableau <code class="language-plaintext highlighter-rouge">source[]</code>. Nous commençons par calculer l’indice <strong>en octets</strong> de l’élément dans le tableau. Comme <code class="language-plaintext highlighter-rouge">source[]</code> est un tableau d’entiers, donc la taille de chaque élément est de <code class="language-plaintext highlighter-rouge">4 octets</code>. Cela signifie que nous devons multiplier <code class="language-plaintext highlighter-rouge">$t0</code> par <code class="language-plaintext highlighter-rouge">4</code> pour calculer l’indice en octets. Pour multiplier une valeur par quatre, il suffit de la décaler vers la gauche de deux positions binaires.</li>
+  <li>Ensuite, nous devons ajouter cette indice en octets au pointeur <code class="language-plaintext highlighter-rouge">$s1</code> pour calculer l’adresse de <code class="language-plaintext highlighter-rouge">source[k]</code>.</li>
+  <li>Une fois l’adresse connue, nous pouvons charger la valeur de l’élément <code class="language-plaintext highlighter-rouge">source[k]</code> depuis la mémoire.</li>
+  <li>Ensuite, nous vérifions si <code class="language-plaintext highlighter-rouge">source[k]</code> est égal à 0. Si c’est le cas, nous sautons à la sortie de la boucle.</li>
+  <li>A la fin de la boucle, nous incrémentons <code class="language-plaintext highlighter-rouge">k</code> de 1</li>
+  <li>Enfin, nous rebouclons sur le début de la boucle</li>
+</ol>
+
+<p>Maintenant, ajoutons des instructions pour implémenter le reste de la boucle (en ignorant toujours la convention d’appel)</p>
+
+<pre><code class="language-mips">WHILE:
+    sll $s3, $t0, 2         
+    add $t1, $s1, $s3       
+    lw  $t2, 0($t1)         
+    beq $t2, $0, ELIHW      
+ 
+    add $a0, $0, $t2    # 1
+     
+    jal fun             # 2
+     
+    add $t3, $s2, $s3   # 3
+    sw $v0, 0($t3)      # 4
+    add $s0, $s0, $v0   # 5
+
+    addi $t0, $t0, 1          
+    j WHILE                 
+ELIHW:
+</code></pre>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">fun</code> prend l’argument <code class="language-plaintext highlighter-rouge">x</code>. Nous devons passer cet argument via le registre <code class="language-plaintext highlighter-rouge">$a0</code> afin que <code class="language-plaintext highlighter-rouge">fun</code> puisse le récupérer.</li>
+  <li>Appel de la fonction <code class="language-plaintext highlighter-rouge">fun</code>. L’instruction <code class="language-plaintext highlighter-rouge">jal</code> enregistre automatiquement l’adresse de l’instruction (#3) dans <code class="language-plaintext highlighter-rouge">$ra</code>.</li>
+  <li>Ensuite, nous aimerions sauvegarder la valeur retournée par <code class="language-plaintext highlighter-rouge">fun</code> dans le tableau <code class="language-plaintext highlighter-rouge">dest[]</code>. Nous devons d’abord calculer l’adresse de l’endroit où nous voulons stocker la valeur dans <code class="language-plaintext highlighter-rouge">dest[]</code>. En ce sens, et comme il s’agit de la même position <code class="language-plaintext highlighter-rouge">k</code> dans un tableau d’entiers, nous pouvons réutiliser l’indice en octets calculé précédemment (récupérable depuis <code class="language-plaintext highlighter-rouge">$s3</code>) et l’additionner au pointeur du tableau <code class="language-plaintext highlighter-rouge">dest[]</code> (c.-à-d. <code class="language-plaintext highlighter-rouge">$s2</code>).</li>
+  <li>Sauvegarde de la valeur retournée par <code class="language-plaintext highlighter-rouge">fun</code> dans <code class="language-plaintext highlighter-rouge">dest[k]</code>. Rappelons que <code class="language-plaintext highlighter-rouge">fun</code> a placé la valeur retournée dans <code class="language-plaintext highlighter-rouge">$v0</code>.</li>
+  <li>Incrémenter la variable <code class="language-plaintext highlighter-rouge">sum</code> de <code class="language-plaintext highlighter-rouge">dest[k]</code>.</li>
+</ol>
+
+<p>Passons ensuite à l’implementation en MIPS de la sortie de la fonction <code class="language-plaintext highlighter-rouge">main</code> (en excluant toujours la convention d’appel pour le moment).</p>
+
+<pre><code class="language-mips">ELIHW:
+    addi $v0, $0,  1 # argument de syscall, 1 = exécuter 'print entier'
+    addi $a0, $s0, 0 # argument de syscall, la valeur à afficher
+    syscall          # appel système (affichage d'un entier)
+    addi $v0, $0, 10 # argument de syscall, 10 = terminer le programme
+    syscall          # appel système (terminer le programme)
+</code></pre>
+
+<p>Le contenu de la variable <code class="language-plaintext highlighter-rouge">sum</code> est stockée dans le registre <code class="language-plaintext highlighter-rouge">$s0</code>. Pour imprimer cette valeur, nous devons la mettre dans <code class="language-plaintext highlighter-rouge">$a0</code> avant le premier appel système.</p>
+
+<p>Maintenant que l’essentiel de la logique de notre programme est traduite en MIPS, nous devons la finaliser en introduisant les instructions nécessaires afin de respecter la convention d’appel pour les fonctions <code class="language-plaintext highlighter-rouge">main</code> et <code class="language-plaintext highlighter-rouge">fun</code>.</p>
+
+<p>En premier, ajoutons la convention d’appel appropriée autour de <code class="language-plaintext highlighter-rouge">jal fun</code>. Pour respecter la convention d’appel (et donc faire en sorte que notre code se comporte comme prévu), nous devons sauvegarder tous les registres de la fonction <em>appelante</em> (c.-à-d. le <code class="language-plaintext highlighter-rouge">main</code>) dont nous voulons que les valeurs restent les mêmes après avoir appelé <code class="language-plaintext highlighter-rouge">fun</code>. Dans ce cas, nous pouvons voir que nous utilisons les registres <code class="language-plaintext highlighter-rouge">$t0</code>, <code class="language-plaintext highlighter-rouge">$t1</code>, <code class="language-plaintext highlighter-rouge">$t2</code>, <code class="language-plaintext highlighter-rouge">$t3</code>, <code class="language-plaintext highlighter-rouge">$a0</code> et <code class="language-plaintext highlighter-rouge">$v0</code> dans <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<fieldset class="checkoff">
+ <legend>Contrôle</legend>
+<details>
+<summary>
+Avons-nous besoin de sauvegarder et de restaurer tous ces registres ?
+</summary>
+<p style="color: firebrick">
+Non, nous avons seulement besoin de sauvegarder et de restaurer <code class="language-plaintext highlighter-rouge">$t0</code>. Nous utilisons <code class="language-plaintext highlighter-rouge">$t1</code>, <code class="language-plaintext highlighter-rouge">$t2</code> et <code class="language-plaintext highlighter-rouge">$a0</code> avant <code class="language-plaintext highlighter-rouge">fun</code>, mais nous ne réutilisons pas leurs valeurs après. De plus, nous écrivons dans <code class="language-plaintext highlighter-rouge">$t3</code> (et <code class="language-plaintext highlighter-rouge">$v0</code>) après <code class="language-plaintext highlighter-rouge">fun</code>. <code class="language-plaintext highlighter-rouge">$t0</code> est le seul registre de l’appelant dont la valeur doit rester la même avant et après l’appel de <code class="language-plaintext highlighter-rouge">fun</code>.
+</p>
+</details>
+</fieldset>
+
+<p>Ajoutons le code de convention d’appel approprié autour de <code class="language-plaintext highlighter-rouge">jal fun</code>.</p>
+
+<pre><code class="language-mips">addi $sp, $sp, -4
+sw $t0, 0($sp)
+jal fun
+lw $t0, 0($sp)
+addi $sp, $sp, 4
+</code></pre>
+
+<p>Implémentant maintenant la convention d’appel associée à la fonction <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<fieldset class="checkoff">
+ <legend>Contrôle</legend>
+<details>
+<summary>
+Quelle partie de la convention d’appel est manquante pour la fonction <code class="language-plaintext highlighter-rouge">main</code> ?
+</summary>
+<p style="color: firebrick">
+Par rapport au système d’exploitation, <code class="language-plaintext highlighter-rouge">main</code> est une fonction appelée. Nous écrasons les registres qui doivent être conserver par la fonction appelée sans les avoir sauvegardés en premier ! Rappelons que c’est à la fonction appelée de s’assurer que ces registres gardent les mêmes valeurs au début et à la fin de la fonction.
+</p>
+</details>
+
+<details>
+<summary>
+Quels registres doivent être conservés par la fonction <code class="language-plaintext highlighter-rouge">main</code> ?
+</summary>
+<p style="color: firebrick">
+Tous les registres que nous écrasons et qui doivent être conserver par la fonction appelée. Pour <code class="language-plaintext highlighter-rouge">main</code>, il s’agit des registres <code class="language-plaintext highlighter-rouge">$s0</code>-<code class="language-plaintext highlighter-rouge">$s3</code> et <code class="language-plaintext highlighter-rouge">$ra</code>.
+</p>
+</details>
+</fieldset>
+
+<p>Il peut être difficile de comprendre pourquoi nous devons sauvegarder <code class="language-plaintext highlighter-rouge">$ra</code>. Rappelons qu’une autre fonction (appartenant au système d’exploitation) a appelé <code class="language-plaintext highlighter-rouge">main</code>. Lorsque cette fonction a appelé <code class="language-plaintext highlighter-rouge">main</code>, elle a stocké une adresse de retour dans <code class="language-plaintext highlighter-rouge">$ra</code> afin que <code class="language-plaintext highlighter-rouge">main</code> sache où retourner une fois son exécution terminée. Lorsque <code class="language-plaintext highlighter-rouge">main</code> appelle <code class="language-plaintext highlighter-rouge">fun</code>, il doit stocker une adresse de retour dans <code class="language-plaintext highlighter-rouge">$ra</code> afin que <code class="language-plaintext highlighter-rouge">fun</code> sache où retourner lorsqu’elle a fini de s’exécuter. Par conséquent, <code class="language-plaintext highlighter-rouge">main</code> doit sauvegarder <code class="language-plaintext highlighter-rouge">$ra</code> avant de l’écraser avec <code class="language-plaintext highlighter-rouge">jal fun</code>.</p>
+
+<p>Vous trouverez ci-dessous le prologue et l’épilogue de <code class="language-plaintext highlighter-rouge">main</code> :</p>
+
+<pre><code class="language-mips">main:
+    # BEGIN PROLOGUE
+    addi $sp, $sp, -20
+    sw $s0, 0($sp)
+    sw $s1, 4($sp)
+    sw $s2, 8($sp)
+    sw $s3, 12($sp)
+    sw $ra, 16($sp)
+    # END PROLOGUE
+    ...
+    ...
+ELIHW:
+    addi $v0, $0, 1    # argument de syscall, 1 = exécuter 'print entier'
+    addi $a0, s0, 0    # argument de syscall, la valeur à afficher
+    syscall            # appel système (affichage d'un entier)
+    # BEGIN EPILOGUE
+    lw $s0, 0($sp)
+    lw $s1, 4($sp)
+    lw $s2, 8($sp)
+    lw $s3, 12($sp)
+    lw $ra, 16($sp)
+    addi $sp, $sp, 20
+    # END EPILOGUE
+    addi $v0, $0, 10   # argument de syscall, 10 = terminer le programme
+    syscall            # appel système (terminer le programme)
+</code></pre>
+
+<p>Vous pouvez trouver le programme en entier <a href="/l2ado/static_files/docs/c2mips.s">c2mips.s</a>.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

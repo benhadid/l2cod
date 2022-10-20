@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> C 2 MIPS - introduction - Architecture des ordinateurs / Automne 2022 </title>
+  <meta name="description" content="C 2 MIPS - introduction - Architecture des ordinateurs / Automne 2022">
+
+  <link rel="shortcut icon" href="https://benhadid.github.io//l2ado/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io//l2ado/static_files/docs/C2MIPS">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io//l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2022</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">C 2 MIPS - introduction</h1>
+  </header>
+
+  <article class="post-content">
+    
+<h1 id="c-2-mips---introduction">C 2 MIPS - introduction</h1>
+
+<p>In this exercise, we are going to walk through translating a C program to a MIPS program. The following program will print out the nth Fibonacci number.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+<span class="c1">// Function to find the nth Fibonacci number</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">curr_fib</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">next_fib</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">new_fib</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">new_fib</span> <span class="o">=</span> <span class="n">curr_fib</span> <span class="o">+</span> <span class="n">next_fib</span><span class="p">;</span>
+        <span class="n">curr_fib</span> <span class="o">=</span> <span class="n">next_fib</span><span class="p">;</span>
+        <span class="n">next_fib</span> <span class="o">=</span> <span class="n">new_fib</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">curr_fib</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s break down how we’ll translate this step-by-step. First, we need to re-write the c source code into an <a href="put_a_link_here">unstructured version</a>.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+<span class="c1">// Function to find the nth Fibonacci number</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">curr_fib</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">next_fib</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">new_fib</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+
+<span class="nl">WHILE:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="o">:</span>
+    <span class="n">new_fib</span>  <span class="o">=</span> <span class="n">curr_fib</span> <span class="o">+</span> <span class="n">next_fib</span><span class="p">;</span>
+    <span class="n">curr_fib</span> <span class="o">=</span> <span class="n">next_fib</span><span class="p">;</span>
+    <span class="n">next_fib</span> <span class="o">=</span> <span class="n">new_fib</span><span class="p">;</span>
+    <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">WHILE</span><span class="p">;</span>
+
+<span class="nl">ELIHW:</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">curr_fib</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Next, we need to define the global variable n. In MIPS, global variables are declared under the .data directive. This represents the data segment. It will look like this:</p>
+
+<pre><code class="language-mips">.data
+n: .word 9
+</code></pre>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">n</code> is the name of the variable,</li>
+  <li><code class="language-plaintext highlighter-rouge">.word</code> means that the size of the data is one word,</li>
+  <li><code class="language-plaintext highlighter-rouge">9</code> is the value that is assigned to <code class="language-plaintext highlighter-rouge">n</code>.</li>
+</ul>
+
+<p>Let’s move on to initializing <code class="language-plaintext highlighter-rouge">curr_fib</code> and <code class="language-plaintext highlighter-rouge">next_fib</code>. Since these are local variables in our c code, they will be assigned to some registers of the MIPS cpu. recall that, by convention, the $s0-$s7 registers are used for local variables in MIPS.</p>
+
+<pre><code class="language-mips">.text
+main:
+    add  $s0, $0, $0 # curr_fib = 0
+    addi $s1, $0,  1 # next_fib = 1
+</code></pre>
+<p>Here we have added the <code class="language-plaintext highlighter-rouge">.text</code> directive. Everything under this directive is our executable code.</p>
+
+<p>Remember that $0 always holds the value 0.</p>
+
+<p>We don’t need to do anything to declare <code class="language-plaintext highlighter-rouge">new_fib</code> (we don’t declare variables in MIPS).</p>
+
+<p>Next, let’s get to the loop. We’ll start with setting up the loop variables. The following code will set <code class="language-plaintext highlighter-rouge">i</code> to <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<pre><code class="language-mips">la $t0, n      # load the address of the label n
+lw $t0, 0($t0) # get the value that is stored at the address denoted by the label n
+</code></pre>
+<p>You can think of the code above as doing something along the lines of</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">t0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+ <span class="n">t0</span> <span class="o">=</span> <span class="o">*</span><span class="n">t0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The instruction <code class="language-plaintext highlighter-rouge">la</code> loads the address of a label into a given register. The first line essentially sets <code class="language-plaintext highlighter-rouge">$t0</code> to be a pointer to <code class="language-plaintext highlighter-rouge">n</code>. the second line uses <code class="language-plaintext highlighter-rouge">lw</code> to dereference <code class="language-plaintext highlighter-rouge">$t0</code> and sets <code class="language-plaintext highlighter-rouge">$t0</code> to the value stored at <code class="language-plaintext highlighter-rouge">n</code>.</p>
+
+<p>Now, you’re probably thinking: “Why can’t we directly set <code class="language-plaintext highlighter-rouge">$t0</code> to <code class="language-plaintext highlighter-rouge">n</code>?” In the <code class="language-plaintext highlighter-rouge">.text</code> section, there is no way* that we can directly access <code class="language-plaintext highlighter-rouge">n</code> (Think about it. We can’t say <code class="language-plaintext highlighter-rouge">add $t0, n, $0</code>. The arguments to <code class="language-plaintext highlighter-rouge">and</code> <strong>must be registers</strong> and <code class="language-plaintext highlighter-rouge">n</code> <strong>is not</strong> a register). The only way that we can access <code class="language-plaintext highlighter-rouge">n</code> is by obtaining its address. Once we obtain the address of <code class="language-plaintext highlighter-rouge">n</code>, we need to dereference it which can be done with <code class="language-plaintext highlighter-rouge">lw</code>. the instruction <code class="language-plaintext highlighter-rouge">lw</code> will reach into memory at the address that you specify and load in the value stored at that address. In this case, we specified the address of <code class="language-plaintext highlighter-rouge">n</code> and added an offset of <code class="language-plaintext highlighter-rouge">0</code>.</p>
+
+<p>Let’s get down to the loop now. First, we’ll create the outer structure below:</p>
+
+<pre><code class="language-mips">WHILE:
+    beq $t0, $0, ELIHW  # exit loop once we have completed n iterations
+    ...
+    ...
+    addi $t0, $t0, -1   # decrement counter
+    j WHILE             # loop
+ELIHW:
+</code></pre>
+
+<p>The first line (<code class="language-plaintext highlighter-rouge">WHILE:</code>) is a label that we will use to jump back to the beginning of the loop.</p>
+
+<p>The next line (<code class="language-plaintext highlighter-rouge">beq $t0, $0, ELIHW</code>) specifies our terminating condition. Here, we will jump to another label, <code class="language-plaintext highlighter-rouge">ELIHW</code>, once $t0 (which is representing <code class="language-plaintext highlighter-rouge">i</code>) reaches <code class="language-plaintext highlighter-rouge">0</code>.</p>
+
+<p>The line (<code class="language-plaintext highlighter-rouge">addi $t0, $t0, -1</code>) decrements <code class="language-plaintext highlighter-rouge">i</code> at the end of the loop body.</p>
+
+<p>The next instruction jumps back to the start of the loop.</p>
+
+<p>Now, let’s add in the loop body.</p>
+
+<pre><code class="language-mips">WHILE:
+    beq $t0, $0, ELIHW  # exit loop once we have completed n iterations
+     
+    add $t2, $s0, $s1   # new_fib  = curr_fib + next_fib;
+    add $s0, $s1, $0    # curr_fib = next_fib;
+    add $s1, $t2, $0    # next_fib = new_fib;
+     
+    addi $t0, $t0, -1   # decrement counter
+    j WHILE             # loop
+ELIHW:
+</code></pre>
+<p>Nothing special here. The corresponding C lines are written in the comments.</p>
+
+<p>Let’s print out the nth Fibonacci number!</p>
+
+<pre><code class="language-mips">ELIHW:
+    addi $v0,  $0, 1 # argument to syscall to execute print integer
+    addi $a0, $s0, 0 # argument to syscall, the value to be printed
+    syscall          # execute 'print integer'
+</code></pre>
+
+<p>Printing is a system call. You’ll learn more about these later in the semester, but a system call is essentially a way for your program to interact with the Operating System. To make a system call in MIPS, we use a special instruction called <code class="language-plaintext highlighter-rouge">syscall</code>. To print out an integer, we need to pass two arguments to <code class="language-plaintext highlighter-rouge">syscall</code>. The first argument specifies what we want <code class="language-plaintext highlighter-rouge">syscall</code> to do (in this case, print an integer). To specify that we want to print an integer, we set <code class="language-plaintext highlighter-rouge">$v0</code> to <code class="language-plaintext highlighter-rouge">1</code>. The integer that we want to print out is passed as an argument via <code class="language-plaintext highlighter-rouge">a0</code>.</p>
+
+<p>In C, we are used to functions looking like <code class="language-plaintext highlighter-rouge">afficher(s0)</code>. In MIPS, we cannot pass arguments in this way. To pass an argument, we need to place it in an argument register (<code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>). When the function executes, it will look in these registers for the arguments. The first argument should be placed in <code class="language-plaintext highlighter-rouge">$a0</code>, the second in <code class="language-plaintext highlighter-rouge">$a1</code>, etc.</p>
+
+<p>Next, let’s terminate our program! This also requires a <code class="language-plaintext highlighter-rouge">syscall</code>!</p>
+
+<pre><code class="language-mips">addi $v0, $0, 10 # argument to syscall to terminate
+syscall          # execute 'terminate'
+</code></pre>
+<p>And there you have it! Here’s our full program!</p>
+
+<pre><code class="language-mips">.data
+n: .word 9
+
+.text
+main:
+    add  $s0, $0, $0      # curr_fib = 0
+    addi $s1, $0,  1      # next_fib = 1
+    la $t0, n             # load the address of the label n
+    lw $t0, 0($t0)        # get the value that is stored at the address denoted by the label n
+WHILE:
+    beq  $t0, $0,  ELIHW  # exit loop once we have completed n iterations     
+    add  $t2, $s0, $s1    # new_fib  = curr_fib + next_fib;
+    add  $s0, $s1, $0     # curr_fib = next_fib;
+    add  $s1, $t2, $0     # next_fib = new_fib;     
+    addi $t0, $t0, -1     # decrement counter
+    j WHILE               # loop
+ELIHW:
+    addi $v0,  $0, 1      # argument to syscall to execute print integer
+    addi $a0, $s0, 0      # argument to syscall, the value to be printed
+    syscall               # execute 'print integer'
+    addi $v0, $0, 10      # argument to syscall to terminate
+    syscall               # execute 'terminate'
+</code></pre>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
