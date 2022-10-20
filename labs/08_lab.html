@@ -203,7 +203,7 @@
 
 <p>Nous souhaitons permuter les lignes et les colonnes d’une matrice (voir figure ci-dessous). Cette opération est appelée <em>transposition de matrice</em> et une implémentation efficace peut être très utile, particulièrement quand on effectue des opérations assez compliquées en algèbre linéaire. La transposée de la matrice A est souvent désignée par A<sup><em>T</em></sup>.</p>
 
-<p><img src="/static_files/images/matrix_transpose.png" alt="Transposition" class="aligncenter" width="50%" height="50%" /></p>
+<p><img src="/l2cod/static_files/images/matrix_transpose.png" alt="Transposition" class="aligncenter" width="50%" height="50%" /></p>
 
 <h2 id="le--cache-blocking-">Le « cache-blocking »</h2>
 
@@ -211,7 +211,7 @@
 
 <p>Nous pouvons améliorer la quantité de réutilisation des données dans les caches en implémentant une technique appelée « cache-blocking ». Plus formellement, Le « cache-blocking » est une technique qui consiste à ré-écrire une opération sur les tableaux de sorte à forcer la réutilisation des données présentes dans le cache. Elle doit donc prendre en compte la taille du cache comme argument. Dans le cas de la transposition matricielle, on envisage d’effectuer la transposition un bloc à la fois.</p>
 
-<p><img src="/static_files/images/block_matrix_transpose.png" alt="BlocTransposition" class="aligncenter" width="50%" height="50%" /></p>
+<p><img src="/l2cod/static_files/images/block_matrix_transpose.png" alt="BlocTransposition" class="aligncenter" width="50%" height="50%" /></p>
 
 <p>Dans l’image ci-dessus, nous transposons chaque sous-matrice \(A_{ij}\) de la matrice \(A\) dans son <strong>emplacement final</strong> dans la matrice de sortie, une sous-matrice à la fois. Nous pouvons vérifier que la transposition de chaque sous-matrice individuelle est équivalent à la transposition de la matrice entière.</p>
 
@@ -240,7 +240,7 @@ En particulier, votre tâche consiste à implémenter la technique du « cache-
 
 <p>Enfin, comme la largeur de la matrice <code class="language-plaintext highlighter-rouge">n</code> n’est pas nécessairement un multiple de la taille de bloc <code class="language-plaintext highlighter-rouge">blocksize</code>, la colonne et ligne finales de blocs seront tronquées (voir les blocs \(A_{3\_}\) et \(A_{\_3}\) dans la figure ci-dessous). Pour gérer cette situation, vous pouvez faire l’exercice en supposant au début que <code class="language-plaintext highlighter-rouge">n</code> est un multiple de <code class="language-plaintext highlighter-rouge">blocksize</code>, puis ajouter une condition quelque part dans le code pour ne rien faire lorsque vos index dépassent les limites de la matrice.</p>
 
-<p><img src="/static_files/images/size_mismatch_matrix_transpose.png" alt="CutBlocTransposition" class="aligncenter" width="50%" height="50%" /></p>
+<p><img src="/l2cod/static_files/images/size_mismatch_matrix_transpose.png" alt="CutBlocTransposition" class="aligncenter" width="50%" height="50%" /></p>
 
 <p>Une fois que votre implémentation fonctionne corrèctement, l’étape suivante est d’effectuer une analyse des performances du programme.</p>
 

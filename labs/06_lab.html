@@ -82,14 +82,14 @@ Ceci est effectué en mettant à 1 le bit 0 du registre status ($12) pour active
       </li>
       <li>
         <p>Dans MARS, accédez à “<strong>Settings</strong>” dans les menus déroulants.<br />
-<img src="/static_files/images/mars_exception_handler.png" alt="Mars exception handler" /></p>
+<img src="/l2cod/static_files/images/mars_exception_handler.png" alt="Mars exception handler" /></p>
       </li>
       <li>
         <p>Cochez la case “Initialize Program Counter to global ‘main’ if defined”</p>
       </li>
       <li>
         <p>Refaite l’étape <strong>(ii)</strong> et cliquez sur l’élément “<strong>Exception Handler</strong>”. Une nouvelle boîte de dialogue apparaîtra.
-<img src="/static_files/images/mars_ehandler2.png" alt="Mars exception handler 2" /></p>
+<img src="/l2cod/static_files/images/mars_ehandler2.png" alt="Mars exception handler 2" /></p>
       </li>
       <li>
         <p>Cochez la case “<strong>Include this exception handler file in all assemble operations</strong>”, puis entrez le chemin du fichier de gestionnaire d’exceptions que vous avez téléchargé. Choisissez OK pour terminer.</p>
@@ -110,7 +110,7 @@ main:
     <p>Modifiez le gestionnaire d’exceptions pour afficher le <strong>vaddr</strong> non valide quand l’exception est provoquée par un chargement (load), un stockage (store) ou une lecture d’instruction (code d’exception 4 ou 5). Testez votre gestionnaire d’exceptions en écrivant des instructions de chargement et de stockage générant des adresses mémoire non valides.</p>
   </li>
   <li>
-    <p>A l’aide des E/S mappée en mémoire et le polling (consultez le document « Mécanismes d’exceptions dans MIPS » disponible à partir du site du <a href="/lectures/">cours</a>), écrire une fonction <code class="language-plaintext highlighter-rouge">print_string</code> qui imprime une chaîne sur l’écran, sans utiliser aucun appel système (c.-à-d. sans <code class="language-plaintext highlighter-rouge">syscall</code>). L’adresse de la chaîne est passée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et la chaîne doit être terminée par le caractère NUL (zéro). Testez cette fonction en l’appelant à partir de la fonction principale. Assurez-vous d’activer le simulateur de clavier et d’affichage MMIO à partir du menu (<strong>Tools | Keyboard and Display MMIO Simulator</strong>) et de connecter ce simulateur à MARS en cliquant sur le bouton « <strong>Connect to MIPS</strong> ».</p>
+    <p>A l’aide des E/S mappée en mémoire et le polling (consultez le document « Mécanismes d’exceptions dans MIPS » disponible à partir du site du <a href="/l2cod/lectures/">cours</a>), écrire une fonction <code class="language-plaintext highlighter-rouge">print_string</code> qui imprime une chaîne sur l’écran, sans utiliser aucun appel système (c.-à-d. sans <code class="language-plaintext highlighter-rouge">syscall</code>). L’adresse de la chaîne est passée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et la chaîne doit être terminée par le caractère NUL (zéro). Testez cette fonction en l’appelant à partir de la fonction principale. Assurez-vous d’activer le simulateur de clavier et d’affichage MMIO à partir du menu (<strong>Tools | Keyboard and Display MMIO Simulator</strong>) et de connecter ce simulateur à MARS en cliquant sur le bouton « <strong>Connect to MIPS</strong> ».</p>
   </li>
   <li>
     <p>Toujours à l’aide des E/S mappée en mémoire et le polling,  écrire un programme qui lit les caractères directement à partir du clavier (consultez le document « Mécanismes d’exceptions dans MIPS »). Pour montrer la lenteur du clavier, imprimer le caractère saisi et le nombre d’itérations après la sortie de la boucle <code class="language-plaintext highlighter-rouge">wait_keyboard</code> (voir le document « Mécanismes d’exceptions dans MIPS »). Répéter l’exécution du programme jusqu’à ce que vous appuyiez sur la touche retour du clavier. Assurez-vous d’exécuter le simulateur MARS à la vitesse maximale.</p>

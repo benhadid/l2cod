@@ -2,7 +2,7 @@
 
 <ul>
   <li>
-    <p>Se familiariser avec le <a href="/static_files/docs/MARS">simulateur MARS</a>.</p>
+    <p>Se familiariser avec le <a href="/l2cod/static_files/docs/MARS">simulateur MARS</a>.</p>
   </li>
   <li>
     <p>Apprendre à assembler, exécuter et déboguer un programme MIPS.</p>
@@ -11,7 +11,7 @@
 
 <h1 id="préambule">Préambule</h1>
 
-<p>Ces travaux pratiques vous introduisent à la programmation en langage assembleur MIPS. En particulier, les exercices 1 et 2 ci-dessous requièrent la ré-implémentation en langage assembleur MIPS de deux exercices déjà rencontrés dans le <a href="/labs/03_lab.html">TP précédent</a>. Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix.</p>
+<p>Ces travaux pratiques vous introduisent à la programmation en langage assembleur MIPS. En particulier, les exercices 1 et 2 ci-dessous requièrent la ré-implémentation en langage assembleur MIPS de deux exercices déjà rencontrés dans le <a href="/l2cod/labs/03_lab.html">TP précédent</a>. Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix.</p>
 
 <p>Pour vérifier l’exactitude de vos implémentations des exercices ci-dessous, vous pouvez lancer les commandes suivantes sous environnement UN*X :</p>
 
@@ -36,7 +36,7 @@
 <p><strong>Indications :</strong></p>
 <ul>
   <li>
-    <p>Vous pouvez utiliser le logiciel de simulation MARS pour implémenter et tester vos codes. Voici <a href="/static_files/docs/MARS">un tutoriel</a> rapide sur l’usage et les fonctionnalités de ce logiciel.</p>
+    <p>Vous pouvez utiliser le logiciel de simulation MARS pour implémenter et tester vos codes. Voici <a href="/l2cod/static_files/docs/MARS">un tutoriel</a> rapide sur l’usage et les fonctionnalités de ce logiciel.</p>
   </li>
   <li>
     <p>Pour tester vos implémentations des exercice 3 à 5 dans l’environnement MARS, vous devez ajouter dans chaque exercice les parties <code class="language-plaintext highlighter-rouge">.data</code> et <code class="language-plaintext highlighter-rouge">.text</code> ainsi que le code d’une fonction <code class="language-plaintext highlighter-rouge">main:</code> qui appellera votre fonction (c.-à-d. la fonction que vous devez implémenter dans l’exércice). En ce sens, vous pouvez vous baser sur les exemples donnés dans les exercices 1 et 2.</p>
@@ -53,7 +53,7 @@
 
 <p>Implémentez dans le fichier <code class="language-plaintext highlighter-rouge">sum_of_squares/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">SumOfSquares()</code> en assembleur MIPS. Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> la somme des carrés des éléments d’un tableau de <strong>words</strong>. Le nombre des éléments du tableau est donné dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, et l’adresse de début du tableau est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
 
-<p><strong>Indication :</strong> Faites l’exercice n°1 du TP “<a href="/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
+<p><strong>Indication :</strong> Faites l’exercice n°1 du TP “<a href="/l2cod/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2cod/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2cod/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
 
 <h1 id="exercice-2--strcmp">Exercice 2 : (StrCmp)</h1>
 
@@ -71,7 +71,7 @@
 
 <p>L’adresse de la première (resp. deuxième) chaîne de caractères est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> (resp. <code class="language-plaintext highlighter-rouge">$a1</code>).</p>
 
-<p><strong>Indication :</strong> Faites l’exercice n°2 du TP “<a href="/static_files/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
+<p><strong>Indication :</strong> Faites l’exercice n°2 du TP “<a href="/l2cod/static_files/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2cod/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2cod/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
 
 <h1 id="exercice-3--inverse">Exercice 3 : (Inverse)</h1>
 

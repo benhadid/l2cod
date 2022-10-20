@@ -116,7 +116,7 @@
 
 <p><strong>REMARQUES</strong> : Dans les slides du cours « <a href="https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR">Architecture de Von Neumann</a> », et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n’avez pas à le faire dans ce mini-projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c’est tout (voir la figure ci-dessous) !</p>
 
-<p><img src="/static_files/images/data_width.png" alt="Largeur de bits" height="55%" width="55%" class="wp-caption aligncenter" /></p>
+<p><img src="/l2cod/static_files/images/data_width.png" alt="Largeur de bits" height="55%" width="55%" class="wp-caption aligncenter" /></p>
 
 <p>Enfin, voici ci-dessous la liste des opérations (et les valeurs <strong>ALUSel</strong> associées) que votre UAL doit pouvoir effectuer. Vous pouvez utiliser tout bloc ou fonction intégrée de Logisim pour implémenter votre circuit. <strong>Il n’est pas nécessaire de réimplémenter le circuit additionneur, de décalage ou le circuit multiplicateur ! Utilisez les blocs de circuit fournis par Logisim à cet effet</strong>.</p>
 
@@ -505,7 +505,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
     <p>Il est recommandé de ne pas utiliser l’entrée « <code class="language-plaintext highlighter-rouge">enable</code> » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « <code class="language-plaintext highlighter-rouge">off</code> » la propriété “three-state?”.</p>
   </li>
   <li>
-    <p>Consultez l’étape 2 du TP <a href="/labs/07_lab.html">Travaux Pratiques #7 - Conception de circuits avec Logisim</a> pour voir à quoi correspond chaque entrée/sortie d’un registre Logisim.</p>
+    <p>Consultez l’étape 2 du TP <a href="/l2cod/labs/07_lab.html">Travaux Pratiques #7 - Conception de circuits avec Logisim</a> pour voir à quoi correspond chaque entrée/sortie d’un registre Logisim.</p>
   </li>
   <li>
     <p>Comme pour la tâche de l’UAL, les multiplexeurs vous seront très utiles (les démultiplexeurs, également).</p>
@@ -556,7 +556,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <p>l’unité « Générateur d’Immédiat » fournie dans le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> n’est pas implémentée. L’instruction <code class="language-plaintext highlighter-rouge">addi</code> utilise cette unité. Toutefois, comme il s’agit de la seule instruction à implémenter dans cette partie du projet, vous pouvez donc vous limiter à coder que l’immédiat associé à cette instruction sans vous soucier des autres types d’immédiat. Consultez l’image ci-dessous pour savoir comment l’immédiat de l’instruction <code class="language-plaintext highlighter-rouge">addi</code> doit être généré :</p>
 
-<p><img src="/static_files/images/immediat_addi.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
+<p><img src="/l2cod/static_files/images/immediat_addi.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
 
 <p>Pour éditer le « Générateur d’Immédiat », modifiez le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">imm_gen</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>, vous devez fermer et ouvrir le fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
 
@@ -1492,7 +1492,7 @@ Ainsi, quand le circuit de test est mis en marche, chaque tick de l’horloge pi
 
 <p>l’unité « Générateur d’Immédiat » (squelette fourni dans le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>) devrait calculer les constantes « Imm » des instructions de type I et la valeur du champ « shmt » dans les instructions de décalage. Consultez la figure ci-dessous pour savoir comment chaque immédiat doit être formaté dans votre processeur :</p>
 
-<p><img src="/static_files/images/immediat_extensions.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
+<p><img src="/l2cod/static_files/images/immediat_extensions.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
 
 <p>Pour éditer le « Générateur d’Immédiat », modifiez le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">imm_gen</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>, vous devez fermer et ouvrir le fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
 
