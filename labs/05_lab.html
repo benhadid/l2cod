@@ -21,10 +21,10 @@
   <title> Appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022 </title>
   <meta name="description" content="Objectifs      Maîtrise des conventions d’appel de fonctions dans MIPS        Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS  Préamb...">
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2cod/favicon.ico?" />
-  <link rel="stylesheet" href="/l2cod/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2cod/labs/05_lab">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io/l2cod/feed.xml" />
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/05_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -48,10 +48,10 @@
 
   <div class="wrapper" style="z-index: 100;">
       <table><tr>
-          <td><img width="75" src="/l2cod/_images/logo.png" valign="middle"></td>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
           <br/>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2cod/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</a></b></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</a></b></span>
           <br/>
           <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2022</span>
           </td>
@@ -76,7 +76,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/">
+      <a class="page-link" href="/l2ado/">
         <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
@@ -87,7 +87,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/schedule/">
+      <a class="page-link" href="/l2ado/schedule/">
         <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
@@ -98,7 +98,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/lectures/">
+      <a class="page-link" href="/l2ado/lectures/">
         <i class="fas fa-book-reader"></i> Cours
       </a>
 
@@ -109,7 +109,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/discussions/">
+      <a class="page-link" href="/l2ado/discussions/">
         <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
@@ -120,7 +120,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/labs/">
+      <a class="page-link" href="/l2ado/labs/">
         <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
@@ -131,7 +131,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/quizzes/">
+      <a class="page-link" href="/l2ado/quizzes/">
         <i class="fas fa-question-circle"></i> Quizzes
       </a>
 
@@ -142,7 +142,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/projects/">
+      <a class="page-link" href="/l2ado/projects/">
         <i class="fas fa-user-graduate"></i> Projets
       </a>
 
@@ -153,7 +153,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/materials/">
+      <a class="page-link" href="/l2ado/materials/">
         <i class="fas fa-book"></i> Ressources
       </a>
 
@@ -168,7 +168,7 @@
   </div>
 
   <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2cod/_images/pattern.png');" />
+  background-image: url('/l2ado/_images/pattern.png');" />
 
 </header>
 
@@ -215,7 +215,7 @@
       
 
       
-      [<a href="/l2cod/static_files/labs/lab_05.zip">démarrage</a>]
+      [<a href="/l2ado/static_files/labs/lab_05.zip">démarrage</a>]
       
 
       
@@ -238,7 +238,7 @@
 
 <h1 id="préambule">Préambule</h1>
 
-<p>Commencez par télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Après avoir codé les fonctions des exercices ci-dessous, vous pouvez vérifier l’exactitude de vos implémentations en lançant les commandes suivantes sous environnement UN*X. (c.f. Le <a href="/l2cod/labs/04_lab.html">TP précédent</a>) :</p>
+<p>Commencez par télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Après avoir codé les fonctions des exercices ci-dessous, vous pouvez vérifier l’exactitude de vos implémentations en lançant les commandes suivantes sous environnement UN*X. (c.f. Le <a href="/l2ado/labs/04_lab.html">TP précédent</a>) :</p>
 
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab5
 <span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- à faire la première fois seulement</span>

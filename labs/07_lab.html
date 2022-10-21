@@ -21,10 +21,10 @@
   <title> Conception de circuits logiques avec Logisim - Architecture des ordinateurs / Automne 2022 </title>
   <meta name="description" content="Objectifs      Apprendre à concevoir et déboguer des circuits logiques simples dans Logisim        Acquérir une expérience dans la conception et le débogage ...">
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2cod/favicon.ico?" />
-  <link rel="stylesheet" href="/l2cod/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2cod/labs/07_lab">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io/l2cod/feed.xml" />
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/07_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2022 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -48,11 +48,11 @@
 
   <div class="wrapper" style="z-index: 100;">
       <table><tr>
-          <td><img width="75" src="/l2cod/_images/logo.png" valign="middle"></td>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;">
 <a class="schoolname" style="font-size: 15px;" href=""></a>
           <br>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2cod/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</b></a></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2022 - "><b>Architecture des ordinateurs</b></a></span>
           <br>
           <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2022</span>
           </td>
@@ -78,7 +78,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/">
+      <a class="page-link" href="/l2ado/">
         <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
@@ -89,7 +89,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/schedule/">
+      <a class="page-link" href="/l2ado/schedule/">
         <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
@@ -100,7 +100,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/lectures/">
+      <a class="page-link" href="/l2ado/lectures/">
         <i class="fas fa-book-reader"></i> Cours
       </a>
 
@@ -111,7 +111,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/discussions/">
+      <a class="page-link" href="/l2ado/discussions/">
         <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
@@ -122,7 +122,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/labs/">
+      <a class="page-link" href="/l2ado/labs/">
         <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
@@ -133,7 +133,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/quizzes/">
+      <a class="page-link" href="/l2ado/quizzes/">
         <i class="fas fa-question-circle"></i> Quizzes
       </a>
 
@@ -144,7 +144,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/projects/">
+      <a class="page-link" href="/l2ado/projects/">
         <i class="fas fa-user-graduate"></i> Projets
       </a>
 
@@ -155,7 +155,7 @@
       
       
 
-      <a class="page-link" href="/l2cod/materials/">
+      <a class="page-link" href="/l2ado/materials/">
         <i class="fas fa-book"></i> Ressources
       </a>
 
@@ -170,7 +170,7 @@
   </div>
 
   <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2cod/_images/pattern.png');"></div>
+  background-image: url('/l2ado/_images/pattern.png');"></div>
 
 </header>
 
@@ -217,7 +217,7 @@
       
 
       
-      [<a href="/l2cod/static_files/labs/lab_07.zip">démarrage</a>]
+      [<a href="/l2ado/static_files/labs/lab_07.zip">démarrage</a>]
       
 
       
@@ -240,7 +240,7 @@
 
 <h1 id="préambule">Préambule</h1>
 
-<p>Si vous ne connaissez pas le logiciel de conception de circuit <strong>Logisim</strong>, commencez par vous familiarisez avec cet outil en suivant ce <a href="/l2cod/static_files/docs/Logisim_tutoriel">tutoriel</a> et ces <a href="/l2cod/static_files/docs/Logisim_astuces">astuces</a> d’utilisation.</p>
+<p>Si vous ne connaissez pas le logiciel de conception de circuit <strong>Logisim</strong>, commencez par vous familiarisez avec cet outil en suivant ce <a href="/l2ado/static_files/docs/Logisim_tutoriel">tutoriel</a> et ces <a href="/l2ado/static_files/docs/Logisim_astuces">astuces</a> d’utilisation.</p>
 
 <p>Ce TP est organisé en trois exercices :</p>
 <ul>
@@ -302,7 +302,7 @@
 
 <p>La sortie de l’automate est la même que son état suivant (voir ci-dessous).</p>
 
-<p><img src="/l2cod/static_files/images/fsm-traffic-lights.png" alt="FSM Traffic lights" class="marginleft20px" height="40%" width="40%"></p>
+<p><img src="/l2ado/static_files/images/fsm-traffic-lights.png" alt="FSM Traffic lights" class="marginleft20px" height="40%" width="40%"></p>
 
 <p>Ainsi, les feux tricolores s’allument comme suit : <strong>ROUGE ⟶ VERT ⟶ ORANGE ⟶ ROUGE</strong> et ainsi de suite.</p>
 
@@ -372,20 +372,20 @@
   <li>
 <strong>Etat_bit_1</strong> : Encore une fois, vérifiez les couleurs des fils. Une connexion vous semble désactivée ? Utilisez la table de vérité pour vous guider.</li>
   <li>
-<strong>FSM</strong> : La broche en entrée <code class="language-plaintext highlighter-rouge">clk</code> est pilotée par un signal d’horloge fourni par le socle de test <code class="language-plaintext highlighter-rouge">testing/circ_files/ex2_test.circ</code>. Vous pouvez simuler manuellement ce signal en cliquant sur la broche <code class="language-plaintext highlighter-rouge">clk</code> après avoir sélectionné l’outil ‘Poke’ (c.-à-d. l’icône <img src="/l2cod/static_files/images/poke.gif" alt="Poke Tool"> dans la barre d’outils). Vous pouvez également utiliser cet outil pour vérifier l’état des fils et des autres broches du circuit. Cela devrait vous aider à voir pourquoi notre implémentation de l’automate ne se comporte pas comme prévu.</li>
+<strong>FSM</strong> : La broche en entrée <code class="language-plaintext highlighter-rouge">clk</code> est pilotée par un signal d’horloge fourni par le socle de test <code class="language-plaintext highlighter-rouge">testing/circ_files/ex2_test.circ</code>. Vous pouvez simuler manuellement ce signal en cliquant sur la broche <code class="language-plaintext highlighter-rouge">clk</code> après avoir sélectionné l’outil ‘Poke’ (c.-à-d. l’icône <img src="/l2ado/static_files/images/poke.gif" alt="Poke Tool"> dans la barre d’outils). Vous pouvez également utiliser cet outil pour vérifier l’état des fils et des autres broches du circuit. Cela devrait vous aider à voir pourquoi notre implémentation de l’automate ne se comporte pas comme prévu.</li>
 </ol>
 
 <p>Veuillez noter qu’il n’y a pas d’erreurs dans les sous-circuits <strong>FSMLogic</strong> ou <strong>Helper</strong>. Le sous-circuit <strong>Helper</strong> est utilisé pour mapper les états de l’automate aux diodes <strong>ROUGE</strong>, <strong>VERTE</strong> et <strong>ORANGE</strong>; et pour fournir un signal de déclenchement. Vous n’avez pas besoin d’examiner le fonctionnement de ce circuit pour cet exercice, mais n’hésitez pas à le faire <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.</p>
 
 <p>Un fonctionnement correct du circuit est illustré ci-dessous</p>
 
-<p><img src="/l2cod/static_files/images/traffic-lights.gif" alt="Traffic lights" class="wp-caption aligncenter" height="70%" width="70%"></p>
+<p><img src="/l2ado/static_files/images/traffic-lights.gif" alt="Traffic lights" class="wp-caption aligncenter" height="70%" width="70%"></p>
 
 <h1 id="exercise-3--chaîne-de-traitement">Exercise 3 : (Chaîne de traitement)</h1>
 
 <p>Pour cet exercice, vous pouvez supposer que les registres portent initialement la valeur zéro. Le fichier de démarrage fourni <code class="language-plaintext highlighter-rouge">ex3.circ</code> devrait comprendre un sous-circuit appelé <strong>non_pipelined</strong> qui ressemble à ceci :</p>
 
-<p><img src="/l2cod/static_files/images/non_pipelined.png" alt="Non pipelined" class="wp-caption aligncenter" height="70%" width="70%"></p>
+<p><img src="/l2ado/static_files/images/non_pipelined.png" alt="Non pipelined" class="wp-caption aligncenter" height="70%" width="70%"></p>
 
 <p>Ce circuit prend deux valeurs en entrées, les multiplie ensemble, puis ajoute le résultat à la valeur d’état actuelle. Nous aimerions améliorer les performances de ce circuit et le faire tourner à une fréquence d’horloge plus élevée. En ce sens, il est requis d’implémenter dans le sous-circuit <strong>pipelined</strong> la version parallélisée de ce circuit en utilisant un pipeline à deux étages :</p>
 <ul>
