@@ -240,7 +240,11 @@
 
 <p>Ces travaux pratiques vous introduisent à la programmation en langage assembleur MIPS. En particulier, les exercices 1 et 2 ci-dessous requièrent la ré-implémentation en langage assembleur MIPS de deux exercices déjà rencontrés dans le <a href="/l2ado/labs/03_lab.html">TP précédent</a>. Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix.</p>
 
-<p>Pour vérifier l’exactitude de vos implémentations des exercices ci-dessous, vous pouvez lancer les commandes suivantes sous environnement UN*X :</p>
+<p><span style="color: firebrick">
+Toutes les modifications / implémentations demandées dans ce TP doivent être réalisées dans le fichier <code class="language-plaintext highlighter-rouge">impl.s</code> de chaque exercice 
+</span></p>
+
+<p>Pour tester et vérifier vos implémentations, vous pouvez lancer les commandes suivantes sous environnement UN*X :</p>
 
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab4
 <span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- à faire la première fois seulement</span>
@@ -253,12 +257,15 @@
 </span></code></pre></div></div>
 
 <ul>
-  <li>Le fichier <code class="language-plaintext highlighter-rouge">munit.jar</code> est une bibliothèque java utilisée pour tester automatiquement des programmes MIPS.</li>
-  <li>Toutes les modifications / implémentations demandées dans ce TP devront être réalisées dans le fichier <code class="language-plaintext highlighter-rouge">impl.s</code> de chaque exercice</li>
-  <li>Pour avoir une idée sur les tests utilisés pour vérifier vos implémentations, vous pouvez consulter les fichiers sources <code class="language-plaintext highlighter-rouge">TestImpl.java</code> de chaque exercice. Pour les curieux, ces fichiers implémentent des tests unitaires <a href="https://junit.org/junit5/">junit</a>.</li>
+  <li>
+    <p>Le fichier <code class="language-plaintext highlighter-rouge">munit.jar</code> est une bibliothèque java utilisée pour tester automatiquement des programmes MIPS.</p>
+  </li>
+  <li>
+    <p>Pour avoir une idée sur les tests utilisés pour vérifier vos implémentations, vous pouvez consulter les fichiers sources <code class="language-plaintext highlighter-rouge">TestImpl.java</code> dans chaque exercice. Pour les curieux, ces fichiers implémentent des tests unitaires <a href="https://junit.org/junit5/">junit</a>.</p>
+  </li>
 </ul>
 
-<p>Une exécution corrècte du script affichera sur votre écran le résultat de quelques tests de validation pour vérifier si vous avez implémenté correctement les fonctions sus-citées.</p>
+<p>Une exécution corrècte du script affichera sur votre écran le résultat de quelques tests de validation pour les fonctions sus-citées.</p>
 
 <p><strong>Indications :</strong></p>
 <ul>
@@ -266,19 +273,19 @@
     <p>Vous pouvez utiliser le logiciel de simulation MARS pour implémenter et tester vos codes. Voici <a href="/l2ado/static_files/docs/MARS">un tutoriel</a> rapide sur l’usage et les fonctionnalités de ce logiciel.</p>
   </li>
   <li>
-    <p>Pour tester vos implémentations des exercice 3 à 5 dans l’environnement MARS, vous devez ajouter dans chaque exercice les parties <code class="language-plaintext highlighter-rouge">.data</code> et <code class="language-plaintext highlighter-rouge">.text</code> ainsi que le code d’une fonction <code class="language-plaintext highlighter-rouge">main:</code> qui appellera votre fonction (c.-à-d. la fonction que vous devez implémenter dans l’exércice). En ce sens, vous pouvez vous baser sur les exemples donnés dans les exercices 1 et 2.</p>
+    <p>Pour tester vos implémentations des exercices 3 à 5 dans l’environnement MARS, inspirez-vous des codes des exercices 1 et 2 pour declarer des données dans le segment <code class="language-plaintext highlighter-rouge">.data</code> et implémenter une fonction <code class="language-plaintext highlighter-rouge">main</code> dans le segment <code class="language-plaintext highlighter-rouge">.text</code>. La fonction <code class="language-plaintext highlighter-rouge">main</code> devra ensuite appeler votre fonction avec les paramètres adéquats.</p>
   </li>
 </ul>
 
 <h1 id="exercice-1--somme-des-carrés">Exercice 1 : (Somme des carrés)</h1>
 
-<p>La somme des carrés de <em>N</em> nombres entiers est décrit comme suit :</p>
+<p>La somme des carrés de <em>N</em> nombres entiers est décrite comme suit :</p>
 
 \[sum = \sum_{i=0}^{N-1} n_i^2\]
 
 <p>où \(n_0, n_1, ..., n_{N-1}\) sont des nombres entiers (de type <code class="language-plaintext highlighter-rouge">int</code>).</p>
 
-<p>Implémentez dans le fichier <code class="language-plaintext highlighter-rouge">sum_of_squares/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">SumOfSquares()</code> en assembleur MIPS. Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> la somme des carrés des éléments d’un tableau de <strong>words</strong>. Le nombre des éléments du tableau est donné dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, et l’adresse de début du tableau est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+<p>Implémentez dans le fichier <code class="language-plaintext highlighter-rouge">sum_of_squares/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">SumOfSquares()</code> en assembleur MIPS. Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> la somme des carrés des éléments d’un tableau de <strong>words</strong>. La taille du tableau est donné dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, et le pointeur du tableau est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
 
 <p><strong>Indication :</strong> Faites l’exercice n°1 du TP “<a href="/l2ado/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2ado/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2ado/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
 
@@ -294,9 +301,9 @@
 
 <p>Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un caractère ASCII) suivi du caractère NUL (0x00).</p>
 
-<p>Dans le fichier <code class="language-plaintext highlighter-rouge">strcmp/impl.s</code>, écrivez le corps de la fonction <code class="language-plaintext highlighter-rouge">StrCmp()</code> en assembleur MIPS. Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la second, alors <code class="language-plaintext highlighter-rouge">$v0</code> sera négatif. Si les deux chaînes de caractères sont semblables alors <code class="language-plaintext highlighter-rouge">$v0</code> sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors <code class="language-plaintext highlighter-rouge">$v0</code> sera positif.</p>
+<p>Dans le fichier <code class="language-plaintext highlighter-rouge">strcmp/impl.s</code>, écrivez le corps de la fonction <code class="language-plaintext highlighter-rouge">StrCmp()</code> en assembleur MIPS. Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la seconde, alors <code class="language-plaintext highlighter-rouge">$v0</code> sera négatif. Si les deux chaînes de caractères sont semblables alors <code class="language-plaintext highlighter-rouge">$v0</code> sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors <code class="language-plaintext highlighter-rouge">$v0</code> sera positif.</p>
 
-<p>L’adresse de la première (resp. deuxième) chaîne de caractères est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> (resp. <code class="language-plaintext highlighter-rouge">$a1</code>).</p>
+<p>Le pointeur de la première (resp. deuxième) chaîne de caractères est donné dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> (resp. <code class="language-plaintext highlighter-rouge">$a1</code>).</p>
 
 <p><strong>Indication :</strong> Faites l’exercice n°2 du TP “<a href="/l2ado/static_files/labs/03_lab.html">Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2ado/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2ado/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
 
@@ -311,16 +318,16 @@
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>  
 </code></pre></div></div>
 
-<p>Pour notre fonction en assembleur MIPS, l’adresse du tableau <code class="language-plaintext highlighter-rouge">array</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et le paramètre <code class="language-plaintext highlighter-rouge">size</code> est donné dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+<p>Pour notre fonction en assembleur MIPS, l’adresse du tableau <code class="language-plaintext highlighter-rouge">array</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et la taille du tableau <code class="language-plaintext highlighter-rouge">size</code> est donné dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
 
 <h1 id="exercice-4--appartenance">Exercice 4 : (Appartenance)</h1>
 
 <p>Dans le fichier <code class="language-plaintext highlighter-rouge">in_range/impl.s</code>, écrivez en assembleur MIPS le corp de la fonction <code class="language-plaintext highlighter-rouge">in_range(min, max, value)</code> qui retourne 1 dans <code class="language-plaintext highlighter-rouge">$v0</code> si <code class="language-plaintext highlighter-rouge">min &lt;= value &lt;= max</code> et 0 sinon. Vous pouvez supposer que :</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">min</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code></li>
-  <li><code class="language-plaintext highlighter-rouge">max</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code></li>
-  <li><code class="language-plaintext highlighter-rouge">value</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a2</code></li>
+  <li>La valeur <code class="language-plaintext highlighter-rouge">min</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code></li>
+  <li>La valeur <code class="language-plaintext highlighter-rouge">max</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code></li>
+  <li>La valeur <code class="language-plaintext highlighter-rouge">value</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a2</code></li>
 </ul>
 
 <h1 id="exercise-5--fonctions-discrètes">Exercise 5 : (Fonctions discrètes)</h1>
