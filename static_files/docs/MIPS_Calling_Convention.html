@@ -18,8 +18,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Convention d'appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022 </title>
-  <meta name="description" content="Convention d'appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022">
+  <title> Appel de fonctions et convention d'appel dans MIPS - Architecture des ordinateurs / Automne 2022 </title>
+  <meta name="description" content="Appel de fonctions et convention d'appel dans MIPS - Architecture des ordinateurs / Automne 2022">
 
   <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
   <link rel="stylesheet" href="/l2ado/_css/main.css">
@@ -178,19 +178,187 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Convention d'appel de fonctions dans MIPS</h1>
+    <h1 class="post-title">Appel de fonctions et convention d'appel dans MIPS</h1>
   </header>
 
   <article class="post-content">
     <h1 id="introduction">Introduction</h1>
 
-<p>Le processeur MIPS R3000 possède 32 registres dont 24 seulement peuvent être “librement” utilisés pour le stockage de données par votre programme. Vous pourriez penser que cela constitue un problème si jamais nous prévoyons d’implémenter des programmes complexes qui utilisent des dizaines, voir des centaines de variables. Cela n’est, cependant, pas vraiment une limitation parce que nous avons accès à la mémoire de la pile que nous pouvons également utiliser pour le stockage temporaire des données.</p>
+<p>Une fonction est un concept algorithmique utilisé pour structurer les programmes afin de les rendre plus faciles à comprendre et à manipuler. En fait, la fonction</p>
+<ul>
+  <li>est un bloc d’instructions qui peut être appelé en cas de besoin à différents moments du programme.</li>
+  <li>peut recevoir des paramètres et retourner des résultats. Les paramètres et les résultats agissent comme une interface entre la fonction appelée et le reste du programme.</li>
+</ul>
 
-<p>En effet, les données des registres peuvent être sauvegardées sur la pile, de sorte que ces mêmes registres puissent être réutilisés par d’autres fonctions appelées dans le programme. Au retour de la fonction appelée, les données enregistrées dans la pile sont récupérées et rétablis dans les registres initiaux afin que la fonction appelante puisse continuer son exécution normale. Il y a une convention établie qui dicte qui (entre l’appelant et l’appelé) est responsable de la sauvegarde des registres dans la pile. C’est ce qu’on appelle la « convention d’appel MIPS ».</p>
+<p>Pour exécuter une fonction, le programme doit effectuer les étapes suivantes :</p>
+<ol>
+  <li>Le programme doit placer les paramètres à un endroit où la fonction appelée peut y accéder.</li>
+  <li>Transfère le contrôle à la <em>fonction appelée</em>.</li>
+  <li>Exécute les instructions de la <em>fonction appelée</em>.</li>
+  <li>La <em>fonction appelée</em> doit placer les résultats dans un endroit où la <em>fonction appelante</em> peut y accéder.</li>
+  <li>Renvoie le contrôle à la <em>fonction appelante</em> (à l’instruction suivant l’appel qui a été passé).</li>
+</ol>
 
-<h1 id="gestion-des-registres-par-les-fonctions-appelante-et-appelée">Gestion des registres par les fonctions <em>appelante</em> et <em>appelée</em></h1>
+<p>Les registres sont le lieu le plus rapide pour transmettre des paramètres à une fonction et retourner des résultats. Le processeur MIPS R3000 possède 32 registres dont 24 seulement peuvent être “librement” utilisés pour le stockage de données par votre programme. Vous pourriez penser que cela constitue un problème si jamais nous prévoyons d’implémenter des programmes complexes qui utilisent des dizaines, voir des centaines de fonctions. Cela n’est, cependant, pas vraiment une limitation parce que nous avons accès à la mémoire de la pile que nous pouvons également utiliser pour le stockage temporaire des données.</p>
 
-<p>Les registres standard du MIPS sont divisés en deux groupes : les registres sauvegardés/restaurés par la fonction <em>appelante</em> et les registres sauvegardés/restaurés par la fonction <em>appelée</em>. Le tableau suivant les met en évidence.</p>
+<p>En effet, les données des registres peuvent être sauvegardées sur la pile, de sorte que ces mêmes registres puissent être réutilisés par d’autres fonctions appelées dans le programme. Au retour de la fonction appelée, les données enregistrées dans la pile sont récupérées et rétablis dans les registres initiaux afin que la fonction appelante puisse continuer son exécution normale. Il y a une convention établie qui dicte qui (entre l’appelant et l’appelé) est responsable de la sauvegarde des registres dans la pile. C’est ce qu’on appelle la « convention d’appel MIPS ». En particulier, l’architecture MIPS respecte la convention logicielle suivante pour la transmission des paramètres et le renvoi des résultats :</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code> : Quatre registres pour passer les arguments pour la fonction appelée.</li>
+  <li><code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code> : Deux registres pour renvoyer les résultats de la fonction appelée.</li>
+  <li><code class="language-plaintext highlighter-rouge">$ra</code> : Un registre contenant l’adresse de retour vers la fonction appelante.</li>
+</ul>
+
+<p>Dans MIPS, l’instruction <code class="language-plaintext highlighter-rouge">jal</code> (<em>anglais</em> : jump-and-link) est utilisée pour appeler une fonction ; et l’instruction <code class="language-plaintext highlighter-rouge">jr</code> (<em>anglais</em> : jump register) permet de retourner et renvoyer le contrôle à la fonction appelante. Ainsi, pour appeler une fonction, nous utilisons l’instruction <code class="language-plaintext highlighter-rouge">jal</code> comme suit :</p>
+
+<pre><code class="language-mips">  jal label   # label est une étiquette qui marque le début de la fonction que nous aimerions appeler.  
+  ...         # instruction suivante
+</code></pre>
+<p>L’instruction ci-dessus enregistre l’adresse de l’instruction qui succède à <code class="language-plaintext highlighter-rouge">jal</code> dans le registre <code class="language-plaintext highlighter-rouge">$ra</code> et saute à la première instruction de la fonction marquée par l’étiquette <code class="language-plaintext highlighter-rouge">label</code>. Pour retourner depuis une fonction, nous utilisons l’instruction :</p>
+
+<pre><code class="language-mips">  jr $ra      # le registre $ra contient l'adresse de 'instruction suivante' en haut 
+</code></pre>
+
+<p>Cette instruction affecte au registre <code class="language-plaintext highlighter-rouge">$pc</code> (compteur ordinal) la valeur stockée dans le registre <code class="language-plaintext highlighter-rouge">$ra</code>. C.-à-d. elle permet d’effectuer un saut vers l’adresse contenue dans le registre <code class="language-plaintext highlighter-rouge">$ra</code>.</p>
+
+<p>Considérons l’exemple illustré ci-dessous d’une fonction en langage C (à gauche) qui vérifie si un caractère <code class="language-plaintext highlighter-rouge">ch</code> est une lettre minuscule ou non. La version équivalente dans le langage assembleur MIPS est présentée à droite. La fonction MIPS <code class="language-plaintext highlighter-rouge">islower</code> suppose que l’argument <code class="language-plaintext highlighter-rouge">ch</code> est passé dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>. Le résultat de la fonction est renvoyé dans le registre <code class="language-plaintext highlighter-rouge">$v0</code>.</p>
+
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr height="px | %">
+<td>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kt">int</span> <span class="nf">islower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span><span class="o">&lt;=</span><span class="sc">'z'</span><span class="p">)</span>  
+      <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+</code></pre></div>        </div>
+
+      </td>
+<td>
+
+        <pre><code class="language-mips">  islower:
+     blt $a0, 'a', sinon   # branche si $a0 &lt; 'a' 
+     bgt $a0, 'z', sinon   # branche si $a0 &gt; 'z' 
+     li $v0, 1             # $v0 = 1
+     jr	 $ra               # retour à l’appelant 
+  sinon:
+     li $v0, 0             # $v0 = 0
+     jr $ra                # retour à l’appelant
+</code></pre>
+
+      </td>
+</tr>
+</tbody>
+</table>
+
+<p>Pour appeler la fonction <code class="language-plaintext highlighter-rouge">islower</code> dans MIPS, la <em>fonction appelante</em> doit d’abord copier le caractère <code class="language-plaintext highlighter-rouge">ch</code> dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, puis exécuter l’appel de la fonction avec l’instruction <code class="language-plaintext highlighter-rouge">jal</code>.</p>
+
+<pre><code class="language-mips">   move $a0, ...    # copie du caractère ch dans le registre $a0
+   jal	islower	    # appel de la fonction islower
+   . . .            # instruction suivante (retourne ici après l’exécution de islower)
+</code></pre>
+
+<p>En fait, l’architecture MIPS fournit une deuxième instruction pour l’appel de fonctions : l’instruction <code class="language-plaintext highlighter-rouge">jalr</code> (<em>anglais</em> : jump-and-link-register). En effet, contrairement à l’instruction <code class="language-plaintext highlighter-rouge">jal</code> où l’adresse de saut est codée dans l’instruction même via une étiquette, l’instruction <code class="language-plaintext highlighter-rouge">jalr</code> permet d’appeler des fonctions dont les adresses sont stockées dans des registres.</p>
+
+<h1 id="le-segment-de-pile-et-le-registre--pointeur-de-pile-">Le segment de pile et le registre « pointeur de pile »</h1>
+
+<p>Chaque programme possède trois segments lorsqu’il est chargé en mémoire par le système d’exploitation. Il y a le <strong>segment de code</strong> qui contient les instructions du programme en langage machine, le <strong>segment de données</strong> qui comprend les données et constantes du programme, et le <strong>segment de pile</strong> qui fournit une zone qui peut être allouée et libérée par des fonctions. Le programmeur n’a aucun contrôle sur l’emplacement de ces segments en mémoire.</p>
+
+<p>Le segment de pile peut être utilisé par des fonctions</p>
+<ul>
+  <li>pour transmettre de nombreux paramètres,</li>
+  <li>pour allouer des variables locales, et</li>
+  <li>pour enregistrer et conserver des registres entre les appels.</li>
+</ul>
+
+<p>Sans ce segment, il serait impossible d’écrire des fonctions imbriquée et/ou récursives.</p>
+
+<p>Lorsqu’un programme est chargé en mémoire, le système d’exploitation initialise le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> (registre <code class="language-plaintext highlighter-rouge">$29</code>) avec une adresse valide pour pointer vers le <strong>haut de la pile</strong>. Par exemple, lors de l’exécution d’un programme MIPS sous l’outil <a href="/l2ado/static_files/docs/MARS.html">MARS</a>, la valeur initiale du registre <code class="language-plaintext highlighter-rouge">$sp</code> est <code class="language-plaintext highlighter-rouge">0x7fffeffc</code>. Le segment de pile augmente vers des adresses mémoire plus faibles (voir Figure ci-dessous).</p>
+
+<p><img src="/l2ado/static_files/images/MemSegments.png" alt="MemSegments" height="50%" width="50%" class="aligncenter" /></p>
+
+<p>Une fonction peut réserver de l’espace sur la pile pour sauvegarder des registres et / ou pour allouer des variables locales. Cet espace est appelé une <strong>trame de pile</strong> (<em>anglais</em> : stack frame).  Pour allouer une trame de pile de <code class="language-plaintext highlighter-rouge">n</code> octets, nous décrémentons le pointeur de pile de <code class="language-plaintext highlighter-rouge">n</code> :</p>
+
+<pre><code class="language-mips">   addiu $sp, $sp, -n      # ici, n est un nombre (c.-à.-d une constante) d’octets
+</code></pre>
+
+<p>Pour libérer une trame de pile de n octets, nous incrémentons le pointeur de pile de <code class="language-plaintext highlighter-rouge">n</code> :</p>
+
+<pre><code class="language-mips">   addiu $sp, $sp,  n      # n est un nombre (c.-à.-d une constante) d’octets
+</code></pre>
+
+<p>La figure ci-dessous illustre l’état du segment de pile avant l’appel, pendant l’exécution et après le retour d’un appel de fonction. Initialement, le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> pointe vers le haut de la trame de pile de la fonction appelante. Une fois l’appel est effectué, le registre <code class="language-plaintext highlighter-rouge">$sp</code> est décrémenté pour faire de l’espace sur le haut du segment de pile afin de stocker la <em>trame de pile</em> de la fonction appelée. Enfin, au retour de la fonction appelée, le registre <code class="language-plaintext highlighter-rouge">$sp</code> est incrémenté de manière qu’il pointe à nouveau vers la trame de pile de la fonction appelante libérant ainsi la mémoire allouée sur la pile.</p>
+
+<p><img src="/l2ado/static_files/images/StackSegment.png" alt="StackSegment" height="80%" width="80%" class="aligncenter" /></p>
+
+<p>Une trame de pile peut être utilisée pour passer des arguments à une fonction, enregistrer des registres entre les appels de fonction et / ou allouer de l’espace pour des variables locales déclarées dans la fonction. En particulier, le registre <code class="language-plaintext highlighter-rouge">$ra</code> doit être enregistré avant qu’une fonction puisse appeler une autre fonction parce que les instructions <code class="language-plaintext highlighter-rouge">jal</code> et <code class="language-plaintext highlighter-rouge">jalr</code> modifient le registre <code class="language-plaintext highlighter-rouge">$ra</code>. Les arguments d’une fonction sont généralement transmis dans les registres <code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>. Toutefois, si une fonction a plus de quatre arguments, les paramètres supplémentaires doivent être transmis sur la pile.</p>
+
+<p>Un exemple de fonction <code class="language-plaintext highlighter-rouge">f()</code> qui alloue une trame-de-pile est illustré ci-dessous. La fonction n’est pas terminale car elle appelle à son tour d’autres fonctions <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">reverse()</code> et <code class="language-plaintext highlighter-rouge">print()</code>. Par conséquent, l’adresse de retour (contenue dans le registre <code class="language-plaintext highlighter-rouge">$ra</code>) de la fonction <code class="language-plaintext highlighter-rouge">f()</code> doit être sauvegardée sur la pile. En outre, la trame-de-pile de la fonction <code class="language-plaintext highlighter-rouge">f()</code> doit réserver de l’espace pour le tableau local <code class="language-plaintext highlighter-rouge">array</code> (10 éléments entiers = 40 octets) comme illustré ci-dessous.</p>
+
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr height="px | %">
+<td>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> 
+   <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> 
+     <span class="n">read</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+     <span class="n">reverse</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+     <span class="n">print</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  
+   <span class="p">}</span>
+
+</code></pre></div>        </div>
+
+      </td>
+<td>
+
+        <p><img src="/l2ado/static_files/images/Trame-de-pile.png" alt="TramePile" height="80%" width="80%" class="aligncenter" /></p>
+
+      </td>
+</tr>
+</tbody>
+</table>
+<p>Exemple d’une fonction et de la trame-de-pile correspondante</p>
+
+<p>La traduction de la fonction <code class="language-plaintext highlighter-rouge">f()</code> en langage assembleur MIPS est illustré ci-dessous. La fonction alloue une trame-de-pile de 44 octets. Le segment de pile est accéder en utilisant les mêmes instructions que celles utilisées pour la lecture ou l’écriture des données dans le segment <code class="language-plaintext highlighter-rouge">.data</code>. Le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> contient l’adresse du haut de la pile. Différentes valeurs de déplacement sont utilisées pour accéder à différents éléments de la pile.</p>
+
+<pre><code class="language-mips">f:   addiu $sp, $sp, -44     # réserve une trame-de-pile de 44 octets
+     sw    $ra, 40($sp)      # sauvegarde de $ra sur la pile
+     add   $a0, $zero, $sp   # $a0 = pointeur de pile
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   read              # appel de la fonction 'read'
+     add   $a0, $zero, $sp   # $a0 = pointeur de pile
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   reverse           # appel de la fonction 'reverse'
+     add   $a0, $zero, $sp   # $a0 = pointeur de pile
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   print             # appel de la fonction 'print'
+     lw    $ra, 40($sp)      # restitution de $ra depuis la pile
+     addiu $sp, $sp, 44      # libérer la trame-de-pile de 44 octets
+     jr    $ra               # retour à la fonction appelante
+</code></pre>
+
+<h1 id="convention-dappel-mips--gestion-des-registres-par-les-fonctions-appelante-et-appelée">Convention d’appel MIPS — Gestion des registres par les fonctions <em>appelante</em> et <em>appelée</em></h1>
+
+<p>Selon la convention d’appel, les registres standard du MIPS sont divisés en deux groupes : les registres sauvegardés/restaurés par la fonction <em>appelante</em> et les registres sauvegardés/restaurés par la fonction <em>appelée</em>. Le tableau suivant les met en évidence.</p>
 
 <table class="styled-table">
 <colgroup>
@@ -297,7 +465,7 @@
 
 <p>Avec cette convention d’appel, nous observons ce qui suit : 1) La fonction appelante suppose que les valeurs dans les registres « <span style="background-color:#ffd6b0bb">couleur saumon</span> » ne changeront pas après un appel de fonction (parce que la fonction appelée devrait les sauvegarder en premier) ; 2) La fonction appelée suppose que les valeurs dans les registres « <span style="background-color:#c5e4f0d5">bleu ciel</span> » sont libres d’être modifiées de quelque manière que ce soit (car l’appelant doit d’abord les enregistrer).</p>
 
-<h1 id="sauvegarde--restauration-des-registres-entre-appels-de-fonctions">Sauvegarde / restauration des registres entre appels de fonctions</h1>
+<h1 id="exemple-de-sauvegarde--restauration-de-registres-entre-appels-de-fonctions">Exemple de sauvegarde / restauration de registres entre appels de fonctions</h1>
 
 <p>Essayons maintenant de mettre cette convention d’appel en pratique. Soit la structure de code assembleur ci-dessous pour une fonction nommée <code class="language-plaintext highlighter-rouge">func1</code>. Supposons que <code class="language-plaintext highlighter-rouge">func1</code> est une fonction appelée par une autre fonction (par exemple, la fonction <code class="language-plaintext highlighter-rouge">main</code>). En examinant le code, nous observons que <code class="language-plaintext highlighter-rouge">func1</code> appelle également une autre fonction nommée <code class="language-plaintext highlighter-rouge">func2</code>. Lorsque <code class="language-plaintext highlighter-rouge">func1</code> avait été appelé par la fonction <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">func1</code> était l’<em>appelée</em>. Cependant, lorsque <code class="language-plaintext highlighter-rouge">func1</code> appelle <code class="language-plaintext highlighter-rouge">func2</code>, <code class="language-plaintext highlighter-rouge">func1</code> devient l’<em>appelante</em>. Par conséquent, <code class="language-plaintext highlighter-rouge">func1</code> devra assumer les responsabilités d’être une fonction <em>appelée</em> et une fonction <em>appelante</em> selon la convention d’appel MIPS.</p>
 
@@ -443,7 +611,7 @@ Dans notre exemple, <code class="language-plaintext highlighter-rouge">func1</co
       
 </fieldset>
 
-<h1 id="exemple--du-c-au-mips-avec-convention-dappel">Exemple : Du C au MIPS avec convention d’appel</h1>
+<h1 id="du-c-au-mips-en-respectant-la-convention-dappel">Du C au MIPS en respectant la convention d’appel</h1>
 
 <p>Comme dans l’exemple <a href="__">précédent</a>, nous allons traduire le programme C ci-dessous en langage assembleur MIPS. La difficulté en plus ici, est que nous devons suivre la convention d’appel MIPS lors de la traduction du code C.</p>
 
@@ -710,6 +878,69 @@ ELIHW:
 </code></pre>
 
 <p>Vous pouvez trouver le programme en entier <a href="/l2ado/static_files/docs/c2mips.s">c2mips.s</a>.</p>
+
+<h1 id="fonctions-récursives-dans-mips">Fonctions récursives dans MIPS</h1>
+
+<p>Une fonction récursive est une fonction qui fait appel à elle-même. La traduction d’une fonction C récursive en son équivalent dans le langage assembleur MIPS se fait de la même manière que précédemment. L’astuce ici est de supposer l’appel récursif comme si nous exécutions une <em>fonction différente</em>, puis d’appliquer en conséquence la convention d’appel MIPS pour les fonctions appelante et appelée.</p>
+
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr height="px | %">
+<td>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+
+
+  <span class="c1">// version en langage C</span>
+  <span class="kt">int</span> <span class="nf">fact</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> 
+  <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+     <span class="k">else</span> 
+        <span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+
+
+
+
+</code></pre></div>        </div>
+
+      </td>
+<td>
+
+        <pre><code class="language-mips">   # Version MIPS  (n &lt;-&gt; $a0, n! &lt;-&gt; $v0)
+   0  fact:	
+   1     bge  $a0, 2, else   # aller à else si (n &gt;= 2)
+   2     li   $v0, 1         # $v0 = 1
+   3     jr   $ra            # retour à la fonction appelante
+   4  else:				
+   5     addi $sp, $sp, -8   # réserver une trame-de-pile de 8 octets
+   6     sw   $a0, 0($sp)    # sauvegarder l’argument n
+   7     sw   $ra, 4($sp)    # sauvegarder l’adresse de retour
+   8     addi $a0, $a0, -1   # argument $a0 = n - 1
+   9     jal  fact           # appel récursif fact(n-1)
+  10     lw   $a0, 0($sp)    # restaurer $a0 = n
+  11     lw   $ra, 4($sp)    # restaurer l’adresse de retour
+  12     mul  $v0, $a0, $v0  # $v0 = n * fact(n-1)
+  13     addi $sp, $sp, 8    # libérer la trame de pile
+  14     jr   $ra            # retour à la fonction appelante
+</code></pre>
+
+      </td>
+</tr>
+</tbody>
+</table>
+
+<p>L’extrait de code ci-dessus montre un exemple de fonction récursive (la fonction factorielle) en langage C (à gauche) et sa version en langage assembleur MIPS (à droite). Si (n &lt; 2) alors la fonction s’achève et retourne à la fonction appelante. Il n’est pas nécessaire d’allouer une trame de pile dans ce cas. Cependant, si (n &gt;= 2) alors la fonction factorielle alloue une trame de pile de 8 octets pour sauvegarder les registres <code class="language-plaintext highlighter-rouge">$a0</code> et <code class="language-plaintext highlighter-rouge">$ra</code> avant de s’appeler à nouveau.</p>
+
+<p>Le registre <code class="language-plaintext highlighter-rouge">$a0</code> (argument <code class="language-plaintext highlighter-rouge">n</code>) est enregistré sur la pile car il est nécessaire de récupérer la valeur initiale de ce registre (utilisée à la ligne 12) après le retour de l’appel récursif (ce registre est modifié dans l’appel récursif à la ligne 8). Le registre <code class="language-plaintext highlighter-rouge">$ra</code> est sauvegardé sur la pile car sa valeur est modifiée par l’appel récursif (ligne 9).</p>
 
   </article>
 
