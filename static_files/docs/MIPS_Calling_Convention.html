@@ -222,18 +222,10 @@
 
 <p>Considérons l’exemple illustré ci-dessous d’une fonction en langage C (à gauche) qui vérifie si un caractère <code class="language-plaintext highlighter-rouge">ch</code> est une lettre minuscule ou non. La version équivalente dans le langage assembleur MIPS est présentée à droite. La fonction MIPS <code class="language-plaintext highlighter-rouge">islower</code> suppose que l’argument <code class="language-plaintext highlighter-rouge">ch</code> est passé dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>. Le résultat de la fonction est renvoyé dans le registre <code class="language-plaintext highlighter-rouge">$v0</code>.</p>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-</thead>
-<tbody>
-<tr height="px | %">
-<td>
+<div id="CvsMIPS">
+  <div>
 
-        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
   <span class="kt">int</span> <span class="nf">islower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span><span class="o">&lt;=</span><span class="sc">'z'</span><span class="p">)</span>  
       <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
@@ -241,12 +233,13 @@
       <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
 
-</code></pre></div>        </div>
+</code></pre></div>    </div>
 
-      </td>
-<td>
+  </div>
+  
+  <div>
 
-        <pre><code class="language-mips">  islower:
+    <pre><code class="language-mips">  islower:
      blt $a0, 'a', sinon   # branche si $a0 &lt; 'a' 
      bgt $a0, 'z', sinon   # branche si $a0 &gt; 'z' 
      li $v0, 1             # $v0 = 1
@@ -256,10 +249,51 @@
      jr $ra                # retour à l’appelant
 </code></pre>
 
-      </td>
+  </div>  
+</div>
+
+<!--
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr height ="px | %">
+<td markdown="1">
+
+  ```c
+
+  int islower(char ch) {
+    if (ch>='a' && ch<='z')  
+      return 1;
+    else
+      return 0;
+  }
+
+  ```
+
+</td>
+<td markdown="1">
+
+  ```mips
+  islower:
+     blt $a0, 'a', sinon   # branche si $a0 < 'a' 
+     bgt $a0, 'z', sinon   # branche si $a0 > 'z' 
+     li $v0, 1             # $v0 = 1
+     jr	 $ra               # retour à l’appelant 
+  sinon:
+     li $v0, 0             # $v0 = 0
+     jr $ra                # retour à l’appelant
+  ```
+
+</td>
 </tr>
 </tbody>
 </table>
+-->
 
 <p>Pour appeler la fonction <code class="language-plaintext highlighter-rouge">islower</code> dans MIPS, la <em>fonction appelante</em> doit d’abord copier le caractère <code class="language-plaintext highlighter-rouge">ch</code> dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, puis exécuter l’appel de la fonction avec l’instruction <code class="language-plaintext highlighter-rouge">jal</code>.</p>
 
@@ -305,18 +339,10 @@
 
 <p>Un exemple de fonction <code class="language-plaintext highlighter-rouge">f()</code> qui alloue une trame-de-pile est illustré ci-dessous. La fonction n’est pas terminale car elle appelle à son tour d’autres fonctions <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">reverse()</code> et <code class="language-plaintext highlighter-rouge">print()</code>. Par conséquent, l’adresse de retour (contenue dans le registre <code class="language-plaintext highlighter-rouge">$ra</code>) de la fonction <code class="language-plaintext highlighter-rouge">f()</code> doit être sauvegardée sur la pile. En outre, la trame-de-pile de la fonction <code class="language-plaintext highlighter-rouge">f()</code> doit réserver de l’espace pour le tableau local <code class="language-plaintext highlighter-rouge">array</code> (10 éléments entiers = 40 octets) comme illustré ci-dessous.</p>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-</thead>
-<tbody>
-<tr height="px | %">
-<td>
+<div id="CvsMIPS">
+  <div>
 
-        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
    <span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> 
    <span class="p">{</span>
      <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> 
@@ -325,18 +351,16 @@
      <span class="n">print</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  
    <span class="p">}</span>
 
-</code></pre></div>        </div>
+</code></pre></div>    </div>
 
-      </td>
-<td>
+  </div>
+  
+  <div>
 
-        <p><img src="/l2ado/static_files/images/Trame-de-pile.png" alt="TramePile" height="80%" width="80%" class="aligncenter" /></p>
+    <p><img src="/l2ado/static_files/images/Trame-de-pile.png" alt="TramePile" height="80%" width="80%" class="aligncenter" /></p>
 
-      </td>
-</tr>
-</tbody>
-</table>
-<p>Exemple d’une fonction et de la trame-de-pile correspondante</p>
+  </div>  
+</div>
 
 <p>La traduction de la fonction <code class="language-plaintext highlighter-rouge">f()</code> en langage assembleur MIPS est illustré ci-dessous. La fonction alloue une trame-de-pile de 44 octets. Le segment de pile est accéder en utilisant les mêmes instructions que celles utilisées pour la lecture ou l’écriture des données dans le segment <code class="language-plaintext highlighter-rouge">.data</code>. Le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> contient l’adresse du haut de la pile. Différentes valeurs de déplacement sont utilisées pour accéder à différents éléments de la pile.</p>
 
@@ -883,18 +907,10 @@ ELIHW:
 
 <p>Une fonction récursive est une fonction qui fait appel à elle-même. La traduction d’une fonction C récursive en son équivalent dans le langage assembleur MIPS se fait de la même manière que précédemment. L’astuce ici est de supposer l’appel récursif comme si nous exécutions une <em>fonction différente</em>, puis d’appliquer en conséquence la convention d’appel MIPS pour les fonctions appelante et appelée.</p>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-</thead>
-<tbody>
-<tr height="px | %">
-<td>
+<div id="CvsMIPS">
+  <div>
 
-        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
 
 
@@ -910,12 +926,12 @@ ELIHW:
 
 
 
-</code></pre></div>        </div>
+</code></pre></div>    </div>
 
-      </td>
-<td>
+  </div>
+  <div>
 
-        <pre><code class="language-mips">   # Version MIPS  (n &lt;-&gt; $a0, n! &lt;-&gt; $v0)
+    <pre><code class="language-mips">   # Version MIPS  (n &lt;-&gt; $a0, n! &lt;-&gt; $v0)
    0  fact:	
    1     bge  $a0, 2, else   # aller à else si (n &gt;= 2)
    2     li   $v0, 1         # $v0 = 1
@@ -933,10 +949,8 @@ ELIHW:
   14     jr   $ra            # retour à la fonction appelante
 </code></pre>
 
-      </td>
-</tr>
-</tbody>
-</table>
+  </div>
+</div>
 
 <p>L’extrait de code ci-dessus montre un exemple de fonction récursive (la fonction factorielle) en langage C (à gauche) et sa version en langage assembleur MIPS (à droite). Si (n &lt; 2) alors la fonction s’achève et retourne à la fonction appelante. Il n’est pas nécessaire d’allouer une trame de pile dans ce cas. Cependant, si (n &gt;= 2) alors la fonction factorielle alloue une trame de pile de 8 octets pour sauvegarder les registres <code class="language-plaintext highlighter-rouge">$a0</code> et <code class="language-plaintext highlighter-rouge">$ra</code> avant de s’appeler à nouveau.</p>
 
