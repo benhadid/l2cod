@@ -510,23 +510,23 @@ str2:     .asciiz   "Vous avez entré la valeur :"
 .globl main
 .text
 main:
-   addi $v0, $0, 4      # n° de service pour 'afficher une chaîne de caractères'
+   addi $v0, $0, 4      # $v0 = n° de service pour 'afficher une chaîne de caractères'
    la   $a0, str1       # $a0 = adresse de la chaîne de caractères str1
    syscall              # appel système pour l'affichage de la chaîne de caractères
 
-   addi $v0, 5          # n° de service pour 'lire un entier'
+   addi $v0, 5          # $v0 = n° de service pour 'lire un entier'
    syscall              # appel système pour la lecture d'un entier. valeur retournée dans $v0
 
    add  $s0, $v0, $0    # $s0 = $v0  ($s0 = valeur entrée par l'utilisateur)
-   addi $v0, $0, 4      # n° de service pour 'afficher une chaîne de caractères'
+   addi $v0, $0, 4      # $v0 = n° de service pour 'afficher une chaîne de caractères'
    la   $a0, str2       # $a0 = adresse de la chaîne de caractères str2 
    syscall              # appel système pour l'affichage de la chaîne de caractères
 
-   addi $v0, $0, 1      # n° de service pour 'afficher un entier'
+   addi $v0, $0, 1      # $v0 = n° de service pour 'afficher un entier'
    add  $a0, $s0, $0    # $a0 = $s0 ($a0 = valeur à afficher)
    syscall              # appel système pour l'affichage d'un entier.
 
-   addi $v0, $0, 10     # n° de service pour 'quitter'
+   addi $v0, $0, 10     # $v0 = n° de service pour 'quitter'
    syscall              # appel système pour quitter le programme
 </code></pre>
 
@@ -586,7 +586,7 @@ Nous avons vu plus haut un exemple de pseudo-instructions (ex. <code class="lang
 <tr>
 <td style="text-align:left; vertical-align:top"><samp>li $s1, 0xabcd1234</samp></td>
 <td style="text-align:left"><samp>lui $at, $x0abcd</samp><br /><samp>ori $s1, $at, 0x1234</samp></td>
-<td style="text-align:left"><samp>$s1 = 0xabcd1234</samp></td>
+<td style="text-align:left; vertical-align:top"><samp>$s1 = 0xabcd1234</samp></td>
 </tr>
 <tr>
 <td style="text-align:left"><samp>sgt $s1, $s2, $s3</samp></td>
@@ -596,12 +596,12 @@ Nous avons vu plus haut un exemple de pseudo-instructions (ex. <code class="lang
 <tr>
 <td style="text-align:left; vertical-align:top"><samp>blt $s1, $s2, label</samp></td>
 <td style="text-align:left"><samp>slt $at, $s1, $s2<br /><samp>bne $at, $0, label</samp></samp></td>
-<td style="text-align:left"><samp>if $s1 &lt; $s2 goto label</samp></td>
+<td style="text-align:left; vertical-align:top"><samp>if $s1 &lt; $s2 goto label</samp></td>
 </tr>
 </tbody>
 </table>
 
-<h1 id="traduction-vers-le-mips-de-structures-de-contrôle-dans-les-langages-évolués">Traduction vers le MIPS de structures de contrôle dans les langages évolués</h1>
+<h1 id="traduction-vers-le-mips-des-structures-de-contrôle-dans-les-langages-évolués">Traduction vers le MIPS des structures de contrôle dans les langages évolués</h1>
 
 <p>Nous pouvons traduire vers l’assembleur n’importe quelle structure de contrôle de haut niveau à l’aide d’instructions de branchement. Considérons le test <code class="language-plaintext highlighter-rouge">if</code> suivant dans le langage C :</p>
 
@@ -653,7 +653,7 @@ next:
   . . .
 </code></pre>
 
-<h1 id="une-procédure-pas-à-pas-pour-convertir-du-code-c-en-langage-assembleur-mips">Une procédure pas-à-pas pour convertir du code C en langage assembleur MIPS</h1>
+<h1 id="un-pas-à-pas-du-c-au-mips">Un pas-à-pas du C au MIPS</h1>
 
 <p>Afin de mieux comprendre les idées et les règles discutées ci-dessus, nous allons parcourir la traduction d’un programme C en programme MIPS. Le code suivant en langage C imprime le nième nombre de Fibonacci.</p>
 
