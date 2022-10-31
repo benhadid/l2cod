@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title> Appel de fonctions dans MIPS - Architecture des ordinateurs / Automne 2022 </title>
-  <meta name="description" content="Objectifs      Maîtrise des conventions d’appel de fonctions dans MIPS        Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS  Préamb...">
+  <meta name="description" content="Objectifs      Maîtrise de la convention d’appel de fonctions dans MIPS        Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS  Préam...">
 
   <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
   <link rel="stylesheet" href="/l2ado/_css/main.css">
@@ -229,7 +229,7 @@
 
 <ul>
   <li>
-    <p>Maîtrise des conventions d’appel de fonctions dans MIPS</p>
+    <p>Maîtrise de la convention d’appel de fonctions dans MIPS</p>
   </li>
   <li>
     <p>Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS</p>
@@ -246,7 +246,7 @@
 </code></pre></div></div>
 <h1 id="exercice-1--n_choose_k">Exercice 1 : (n_choose_k)</h1>
 
-<p>Afin de respecter les conventions d’appel de fonctions dans MIPS, ajoutez dans le code <code class="language-plaintext highlighter-rouge">nchoosek/impl.s</code> aux endroits indiqués par le marqueur <code class="language-plaintext highlighter-rouge">### VOTRE CODE ICI ###</code> le prologue et l’épilogue de la fonction <code class="language-plaintext highlighter-rouge">nchoosek()</code> afin qu’elle calcule <em>le nombre de combinaisons de n éléments distincts choisis k fois</em>. Ceci peut être calculé à l’aide de factorielles, mais nous le ferons en recherchant l’entrée (n, k) dans le <a href="https://fr.wikipedia.org/wiki/Triangle_de_Pascal">triangle de Pascal</a>.</p>
+<p>Afin de respecter la convention d’appel de fonctions dans MIPS, ajoutez dans le code <code class="language-plaintext highlighter-rouge">nchoosek/impl.s</code> aux endroits indiqués par le marqueur <code class="language-plaintext highlighter-rouge">### VOTRE CODE ICI ###</code> le prologue et l’épilogue de la fonction <code class="language-plaintext highlighter-rouge">nchoosek()</code> afin qu’elle calcule <em>le nombre de combinaisons de n éléments distincts choisis k fois</em>. Ceci peut être calculé à l’aide de factorielles, mais nous le ferons en recherchant l’entrée (n, k) dans le <a href="https://fr.wikipedia.org/wiki/Triangle_de_Pascal">triangle de Pascal</a>.</p>
 
 <h1 id="exercice-2--polynôme">Exercice 2 : (polynôme)</h1>
 
@@ -278,7 +278,7 @@ m_for:  add     $a0, $s0, $0    #   for (i=2; i&lt;=4; i++) {
         syscall                 #}      .
 </code></pre>
 
-<p>Écrivez dans <code class="language-plaintext highlighter-rouge">poly/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">poly(int x)</code> qui calcule le polynôme \(x^4 + x^3 + 1\) en respectant les conventions d’appel des fonctions dans MIPS.</p>
+<p>Écrivez dans <code class="language-plaintext highlighter-rouge">poly/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">poly(int x)</code> qui calcule le polynôme \(x^4 + x^3 + 1\) en respectant la convention d’appel de fonctions dans MIPS.</p>
 
 <p><strong>Indication</strong> : Pensez à définir une fonction <code class="language-plaintext highlighter-rouge">pow(x, n)</code> qui sera appelée par la fonction <code class="language-plaintext highlighter-rouge">poly()</code> et qui calcule \(x^n\).</p>
 
