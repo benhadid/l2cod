@@ -202,9 +202,10 @@
 <p>Les registres sont le lieu le plus rapide pour transmettre des paramètres à une fonction et retourner des résultats. Le processeur MIPS R3000 possède 32 registres dont 24 seulement peuvent être “librement” utilisés pour le stockage de données par votre programme. Vous pourriez penser que cela constitue un problème si jamais nous prévoyons d’implémenter des programmes complexes qui utilisent des dizaines, voir des centaines de fonctions. Cela n’est, cependant, pas vraiment une limitation parce que nous avons accès à la mémoire de la pile que nous pouvons également utiliser pour le stockage temporaire des données.</p>
 
 <p>En effet, les données des registres peuvent être sauvegardées sur la pile, de sorte que ces mêmes registres puissent être réutilisés par d’autres fonctions appelées dans le programme. Au retour de la fonction appelée, les données enregistrées dans la pile sont récupérées et rétablis dans les registres initiaux afin que la fonction appelante puisse continuer son exécution normale. Il y a une convention établie qui dicte qui (entre l’appelant et l’appelé) est responsable de la sauvegarde des registres dans la pile. C’est ce qu’on appelle la « convention d’appel MIPS ». En particulier, l’architecture MIPS respecte la convention logicielle suivante pour la transmission des paramètres et le renvoi des résultats :</p>
+
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code> : Quatre registres pour passer les arguments pour la fonction appelée.</li>
-  <li><code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code> : Deux registres pour renvoyer les résultats de la fonction appelée.</li>
+  <li><code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code> : Quatre registres pour passer les arguments à la fonction appelée.</li>
+  <li><code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code> : Deux registres pour renvoyer les résultats depuis la fonction appelée.</li>
   <li><code class="language-plaintext highlighter-rouge">$ra</code> : Un registre contenant l’adresse de retour vers la fonction appelante.</li>
 </ul>
 
