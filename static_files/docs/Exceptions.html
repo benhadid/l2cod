@@ -641,8 +641,7 @@ sw  $t1, ($t0)        # Enable keyboard interrupt
 <p>Lorsqu’une touche est enfoncée, le clavier envoie un signal d’interruption au processeur MIPS et initialise le registre <strong>cause</strong> à la valeur <strong>0x00000100</strong>. Le bit 8 dans le registre <strong>cause</strong> est défini pour indiquer que le clavier a interrompu le processeur. 
 Afin que le caractère entré sur le clavier soit exploité par le programme en cours d’exécution, un gestionnaire d’interruption doit être écrit pour lire le caractère depuis le registre <strong>Data</strong> du clavier et le renvoyer au programme</p>
 
-<p>Les contrôleurs de périphérique d’E/S disque et Ethernet utilisent un accès DMA (Direct Memory Access) pour transférer des blocs de données directement entre le périphérique et la mémoire. À mesure que les contrôleurs deviennent plus complexes, plus de deux registres sont associés à chaque contrôleur de périphérique. En général, le fournisseur de tout périphérique d’E/S doit fournir aux programmeurs un manuel sur la manière de communiquer correctement avec le contrôleur du périphérique d’E/S.</p>
-
+<p>Les contrôleurs de périphérique d’E/S disque et Ethernet utilisent un accès DMA (Direct Memory Access) pour transférer des blocs de données directement entre le périphérique et la mémoire. À mesure que les contrôleurs deviennent plus complexes, plus de deux registres sont associés à chaque contrôleur de périphérique. En général, le fabriquant du périphérique d’E/S doit fournir aux programmeurs un manuel sur la manière de communiquer correctement avec le contrôleur du périphérique d’E/S.</p>
 
   </article>
 
