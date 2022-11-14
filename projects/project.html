@@ -1002,14 +1002,14 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <p>A ce stade de l’exécution, la question principale qui se pose est : Comment obtenir l’instruction actuelle ? Nous avons vu dans le cours que les instructions sont stockées dans la mémoire d’instructions, et chacune de ces instructions est accessible via une adresse.</p>
 
-<fieldset class="checkoff">
-<legend>Indications</legend>
+<fieldset class="tips">
+<legend style="color: DarkSlateGrey">Indications</legend>
 
 <details close="">
 <summary>
 1. Quel fichier du projet implémente la mémoire d’instructions ? Comment est-elle connectée au processeur ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 La mémoire d’instructions est le module ROM dans le fichier <code class="language-plaintext highlighter-rouge">run_*.circ</code>. Ce fichier fournit une entrée pour votre CPU nommée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code> et prend une sortie de votre CPU. Cette sortie est appelée <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> dans votre fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> et elle s’appelle <code class="language-plaintext highlighter-rouge">FETCH_ADDR</code> dans <code class="language-plaintext highlighter-rouge">run_*.circ</code>.
 </p>
 </details>
@@ -1018,7 +1018,7 @@ La mémoire d’instructions est le module ROM dans le fichier <code class="lang
 <summary>
 2. Dans vos circuits <code class="language-plaintext highlighter-rouge">cpu*.circ</code>, comment le changement de l’adresse transmise à travers <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> affecterait-il l’entrée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code> ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 L’instruction que <code class="language-plaintext highlighter-rouge">run_*.circ</code> transmet à votre processeur doit être l’instruction récupérée depuis l’adresse <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> (ou <code class="language-plaintext highlighter-rouge">FETCH_ADDR</code>) dans la mémoire d’instructions.
 </p>
 </details>
@@ -1027,7 +1027,7 @@ L’instruction que <code class="language-plaintext highlighter-rouge">run_*.cir
 <summary>
 3. Comment vérifier si <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> est correct ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> est l’adresse de l’instruction en cours d’exécution. Cette adresse est donc sauvegardée dans le registre <code class="language-plaintext highlighter-rouge">PC</code>. Pour ce mini-projet, votre registre <code class="language-plaintext highlighter-rouge">PC</code> démarrera à la valeur <code class="language-plaintext highlighter-rouge">0</code> car c’est la valeur par défaut dans un registre Logisim.
 </p>
 </details>
@@ -1036,7 +1036,7 @@ L’instruction que <code class="language-plaintext highlighter-rouge">run_*.cir
 <summary>
 4. Comment le registre <code class="language-plaintext highlighter-rouge">PC</code> change-t-il pour les codes qui ne possèdent pas d’instructions de sauts ou de branchement ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Comme le registre <code class="language-plaintext highlighter-rouge">PC</code> contient l’adresse de l’instruction en cours d’exécution, il faut incrémenter ce registre de la taille d’une instruction pour passer à l’instruction suivante. Cela signifie que votre <code class="language-plaintext highlighter-rouge">PC</code> augmentera généralement de 4 (en supposant que l’instruction en cours n’est pas un saut ou un branchement).
 </p>
 </details>
@@ -1052,14 +1052,14 @@ Une implémentation simple du registre <code class="language-plaintext highlight
 
 <p>Une fois l’étape « IF » implémentée, l’instruction à traiter proviendra à l’entrée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code> du processeur. La seconde étape consiste donc à décomposer cette instruction selon les formats d’instruction MIPS vus en cours, et cela afin de déterminer quoi en faire dans les étapes ultérieures d’exécution.</p>
 
-<fieldset class="checkoff">
-<legend>Indications</legend>
+<fieldset class="tips">
+<legend style="color: DarkSlateGrey">Indications</legend>
 
 <details close="">
 <summary>
 1. Quel type d’instruction est <code class="language-plaintext highlighter-rouge">addi</code> ? Quels sont les différents champs de bits associés à ce type d’instruction ? Quelles sont leurs plages de bits ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 <code class="language-plaintext highlighter-rouge">addi</code> est une instruction de « <strong>type I</strong> ». Les champs de bits sont : - <code class="language-plaintext highlighter-rouge">opcode [31-26]</code> - <code class="language-plaintext highlighter-rouge">rs [25-21]</code> - <code class="language-plaintext highlighter-rouge">rt [20-16]</code> - <code class="language-plaintext highlighter-rouge">imm [15-0]</code>.</p>
 </details>
 
@@ -1067,7 +1067,7 @@ Une implémentation simple du registre <code class="language-plaintext highlight
 <summary>
 2. Dans Logisim, quel outil utiliseriez-vous pour séparer différents groupes de bits ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Le Séparateur de bits (Splitter) !
 </p>
 </details>
@@ -1079,7 +1079,7 @@ Le Séparateur de bits (Splitter) !
 <summary>
 4. Dans une instruction <code class="language-plaintext highlighter-rouge">addi</code>, nous avons besoin de lire le contenu d’un registre du « Banc de Registres » pour l’additionner à une constante. Quel champ de l’instruction doit être connecté au « Banc de Registres » ? À quelle entrée du « Banc de Registres » doit-il être branché ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Le champ d’instruction <code class="language-plaintext highlighter-rouge">rs</code> doit être branché sur l’entrée « read register 1 » du « Banc de Registres ».
 </p>
 </details>
@@ -1092,7 +1092,7 @@ Le champ d’instruction <code class="language-plaintext highlighter-rouge">rs</
 <summary>
 6. En quoi le « Générateur d’Immédiat » (circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>) pourrait vous être utile ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>, le « Générateur d’Immédiat » prend 16 bits de l’instruction en entrée et produit un immédiat signé de 32 bits. Vous devez implémenter cette logique dans le sous-circuit du générateur d’immédiat !
 </p>
 </details>
@@ -1103,13 +1103,13 @@ Pour l’instruction <code class="language-plaintext highlighter-rouge">addi</co
 
 <p>L’étape d’exécution est l’endroit où le calcul de la plupart des instructions est effectué. C’est également ici que l’idée d’utiliser un module de contrôle sera introduite.</p>
 
-<fieldset class="checkoff">
-<legend>Indications</legend>
+<fieldset class="tips">
+<legend style="color: DarkSlateGrey">Indications</legend>
 <details close="">
 <summary>
 1. Pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>, que serait les données en entrée de votre UAL ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Read Data 1 (rs) du « Banc de Registres » et la constante produite par le « Générateur d’Immédiat ».
 </p>
 </details>
@@ -1118,7 +1118,7 @@ Read Data 1 (rs) du « Banc de Registres » et la constante produite par le « G
 <summary>
 2. A quoi sert <code class="language-plaintext highlighter-rouge">ALUSel</code> dans l’UAL ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Il détermine quelle opération l’UAL doit effectuer.
 </p>
 </details>
@@ -1127,7 +1127,7 @@ Il détermine quelle opération l’UAL doit effectuer.
 <summary>
 3. Bien qu’il soit possible pour l’instant de simplement coller une constante pour <code class="language-plaintext highlighter-rouge">ALUSel</code>, pourquoi cela serait déconseillé si vous preniez en considération que d’autres instructions seront implémentées dans le futur ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Lors de l’implémentation de plus d’instructions, l’entrée <code class="language-plaintext highlighter-rouge">ALUSel</code> de l’UAL pourrait changer en fonction de l’opération demandée. Donc, on a besoin d’une sorte de circuit qui change la valeur de <code class="language-plaintext highlighter-rouge">ALUSel</code> en fonction de l’instruction en cours d’exécution.
 </p>
 </details>
@@ -1146,13 +1146,13 @@ Lors de l’implémentation de plus d’instructions, l’entrée <code class="l
 
 <p>L’étape d’écriture (WriteBack) est l’endroit où les résultats d’une opération doivent être sauvegardés dans un registre.</p>
 
-<fieldset class="checkoff">
-<legend>Indications</legend>
+<fieldset class="tips">
+<legend style="color: DarkSlateGrey">Indications</legend>
 <details close="">
 <summary>
 1. Est-ce que l’instruction <code class="language-plaintext highlighter-rouge">addi</code> requiert une écriture dans un registre ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 OUI ! l’instruction <code class="language-plaintext highlighter-rouge">addi</code> prend la sortie d’un calcul d’addition dans l’UAL et la réécrit dans le « Banc de Registres ».
 </p>
 </details>
@@ -1164,7 +1164,7 @@ OUI ! l’instruction <code class="language-plaintext highlighter-rouge">addi</c
 <summary>
 3. Que devons-nous utiliser comme entrée de sélection du MUX ? De quoi dépend l’entrée ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 On devrait pouvoir choisir entre trois entrées MUX : (1) UAL, (2) MEM [<code class="language-plaintext highlighter-rouge">READ_DATA</code>] et (3) PC + 4 (quand est-ce on aura besoin de celui-là ?). Le signal de commande qui détermine laquelle de ces entrées est transmise au « Banc de Registres » est appelé <code class="language-plaintext highlighter-rouge">WBSel</code>. Pour l’instant, WBSel devrait avoir une seule valeur - quelle qu’elle soit pour <code class="language-plaintext highlighter-rouge">addi</code>.
 </p>
 </details>
@@ -1173,7 +1173,7 @@ On devrait pouvoir choisir entre trois entrées MUX : (1) UAL, (2) MEM [<code cl
 <summary>
 4. Maintenant que les entrées du MUX sont fixées, nous devons brancher sa sortie ! Où doit-elle être raccordée ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Banc de Registres », elle doit donc être raccordée à l’entrée <code class="language-plaintext highlighter-rouge">Write Data</code> du « Banc de Registres ».
 </p>
 </details>
@@ -1225,13 +1225,13 @@ La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Ba
 
 <p>Sous le socle <code class="language-plaintext highlighter-rouge">test_harness</code>, vous verrez la mémoire d’instructions contenant le code machine en hexadécimal des trois instructions <code class="language-plaintext highlighter-rouge">addi</code> testés (0x20080005, 0x21090007, 0x21100009). La mémoire d’instructions prend une entrée (appelée <code class="language-plaintext highlighter-rouge">fetch_addr</code>) et délivre l’instruction stockée à cette adresse. Dans MIPS, <code class="language-plaintext highlighter-rouge">fetch_addr</code> est une valeur de 32 bits, mais comme Logisim limite la taille des unités ROM à \(2^{16}\), nous devons utiliser un séparateur pour récupérer seulement 14 bits de <code class="language-plaintext highlighter-rouge">fetch_addr</code> (en ignorant les deux bits les plus bas).</p>
 
-<fieldset class="checkoff">
-<legend>Indication</legend>
+<fieldset class="tips">
+<legend style="color: DarkSlateGrey">Indication</legend>
 <details close="">
 <summary>
 Pourquoi les deux bits LSB de l’adresse <code class="language-plaintext highlighter-rouge">fetch_addr</code> sont ignorés ?
 </summary>
-<p style="color: firebrick">
+<p style="color: DarkSlateGrey">
 Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d’instructions. Donc, on a besoin de convertir <code class="language-plaintext highlighter-rouge">fetch_addr</code> qui est une adresse d’octets, en une adresse de mots en supprimant les deux bits les plus faibles.
 </p>
 </details>
