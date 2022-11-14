@@ -1002,6 +1002,9 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <p>A ce stade de l’exécution, la question principale qui se pose est : Comment obtenir l’instruction actuelle ? Nous avons vu dans le cours que les instructions sont stockées dans la mémoire d’instructions, et chacune de ces instructions est accessible via une adresse.</p>
 
+<fieldset class="checkoff">
+<legend>Indications</legend>
+
 <details close="">
 <summary>
 1. Quel fichier du projet implémente la mémoire d’instructions ? Comment est-elle connectée au processeur ?
@@ -1031,12 +1034,14 @@ L’instruction que <code class="language-plaintext highlighter-rouge">run_*.cir
 
 <details close="">
 <summary>
-4. Comment le registre <code class="language-plaintext highlighter-rouge">PC</code> change-t-il pour les programmes qui ne possèdent pas d’instructions de sauts ou de branchement ?
+4. Comment le registre <code class="language-plaintext highlighter-rouge">PC</code> change-t-il pour les codes qui ne possèdent pas d’instructions de sauts ou de branchement ?
 </summary>
 <p style="color: firebrick">
 Comme le registre <code class="language-plaintext highlighter-rouge">PC</code> contient l’adresse de l’instruction en cours d’exécution, il faut incrémenter ce registre de la taille d’une instruction pour passer à l’instruction suivante. Cela signifie que votre <code class="language-plaintext highlighter-rouge">PC</code> augmentera généralement de 4 (en supposant que l’instruction en cours n’est pas un saut ou un branchement).
 </p>
 </details>
+</fieldset>
+
 <p><br />
 Une implémentation simple du registre <code class="language-plaintext highlighter-rouge">PC</code> est fournie dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Cette implémentation ne prend pas en compte les instructions de saut et de branchement que vous implémenterez dans la partie B du projet. Mais pour l’instant, seulement des instructions <code class="language-plaintext highlighter-rouge">addi</code> seront exécutées dans notre processeur.</p>
 
@@ -1046,6 +1051,9 @@ Une implémentation simple du registre <code class="language-plaintext highlight
 <h4 id="étape-2--décodeur-dinstruction-id"><strong>Étape 2 : Décodeur d’instruction (ID)</strong></h4>
 
 <p>Une fois l’étape « IF » implémentée, l’instruction à traiter proviendra à l’entrée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code> du processeur. La seconde étape consiste donc à décomposer cette instruction selon les formats d’instruction MIPS vus en cours, et cela afin de déterminer quoi en faire dans les étapes ultérieures d’exécution.</p>
+
+<fieldset class="checkoff">
+<legend>Indications</legend>
 
 <details close="">
 <summary>
@@ -1063,8 +1071,10 @@ Une implémentation simple du registre <code class="language-plaintext highlight
 Le Séparateur de bits (Splitter) !
 </p>
 </details>
-<p><br />
-  3. Implémentez l’étape de « décodage d’instruction » en utilisant l’entrée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code>. Vous devez utiliser des tunnels pour étiqueter et grouper les bits.</p>
+<p>
+<br />
+    3. Implémentez l’étape de « décodage d’instruction » en utilisant l’entrée <code class="language-plaintext highlighter-rouge">INSTRUCTION</code>. Vous devez utiliser des tunnels pour étiqueter et grouper les bits.
+</p>
 <details close="">
 <summary>
 4. Dans une instruction <code class="language-plaintext highlighter-rouge">addi</code>, nous avons besoin de lire le contenu d’un registre du « Banc de Registres » pour l’additionner à une constante. Quel champ de l’instruction doit être connecté au « Banc de Registres » ? À quelle entrée du « Banc de Registres » doit-il être branché ?
@@ -1074,8 +1084,10 @@ Le champ d’instruction <code class="language-plaintext highlighter-rouge">rs</
 </p>
 </details>
 <!-- Le résultat de l'opération sera plus tard réinscrit dans le registre destination spécifié dans l'instruction.-->
-<p><br />
-  5. Implémentez l’étape de lecture à partir du « Banc de Registres ». N’oubliez pas d’intégrer votre « Banc de Registres »  développé dans la tâche n°2 de ce projet. N’oubliez pas de connecter l’horloge !</p>
+<p>
+<br />
+   5. Implémentez l’étape de lecture à partir du « Banc de Registres ». N’oubliez pas d’intégrer votre « Banc de Registres »  développé dans la tâche n°2 de ce projet. N’oubliez pas de connecter l’horloge !
+</p>
 <details close="">
 <summary>
 6. En quoi le « Générateur d’Immédiat » (circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>) pourrait vous être utile ?
@@ -1084,12 +1096,15 @@ Le champ d’instruction <code class="language-plaintext highlighter-rouge">rs</
 Pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>, le « Générateur d’Immédiat » prend 16 bits de l’instruction en entrée et produit un immédiat signé de 32 bits. Vous devez implémenter cette logique dans le sous-circuit du générateur d’immédiat !
 </p>
 </details>
+</fieldset>
 <p><br /></p>
 
 <h4 id="étape-3--exécution-de-linstruction-ex"><strong>Étape 3 : Exécution de l’instruction (EX)</strong></h4>
 
 <p>L’étape d’exécution est l’endroit où le calcul de la plupart des instructions est effectué. C’est également ici que l’idée d’utiliser un module de contrôle sera introduite.</p>
 
+<fieldset class="checkoff">
+<legend>Indications</legend>
 <details close="">
 <summary>
 1. Pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>, que serait les données en entrée de votre UAL ?
@@ -1116,9 +1131,12 @@ Il détermine quelle opération l’UAL doit effectuer.
 Lors de l’implémentation de plus d’instructions, l’entrée <code class="language-plaintext highlighter-rouge">ALUSel</code> de l’UAL pourrait changer en fonction de l’opération demandée. Donc, on a besoin d’une sorte de circuit qui change la valeur de <code class="language-plaintext highlighter-rouge">ALUSel</code> en fonction de l’instruction en cours d’exécution.
 </p>
 </details>
-<p><br />
-  4. Intégrez dans votre processeur l’UAL développée dans la tâche n°1 de ce projet et connectez correctement les entrées. Avez-vous besoin de connecter une horloge ? Pourquoi ou pourquoi pas ?
-<br /></p>
+<p>
+<br />
+   4. Intégrez dans votre processeur l’UAL développée dans la tâche n°1 de ce projet et connectez correctement les entrées. Avez-vous besoin de connecter une horloge ? Pourquoi ou pourquoi pas ?
+</p>
+</fieldset>
+<p><br /></p>
 
 <h4 id="étape-4--lectureécriture-depuisvers-la-mémoire-de-données-mem"><strong>Étape 4 : Lecture/écriture depuis/vers la mémoire de données (MEM)</strong></h4>
 
@@ -1128,6 +1146,8 @@ Lors de l’implémentation de plus d’instructions, l’entrée <code class="l
 
 <p>L’étape d’écriture (WriteBack) est l’endroit où les résultats d’une opération doivent être sauvegardés dans un registre.</p>
 
+<fieldset class="checkoff">
+<legend>Indications</legend>
 <details close="">
 <summary>
 1. Est-ce que l’instruction <code class="language-plaintext highlighter-rouge">addi</code> requiert une écriture dans un registre ?
@@ -1136,9 +1156,10 @@ Lors de l’implémentation de plus d’instructions, l’entrée <code class="l
 OUI ! l’instruction <code class="language-plaintext highlighter-rouge">addi</code> prend la sortie d’un calcul d’addition dans l’UAL et la réécrit dans le « Banc de Registres ».
 </p>
 </details>
-
-<p>  2. Nous avons vu dans le cours que l’étape <strong>WB</strong> permet d’écrire dans le « Banc de Registres » la sortie de l’<strong>UAL</strong> ou de la mémoire de données <strong>DMEM</strong>. Créons donc la phase d’écriture dans cette perspective même si nous nous intéressons seulement à l’instruction <code class="language-plaintext highlighter-rouge">addi</code> pour l’instant. Comme seule une donnée à la fois peut être écrite dans le « Banc de Registres » dans l’architecture MIPS, nous devons utiliser un MUX pour choisir laquelle des sorties de l’UAL ou de <strong>DMEM</strong> (<code class="language-plaintext highlighter-rouge">READ_DATA</code>) à transmettre. Plus tard, lorsque vous implémenterez d’autres instructions dans la partie B du projet, vous devriez revoir l’implémentation de ce multiplexeur pour gérer plus de cas.</p>
-
+<p>
+<br />
+    2. Nous avons vu dans le cours que l’étape <strong>WB</strong> permet d’écrire dans le « Banc de Registres » la sortie de l’<strong>UAL</strong> ou de la mémoire de données <strong>DMEM</strong>. Créons donc la phase d’écriture dans cette perspective même si nous nous intéressons seulement à l’instruction <code class="language-plaintext highlighter-rouge">addi</code> pour l’instant. Comme seule une donnée à la fois peut être écrite dans le « Banc de Registres » dans l’architecture MIPS, nous devons utiliser un MUX pour choisir laquelle des sorties de l’UAL ou de <strong>DMEM</strong> (<code class="language-plaintext highlighter-rouge">READ_DATA</code>) à transmettre. Plus tard, lorsque vous implémenterez d’autres instructions dans la partie B du projet, vous devriez revoir l’implémentation de ce multiplexeur pour gérer plus de cas.
+</p>
 <details close="">
 <summary>
 3. Que devons-nous utiliser comme entrée de sélection du MUX ? De quoi dépend l’entrée ?
@@ -1156,8 +1177,11 @@ On devrait pouvoir choisir entre trois entrées MUX : (1) UAL, (2) MEM [<code cl
 La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Banc de Registres », elle doit donc être raccordée à l’entrée <code class="language-plaintext highlighter-rouge">Write Data</code> du « Banc de Registres ».
 </p>
 </details>
-
-<p>  5. Il y a deux autres entrées sur le « Banc de Registres » qui sont importantes pour l’écriture des données : <code class="language-plaintext highlighter-rouge">RegWEn</code> et <code class="language-plaintext highlighter-rouge">Write_Data</code>. L’une d’entre elles devra être récupérée de l’étape de décodage d’instructions (ID) et l’autre correspond à un nouveau signal de commande que vous devez concevoir dans la partie B du projet. Veuillez finaliser l’étape de l’écriture en implémentant correctement ces entrées pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>.</p>
+<p>
+<br />
+    5. Il y a deux autres entrées sur le « Banc de Registres » qui sont importantes pour l’écriture des données : <code class="language-plaintext highlighter-rouge">RegWEn</code> et <code class="language-plaintext highlighter-rouge">Write_Data</code>. L’une d’entre elles devra être récupérée de l’étape de décodage d’instructions (ID) et l’autre correspond à un nouveau signal de commande que vous devez concevoir dans la partie B du projet. Veuillez finaliser l’étape de l’écriture en implémentant correctement ces entrées pour l’instruction <code class="language-plaintext highlighter-rouge">addi</code>.
+</p>
+</fieldset>
 
 <p>Si vous avez effectué toutes les étapes correctement, vous devriez avoir un processeur à cycle unique qui fonctionne pour les instructions <code class="language-plaintext highlighter-rouge">addi</code>. Exécutez <code class="language-plaintext highlighter-rouge">python3 test_runner.py part_a addi_single</code> depuis le terminal et vérifiez si votre implémentation fonctionne correctement !</p>
 
@@ -1201,17 +1225,19 @@ La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Ba
 
 <p>Sous le socle <code class="language-plaintext highlighter-rouge">test_harness</code>, vous verrez la mémoire d’instructions contenant le code machine en hexadécimal des trois instructions <code class="language-plaintext highlighter-rouge">addi</code> testés (0x20080005, 0x21090007, 0x21100009). La mémoire d’instructions prend une entrée (appelée <code class="language-plaintext highlighter-rouge">fetch_addr</code>) et délivre l’instruction stockée à cette adresse. Dans MIPS, <code class="language-plaintext highlighter-rouge">fetch_addr</code> est une valeur de 32 bits, mais comme Logisim limite la taille des unités ROM à \(2^{16}\), nous devons utiliser un séparateur pour récupérer seulement 14 bits de <code class="language-plaintext highlighter-rouge">fetch_addr</code> (en ignorant les deux bits les plus bas).</p>
 
+<fieldset class="checkoff">
+<legend>Indication</legend>
 <details close="">
 <summary>
 Pourquoi les deux bits LSB de l’adresse <code class="language-plaintext highlighter-rouge">fetch_addr</code> sont ignorés ?
 </summary>
 <p style="color: firebrick">
-Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d’instructions. Donc, on a besoin de convertir <code class="language-plaintext highlighter-rouge">fetch_addr</code> qui est une adresse d’octets, en une adresse de mots en supprimant les deux bits les plus bas (On y reviendra dans le cours sur les caches).
+Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d’instructions. Donc, on a besoin de convertir <code class="language-plaintext highlighter-rouge">fetch_addr</code> qui est une adresse d’octets, en une adresse de mots en supprimant les deux bits les plus faibles.
 </p>
 </details>
+</fieldset>
 
-<p><br />
-Ainsi, quand le circuit de test est mis en marche, chaque tick de l’horloge pilote l’exécution du socle <code class="language-plaintext highlighter-rouge">test_harness</code> et  incrémente le compteur appelé <code class="language-plaintext highlighter-rouge">Time_Step</code> (ce compteur se trouve à droite de la mémoire d’instructions, faites un zoom-out dans Logisim s’il n’est pas visible sur votre écran).</p>
+<p>Ainsi, quand le circuit de test est mis en marche, chaque tick de l’horloge pilote l’exécution du socle <code class="language-plaintext highlighter-rouge">test_harness</code> et  incrémente le compteur appelé <code class="language-plaintext highlighter-rouge">Time_Step</code> (ce compteur se trouve à droite de la mémoire d’instructions, faites un zoom-out dans Logisim s’il n’est pas visible sur votre écran).</p>
 
 <p>A chaque tick de l’horloge, l’exécution en <a href="http://www.cburch.com/logisim/docs/2.6.0/en/guide/verify/index.html">ligne de commande</a> de logisim-evolution imprimera les valeurs de chacune de vos sorties de débogage vers le terminal. L’horloge continuera à tourner jusqu’à ce que <code class="language-plaintext highlighter-rouge">Time_Step</code> soit égal à la constante d’arrêt pour ce circuit de test (pour ce fichier de test en particulier, la constante d’arrêt est 5).</p>
 
