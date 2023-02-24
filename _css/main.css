@@ -1424,12 +1424,12 @@ body {
   border: 1px dotted currentColor;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  background-color: hsl(21deg, 100%, 95%);
-  color: hsl(33deg, 100%, 4%);
+  background-color: hsl(21, 100%, 95%);
+  color: hsl(33, 100%, 4%);
 }
 
 .checkoff code {
-  background-color: hsl(21deg, 100%, 95%);
+  background-color: hsl(21, 100%, 95%);
   color: currentColor;
 }
 
@@ -1437,11 +1437,11 @@ body {
   font-family: "Titillium Web", sans-serif;
   margin-left: 1em;
   margin-bottom: 1em;
-  border: 1px dotted hsl(33deg, 100%, 4%);
+  border: 1px dotted hsl(33, 100%, 4%);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   padding: 0.2em 0.8em;
-  background-color: hsl(21deg, 100%, 95%);
+  background-color: hsl(21, 100%, 95%);
   color: #6f2232;
   font-weight: bold;
 }
@@ -1451,12 +1451,12 @@ body {
   border: 1px dotted currentColor;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  background-color: hsl(67deg, 100%, 95%);
-  color: hsl(33deg, 100%, 4%);
+  background-color: hsl(67, 100%, 95%);
+  color: hsl(33, 100%, 4%);
 }
 
 .tips code {
-  background-color: hsl(67deg, 100%, 95%);
+  background-color: hsl(67, 100%, 95%);
   color: currentColor;
 }
 
@@ -1464,11 +1464,11 @@ body {
   font-family: "Titillium Web", sans-serif;
   margin-left: 1em;
   margin-bottom: 1em;
-  border: 1px dotted hsl(33deg, 100%, 4%);
+  border: 1px dotted hsl(33, 100%, 4%);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   padding: 0.2em 0.8em;
-  background-color: hsl(67deg, 100%, 95%);
+  background-color: hsl(67, 100%, 95%);
   color: #6f2232;
   font-weight: bold;
 }
