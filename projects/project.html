@@ -21,10 +21,10 @@
   <title> Mini-Processeur MIPS - Architecture des ordinateurs / Automne 2023 </title>
   <meta name="description" content="ÉnoncéPour ce mini-projet, vous utiliserez Logisim afin d’implémenter une version basique d’un processeur MIPS. Ce devoir est organisé en deux parties : A et...">
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
-  <link rel="stylesheet" href="/l2ado/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado/projects/project">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado-private/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado-private/projects/project">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -48,10 +48,10 @@
 
   <div class="wrapper" style="z-index: 100;">
       <table><tr>
-          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td><img width="75" src="/l2ado-private/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
           <br/>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado-private/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
           <br/>
           <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
           </td>
@@ -76,7 +76,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/">
+      <a class="page-link" href="/l2ado-private/">
         <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
@@ -87,7 +87,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/schedule/">
+      <a class="page-link" href="/l2ado-private/schedule/">
         <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
@@ -98,7 +98,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/lectures/">
+      <a class="page-link" href="/l2ado-private/lectures/">
         <i class="fas fa-book-reader"></i> Cours
       </a>
 
@@ -109,7 +109,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/discussions/">
+      <a class="page-link" href="/l2ado-private/discussions/">
         <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
@@ -120,7 +120,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/labs/">
+      <a class="page-link" href="/l2ado-private/labs/">
         <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
@@ -131,7 +131,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/quizzes/">
+      <a class="page-link" href="/l2ado-private/quizzes/">
         <i class="fas fa-question-circle"></i> Quiz
       </a>
 
@@ -142,7 +142,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/projects/">
+      <a class="page-link" href="/l2ado-private/projects/">
         <i class="fas fa-user-graduate"></i> Projets
       </a>
 
@@ -153,7 +153,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/materials/">
+      <a class="page-link" href="/l2ado-private/materials/">
         <i class="fas fa-book"></i> Ressources
       </a>
 
@@ -168,7 +168,7 @@
   </div>
 
   <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2ado/_images/pattern.png');" />
+  background-image: url('/l2ado-private/_images/pattern.png');" />
 
 </header>
 
@@ -214,7 +214,7 @@
       
 
       
-      [<a href="/l2ado/static_files/projects/mipscpu.zip">démarrage</a>]
+      [<a href="/l2ado-private/static_files/projects/mipscpu.zip">démarrage</a>]
       
 
       
@@ -344,7 +344,7 @@
 
 <p><strong>REMARQUES</strong> : Dans les slides du cours « <a href="https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR">Architecture de Von Neumann</a> », et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n’avez pas à le faire dans ce mini-projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c’est tout (voir la figure ci-dessous) !</p>
 
-<p><img src="/l2ado/static_files/images/data_width.png" alt="Largeur de bits" height="55%" width="55%" class="wp-caption aligncenter" /></p>
+<p><img src="/l2ado-private/static_files/images/data_width.png" alt="Largeur de bits" height="55%" width="55%" class="wp-caption aligncenter" /></p>
 
 <p>Enfin, voici ci-dessous la liste des opérations (et les valeurs <strong>ALUSel</strong> associées) que votre UAL doit pouvoir effectuer. Vous pouvez utiliser tout bloc ou fonction intégrée de Logisim pour implémenter votre circuit. <strong>Il n’est pas nécessaire de réimplémenter le circuit additionneur, de décalage ou le circuit multiplicateur ! Utilisez les blocs de circuit fournis par Logisim à cet effet</strong>.</p>
 
@@ -733,7 +733,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
     <p>Il est recommandé de ne pas utiliser l’entrée « <code class="language-plaintext highlighter-rouge">enable</code> » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « <code class="language-plaintext highlighter-rouge">off</code> » la propriété “three-state?”.</p>
   </li>
   <li>
-    <p>Consultez l’étape 2 du TP <a href="/l2ado/labs/07_lab.html">Travaux Pratiques #7 - Conception de circuits avec Logisim</a> pour voir à quoi correspond chaque entrée/sortie d’un registre Logisim.</p>
+    <p>Consultez l’étape 2 du TP <a href="/l2ado-private/labs/07_lab.html">Travaux Pratiques #7 - Conception de circuits avec Logisim</a> pour voir à quoi correspond chaque entrée/sortie d’un registre Logisim.</p>
   </li>
   <li>
     <p>Comme pour la tâche de l’UAL, les multiplexeurs vous seront très utiles (les démultiplexeurs, également).</p>
@@ -784,7 +784,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <p>l’unité « Générateur d’Immédiat » fournie dans le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> n’est pas implémentée. L’instruction <code class="language-plaintext highlighter-rouge">addi</code> utilise cette unité. Toutefois, comme il s’agit de la seule instruction à implémenter dans cette partie du projet, vous pouvez donc vous limiter à coder que l’immédiat associé à cette instruction sans vous soucier des autres types d’immédiat. Consultez l’image ci-dessous pour savoir comment l’immédiat de l’instruction <code class="language-plaintext highlighter-rouge">addi</code> doit être généré :</p>
 
-<p><img src="/l2ado/static_files/images/immediat_addi.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
+<p><img src="/l2ado-private/static_files/images/immediat_addi.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
 
 <p>Pour éditer le « Générateur d’Immédiat », modifiez le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">imm_gen</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>, vous devez fermer et ouvrir le fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
 
@@ -1746,7 +1746,7 @@ Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d�
 
 <p>l’unité « Générateur d’Immédiat » (squelette fourni dans le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>) devrait calculer les constantes « Imm » des instructions de type I et la valeur du champ « shmt » dans les instructions de décalage. Consultez la figure ci-dessous pour savoir comment chaque immédiat doit être formaté dans votre processeur :</p>
 
-<p><img src="/l2ado/static_files/images/immediat_extensions.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
+<p><img src="/l2ado-private/static_files/images/immediat_extensions.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
 
 <p>Pour éditer le « Générateur d’Immédiat », modifiez le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">imm_gen</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>, vous devez fermer et ouvrir le fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
 

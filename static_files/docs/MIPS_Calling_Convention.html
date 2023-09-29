@@ -21,10 +21,10 @@
   <title> Appel de fonctions et convention d'appel dans MIPS - Architecture des ordinateurs / Automne 2023 </title>
   <meta name="description" content="Appel de fonctions et convention d'appel dans MIPS - Architecture des ordinateurs / Automne 2023">
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?" />
-  <link rel="stylesheet" href="/l2ado/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado/static_files/docs/MIPS_Calling_Convention">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?" />
+  <link rel="stylesheet" href="/l2ado-private/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado-private/static_files/docs/MIPS_Calling_Convention">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -48,10 +48,10 @@
 
   <div class="wrapper" style="z-index: 100;">
       <table><tr>
-          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td><img width="75" src="/l2ado-private/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
           <br/>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado-private/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
           <br/>
           <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
           </td>
@@ -76,7 +76,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/">
+      <a class="page-link" href="/l2ado-private/">
         <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
@@ -87,7 +87,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/schedule/">
+      <a class="page-link" href="/l2ado-private/schedule/">
         <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
@@ -98,7 +98,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/lectures/">
+      <a class="page-link" href="/l2ado-private/lectures/">
         <i class="fas fa-book-reader"></i> Cours
       </a>
 
@@ -109,7 +109,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/discussions/">
+      <a class="page-link" href="/l2ado-private/discussions/">
         <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
@@ -120,7 +120,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/labs/">
+      <a class="page-link" href="/l2ado-private/labs/">
         <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
@@ -131,7 +131,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/quizzes/">
+      <a class="page-link" href="/l2ado-private/quizzes/">
         <i class="fas fa-question-circle"></i> Quiz
       </a>
 
@@ -142,7 +142,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/projects/">
+      <a class="page-link" href="/l2ado-private/projects/">
         <i class="fas fa-user-graduate"></i> Projets
       </a>
 
@@ -153,7 +153,7 @@
       
       
 
-      <a class="page-link" href="/l2ado/materials/">
+      <a class="page-link" href="/l2ado-private/materials/">
         <i class="fas fa-book"></i> Ressources
       </a>
 
@@ -168,7 +168,7 @@
   </div>
 
   <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2ado/_images/pattern.png');" />
+  background-image: url('/l2ado-private/_images/pattern.png');" />
 
 </header>
 
@@ -318,9 +318,9 @@
 
 <p>Sans ce segment, il serait impossible d’écrire des fonctions imbriquée et/ou récursives.</p>
 
-<p>Lorsqu’un programme est chargé en mémoire, le système d’exploitation initialise le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> (registre <code class="language-plaintext highlighter-rouge">$29</code>) avec une adresse valide pour pointer vers le <strong>haut de la pile</strong>. Par exemple, lors de l’exécution d’un programme MIPS sous l’outil <a href="/l2ado/static_files/docs/MARS.html">MARS</a>, la valeur initiale du registre <code class="language-plaintext highlighter-rouge">$sp</code> est <code class="language-plaintext highlighter-rouge">0x7fffeffc</code>. Le segment de pile augmente vers des adresses mémoire plus faibles (voir Figure ci-dessous).</p>
+<p>Lorsqu’un programme est chargé en mémoire, le système d’exploitation initialise le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> (registre <code class="language-plaintext highlighter-rouge">$29</code>) avec une adresse valide pour pointer vers le <strong>haut de la pile</strong>. Par exemple, lors de l’exécution d’un programme MIPS sous l’outil <a href="/l2ado-private/static_files/docs/MARS.html">MARS</a>, la valeur initiale du registre <code class="language-plaintext highlighter-rouge">$sp</code> est <code class="language-plaintext highlighter-rouge">0x7fffeffc</code>. Le segment de pile augmente vers des adresses mémoire plus faibles (voir Figure ci-dessous).</p>
 
-<p><img src="/l2ado/static_files/images/MemSegments.png" alt="MemSegments" height="50%" width="50%" class="aligncenter" /></p>
+<p><img src="/l2ado-private/static_files/images/MemSegments.png" alt="MemSegments" height="50%" width="50%" class="aligncenter" /></p>
 
 <p>Une fonction peut réserver de l’espace sur la pile pour sauvegarder des registres et / ou pour allouer des variables locales. Cet espace est appelé une <strong>trame de pile</strong> (<em>anglais</em> : stack frame).  Pour allouer une trame de pile de <code class="language-plaintext highlighter-rouge">n</code> octets, nous décrémentons le pointeur de pile de <code class="language-plaintext highlighter-rouge">n</code> :</p>
 
@@ -334,7 +334,7 @@
 
 <p>La figure ci-dessous illustre l’état du segment de pile avant l’appel, pendant l’exécution et après le retour d’un appel de fonction. Initialement, le registre pointeur-de-pile <code class="language-plaintext highlighter-rouge">$sp</code> pointe vers le haut de la trame de pile de la fonction appelante. Une fois l’appel est effectué, le registre <code class="language-plaintext highlighter-rouge">$sp</code> est décrémenté pour faire de l’espace sur le haut du segment de pile afin de stocker la <em>trame de pile</em> de la fonction appelée. Enfin, au retour de la fonction appelée, le registre <code class="language-plaintext highlighter-rouge">$sp</code> est incrémenté de manière qu’il pointe à nouveau vers la trame de pile de la fonction appelante libérant ainsi la mémoire allouée sur la pile.</p>
 
-<p><img src="/l2ado/static_files/images/StackSegment.png" alt="StackSegment" height="80%" width="80%" class="aligncenter" /></p>
+<p><img src="/l2ado-private/static_files/images/StackSegment.png" alt="StackSegment" height="80%" width="80%" class="aligncenter" /></p>
 
 <p>Une trame de pile peut être utilisée pour passer des arguments à une fonction, enregistrer des registres entre les appels de fonction et / ou allouer de l’espace pour des variables locales déclarées dans la fonction. En particulier, le registre <code class="language-plaintext highlighter-rouge">$ra</code> doit être enregistré avant qu’une fonction puisse appeler une autre fonction parce que les instructions <code class="language-plaintext highlighter-rouge">jal</code> et <code class="language-plaintext highlighter-rouge">jalr</code> modifient le registre <code class="language-plaintext highlighter-rouge">$ra</code>. Les arguments d’une fonction sont généralement transmis dans les registres <code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>. Toutefois, si une fonction a plus de quatre arguments, les paramètres supplémentaires doivent être transmis sur la pile.</p>
 
@@ -358,7 +358,7 @@
   
   <div>
 
-    <p><img src="/l2ado/static_files/images/Trame-de-pile.png" alt="TramePile" height="72%" width="72%" class="aligncenter" />
+    <p><img src="/l2ado-private/static_files/images/Trame-de-pile.png" alt="TramePile" height="72%" width="72%" class="aligncenter" />
        <br /></p>
   </div>  
 </div>
@@ -658,7 +658,7 @@ Dans notre exemple, <code class="language-plaintext highlighter-rouge">func1</co
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Commençons d’abord par réécrire ce code sous une <a href="/l2ado/static_files/docs/non_structured_programming.html">forme non structurée</a> équivalente.</p>
+<p>Commençons d’abord par réécrire ce code sous une <a href="/l2ado-private/static_files/docs/non_structured_programming.html">forme non structurée</a> équivalente.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">source</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
 <span class="kt">int</span> <span class="n">dest</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
@@ -902,7 +902,7 @@ ELIHW:
     syscall            # appel système (terminer le programme)
 </code></pre>
 
-<p>Vous pouvez trouver le programme en entier <a href="/l2ado/static_files/docs/c2mips.s">c2mips.s</a>.</p>
+<p>Vous pouvez trouver le programme en entier <a href="/l2ado-private/static_files/docs/c2mips.s">c2mips.s</a>.</p>
 
 <h1 id="fonctions-récursives-dans-mips">Fonctions récursives dans MIPS</h1>
 
