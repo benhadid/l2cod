@@ -20,8 +20,17 @@
 
   <title> Mini-Processeur MIPS - Architecture des ordinateurs / Automne 2023 </title>
   <meta name="description" content="ÉnoncéPour ce mini-projet, vous utiliserez Logisim afin d’implémenter une version basique d’un processeur MIPS. Ce devoir est organisé en deux parties : A et...">
+  
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?" />
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?"> <!--for github-->
+
   <link rel="stylesheet" href="/l2ado-private/_css/main.css">
   <link rel="canonical" href="https://benhadid.github.io/l2ado-private/projects/project">
   <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
@@ -196,11 +205,11 @@
   <div>
     
     <span style="font-weight: bold">Échéance : 
-      <!-- 21/12/2023 -->
+      <!-- 20/12/2023 -->
 
       
-      Jeudi
-      21
+      Mercredi
+      20
       
       Décembre
       2023
@@ -342,7 +351,7 @@
 </tbody>
 </table>
 
-<p><strong>REMARQUES</strong> : Dans les slides du cours « <a href="https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR">Architecture de Von Neumann</a> », et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n’avez pas à le faire dans ce mini-projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c’est tout (voir la figure ci-dessous) !</p>
+<p><strong>REMARQUES</strong> : Dans les slides du cours « <a href="https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR">Architecture de Von Neumann</a> », et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL <em>n-bits</em>. Bonne nouvelle ! vous n’avez pas à le faire dans ce mini-projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c’est tout (voir la figure ci-dessous) !</p>
 
 <p><img src="/l2ado-private/static_files/images/data_width.png" alt="Largeur de bits" height="55%" width="55%" class="wp-caption aligncenter" /></p>
 
@@ -484,7 +493,7 @@
     <p>Les séparateurs et les extenseurs de bits vous seront très utiles lors de l’implémentation des opérations de décalages.</p>
   </li>
   <li>
-    <p>Utilisez les tunnels ! Cela vous évitera de croiser des fils involontairement ce qui causera des erreurs inattendues.</p>
+    <p>Utilisez les tunnels ! Cela vous évitera de croiser des fils involontairement (et causer des erreurs inattendues).</p>
   </li>
   <li>
     <p>Un multiplexeur (MUX) peut être utile pour décider quelle sortie de quel composant vous voulez transmettre. En d’autres termes, traiter les entrées dans tous les composants d’une manière simultanée, puis, en fonction de l’opération choisie, sélectionner la bonne sortie à transmettre.</p>
@@ -721,7 +730,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 </tbody>
 </table>
 
-<p>Les sorties de test en haut du fichier <code class="language-plaintext highlighter-rouge">regfile.circ</code> sont présentes à des fins de test et de débogage. Un « Banc de Registres » réel ne possède pas ces sorties ! Pour ce mini-projet, assurez-vous qu’ils sont correctement raccordés aux registres indiqués parce que s’ils ne le sont pas, l’évaluateur automatique ne pourra pas évaluer votre devoir correctement ( et vous obtiendrez un zéro. :( ).</p>
+<p>Les sorties de test en haut du fichier <code class="language-plaintext highlighter-rouge">regfile.circ</code> sont présentes à des fins de test et de débogage. Un « Banc de Registres » réel ne possède pas ces sorties ! Pour ce mini-projet, assurez-vous qu’ils sont correctement raccordés aux registres indiqués parce que s’ils ne le sont pas, l’évaluateur automatique ne pourra pas évaluer votre devoir correctement ( et vous obtiendrez un zéro :sad: !).</p>
 
 <p><strong>Indications</strong> :</p>
 
@@ -770,7 +779,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <h2 id="tâche-3--linstruction-addi">Tâche 3 : L’instruction <code class="language-plaintext highlighter-rouge">addi</code></h2>
 
-<p>Dans cette troisième et dernière tâche pour la partie A, vous allez implémenter un processeur capable d’exécuter une instruction : <code class="language-plaintext highlighter-rouge">addi</code> ! Vous pouvez choisir d’implémenter d’autres instructions supplémentaires, mais vous ne serez noté que si l’instruction <code class="language-plaintext highlighter-rouge">addi</code> s’exécute correctement pour la partie A.</p>
+<p>Dans cette troisième et dernière tâche pour la partie A, vous allez implémenter un processeur capable d’exécuter des instructions : <code class="language-plaintext highlighter-rouge">addi</code> ! Vous pouvez choisir d’implémenter d’autres instructions supplémentaires, mais vous ne serez noté que si les instructions <code class="language-plaintext highlighter-rouge">addi</code> s’exécutent correctement pour la partie A.</p>
 
 <h3 id="info--mémoire-circuit-memcirc">Info : Mémoire (circuit <code class="language-plaintext highlighter-rouge">mem.circ</code>)</h3>
 
@@ -778,7 +787,7 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 
 <h3 id="info--comparateur-de-branchement-circuit-branch_compcirc">Info : Comparateur de Branchement (circuit <code class="language-plaintext highlighter-rouge">branch_comp.circ</code>)</h3>
 
-<p>L’unité « Comparateur de Branchement » fournie dans le fichier <code class="language-plaintext highlighter-rouge">branch_comp.circ</code> n’est pas implémentée, mais comme l’instruction <code class="language-plaintext highlighter-rouge">addi</code> n’utilise <strong>PAS</strong> cette unité vous pouvez donc l’ignorer pour la partie A.</p>
+<p>L’unité « Comparateur de Branchement » fournie dans le fichier <code class="language-plaintext highlighter-rouge">branch_comp.circ</code> n’est pas implémentée, mais comme l’instruction <code class="language-plaintext highlighter-rouge">addi</code> n’utilise <strong>PAS</strong> cette unité, vous pouvez donc l’ignorer pour la partie A.</p>
 
 <h3 id="info--générateur-dimmédiat-circuit-imm_gencirc">Info : Générateur d’Immédiat (circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>)</h3>
 
@@ -1876,7 +1885,8 @@ Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d�
         <p class="text">
           02 rue Didouche Mourad<br />
 16000 Alger<br />
-
+ 
+        </p>
       </div>
 
       <div class="footer-col  footer-col-2">
@@ -1891,6 +1901,7 @@ Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d�
 
           
 
+          
           
 
 

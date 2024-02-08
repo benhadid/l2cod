@@ -540,6 +540,9 @@ a.tosu {
 .responsive-table .table-row-assignment {
   background-color: #fff4bd;
 }
+.responsive-table .table-row-holidays {
+  background-color: #d3d3d3;
+}
 .responsive-table .table-row-lab {
   background-color: #EAE2EE;
 }

@@ -20,8 +20,17 @@
 
   <title> Manipulations des données - Architecture des ordinateurs / Automne 2023 </title>
   <meta name="description" content="Objectifs      Apprendre à effectuer des manipulations de bits spécifiques grâce à des compositions d’opérations sur les bits.        Apprendre à identifier ...">
+  
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?" />
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?"> <!--for github-->
+
   <link rel="stylesheet" href="/l2ado-private/_css/main.css">
   <link rel="canonical" href="https://benhadid.github.io/l2ado-private/labs/02_lab">
   <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
@@ -206,6 +215,7 @@
       2023
     </span>
     
+
     <br />
     
 
@@ -238,7 +248,7 @@
 
 <h1 id="exercice-1--bitops">Exercice 1 : (BitOps)</h1>
 
-<p>Commencez d’abord par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier <code class="language-plaintext highlighter-rouge">bit_ops.c</code> les fonctions de manipulation de bits<code class="language-plaintext highlighter-rouge"> get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> et<code class="language-plaintext highlighter-rouge"> flip_bit()</code> (illustrées ci-dessous). Vous pouvez utiliser <strong>UNIQUEMENT</strong> des <a href="/l2ado-private/static_files/docs/bitwise_operations_in_c.html">opérations de manipulation de bits</a> comme le <strong>ET</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>), le <strong>OU</strong> (<code class="language-plaintext highlighter-rouge">|</code>), le <strong>XOR</strong> (<code class="language-plaintext highlighter-rouge">^</code>), le <strong>NOT</strong> (<code class="language-plaintext highlighter-rouge">~</code>), le <strong>décalage à gauche</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) et le <strong>décalage à droite</strong> (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>). Vous ne pouvez pas utiliser de boucles <code class="language-plaintext highlighter-rouge">for</code> / <code class="language-plaintext highlighter-rouge">while</code> / <code class="language-plaintext highlighter-rouge">do</code> ou les instructions de condition <code class="language-plaintext highlighter-rouge">if / else</code> et <code class="language-plaintext highlighter-rouge">switch / case</code>. Vous ne pouvez pas non plus utiliser les opérations arithmétiques ( modulo (%), division, soustraction, addition ou multiplication ) pour cet exercice.</p>
+<p>Commencez d’abord par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier <code class="language-plaintext highlighter-rouge">bit_ops.c</code> les fonctions de manipulation de bits<code class="language-plaintext highlighter-rouge"> get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> et<code class="language-plaintext highlighter-rouge"> flip_bit()</code> (voir description ci-dessous). Vous pouvez utiliser <strong>UNIQUEMENT</strong> des <a href="/l2ado-private/static_files/docs/bitwise_operations_in_c.html">opérations de manipulation de bits</a> comme le <strong>ET</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>), le <strong>OU</strong> (<code class="language-plaintext highlighter-rouge">|</code>), le <strong>XOR</strong> (<code class="language-plaintext highlighter-rouge">^</code>), le <strong>NOT</strong> (<code class="language-plaintext highlighter-rouge">~</code>), le <strong>décalage à gauche</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) et le <strong>décalage à droite</strong> (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>). Vous ne pouvez pas utiliser de boucles <code class="language-plaintext highlighter-rouge">for</code> / <code class="language-plaintext highlighter-rouge">while</code> / <code class="language-plaintext highlighter-rouge">do</code> ou les instructions de condition <code class="language-plaintext highlighter-rouge">if / else</code> et <code class="language-plaintext highlighter-rouge">switch / case</code>. Vous ne pouvez pas non plus utiliser les opérations arithmétiques ( modulo (%), division, soustraction, addition ou multiplication ) pour cet exercice.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Retourne le n-ième bit de x.</span>
 <span class="c1">// Vous pouvez considérer que 0 &lt;= n &lt;= 31</span>
@@ -255,10 +265,41 @@
 
 <h2 id="tâches-à-réaliser-">Tâches à réaliser :</h2>
 
-<p>Après avoir achevé l’implémentation des fonctions <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> et <code class="language-plaintext highlighter-rouge">flip_bit()</code>, vous pouvez compiler et exécuter le code fourni à l’aide des commandes ci-dessous (sous environnement UN*X). Une exécution corrècte du programme affichera sur votre écran le résultat de quelques tests de validation (tests qui vous permettent de vérifier si vous avez implémenté correctement les fonctions sus-citées).</p>
+<p>Après avoir achevé l’implémentation des fonctions <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> et <code class="language-plaintext highlighter-rouge">flip_bit()</code>, vous pouvez compiler et exécuter le code fourni à l’aide des commandes ci-dessous (sous environnement UN*X).</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>make bit_ops
-<span class="gp">$</span><span class="w"> </span>./bit_ops
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make bit_ops
+<span class="nv">$ </span>./bit_ops
+</code></pre></div></div>
+
+<p>Une exécution corrècte du programme affichera sur votre écran le résultat de quelques tests de validation (tests qui vous permettent de vérifier si vous avez implémenté correctement les fonctions sus-citées).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Testing get_bit<span class="o">()</span>
+
+get_bit<span class="o">(</span>0x0000004e,0<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000004e,1<span class="o">)</span>: 0x00000001, correct
+get_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000001b,3<span class="o">)</span>: 0x00000001, correct
+get_bit<span class="o">(</span>0x0000001b,2<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000001b,9<span class="o">)</span>: 0x00000000, correct
+
+Testing set_bit<span class="o">()</span>
+
+set_bit<span class="o">(</span>0x0000004e,2,0<span class="o">)</span>: 0x0000004a, correct
+set_bit<span class="o">(</span>0x0000006d,0,0<span class="o">)</span>: 0x0000006c, correct
+set_bit<span class="o">(</span>0x0000004e,2,1<span class="o">)</span>: 0x0000004e, correct
+set_bit<span class="o">(</span>0x0000006d,0,1<span class="o">)</span>: 0x0000006d, correct
+set_bit<span class="o">(</span>0x0000004e,9,0<span class="o">)</span>: 0x0000004e, correct
+set_bit<span class="o">(</span>0x0000006d,4,0<span class="o">)</span>: 0x0000006d, correct
+set_bit<span class="o">(</span>0x0000004e,9,1<span class="o">)</span>: 0x0000024e, correct
+set_bit<span class="o">(</span>0x0000006d,7,1<span class="o">)</span>: 0x000000ed, correct
+
+Testing flip_bit<span class="o">()</span>
+
+flip_bit<span class="o">(</span>0x0000004e,0<span class="o">)</span>: 0x0000004f, correct
+flip_bit<span class="o">(</span>0x0000004e,1<span class="o">)</span>: 0x0000004c, correct
+flip_bit<span class="o">(</span>0x0000004e,2<span class="o">)</span>: 0x0000004a, correct
+flip_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x0000006e, correct
+flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e, correct
 </code></pre></div></div>
 
 <h1 id="exercice-2--lfsr">Exercice 2 : (LFSR)</h1>
@@ -276,10 +317,10 @@
     <p>A chaque appel à <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code>, le contenu du registre est déplacé d’un bit vers la droite.</p>
   </li>
   <li>
-    <p>Ce décalage n’est ni un décalage logique ni un <a href="https://fr.wikipedia.org/wiki/Op%C3%A9ration_bit_%C3%A0_bit#D%C3%A9calage_arithm%C3%A9tique">décalage arithmétique</a>. Sur le côté gauche, nous injectons un bit qui est égal au OU exclusif (XOR) des bits originaires des positions 0, 2, 3 et 5.</p>
+    <p>Ce décalage n’est ni un décalage logique ni un <a href="https://fr.wikipedia.org/wiki/Op%C3%A9ration_bit_%C3%A0_bit#D%C3%A9calage_arithm%C3%A9tique">décalage arithmétique</a>. Sur le côté gauche, nous injectons un bit qui est égal au <strong>OU exclusif (XOR)</strong> des bits originaires des positions <strong>0</strong>, <strong>2</strong>, <strong>3</strong> et <strong>5</strong>.</p>
   </li>
   <li>
-    <p>Dans l’image ci-dessus, le symbole rouge illustrant un signe <code class="language-plaintext highlighter-rouge">plus dans un cercle</code> représente un <code class="language-plaintext highlighter-rouge">OU exclusif</code>. Rappelons que cet opérateur prend deux entrées <code class="language-plaintext highlighter-rouge">{a , b}</code> et réalise l’opération <code class="language-plaintext highlighter-rouge">a ^ b</code>.</p>
+    <p>Dans l’image ci-dessus, le symbole rouge illustrant un signe <code class="language-plaintext highlighter-rouge">plus dans un cercle</code> représente un <strong>OU exclusif</strong>. Rappelons que cet opérateur prend deux entrées <code class="language-plaintext highlighter-rouge">{a , b}</code> et réalise l’opération <code class="language-plaintext highlighter-rouge">a ^ b</code>.</p>
   </li>
   <li>
     <p>Si vous avez implémenté correctement <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code>, la fonction devrait afficher tous les 65535 entiers positifs sur 16 bits avant de revenir au nombre initial de départ.</p>
@@ -293,9 +334,10 @@
 
 <p>Implémentez la fonction <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> dans le fichier <code class="language-plaintext highlighter-rouge">lfsr.c</code> puis compilez et exécutez le programme (à l’aide de la commande <code class="language-plaintext highlighter-rouge">make</code> sous UN*X - voir ci-dessous). Vérifiez que le résultat affiché sur votre écran ressemble à ce qui suit :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>make lfsr
-<span class="gp">$</span><span class="w"> </span>./lfsr
-<span class="go">My number is: 1
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make lfsr
+<span class="nv">$ </span>./lfsr
+
+My number is: 1
 My number is: 5185
 My number is: 38801
 My number is: 52819
@@ -321,7 +363,7 @@ My number is: 16285
  ... etc etc ...
 Got 65535 numbers before cycling!
 Congratulations! It works!
-</span></code></pre></div></div>
+</code></pre></div></div>
 
 <h1 id="exercise-3--accès-mémoire">Exercise 3 : (Accès mémoire)</h1>
 
@@ -349,28 +391,28 @@ Congratulations! It works!
 
 <p>Vérifiez votre implémentation de <code class="language-plaintext highlighter-rouge">vector_new()</code>, <code class="language-plaintext highlighter-rouge">vector_get()</code>, <code class="language-plaintext highlighter-rouge">vector_delete()</code> et <code class="language-plaintext highlighter-rouge">vector_set()</code> par rapport à l’exactitude des résultats et aussi par rapport à la gestion corrècte de la mémoire (détails ci-dessous).</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>1<span class="o">)</span> pour vérifier l<span class="s1">'exactitude des résultats
-</span><span class="gp">$</span><span class="w"> </span><span class="s1">make vector-test
-</span><span class="gp">$</span><span class="w"> </span><span class="s1">./vector-test
-</span><span class="go">
-</span><span class="gp">#</span><span class="w"> </span>2<span class="o">)</span> pour vérifier la gestion de la mémoire avec Valgrind
-<span class="gp">$</span><span class="w"> </span>make vector-memcheck
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1) pour vérifier l'exactitude des résultats</span>
+<span class="nv">$ </span>make vector-test
+<span class="nv">$ </span>./vector-test
+
+<span class="c"># 2) pour vérifier la gestion de la mémoire avec Valgrind</span>
+<span class="nv">$ </span>make vector-memcheck
 </code></pre></div></div>
 
 <p>La <a href="https://www.gnu.org/software/make/manual/make.html#Rule-Introduction">règle</a> <code class="language-plaintext highlighter-rouge">vector-memcheck</code> dans le fichier ‘Makefile’ permet d’exécuter la commande suivante de <code class="language-plaintext highlighter-rouge">valgrind</code> sur un fichier <code class="language-plaintext highlighter-rouge">executable</code>.</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>valgrind <span class="nt">--tool</span><span class="o">=</span>memcheck <span class="nt">--leak-check</span><span class="o">=</span>full <span class="nt">--track-origins</span><span class="o">=</span><span class="nb">yes</span> <span class="o">[</span>OS SPECIFIC ARGS] ./&lt;executable&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>valgrind <span class="nt">--tool</span><span class="o">=</span>memcheck <span class="nt">--leak-check</span><span class="o">=</span>full <span class="nt">--track-origins</span><span class="o">=</span><span class="nb">yes</span> <span class="o">[</span>OS SPECIFIC ARGS] ./&lt;executable&gt;
 </code></pre></div></div>
 
 <p>Que signifie chacun des paramètres dans la commande précédente (<strong>Indication :</strong> Comment obtenir de l’aide sur une instruction sous UN*X) ? La dernière ligne affichée par <code class="language-plaintext highlighter-rouge">valgrind</code> vous indiquera en un coup d’œil s’il y a eu des erreurs pendant l’exécution de votre programme. Voici un exemple de sortie d’un programme bogué :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">==47132== ERROR SUMMARY: 1200039 errors from 24 contexts (suppressed: 18 from 18)
-</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==</span><span class="nv">47132</span><span class="o">==</span> ERROR SUMMARY: 1200039 errors from 24 contexts <span class="o">(</span>suppressed: 18 from 18<span class="o">)</span>
+</code></pre></div></div>
 
 <p>Si votre programme comporte des erreurs, vous pouvez faire défiler la sortie de la ligne de commande pour afficher les détails de chacune des erreurs. Pour cet exercice, vous pouvez ignorer toutes les sorties faisant référence à des erreurs supprimées (<em>anglais</em> : suppressed). Dans un programme sans problèmes de mémoire, votre sortie ressemblera à ceci :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">==44144== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 18 from 18)
-</span></code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==</span><span class="nv">44144</span><span class="o">==</span> ERROR SUMMARY: 0 errors from 0 contexts <span class="o">(</span>suppressed: 18 from 18<span class="o">)</span>
+</code></pre></div></div>
 
 <p>Au final, n’hésitez pas à utiliser également CGDB ou à ajouter des instructions <code class="language-plaintext highlighter-rouge">printf</code> à <code class="language-plaintext highlighter-rouge">vector.c</code> et <code class="language-plaintext highlighter-rouge">vector-test.c</code> pour déboguer votre code.</p>
 
@@ -392,7 +434,8 @@ Congratulations! It works!
         <p class="text">
           02 rue Didouche Mourad<br />
 16000 Alger<br />
-
+ 
+        </p>
       </div>
 
       <div class="footer-col  footer-col-2">
@@ -407,6 +450,7 @@ Congratulations! It works!
 
           
 
+          
           
 
 

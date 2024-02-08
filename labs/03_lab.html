@@ -20,8 +20,17 @@
 
   <title> Programmation « non structurée » - Architecture des ordinateurs / Automne 2023 </title>
   <meta name="description" content="Objectifs      Rappel sur les structures de contrôle dans le langage C        Connaître la programmation « non structurée »  PréambuleToute personne qui s’in...">
+  
 
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?" />
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?"> <!--for github-->
+
   <link rel="stylesheet" href="/l2ado-private/_css/main.css">
   <link rel="canonical" href="https://benhadid.github.io/l2ado-private/labs/03_lab">
   <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
@@ -206,6 +215,7 @@
       2023
     </span>
     
+
     <br />
     
 
@@ -276,7 +286,7 @@ Le paramètre <code class="language-plaintext highlighter-rouge">count</code> es
   <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
   <li>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
-lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>SumOfSquares.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>SumOfSquares.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -302,7 +312,7 @@ Si la première chaîne est supérieure à la seconde, renvoyez un nombre positi
   <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
   <li>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
-lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>StrCmp.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>StrCmp.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -324,10 +334,33 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
   <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
   <li>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
-lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>calc.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>calc.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
 </code></pre></div>    </div>
   </li>
 </ul>
+
+<!--
+# Exercice 4 : (AtoI)
+
+
+ Dans la bibliothèque standard du langage C, la fonction `atoi(char *ptr)` converti la chaîne de caractère pointée par `ptr` en un entier. Par exemple, pour les chaînes de caractères suivantes :
+
+```c
+  char str1[] = "1234";
+  char str2[] = "-1234";
+```
+
+l'exécution de la fonction ``atoi(str1)`` retournera l'entier 1234. et la fonction ``atoi(str2)`` retournera l'entier -1234.
+
+Ecrivez votre version du corp de la fonction `AtoI(char *str)` dans le fichier ` src/AtoI.c` qui retourne l'entier représenté par la chaîne de caractères `char* str`. Contrairement à la fonction standard `atoi()`, vous pouvez vous limiter aux chaînes de caractères de la forme `[-]14207...`. **N.B.** les crochets `[]` indiquent l'éventualité d'avoir un caractère optionnel pour le signe et ne font pas partie de la chaîne de caractères !
+
+**Contraintes à respecter :**
+- ***mot-clés interdits* : for, while, do, switch, else**
+- ```bash
+  # vvv test de vérification des contraintes  vvv   
+  lab3/src$ python3 test.py --filename=AtoI.c --for --while --switch --else --ternary
+  ```
+-->
 
   </article>
 
@@ -347,7 +380,8 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
         <p class="text">
           02 rue Didouche Mourad<br />
 16000 Alger<br />
-
+ 
+        </p>
       </div>
 
       <div class="footer-col  footer-col-2">
@@ -362,6 +396,7 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
 
           
 
+          
           
 
 
