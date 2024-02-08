@@ -29,11 +29,11 @@
   
 
     <!--for github pages -->
-  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado-private/favicon.ico?"> <!--for github-->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> <!--for github-->
 
-  <link rel="stylesheet" href="/l2ado-private/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado-private/static_files/docs/MIPS_Assembly_Language">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado-private/feed.xml" />
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/static_files/docs/MIPS_Assembly_Language">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -57,10 +57,10 @@
 
   <div class="wrapper" style="z-index: 100;">
       <table><tr>
-          <td><img width="75" src="/l2ado-private/_images/logo.png" valign="middle"></td>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
           <br/>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado-private/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
           <br/>
           <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
           </td>
@@ -85,7 +85,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/">
+      <a class="page-link" href="/l2ado/">
         <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
@@ -96,7 +96,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/schedule/">
+      <a class="page-link" href="/l2ado/schedule/">
         <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
@@ -107,7 +107,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/lectures/">
+      <a class="page-link" href="/l2ado/lectures/">
         <i class="fas fa-book-reader"></i> Cours
       </a>
 
@@ -118,7 +118,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/discussions/">
+      <a class="page-link" href="/l2ado/discussions/">
         <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
@@ -129,7 +129,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/labs/">
+      <a class="page-link" href="/l2ado/labs/">
         <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
@@ -140,7 +140,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/quizzes/">
+      <a class="page-link" href="/l2ado/quizzes/">
         <i class="fas fa-question-circle"></i> Quiz
       </a>
 
@@ -151,7 +151,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/projects/">
+      <a class="page-link" href="/l2ado/projects/">
         <i class="fas fa-user-graduate"></i> Projets
       </a>
 
@@ -162,7 +162,7 @@
       
       
 
-      <a class="page-link" href="/l2ado-private/materials/">
+      <a class="page-link" href="/l2ado/materials/">
         <i class="fas fa-book"></i> Ressources
       </a>
 
@@ -177,7 +177,7 @@
   </div>
 
   <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2ado-private/_images/pattern.png');" />
+  background-image: url('/l2ado/_images/pattern.png');" />
 
 </header>
 
@@ -246,13 +246,13 @@ syscall                   # appel système pour quitter
   </li>
 </ol>
 
-<p><img src="/l2ado-private/static_files/images/Edit-Assemble-Link-Execute.png" alt="EALE" class="aligncenter" /></p>
+<p><img src="/l2ado/static_files/images/Edit-Assemble-Link-Execute.png" alt="EALE" class="aligncenter" /></p>
 
 <p>La figure ci-dessus résume le cycle <em>Edition-Assemblage-Liaison-Exécution</em> pour produire un programme. Pour un texte source écrit dans le langage assembleur, l’outil <em>Assembleur</em> détecte toutes les <strong>erreurs de syntaxe</strong> et les signalera au programmeur. Ce dernier devra amender en conséquence son programme et l’assembler à nouveau.</p>
 
 <p>Il est typique que la première version exécutable de votre programme ait quelques <strong>erreurs d’exécution</strong> (<em>anglais</em> : runtime errors). Ces erreurs ne sont pas détectables par l’ outil <em>Assembleur</em>, mais se produisent lorsque vous exécutez votre programme (par exemple, votre programme peut produire des résultats erronés). Par conséquent, vous devez <em>déboguer</em> votre programme pour identifier les erreurs au moment de l’exécution. En ce sense, vous devez exécuter votre programme avec différentes valeurs en entrées et différentes situations de fonctionnement pour vérifier qu’il s’exécute correctement.</p>
 
-<p>Dans <a href="/l2ado-private/static_files/docs/MARS.html">MARS</a>, vous pouvez utiliser le mode « <em>exécution lente</em> », la fonctionnalité « <em>exécution pas-à-pas</em> », ou encore insérer des « <em>points d’arrêt</em> » dans votre programme pour déboguer les sources d’erreur. L’« <em>exécution pas-à-pas</em> » est une caractéristique standard et essentielle dans tout débogueur. Elle permet d’inspecter l’effet de chaque instruction sur les registres du processeur et la mémoire principale.</p>
+<p>Dans <a href="/l2ado/static_files/docs/MARS.html">MARS</a>, vous pouvez utiliser le mode « <em>exécution lente</em> », la fonctionnalité « <em>exécution pas-à-pas</em> », ou encore insérer des « <em>points d’arrêt</em> » dans votre programme pour déboguer les sources d’erreur. L’« <em>exécution pas-à-pas</em> » est une caractéristique standard et essentielle dans tout débogueur. Elle permet d’inspecter l’effet de chaque instruction sur les registres du processeur et la mémoire principale.</p>
 
 <h1 id="registres-et-instructions-du-mips">Registres et instructions du MIPS</h1>
 
@@ -684,7 +684,7 @@ next:
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Voyons comment nous allons traduire cela étape par étape. Tout d’abord, nous devons réécrire le code source c dans une <a href="/l2ado-private/static_files/docs/non_structured_programming.html">version non structurée</a>.</p>
+<p>Voyons comment nous allons traduire cela étape par étape. Tout d’abord, nous devons réécrire le code source c dans une <a href="/l2ado/static_files/docs/non_structured_programming.html">version non structurée</a>.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span>
@@ -802,7 +802,7 @@ ELIHW:
 
 <p>L’affichage de données est un appel système. Vous en apprendrez plus à ce sujet plus tard dans le semestre, mais un appel système est essentiellement un moyen pour votre programme d’interagir avec le système d’exploitation. Pour effectuer un appel système dans MIPS, nous utilisons une instruction spéciale appelée <code class="language-plaintext highlighter-rouge">syscall</code>. Pour afficher un entier, nous devons passer deux arguments à <code class="language-plaintext highlighter-rouge">syscall</code>. Le premier argument spécifie ce que nous voulons que <code class="language-plaintext highlighter-rouge">syscall</code> fasse (dans ce cas, affiche un entier). Pour spécifier que nous voulons imprimer un entier, nous définissons <code class="language-plaintext highlighter-rouge">$v0</code> sur <code class="language-plaintext highlighter-rouge">1</code>. L’entier que nous voulons afficher est passé en argument via <code class="language-plaintext highlighter-rouge">a0</code>.</p>
 
-<p>En C, nous sommes habitués aux fonctions ressemblant à <code class="language-plaintext highlighter-rouge">afficher(s0)</code>. Dans MIPS, nous ne pouvons pas passer d’arguments de cette manière. Pour passer un argument à une fonction, nous devons le placer dans un registre d’arguments (<code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>). Lorsque la fonction est appelée, elle récupère depuis ces registres tout éventuel argument. Le premier argument doit être placé dans <code class="language-plaintext highlighter-rouge">$a0</code>, le second dans <code class="language-plaintext highlighter-rouge">$a1</code>, etc. Consultez <a href="/l2ado-private/static_files/docs/MIPS_Calling_Convention.html">ce lien</a> pour plus de détails sur l’appel des fonctions dans MIPS et le passage des arguments.</p>
+<p>En C, nous sommes habitués aux fonctions ressemblant à <code class="language-plaintext highlighter-rouge">afficher(s0)</code>. Dans MIPS, nous ne pouvons pas passer d’arguments de cette manière. Pour passer un argument à une fonction, nous devons le placer dans un registre d’arguments (<code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>). Lorsque la fonction est appelée, elle récupère depuis ces registres tout éventuel argument. Le premier argument doit être placé dans <code class="language-plaintext highlighter-rouge">$a0</code>, le second dans <code class="language-plaintext highlighter-rouge">$a1</code>, etc. Consultez <a href="/l2ado/static_files/docs/MIPS_Calling_Convention.html">ce lien</a> pour plus de détails sur l’appel des fonctions dans MIPS et le passage des arguments.</p>
 
 <p>Enfin, terminons notre programme ! Cela nécessite également un <code class="language-plaintext highlighter-rouge">syscall</code> !</p>
 
