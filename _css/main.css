@@ -528,32 +528,32 @@ a.tosu {
   letter-spacing: 0.03em;
 }
 .responsive-table .table-row {
-  background-color: #ffffff;
+  background-color: #f9f3cf;
   border-color: whitesmoke;
   border-width: 0.1em;
   border-style: solid;
   border-bottom: none;
 }
 .responsive-table .table-row-lecture {
-  background-color: #ffffff;
-}
-.responsive-table .table-row-assignment {
-  background-color: #fff4bd;
-}
-.responsive-table .table-row-holidays {
-  background-color: #d3d3d3;
-}
-.responsive-table .table-row-lab {
-  background-color: #EAE2EE;
+  background-color: #f9f3cf;
 }
 .responsive-table .table-row-discussion {
-  background-color: #f3f3f3;
-}
-.responsive-table .table-row-project {
-  background-color: #fff4bd;
+  background-color: #f9f3cf;
 }
 .responsive-table .table-row-quiz {
-  background-color: #f2dede;
+  background-color: #ede7cf;
+}
+.responsive-table .table-row-lab {
+  background-color: #ede7cf;
+}
+.responsive-table .table-row-assignment {
+  background-color: #ede7cf;
+}
+.responsive-table .table-row-project {
+  background-color: #ede7cf;
+}
+.responsive-table .table-row-holidays {
+  background-color: #ffffff;
 }
 .responsive-table .table-row-due {
   background-color: #f2dede;
@@ -723,7 +723,8 @@ a.tosu {
   font-family: inherit;
 }
 
-.markdown-content p, .markdown-content ol {
+.markdown-content p,
+.markdown-content ol {
   margin-bottom: 3px;
 }
 .markdown-content li {
