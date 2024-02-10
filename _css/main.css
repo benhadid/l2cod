@@ -535,22 +535,22 @@ a.tosu {
   border-bottom: none;
 }
 .responsive-table .table-row-lecture {
-  background-color: #f9f3cf;
-}
-.responsive-table .table-row-discussion {
-  background-color: #f9f3cf;
-}
-.responsive-table .table-row-quiz {
-  background-color: #ede7cf;
+  background-color: #edede9;
 }
 .responsive-table .table-row-lab {
-  background-color: #ede7cf;
+  background-color: #d6ccc2;
+}
+.responsive-table .table-row-discussion {
+  background-color: #f5ebe0;
+}
+.responsive-table .table-row-quiz {
+  background-color: #e3d5ca;
 }
 .responsive-table .table-row-assignment {
-  background-color: #ede7cf;
+  background-color: #d5bdaf;
 }
 .responsive-table .table-row-project {
-  background-color: #ede7cf;
+  background-color: #d5bdaf;
 }
 .responsive-table .table-row-holidays {
   background-color: #ffffff;
