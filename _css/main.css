@@ -1110,7 +1110,7 @@ details[open] summary{
  */
 .highlight code, .highlight pre, .highlighter-rouge code, .highlighter-rouge pre {
   color: #fdce93;
-  background-color: #3f3f3f;
+  background-color: #404040; /*background-color:#3f3f3f;*/
 }
 
 .highlight pre {
@@ -1287,16 +1287,16 @@ details[open] summary{
   color: #666666;
 } /* Text.Whitespace */
 .highlight .mf {
-  color: #3677a9;
+  color: #3ebcb8;
 } /* Literal.Number.Float */
 .highlight .mh {
-  color: #3677a9;
+  color: #3ebcb8;
 } /* Literal.Number.Hex */
 .highlight .mi {
-  color: #3677a9;
+  color: #3ebcb8;
 } /* Literal.Number.Integer */
 .highlight .mo {
-  color: #3677a9;
+  color: #3ebcb8;
 } /* Literal.Number.Oct */
 .highlight .sb {
   color: #ed9d13;
