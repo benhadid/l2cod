@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Compiling and debugging C programs in UN*X - Architecture des ordinateurs / Automne 2023 </title>
+  <meta name="description" content="Objectives      Learn basic UN*X shell commands.        Learn how to compile and execute C programs on the lab machines (Linux environment).        Hands-on ...">
+  
+
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/01_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;">
+<a class="schoolname" style="font-size: 15px;" href=""></a>
+          <br>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</b></a></span>
+          <br>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewbox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"></path>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"></path>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></path>
+        </svg>
+      </a>  
+
+    <div class="trigger">
+<h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');"></div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Compiling and debugging C programs in UN*X</h1>
+    <p class="post-meta">Publié le
+      <!--
+      Sunday
+      01/10/2023
+      -->
+      
+      Dimanche
+      1
+      
+      Octobre
+      2023
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Échéance :
+      <!-- 08/10/2023 -->
+
+      
+      Dimanche
+      8
+      
+      Octobre
+      2023
+    </span>
+    
+
+    <br>
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_01.zip">démarrage</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br>
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Learn basic UN*X shell commands.</p>
+  </li>
+  <li>
+    <p>Learn how to compile and execute C programs on the lab machines (Linux environment).</p>
+  </li>
+  <li>
+    <p>Hands-on experience in debugging C programs.</p>
+  </li>
+</ul>
+
+<h1 id="installation-and-configuration">Installation and configuration</h1>
+
+<p>For the lab work in this course, it is suggested to perform the following setup/configuration on your personal computer:</p>
+
+<ol>
+  <li>
+    <p>Start by downloading <strong>VirtualBox</strong> from the link provided in the “<strong>Resources | Additional Resources</strong>” of this site. Install version 6.1.x.</p>
+  </li>
+  <li>
+    <p>Still from the same VirtualBox page, download and install the “<strong>Extension Pack</strong>” corresponding to the version of VirtualBox that you have just installed on your machine.</p>
+  </li>
+  <li>
+    <p>Next, download and install the virtual machine (VM) “<strong>cvlab.ova</strong>” (1.7 GB) from the link provided (from the same section mentioned in <strong>step 1.</strong>). To add the VM to VirtualBox, follow the instructions given <a href="https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html">here</a>.</p>
+  </li>
+  <li>
+    <p>It’s over! You now have a virtual machine with a setup similar to the machines in the lab rooms.</p>
+  </li>
+  <li>
+    <p>If your computer has 4 GB of memory or more, it is best to adjust the VM parameters and assign <a href="https://docs.bitnami.com/virtual-machine/faq/administration%20/increase-memory/">more memory</a> to it.</p>
+  </li>
+  <li>
+    <p>Once you launch the VM, the system is configured to use a <a href="#">US keyboard by default<img src="/l2ado/static_files/images/keyboard_us.png">&lt; /a&gt; (as is the case with the lab machines). You can switch to a </a><a href="#">French keyboard<img src="/l2ado/static_files/images/keyboard_fr.png"></a> by clicking with the mouse on the American flag at the top right of the screen (it will switch to the french flag).</p>
+  </li>
+</ol>
+
+<p><strong>Note</strong>: You are free to install/configure your own PCs in any way that suits you. However, to complete the labs and homeworks in this course without too much difficulty and avoid problems/excuses/frustrations like “why does it work on my PC but not on the lab machines?” “, you are strongly encouraged to install the provided VM by following the instructions given above.</p>
+
+<h1 id="exercise-1-shell-unx">Exercise 1: (Shell UN*X)</h1>
+
+<p>In order to gain a minimum of experience with the Command Line Interface (CLI) under UN*X, we begin by introducing here some common commands that may be useful to you during this course. For an ‘advanced’ introduction to basic UN*X commands, see this <a href="http://doc.ubuntu-fr.org/tutoriel/console_ligne_de_commande">tutorial</a> (in french) and/or this <a href="https://tutorials.ubuntu.%20com/tutorial/command-line-for-beginners">tutorial</a>.</p>
+
+<p>The sample commands will be displayed as follows:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="s2">"Hello world"</span>
+</code></pre></div></div>
+
+<p>Entering the above statement (without the $) into a “Terminal” (press Ctrl+Alt+T to open a Terminal window in Ubuntu) will execute the command. Here the instruction simply displays the message “Hello world” (without the quotes).</p>
+
+<p>Flags are used to specify options for the command to execute or modify its behavior. They usually start with one or two dashes and may take an additional argument.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span>gcc <span class="nt">--help</span>
+<span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"Hello</span><span class="se">\n</span><span class="s2">world"</span>
+</code></pre></div></div>
+
+<h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
+
+<p>When entering commands in a UN*X terminal:</p>
+
+<ul>
+  <li>
+    <p>The <kbd>Tab</kbd> key will automatically complete the current term (see this <a href="https://fr.wikipedia.org/wiki/Disposition_des_touches_d%27un_clavier_de_saisie">link</a> for the layout of the keys in a keyboard).</p>
+  </li>
+  <li>
+    <p>The <kbd>↑</kbd> and <kbd>↓</kbd> keys will allow you to reuse commands you typed previously without re-entering them.</p>
+  </li>
+  <li>
+    <p>The combination <kbd>Ctrl</kbd> + <code class="language-plaintext highlighter-rouge">a</code> will move the cursor to the start of the current line (useful for correcting errors).</p>
+  </li>
+  <li>
+    <p>The combination <kbd>Ctrl</kbd> + <code class="language-plaintext highlighter-rouge">e</code> will move the cursor to the end of the current line (also useful for correcting errors)</p>
+  </li>
+  <li>
+    <p>The combination <kbd>Ctrl</kbd> + <code class="language-plaintext highlighter-rouge">r</code> will allow you to search for ‘words/expressions’ in the recently used command.</p>
+  </li>
+</ul>
+
+<h2 id="file-handling">File handling</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">touch</code> command creates an empty file with the file name provided as an argument.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="nb">touch </span>example.txt
+</code></pre></div></div>
+
+<p>This will create an empty file named “example.txt”. If you want to create a non-empty file (i.e. with content), you can use the command</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="s2">"Your content between quotes"</span> <span class="o">&gt;</span> example.txt
+</code></pre></div></div>
+
+<p>The above command will create a file with the name “example.txt” in the current directory. If the file already exists then it will be overwritten. The (new) file will contain the text “Your content in quotes” but without the quotes.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">&gt;</code> symbol is followed by an argument to redirect the output of the <code class="language-plaintext highlighter-rouge">echo</code> command that is normally passed to <code class="language-plaintext highlighter-rouge">stdout</code> (i.e. the screen) to a file (<em>here</em> “example.txt”).</p>
+
+<p>You can also use the <code class="language-plaintext highlighter-rouge">echo</code> command without redirection. In this case, it will simply display the character string on the terminal (without creating a file).</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="s2">"Hello world"</span>
+</code></pre></div></div>
+
+<p>To view the contents of a file, you can use the <code class="language-plaintext highlighter-rouge">cat</code> or <code class="language-plaintext highlighter-rouge">less</code> commands.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="nb">cat </span>example.txt
+<span class="gp">$</span>less example.txt
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">cat</code> command displays the content of <code class="language-plaintext highlighter-rouge">example.txt</code> on your terminal. <code class="language-plaintext highlighter-rouge">less</code> launches a <em>very</em> basic editor. You can give <code class="language-plaintext highlighter-rouge">cat</code> or <code class="language-plaintext highlighter-rouge">less</code> a relative or absolute path as an argument to display the content of ‘non-local’ files.</p>
+
+<h2 id="man---manual-pages">
+<code class="language-plaintext highlighter-rouge">man</code> - Manual pages</h2>
+
+<p>Man pages are excellent UN*X resources that are often underutilized; although not as versatile as Google, they contain documentation on UN*X commands, language standards and conventions, etc. They also work offline and can therefore be very useful if you are stuck without internet (because the underwater cable has been broken for the umpteenth time or during the baccalaureate exam period!).</p>
+
+<p>Although your favorite search engine will probably have the answers you are looking for, in this course we would like you to become familiar with the use of the “<code class="language-plaintext highlighter-rouge">man</code>” command, particularly for questions relating to the C language and UN*X operating system.</p>
+
+<p>To display the man page for a specific command (here the <code class="language-plaintext highlighter-rouge">echo</code> command is given as an example), one can execute the instruction:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span>man <span class="nb">echo</span> | less
+</code></pre></div></div>
+
+<p>The man page for a command usually contains information about it, the meaning and effect of certain additional parameters when you invoke the command with them, and where to go for more information.</p>
+
+<p>In the example above, we have redirected, using the pipe “<code class="language-plaintext highlighter-rouge">|</code>” symbol, the content of the user manual for the <code class="language-plaintext highlighter-rouge">echo</code> command to the <code class="language-plaintext highlighter-rouge">less</code> program. This allows us to scroll down the man page with the arrow keys or spacebar. Press the <code class="language-plaintext highlighter-rouge">q</code> key to exit the man page and return to your terminal prompt.</p>
+
+<p>If you want to search the man pages for a command related to a specific keyword:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>man <span class="nt">-k</span> specific_keyword | less
+</code></pre></div></div>
+
+<p>This command will search the man pages for all commands with the keyword <code class="language-plaintext highlighter-rouge">specific_keyword</code>.</p>
+
+<h2 id="vim---the-basics">Vim - the basics</h2>
+
+<p>Vim is a <strong>text editor</strong> included in many UN*X distributions.</p>
+
+<p><strong>Note</strong>: We’re using Vim here as an introduction to command-line text editors, but we have no strict requirements on which text editor you should use; you can choose any text editor that suits you (<em>i.e.</em> graphical or command line)! However, we would like to remind that, as a future computer scientist, you should know how to use at least one console text editor. If you don’t like Vim, you can try <code class="language-plaintext highlighter-rouge">nano</code> or <code class="language-plaintext highlighter-rouge">emacs</code>!</p>
+
+<p>To open a file from your current directory, give Vim the file name:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>vim filename
+</code></pre></div></div>
+
+<p>To open a file from another directory, use a relative or absolute path:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>vim ../other_folder/filename
+</code></pre></div></div>
+
+<h3 id="some-useful-commands-for-vim">Some useful commands for Vim:</h3>
+
+<table class="styled-table">
+<colgroup>
+<col width="12%">
+<col width="88%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Command</th>
+<th style="text-align:center">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"> <kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">:q</code> </td>
+<td style="text-align:left">Close (exit) Vim without saving</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">:wq</code>
+</td>
+<td style="text-align:left">Exit Vim after saving changes</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">:w</code>
+</td>
+<td style="text-align:left">Save the file</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">:q!</code>
+</td>
+<td style="text-align:left">Force exit Vim without saving (when you have made changes but don’t want to keep them) </td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">i</code>
+</td>
+<td style="text-align:left">“Insert” mode, allows you to edit the file</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">/cats</code> </td>
+<td style="text-align:left">Search the file for the first occurrence of the character string “cats”. Press <code class="language-plaintext highlighter-rouge">n</code> to go to the next occurrence or <code class="language-plaintext highlighter-rouge">N</code> to return to the previous one</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<kbd>Esc</kbd><code class="language-plaintext highlighter-rouge">:setnu</code>
+</td>
+<td style="text-align:left">Show line numbers in your file</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note</strong>: These commands are preceded by <kbd>Esc</kbd> to indicate that you must press the Escape key on your keyboard to exit the current mode. For example, if you want to save your file after editing, you must press the escape key to exit the “insert” mode, then type “<code class="language-plaintext highlighter-rouge">:w</code>” to save the file.</p>
+
+<h1 id="exercise-2-gdb">Exercise 2: (gdb)</h1>
+
+<p>A <strong>debugger</strong>, as the name suggests, is a program specifically designed to help you find bugs, or logical errors and mistakes in your program (note: if you want to know why errors are called “bugs”, see this <a href="https://www.quora.com/Why-are-errors-in-software-codes-called-bugs">answer</a>). Different debuggers have different capabilities, but they all do the following:</p>
+
+<ol>
+  <li>
+    <p>Define a “breakpoint” in the program. A “breakpoint” is a ‘marked’ line in your code where you want to stop program execution so that you can examine what is happening in that region of the code.</p>
+  </li>
+  <li>
+    <p>Run the program step by step. Programs execute instruction by instruction, but this happens too quickly for us to ‘see’ which instructions or parts of the code are causing problems. Being able to ‘slow’ the execution of your code step by step allows you to see exactly what is happening with your code (and causing a bug in your program).</p>
+  </li>
+</ol>
+
+<p>For this exercise, the <a href="/l2ado/static_files/docs/gdb5-refcard.pdf">GDB reference document</a> will be very useful to you. GDB stands for “<strong>G</strong>NU <strong>D</strong>e-<strong>B</strong>ugger”. First, download the startup file of this lab (see at the top of this document) and <a href="https://itsfoss.com/unzip-linux/">unzip</a> its contents with the <code class="language-plaintext highlighter-rouge">unzip</code> command (this command is already installed on the VM or lab machines) in the directory of your choice. Then compile the <code class="language-plaintext highlighter-rouge">hello.c</code> file with the <code class="language-plaintext highlighter-rouge">-g</code> flag (provide the full path of the <code class="language-plaintext highlighter-rouge">hello.c</code> file if different from the current directory):</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>gcc <span class="nt">-g</span> <span class="nt">-o</span> exe hello.c
+</code></pre></div></div>
+
+<p>The command above instructs the <code class="language-plaintext highlighter-rouge">C</code> compiler (i.e. <code class="language-plaintext highlighter-rouge">gcc</code>) to store additional information in the <strong>exe</strong>cutable program so that the <code class="language-plaintext highlighter-rouge">gdb</code>/<code class="language-plaintext highlighter-rouge">cgdb</code> tool can correctly interpret your compiled program. Now run the <code class="language-plaintext highlighter-rouge">cgdb</code> debugger giving the path of the executable to debug as a parameter:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>cgdb exe
+</code></pre></div></div>
+
+<p>The above instruction launches the <code class="language-plaintext highlighter-rouge">cgdb</code> program on the <code class="language-plaintext highlighter-rouge">exe</code> executable file generated by <code class="language-plaintext highlighter-rouge">gcc</code>. Don’t try to run <code class="language-plaintext highlighter-rouge">cgdb</code> on the <code class="language-plaintext highlighter-rouge">hello.c</code> source code, it won’t know what to do with it! If <code class="language-plaintext highlighter-rouge">cgdb</code> doesn’t work for you, try with <code class="language-plaintext highlighter-rouge">gdb</code> (<em>i.e.</em> run the <code class="language-plaintext highlighter-rouge">gdb exe</code> command). The <code class="language-plaintext highlighter-rouge">cgdb</code> debugger is installed by default on the VM/lab machines.</p>
+
+<p><strong>Note</strong>: If you are not using the provided VM, you can install <code class="language-plaintext highlighter-rouge">gdb</code> / <code class="language-plaintext highlighter-rouge">cgdb</code> on your computer, but be aware that it cannot be installed on (updated) macOS machines. If this applies to you you can use <code class="language-plaintext highlighter-rouge">lldb</code> which is another great debugger. The commands differ slightly from <code class="language-plaintext highlighter-rouge">gdb</code>, but there are excellent guides (<a href="https://lldb.llvm.org/lldb-gdb.html">like this one!</a>) to get started. For this lab, however, use one of the machines in your lab room (or the VM) and <code class="language-plaintext highlighter-rouge">cgdb</code>.</p>
+
+<h2 id="tasks-to-carry-out">Tasks to carry out:</h2>
+
+<p>Browse the <code class="language-plaintext highlighter-rouge">hello</code> program by doing the following:</p>
+
+<ol>
+  <li>
+    <p>set a breakpoint on the <code class="language-plaintext highlighter-rouge">main</code> function</p>
+  </li>
+  <li>
+    <p>use the <code class="language-plaintext highlighter-rouge">run</code> command from <code class="language-plaintext highlighter-rouge">gdb</code></p>
+  </li>
+  <li>
+    <p>use the <code class="language-plaintext highlighter-rouge">gdb</code> step-by-step command</p>
+  </li>
+</ol>
+
+<p>Type help from <code class="language-plaintext highlighter-rouge">gdb</code> for commands to perform these operations or use the <a href="/l2ado/static_files/docs/gdb5-refcard.pdf">GDB reference document</a>.</p>
+
+<p>If you see an error message like <strong>“printf.c: No such file or directory”</strong>, you probably entered a <code class="language-plaintext highlighter-rouge">printf</code> function! If you continue the execution step by step, you will feel like you are going nowhere! CGDB is complaining because you don’t have the source file where <code class="language-plaintext highlighter-rouge">printf</code> is defined. To break this deadlock, use the <code class="language-plaintext highlighter-rouge">finish</code> command to run the program until the undefined function returns (in this case, until <code class="language-plaintext highlighter-rouge">printf</code> has finished). To avoid this kind of mishap NEXT time, use the <code class="language-plaintext highlighter-rouge">next</code> command to skip the line where <code class="language-plaintext highlighter-rouge">printf</code> is displayed.</p>
+
+<h2 id="note-cgdb-vs-gdb">Note: cgdb vs. gdb</h2>
+
+<p>In this exercise, we use <code class="language-plaintext highlighter-rouge">cgdb</code> to debug our programs. <code class="language-plaintext highlighter-rouge">cgdb</code> is the same as <code class="language-plaintext highlighter-rouge">gdb</code>, except that it provides additional features that make it nicer to use in practice. All commands in the “GDB reference document” work with <code class="language-plaintext highlighter-rouge">gdb</code>.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">cgdb</code> you can press escape to go to the code window (top) and <code class="language-plaintext highlighter-rouge">i</code> to return to the command window (bottom) - similar to Vim. The command window is where you will enter your <code class="language-plaintext highlighter-rouge">gdb</code> commands.</p>
+
+<h2 id="tasks-to-carry-out-1">Tasks to carry out:</h2>
+
+<p>Knowing the answers to the questions below will be very useful to you for the rest of this lab and for your IT career in general:</p>
+
+<ol>
+  <li>
+    <p>When you are in a <code class="language-plaintext highlighter-rouge">cgdb</code> / <code class="language-plaintext highlighter-rouge">gdb</code> session, how do you <strong>define the arguments</strong> that will be passed to the program when it runs?</p>
+  </li>
+  <li>
+    <p>How do you create a “breakpoint” in a program?</p>
+  </li>
+  <li>
+    <p>How to execute <strong>the next line of code</strong> after stopping at a “breakpoint”?</p>
+  </li>
+  <li>
+    <p>If the line of code to be executed is a function call then you will execute the entire function in one go if you use your answer to question #3 (Alternatively, consider a different command for question #3!). How do you tell GDB that you <strong>want to debug the code inside the function</strong> (i.e. enter the function)? (If you changed your answer to question #3 then the previous answer probably applies here.)</p>
+  </li>
+  <li>
+    <p>How to <strong>continue execution of the program after it has been suspended</strong> at a “breakpoint”?</p>
+  </li>
+  <li>
+    <p>How to <strong>print the value of a variable</strong> (or even an expression like 1 + 2) in <code class="language-plaintext highlighter-rouge">gdb</code>?</p>
+  </li>
+  <li>
+    <p>How to configure <code class="language-plaintext highlighter-rouge">gdb</code> so that it <strong>displays the value of a variable after each execution step</strong>?</p>
+  </li>
+  <li>
+    <p>How to display <strong>a list of all variables and their values</strong> in the currently executing function?</p>
+  </li>
+  <li>
+    <p>How to <strong>exit</strong> gdb?</p>
+  </li>
+</ol>
+
+<h1 id="exercise-3-valgrind">Exercise 3: (Valgrind)</h1>
+
+<p>Even with a debugger we may not be able to catch all the bugs! Some bugs are what we call “bohrbugs”, meaning that they reliably manifest themselves under a set of well-defined, but perhaps unknown, conditions. Other bugs are what we call “heisenbugs”, and instead of being determinative, they are known to disappear or change their behavior when we try to study them. We can detect the first type with debuggers, but the second type can fly under our radar because they are often due (at least in the C language) to poorly managed memory.</p>
+
+<p>Remember that, unlike other programming languages, C expects you (the programmer) to manage memory correctly. To detect and catch these “heisenbugs”, we will use a tool called <strong>Valgrind</strong>. This tool is a program that <em>emulates</em> your processor and lists all your memory accesses. This significantly slows down the program you are running (because of the emulation) but helps in detecting bugs that may otherwise go unnoticed.</p>
+
+<p><strong>Note</strong>: Valgrind is already installed on the VM/lab machines. This tool is also available on most UN*X distributions as well as on macOS. We recommend, however, that you use the VM or the lab machines  to avoid possible compatibility issues. The GDB and Valgrind tools will become incredibly useful to you as you advance in your Computer Science career.</p>
+
+<p>In this exercise, we will demonstrate two examples of using Valgrind and explain how they can be useful.</p>
+
+<p>Using the <code class="language-plaintext highlighter-rouge">gcc</code> compiler, build two executables:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">segfault_ex</code> from <code class="language-plaintext highlighter-rouge">segfault_ex.c</code>, and</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">no_segfault_ex</code> from <code class="language-plaintext highlighter-rouge">no_segfault_ex.c</code>.</p>
+  </li>
+</ul>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">-o</code> flag for executable names! Then try running the compiled programs…</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./segfault_ex
+<span class="gp">$</span><span class="w"> </span>./no_segfault_ex
+</code></pre></div></div>
+
+<p>What do you observe? Let’s start with <code class="language-plaintext highlighter-rouge">segfault_ex</code>. You should have observed a <strong>segmentation fault</strong>, which occurs when a program crashes after trying to access memory that is not his (we will talk about this later in the course). The source code <code class="language-plaintext highlighter-rouge">segfault_ex.c</code> is quite simple, you should be able to easily “understand” what is causing the segfault. Do not edit the file, there is no need to fix the error here.</p>
+
+<p>Finding a “segmentation fault” in a very large file won’t be an easy task, and that’s where Valgrind comes in. To run the <code class="language-plaintext highlighter-rouge">segfault_ex</code> program in Valgrind, use the command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>valgrind ./segfault_ex
+</code></pre></div></div>
+
+<p>This should cause Valgrind to display where the “<strong>illegal access</strong>” occurred. Compare these results to what you determined by manually examining the <code class="language-plaintext highlighter-rouge">segfault_ex.c</code> file. How could Valgrind help you identify a segfault in the future?</p>
+
+<p>Now try running Valgrind on <code class="language-plaintext highlighter-rouge">no_segfault_ex</code>. The program should not crash but there is still a problem with the file. Valgrind can help us find the (seemingly invisible) problem.</p>
+
+<p>Unfortunately, you’ll see here that Valgrind doesn’t seem to be able to tell you exactly where the problem is occurring. Use the message provided by Valgrind <strong>to determine which variable has undefined behavior, then try to deduce what must have happened</strong> (Hint: what is an uninitialized value?).</p>
+
+<p>At this point, we do not expect you to be familiar with the use of the <code class="language-plaintext highlighter-rouge">sizeof</code> keyword in the C language. But you can, nonetheless, build some intuition around where the problem has probably occurred.</p>
+
+<h2 id="tasks-to-carry-out-2">Tasks to carry out:</h2>
+
+<p>After going through this exercise, you should be able to understand and answer the following:</p>
+
+<ul>
+  <li>
+    <p>Why <strong>Valgrind</strong> is an important and very useful tool?</p>
+  </li>
+  <li>
+    <p>How to run a program in Valgrind?</p>
+  </li>
+  <li>
+    <p>How to interpret error messages?</p>
+  </li>
+  <li>
+    <p>Why could uninitialized variables cause “heisenbugs”?</p>
+  </li>
+</ul>
+
+<h1 id="exercise-4-makefile">Exercise 4 (Makefile)</h1>
+
+<p>Manually compiling C programs in the terminal is a tedious and time-consuming operation that requires running multiple commands with long strings of arguments. While this is acceptable for compiling small C programs, things quickly become unmanageable when it comes to compiling programs with dozens of files and dependencies.</p>
+
+<p>This is why most C programmers write what is called a “<strong>Makefile</strong>” to make it easier to compile and run programs. A Makefile is a text file (literally called Makefile) and contains a set of rules. Each of these rules specifies commands to execute to manipulate a program (eg: compile a source file, delete the executable, etc.). Once the “Makefile” is prepared, we only need to type the ‘<strong>make</strong>’ instruction in the command console to perform the tasks indicated in the “Makefile”.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="c">#1) to compile then run the hello program</span>
+<span class="gp">$</span><span class="w"> </span>make hello
+<span class="gp">$</span><span class="w"> </span>./hello
+<span class="go">
+</span><span class="gp">$</span><span class="w"> </span><span class="c">#2) to compile all programs</span>
+<span class="gp">$</span><span class="w"> </span>make
+<span class="go">
+</span><span class="gp">$</span><span class="w"> </span><span class="c">#3) to run Valgrind on the already compiled segfault_ex program</span>
+<span class="gp">$</span><span class="w"> </span>make segfault_ex-memcheck
+</code></pre></div></div>
+
+<p>Consult the “Makefile” included in this lab startup files and try answering the following questions (correct answers can be viewed by clicking on the character   ▸   to the left of each question). To learn more about Makefiles, Google is your friend <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.</p>
+
+<fieldset class="checkoff">
+ <legend>Control</legend>
+
+ <details close="">
+ <summary>
+ Which target is part of a rule that removes all compiled programs?
+ </summary>
+ <p style="color: firebrick">
+ This is the target “<code class="language-plaintext highlighter-rouge">clean:</code>” in <strong>our</strong> Makefile.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ Which target is part of a rule that allows all programs to be compiled?
+ </summary>
+ <p style="color: firebrick">
+ This is the “<code class="language-plaintext highlighter-rouge">all:</code>” target in <strong>our</strong> Makefile.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ Which compiler is currently used in our Makefile?
+ </summary>
+ <p style="color: firebrick">
+ The CC variable in <strong>our</strong> Makefile defines the C compiler used. Here, it is the gcc compiler from <a href="https://gcc.gnu.org/">GNU</a>.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ What C standard are we currently using?
+ </summary>
+ <p style="color: firebrick">
+ The language standard used in a source code can be defined with the <code class="language-plaintext highlighter-rouge">-std=&lt;standard&gt;</code> parameter in a compiler. Here we indicate that the source files obey the <a href="https://en.wikipedia.org/wiki/C99">C99</a> standard of the C language.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ How is a "FOO" variable referenced in a Makefile?
+ </summary>
+ <p style="color: firebrick">
+ The <code class="language-plaintext highlighter-rouge">$(FOO)</code> syntax refers to the FOO variable in a Makefile.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ What Operating System does the term "Darwin" represent?
+ </summary>
+ <p style="color: firebrick">
+ The term “Darwin” returned by the <code class="language-plaintext highlighter-rouge">uname -s</code> shell command indicates that the system is macOS.
+ </p>
+ </details>
+ <br>
+
+ <details close="">
+ <summary>
+ Which line creates the <b>hello</b> executable from its object files?
+ </summary>
+ <p style="color: firebrick">
+ The target “<code class="language-plaintext highlighter-rouge">$(hello_PROG):</code>” in the Makefile.
+ </p>
+ </details>
+ <br>
+</fieldset>
+
+<!-- A << Makefile >> may look intimidating, but is actually a great tool that saves a lot of time! -->
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br>
+16000 Alger<br>
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -267,7 +267,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>
 </code></pre></div></div>
 
-<p>Cette commande affichera sur votre écran le résultat de quelques tests qui vont vous permettre de vérifier si vous avez implémenté correctement les fonctions sus-citées.</p>
+<p>Cette commande affichera sur votre écran le résultat de quelques tests qui vont vous permettre de vérifier si vous avez implémenté correctement les tâches assignées.</p>
 
 <p><strong>Indication</strong> : Écrivez d’abord vos algorithmes d’une manière standard (c.-à-d. avec les mots-clés <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>, …), ensuite vous pouvez les convertir en des codes sans ces mots clés en vous aidant des exemples et indications donnés dans le document “<a href="/l2ado/static_files/docs/non_structured_programming.html">Programmation structurée et non structurée</a>”.</p>
 
@@ -340,28 +340,28 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
   </li>
 </ul>
 
-<!--
-# Exercice 4 : (AtoI)
+<h1 id="exercice-4--atoi">Exercice 4 : (AtoI)</h1>
 
+<p>Dans la bibliothèque standard du langage C, la fonction <code class="language-plaintext highlighter-rouge">atoi(char *ptr)</code> converti la chaîne de caractère pointée par <code class="language-plaintext highlighter-rouge">ptr</code> en un entier. Par exemple, pour les chaînes de caractères suivantes :</p>
 
- Dans la bibliothèque standard du langage C, la fonction `atoi(char *ptr)` converti la chaîne de caractère pointée par `ptr` en un entier. Par exemple, pour les chaînes de caractères suivantes :
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">str1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"1234"</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">str2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"-1234"</span><span class="p">;</span>
+</code></pre></div></div>
 
-```c
-  char str1[] = "1234";
-  char str2[] = "-1234";
-```
+<p>l’exécution de la fonction <code class="language-plaintext highlighter-rouge">atoi(str1)</code> retournera l’entier 1234. et la fonction <code class="language-plaintext highlighter-rouge">atoi(str2)</code> retournera l’entier -1234.</p>
 
-l'exécution de la fonction ``atoi(str1)`` retournera l'entier 1234. et la fonction ``atoi(str2)`` retournera l'entier -1234.
+<p>Ecrivez votre version du corp de la fonction <code class="language-plaintext highlighter-rouge">AtoI(char *str)</code> dans le fichier ` src/AtoI.c<code class="language-plaintext highlighter-rouge"> qui retourne l'entier représenté par la chaîne de caractères </code>char* str<code class="language-plaintext highlighter-rouge">. Contrairement à la fonction standard </code>atoi()<code class="language-plaintext highlighter-rouge">, vous pouvez vous limiter aux chaînes de caractères de la forme </code>[-]14207…<code class="language-plaintext highlighter-rouge">. **N.B.** les crochets </code>[]` indiquent l’éventualité d’avoir un caractère optionnel pour le signe et ne font pas partie de la chaîne de caractères !</p>
 
-Ecrivez votre version du corp de la fonction `AtoI(char *str)` dans le fichier ` src/AtoI.c` qui retourne l'entier représenté par la chaîne de caractères `char* str`. Contrairement à la fonction standard `atoi()`, vous pouvez vous limiter aux chaînes de caractères de la forme `[-]14207...`. **N.B.** les crochets `[]` indiquent l'éventualité d'avoir un caractère optionnel pour le signe et ne font pas partie de la chaîne de caractères !
+<p><strong>Contraintes à respecter :</strong></p>
+<ul>
+  <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>AtoI.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
-**Contraintes à respecter :**
-- ***mot-clés interdits* : for, while, do, switch, else**
-- ```bash
-  # vvv test de vérification des contraintes  vvv   
-  lab3/src$ python3 test.py --filename=AtoI.c --for --while --switch --else --ternary
-  ```
--->
 
   </article>
 

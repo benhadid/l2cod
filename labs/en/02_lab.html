@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Data manipulation - Architecture des ordinateurs / Automne 2023 </title>
+  <meta name="description" content="Objectives      Learn to perform bit manipulations.        Learn to identify potential problems related to dynamic memory management.  Exercise 1: (BitOps)St...">
+  
+
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/02_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Data manipulation</h1>
+    <p class="post-meta">Publié le
+      <!--
+      Sunday
+      08/10/2023
+      -->
+      
+      Dimanche
+      8
+      
+      Octobre
+      2023
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Échéance :
+      <!-- 15/10/2023 -->
+
+      
+      Dimanche
+      15
+      
+      Octobre
+      2023
+    </span>
+    
+
+    <br />
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_02.zip">démarrage</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Learn to perform bit manipulations.</p>
+  </li>
+  <li>
+    <p>Learn to identify potential problems related to dynamic memory management.</p>
+  </li>
+</ul>
+
+<h1 id="exercise-1-bitops">Exercise 1: (BitOps)</h1>
+
+<p>Start by downloading the startup file (at the top of this document) and unzip its content into the directory of your choice. Then implement in the <code class="language-plaintext highlighter-rouge">bit_ops.c</code> file, the functions <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> and <code class="language-plaintext highlighter-rouge">flip_bit()</code> (see description below). You can  <strong>ONLY</strong> use <a href="/l2ado/static_files/docs/bitwise_operations_in_c.html">bit operations</a> like <strong>AND</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>), <strong>OR ** (<code class="language-plaintext highlighter-rouge">|</code>), **XOR</strong> (<code class="language-plaintext highlighter-rouge">^</code>), <strong>NOT</strong> (<code class="language-plaintext highlighter-rouge">~</code>), <strong>left shift</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) and <strong>right shift</strong> (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>). You cannot use <code class="language-plaintext highlighter-rouge">for</code>/<code class="language-plaintext highlighter-rouge">while</code>/<code class="language-plaintext highlighter-rouge">do</code> loops or <code class="language-plaintext highlighter-rouge">if/else</code> and <code class="language-plaintext highlighter-rouge">switch/case</code> branch statements. You also cannot use arithmetic operations (modulo (%), division, subtraction, addition or multiplication) for this exercise.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Return the nth bit of x.</span>
+<span class="c1">// You may assume 0 &lt;= n &lt;= 31</span>
+<span class="n">bool</span> <span class="nf">get_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c1">// Set the nth bit of the value of x to v.</span>
+<span class="c1">// You may assume 0 &lt;= n &lt;= 31, and v is either 0 or 1</span>
+<span class="kt">void</span> <span class="nf">set_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">bool</span> <span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// Invert the nth bit of the value of x.</span>
+<span class="c1">// You may assume 0 &lt;= n &lt;= 31</span>
+<span class="kt">void</span> <span class="nf">flip_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="tasks-to-carry-out">Tasks to carry out:</h2>
+
+<p>After completing the implementation of the <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> and <code class="language-plaintext highlighter-rouge">flip_bit()</code> functions, compile and run the program using the commands below (under UN*X environment ).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make bit_ops
+<span class="nv">$ </span>./bit_ops
+</code></pre></div></div>
+
+<p>Correct execution of the program will display on your screen the results of some validation tests (tests which allow you to check whether you have correctly implemented the above-mentioned functions).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Testing get_bit<span class="o">()</span>
+
+get_bit<span class="o">(</span>0x0000004e,0<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000004e,1<span class="o">)</span>: 0x00000001, correct
+get_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000001b,3<span class="o">)</span>: 0x00000001, correct
+get_bit<span class="o">(</span>0x0000001b,2<span class="o">)</span>: 0x00000000, correct
+get_bit<span class="o">(</span>0x0000001b,9<span class="o">)</span>: 0x00000000, correct
+
+Testing set_bit<span class="o">()</span>
+
+set_bit<span class="o">(</span>0x0000004e,2,0<span class="o">)</span>: 0x0000004a, correct
+set_bit<span class="o">(</span>0x0000006d,0,0<span class="o">)</span>: 0x0000006c, correct
+set_bit<span class="o">(</span>0x0000004e,2,1<span class="o">)</span>: 0x0000004e, correct
+set_bit<span class="o">(</span>0x0000006d,0,1<span class="o">)</span>: 0x0000006d, correct
+set_bit<span class="o">(</span>0x0000004e,9,0<span class="o">)</span>: 0x0000004e, correct
+set_bit<span class="o">(</span>0x0000006d,4,0<span class="o">)</span>: 0x0000006d, correct
+set_bit<span class="o">(</span>0x0000004e,9,1<span class="o">)</span>: 0x0000024e, correct
+set_bit<span class="o">(</span>0x0000006d,7,1<span class="o">)</span>: 0x000000ed, correct
+
+Testing flip_bit<span class="o">()</span>
+
+flip_bit<span class="o">(</span>0x0000004e,0<span class="o">)</span>: 0x0000004f, correct
+flip_bit<span class="o">(</span>0x0000004e,1<span class="o">)</span>: 0x0000004c, correct
+flip_bit<span class="o">(</span>0x0000004e,2<span class="o">)</span>: 0x0000004a, correct
+flip_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x0000006e, correct
+flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e, correct
+</code></pre></div></div>
+
+<h1 id="exercise-2-lfsr">Exercise 2: (LFSR)</h1>
+
+<p>In this exercise, you will implement the function <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> which computes the next iteration of a Linear Feedback Shift Register <a href="https://fr.wikipedia.org/wiki/Registre_%C3%A0_d%C3 %A9calage_%C3%A0_r%C3%A9troaction_lin%C3%A9aire">LFSR</a>. Applications that use LFSRs include: digital television, CDMA cell phones, Ethernet, USB 3.0 and much more! In <code class="language-plaintext highlighter-rouge">lfsr.c</code>, implement the <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> function so that it performs the operation shown below:</p>
+
+<p><img src="/l2ado/static_files/images/lfsr.gif" alt="LFSR" height="50%" width="50%" class="aligncenter" /></p>
+
+<h2 id="indications">Indications:</h2>
+<ul>
+  <li>
+    <p>If you are wondering what this function is for… it generates pseudo-random numbers.</p>
+  </li>
+  <li>
+    <p>Each time <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> is called, the content of the register is moved one bit to the right.</p>
+  </li>
+  <li>
+    <p>This motion is neither a logical nor an <a href="https://fr.wikipedia.org/wiki/Op%C3%A9ration_bit_%C3%A0_bit#D%C3%A9calage_arithm%C3%A9tique">arithmetic</a> shift. On the left side, a bit is injected and is equal to the <strong>exclusive OR (XOR)</strong> of the bits originating from positions <strong>0</strong>, <strong>2</strong>, <strong>3</strong> and <strong>5</strong>.</p>
+  </li>
+  <li>
+    <p>In the image above, the red symbol depicting a plus sign in a circle represents an <strong>exclusive OR</strong>. Recall that this operator takes two inputs <code class="language-plaintext highlighter-rouge">{a, b}</code> and performs the operation <code class="language-plaintext highlighter-rouge">a ^ b</code>.</p>
+  </li>
+  <li>
+    <p>If you implemented <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> correctly, the function should print all 65535 positive 16-bit integers before returning to the initial starting number.</p>
+  </li>
+  <li>
+    <p>Note that the leftmost bit is the MSB (Most Significant Bit) and the rightmost bit is the LSB (Least Significat Bit).</p>
+  </li>
+</ul>
+
+<h2 id="tasks-to-carry-out-1">Tasks to carry out:</h2>
+
+<p>Implement the <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> function in the <code class="language-plaintext highlighter-rouge">lfsr.c</code> file then compile and run the program (using the <code class="language-plaintext highlighter-rouge">make</code> command under UN*X - see below). Verify that the result displayed on your screen looks like the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make lfsr
+<span class="nv">$ </span>./lfsr
+
+My number is: 1
+My number is: 5185
+My number is: 38801
+My number is: 52819
+My number is: 21116
+My number is: 54726
+My number is: 26552
+My number is: 46916
+My number is: 41728
+My number is: 26004
+My number is: 62850
+My number is: 40625
+My number is: 647
+My number is: 12837
+My number is: 7043
+My number is: 26003
+My number is: 35845
+My number is: 61398
+My number is: 42863
+My number is: 57133
+My number is: 59156
+My number is: 13312
+My number is: 16285
+ ... etc., etc ...
+Got 65535 numbers before cycling!
+Congratulations! It works!
+</code></pre></div></div>
+
+<h1 id="exercise-3-memory-access">Exercise 3: (Memory access)</h1>
+
+<p>This exercise is designed to help you become familiar with data structures and the manipulation of pointers (i.e. memory addresses) in the C language. The <code class="language-plaintext highlighter-rouge">vector.h</code>, <code class="language-plaintext highlighter-rouge">vector-test.c</code>  and <code class="language-plaintext highlighter-rouge">vector.c</code> files implement functionality for handling variable-length arrays.</p>
+
+<h2 id="tasks-to-carry-out-2">Tasks to carry out:</h2>
+
+<ul>
+  <li>
+    <p>Explain why <code class="language-plaintext highlighter-rouge">bad_vector_new()</code> and <code class="language-plaintext highlighter-rouge">also_bad_vector_new()</code> are bad implementations. Then, complete the <code class="language-plaintext highlighter-rouge">vector_new()</code>, <code class="language-plaintext highlighter-rouge">vector_get()</code>, <code class="language-plaintext highlighter-rouge">vector_delete()</code> and <code class="language-plaintext highlighter-rouge">vector_set()</code> functions in <code class="language-plaintext highlighter-rouge">vector.c </code>.</p>
+  </li>
+  <li>
+    <p>Also insert the prototypes of these functions in the <code class="language-plaintext highlighter-rouge">vector.h</code> header file so that the test code <code class="language-plaintext highlighter-rouge">vector-test.c</code> can run without any errors.</p>
+  </li>
+  <li>
+    <p>Finally, implement a rule for the <code class="language-plaintext highlighter-rouge">vector-test</code> target in the “Makefile” file.</p>
+  </li>
+</ul>
+
+<p><strong>Hints:</strong></p>
+
+<ul>
+  <li>
+    <p>Check the already implemented functions and the comments provided to see how the data structures should be manipulated.</p>
+  </li>
+  <li>
+    <p>For consistency, it is assumed that all entries in the vector are equal to <code class="language-plaintext highlighter-rouge">0</code> unless explicitly set or modified by the user. Recall that the <code class="language-plaintext highlighter-rouge">malloc()</code> function does not zero the memory it allocates.</p>
+  </li>
+  <li>
+    <p>To explain why the two bad functions are incorrect, keep in mind that one of these functions will run correctly but there may be other (unseen) problems.</p>
+  </li>
+  <li>
+    <p>Make sure that your implementation of <code class="language-plaintext highlighter-rouge">vector_new()</code>, <code class="language-plaintext highlighter-rouge">vector_get()</code>, <code class="language-plaintext highlighter-rouge">vector_delete()</code> and <code class="language-plaintext highlighter-rouge">vector_set()</code>  return the right results <strong>and</strong> manage memory correctly (details below).</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1) to check the accuracy of the results</span>
+<span class="nv">$ </span>make vector-test
+<span class="nv">$ </span>./vector-test
+
+<span class="c"># 2) to check memory management with Valgrind</span>
+<span class="nv">$ </span>make vector-memcheck
+</code></pre></div></div>
+
+<p>The <a href="https://www.gnu.org/software/make/manual/make.html#Rule-Introduction">rule</a> <code class="language-plaintext highlighter-rouge">vector-memcheck</code> in the ‘Makefile’ file runs the following <code class="language-plaintext highlighter-rouge">valgrind command </code> on an <code class="language-plaintext highlighter-rouge">executable</code> file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>valgrind <span class="nt">--tool</span><span class="o">=</span>memcheck <span class="nt">--leak-check</span><span class="o">=</span>full <span class="nt">--track-origins</span><span class="o">=</span><span class="nb">yes</span> <span class="o">[</span>OS SPECIFIC ARGS]./&lt;executable&gt;
+</code></pre></div></div>
+
+<p>What does each of the parameters in the previous command mean (<strong>Hint:</strong> How to get help on an instruction under UN*X)? The last line displayed by <code class="language-plaintext highlighter-rouge">valgrind</code> will tell you at a glance if there were any errors while your program was running. Here is an example output from a buggy program:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==</span><span class="nv">47132</span><span class="o">==</span> ERROR SUMMARY: 1200039 errors from 24 contexts <span class="o">(</span>deleted: 18 from 18<span class="o">)</span>
+</code></pre></div></div>
+
+<p>If your program has errors, you can scroll through the command line output to view the details of each error. For this exercise, you can ignore any output that refers to “suppressed errors”. In a program without memory issues, your output will look like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==</span><span class="nv">44144</span><span class="o">==</span> ERROR SUMMARY: 0 errors from 0 contexts <span class="o">(</span>suppressed: 18 from 18<span class="o">)</span>
+</code></pre></div></div>
+
+<p>In the end, feel free to also use CGDB or add <code class="language-plaintext highlighter-rouge">printf</code> statements to <code class="language-plaintext highlighter-rouge">vector.c</code> and <code class="language-plaintext highlighter-rouge">vector-test.c</code> to debug your code.</p>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -459,15 +459,15 @@
 
 <p>Pour cet exercice, le <a href="/l2ado/static_files/docs/gdb5-refcard.pdf">document de référence GDB</a> vous sera très utile. GDB signifie « <strong>G</strong>NU <strong>D</strong>e-<strong>B</strong>ugger ». D’abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et <a href="https://itsfoss.com/unzip-linux/">décompressez</a> son contenu avec la commande <code class="language-plaintext highlighter-rouge">unzip</code> (cette commande est déjà installée sur la machine) dans le répertoire de votre choix. Compilez ensuite le fichier <code class="language-plaintext highlighter-rouge">hello.c</code> avec le drapeau <code class="language-plaintext highlighter-rouge">-g</code> (indiquez le chemin complet du fichier <code class="language-plaintext highlighter-rouge">hello.c</code> si différent du répertoire actuel ) :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>gcc <span class="nt">-g</span> <span class="nt">-o</span> hello hello.c
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>gcc <span class="nt">-g</span> <span class="nt">-o</span> exe hello.c
 </code></pre></div></div>
 
-<p>Cela instruit le compilateur <code class="language-plaintext highlighter-rouge">gcc</code> à stocker des informations supplémentaires dans le programme exécutable pour que l’outil <code class="language-plaintext highlighter-rouge">gdb</code>/<code class="language-plaintext highlighter-rouge">cgdb</code> puisse interprêter correctement votre programme compilé. Maintenant, lancez le débogueur <code class="language-plaintext highlighter-rouge">cgdb</code> en donnant le chemin de l’exécutable à déboguer comme paramètre :</p>
+<p>Cela instruit le compilateur <code class="language-plaintext highlighter-rouge">gcc</code> à stocker des informations supplémentaires dans le programme exécutable (<strong>exe</strong>) pour que l’outil <code class="language-plaintext highlighter-rouge">gdb</code>/<code class="language-plaintext highlighter-rouge">cgdb</code> puisse interprêter correctement votre programme compilé. Maintenant, lancez le débogueur <code class="language-plaintext highlighter-rouge">cgdb</code> en donnant le chemin de l’exécutable à déboguer comme paramètre :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>cgdb hello
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>cgdb exe
 </code></pre></div></div>
 
-<p>L’instruction ci-dessus permet de lancer le programme <code class="language-plaintext highlighter-rouge">cgdb</code> sur le fichier exécutable<code class="language-plaintext highlighter-rouge"> hello</code> généré par <code class="language-plaintext highlighter-rouge">gcc</code>. N’essayez pas d’exécuter <code class="language-plaintext highlighter-rouge">cgdb</code> sur le code source <code class="language-plaintext highlighter-rouge">hello.c</code>, il ne saura pas quoi en faire ! Si <code class="language-plaintext highlighter-rouge">cgdb</code> ne fonctionne pas pour vous, essayez avec <code class="language-plaintext highlighter-rouge">gdb</code> (<em>c.-à-d.</em> exécutez la commande <code class="language-plaintext highlighter-rouge">gdb hello</code>). Le débogueur <code class="language-plaintext highlighter-rouge">cgdb</code> est installé par défaut sur les machines des salles TP et la machine virtuelle.</p>
+<p>L’instruction ci-dessus permet de lancer le programme <code class="language-plaintext highlighter-rouge">cgdb</code> sur le fichier exécutable<code class="language-plaintext highlighter-rouge"> exe</code> généré par <code class="language-plaintext highlighter-rouge">gcc</code>. N’essayez pas d’exécuter <code class="language-plaintext highlighter-rouge">cgdb</code> sur le code source <code class="language-plaintext highlighter-rouge">hello.c</code>, il ne saura pas quoi en faire ! Si <code class="language-plaintext highlighter-rouge">cgdb</code> ne fonctionne pas pour vous, essayez avec <code class="language-plaintext highlighter-rouge">gdb</code> (<em>c.-à-d.</em> exécutez la commande <code class="language-plaintext highlighter-rouge">gdb exe</code>). Le débogueur <code class="language-plaintext highlighter-rouge">cgdb</code> est installé par défaut sur les machines des salles TP et la machine virtuelle.</p>
 
 <p><strong>Remarque</strong> : Si vous n’utilisez pas la VM fournie, vous pouvez installer <code class="language-plaintext highlighter-rouge">gdb</code> / <code class="language-plaintext highlighter-rouge">cgdb</code> sur votre ordinateur, mais sachez qu’il ne peut pas être installé sur des machines macOS (mises à jour). Si cela s’applique à vous, vous pouvez utiliser <code class="language-plaintext highlighter-rouge">lldb</code> qui est un autre excellent débogueur. Les commandes diffèrent légèrement de <code class="language-plaintext highlighter-rouge">gdb</code>, mais il existe d’excellents guides (<a href="Https://lldb.llvm.org/lldb-gdb.html">comme celui-ci !</a>) pour commencer. Pour ce TP, cependant, utilisez une des machines de votre salle TP (ou la VM) et <code class="language-plaintext highlighter-rouge">cgdb</code>.</p>
 
@@ -509,7 +509,7 @@
     <p>Comment faire pour créer un « point d’arrêt » dans un programme ?</p>
   </li>
   <li>
-    <p>Comment exécuter <strong>la ligne suivante de code C</strong> après s’être arrêté à un « point d’arrêt » ?</p>
+    <p>Comment exécuter <strong>la ligne suivante dans le code</strong> après s’être arrêté à un « point d’arrêt » ?</p>
   </li>
   <li>
     <p>Si la ligne de code suivante est un appel de fonction alors vous exécuterez la fonction complète en un seul coup si vous utilisez votre réponse à la question n° 3 (Sinon, envisagez une commande différente pour la question n° 3 !). Comment indiquer à GDB que vous <strong>voulez déboguer le code à l’intérieur de la fonction</strong> (c’est-à-dire entrer dans la fonction) ? (Si vous avez changé votre réponse à la question n° 3 alors la réponse précédente est probablement applicable ici.)</p>
@@ -552,9 +552,13 @@
   </li>
 </ul>
 
-<p>Utilisez le drapeau <code class="language-plaintext highlighter-rouge">-o</code> pour les noms d’exécutable ! Ensuite, essayez d’exécuter les programmes compilés… qu’observez-vous ?</p>
+<p>Utilisez le drapeau <code class="language-plaintext highlighter-rouge">-o</code> pour les noms d’exécutable ! Ensuite, essayez d’exécuter les programmes compilés…</p>
 
-<p>Commençons par <code class="language-plaintext highlighter-rouge">segfault_ex</code>. Vous devriez avoir observé une erreur de segmentation (<em>anglais</em>: segmentation fault), qui se produit lorsque un programme se bloque après avoir tenté d’accéder à de la mémoire qui ne lui est pas disponible (nous en parlerons plus tard dans le cours). Le code source <code class="language-plaintext highlighter-rouge">segfault_ex.c</code> est assez simple, vous devriez pouvoir « comprendre » facilement ce qui cause l’erreur de segmentation. Ne modifiez pas le fichier, il n’est pas nécessaire de corriger l’erreur ici.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./segfault_ex
+<span class="gp">$</span><span class="w"> </span>./no_segfault_ex
+</code></pre></div></div>
+
+<p>Qu’observez-vous ? Commençons par <code class="language-plaintext highlighter-rouge">segfault_ex</code>. Vous devriez avoir observé une erreur de segmentation (<em>anglais</em>: segmentation fault), qui se produit lorsque un programme se bloque après avoir tenté d’accéder à de la mémoire qui ne lui est pas disponible (nous en parlerons plus tard dans le cours). Le code source <code class="language-plaintext highlighter-rouge">segfault_ex.c</code> est assez simple, vous devriez pouvoir « comprendre » facilement ce qui cause l’erreur de segmentation. Ne modifiez pas le fichier, il n’est pas nécessaire de corriger l’erreur ici.</p>
 
 <p>Trouver une erreur de segmentation dans un fichier très large ne sera pas une tâche facile, et c’est là où Valgrind peut intervenir. Pour exécuter le programme <code class="language-plaintext highlighter-rouge">segfault_ex</code> dans Valgrind, utilisez la commande :</p>
 
@@ -635,7 +639,7 @@
   Quel compilateur est actuellement utilisé dans notre Makefile ?
   </summary>
   <p style="color: firebrick">
-  La variable CC dans <strong>notre</strong> Makefile définie le compilateur utilisé. Ici, c’est le compilateur C de chez <a href="https://gcc.gnu.org/">GNU</a>.
+  La variable CC dans <strong>notre</strong> Makefile définie le compilateur C utilisé. Ici, c’est le compilateur gcc de chez <a href="https://gcc.gnu.org/">GNU</a>.
   </p>
   </details>
   <br>
@@ -672,7 +676,7 @@
 
   <details close="">
   <summary>  
-  Quelle ligne crée le programme <b>hello</b> à partir de ses fichiers objets ?
+  Quelle ligne crée l'exécutable <b>hello</b> à partir de ses fichiers objets ?
   </summary>
   <p style="color: firebrick">
   La cible « <code class="language-plaintext highlighter-rouge">$(hello_PROG):</code> » dans le Makefile.
