@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Bitwise operations in C language - Architecture des ordinateurs / Automne 2023 </title>
+  <meta name="description" content="Bitwise operations in C language - Architecture des ordinateurs / Automne 2023">
+  
+
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/static_files/docs/bitwise_operations_in_c_en">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Bitwise operations in C language</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p>All information stored in a computer’s memory is in the form of a series of bits. For example, the integer 10 (in decimal base) stored as a 16-bit two’s complement number will be encoded by the following bit sequence:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mi">1010</span>
+</code></pre></div></div>
+
+<p>When we talk about the position of a bit in a binary number, index 0 corresponds to the rightmost bit (also called <code class="language-plaintext highlighter-rouge">Least Significant Bit</code>, or LSB in short), index 1 to the bit to the left of the lowest bit, and so on. The leftmost bit of the binary number is called the <code class="language-plaintext highlighter-rouge">Most Significant Bit</code> (MSB).</p>
+
+<p>In C language, you can write a number in binary (base 2) by prefixing it with <code class="language-plaintext highlighter-rouge">0b</code>. For example, if we want to represent the number 26 in binary in eight positions (i.e. 8-bit representation), in C language this gives <code class="language-plaintext highlighter-rouge">0b00011010</code>. In hexadecimal (base 16), this is equivalent to <code class="language-plaintext highlighter-rouge">0x1A</code>. Recall that, in C language, hexadecimal numbers are prefixed with <code class="language-plaintext highlighter-rouge">0x</code>.</p>
+
+<p>On the other hand, note that on some machines or operating systems, an <code class="language-plaintext highlighter-rouge">int</code> could use 2, 4 or 8 bytes (so 16, 32 or 64 bits). Therefore, if we want to declare variables with a <strong>determined number</strong> of bits, the C language introduces a new type class:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- int8_t (8-bit signed integer)
+- uint8_t (8-bit unsigned integer)
+- uint16_t (16-bit unsigned integer)
+- etc.
+</code></pre></div></div>
+
+<p>These types are defined in the <strong>stdint.h</strong> header and guarantee that the variables declared thus have the desired number of bits regardless of the machine or operating system used.</p>
+
+<h1 id="bitwise-operators">Bitwise operators</h1>
+
+<p>“Bitwise operators” in C language allow you to set, modify or test one or more bits of data. These operators are:</p>
+
+<ul>
+  <li><strong>NOT “~“</strong></li>
+  <li><strong>AND “&amp;”</strong></li>
+  <li><strong>OR “|“</strong></li>
+  <li><strong>XOR (eXclusive OR) “^”</strong></li>
+  <li><strong>SHL (SHift Left) “&lt;&lt;“</strong></li>
+  <li><strong>SHR (SHift Right) “&gt;&gt;“</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="not-operator-">NOT operator “~”</h2>
+
+<p>The unary operator NOT flips the state of a bit according to the following table:</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">NOT A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>In C language, the tilda character <strong><code class="language-plaintext highlighter-rouge">~</code></strong> is used to represent the <strong>NOT</strong> operator. It acts on each bit of the value. Example :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; a = 0b0000000000000001; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="o">~</span><span class="n">a</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b1111111111111110; */</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="and-operator-">AND operator “&amp;”</h2>
+
+<p>The binary operator <strong>AND</strong> combines the state of two bits according to the following table:</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A AND B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>In C language, the symbol <strong><code class="language-plaintext highlighter-rouge">&amp;</code></strong> represents the <strong>AND</strong> operator and acts on <em>each</em> bit of the operands. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xF0F0</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b1111000011110000; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00FF</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b0000000011111111; */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; c = 0b0000000011110000; that's 0x00F0 in hexadecimal */</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="or-operator-">OR operator “|”</h2>
+
+<p>The binary operator <strong>OR</strong> combines the state of two bits according to the following table:</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A OR B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>The symbol <strong><code class="language-plaintext highlighter-rouge">|</code></strong> represents the <strong>OR</strong> operator in C language. It acts on <em>each</em> bit of the operands. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xF0F0</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b1111000011110000; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00FF</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b0000000011111111; */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; c = 0b1111000011111111; that's 0xF0FF in hexadecimal */</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="xor-exclusive-or-operator-">XOR (e<strong>X</strong>clusive <strong>OR</strong>) operator “^”</h2>
+
+<p>The binary operator <strong>XOR</strong> combines the state of two bits according to the following table:</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A XOR B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>1</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>The character <strong><code class="language-plaintext highlighter-rouge">^</code></strong> represents the <strong>XOR</strong> operator in C language. It acts on <em>each</em> bit of the operands. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xF0F0</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b1111000011110000; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x00FF</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b0000000011111111; */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; c = 0b1111000000001111; that's 0xF00F in hexadecimal */</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="shr-shift-right-operator-">SHR (<strong>SH</strong>ift <strong>R</strong>ight) operator “&gt;&gt;”</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">op_1</span> <span class="o">&gt;&gt;</span> <span class="n">op_2</span>
+</code></pre></div></div>
+
+<p>This operator allows to shift a given operand <code class="language-plaintext highlighter-rouge">op_1</code> by a certain number of bits <strong>to the right</strong> (the amount of shift is specified by <code class="language-plaintext highlighter-rouge">op_2</code>). The low-order bits of the operand <code class="language-plaintext highlighter-rouge">op_1</code> are lost, and the high-order bits are replaced by zeros.</p>
+
+<p>In C language, a combination of two right-facing angle brackets <strong><code class="language-plaintext highlighter-rouge">&gt;&gt;</code></strong> implements the <strong>SHR</strong> operator. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xF0F0</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b1111000011110000; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>      <span class="cm">/* &lt;=&gt; b = 0b0000000000000010; */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; c = 0b0011110000111100; that's 0x3C3C in hexadecimal */</span>
+</code></pre></div></div>
+<hr />
+
+<h2 id="shl-shift-left-operator-">SHL (<strong>SH</strong>ift <strong>L</strong>eft) operator “&lt;&lt;”</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">op_1</span> <span class="o">&lt;&lt;</span> <span class="n">op_2</span>
+</code></pre></div></div>
+
+<p>This operator allows to shift a given operand <code class="language-plaintext highlighter-rouge">op_1</code> by a certain number of bits <strong>to the left</strong> (the amount of shift is specified by <code class="language-plaintext highlighter-rouge">op_2</code>). The most significant bits of the operand <code class="language-plaintext highlighter-rouge">op_1</code> are lost, and the least significant bits are replaced by zeros.</p>
+
+<p>In C language, a combination of two left-facing angle brackets <strong><code class="language-plaintext highlighter-rouge">&lt;&lt;</code></strong> represents the <strong>SHL</strong> operator. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xF0F0</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b1111000011110000; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>      <span class="cm">/* &lt;=&gt; b = 0b0000000000000010; */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; c = 0b1100001111000000; that's 0xC3C0 in hexadecimal */</span>
+</code></pre></div></div>
+<hr />
+
+<h1 id="using-bitwise-operations">Using Bitwise Operations</h1>
+
+<h2 id="set-a-bit-in-a-value">Set a bit in a value</h2>
+
+<p>The idea is to combine the value with a mask using the OR operator. Indeed, as indicated by the truth table of the OR operator, the bits of the mask which are at 0 will leave the corresponding bits in the initial value unchanged and the bits of the mask which are at 1 will prevail. Example :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/* set bit 4 of a: */</span>
+   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x000F</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b0000000000001111; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0x0010</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b0000000000010000; b is our mask! */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; c = 0b0000000000011111; that's  0x001F in hexadecimal */</span>
+
+   <span class="n">printf</span> <span class="p">(</span><span class="s">"%04X OU %04X = %04X</span><span class="se">\n</span><span class="s">, a, b, c);</span><span class="err">
+</span></code></pre></div></div>
+
+<p>To build the mask, simply apply a left shift to the (unsigned) constant <code class="language-plaintext highlighter-rouge">1</code>. The amount of shifting corresponds to the position of the bit we want to set. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; b = 0b0000000000000001;  &lt;=&gt; bit  0 is set */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; b = 0b0000000000000100;  &lt;=&gt; bit  2 is set */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b1000000000000000;  &lt;=&gt; bit 15 is set */</span>
+</code></pre></div></div>
+<p><em>NOTE</em>: The letter ‘u’ suffixed to the number ‘1’ above indicates that this is an ‘unsigned constant’.</p>
+
+<h2 id="clear-a-bit-in-a-value">Clear a bit in a value</h2>
+
+<p>Similar to the previous case, we need to apply a ‘mask’ to our value. This time, however, we need to devise the mask around the AND operator. Indeed, as indicated by the truth table of the AND operator, the bits of the mask which are at 1 will leave the corresponding bits in the initial value unchanged and the bits of the mask which are at 0 will prevail. Example :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/* Clear bit 3 of a : */</span>
+   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x000F</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b0000000000001111; */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0xFFF7</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; b = 0b1111111111110111; b is our mask! */</span>
+   <span class="kt">uint16_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">;</span>  <span class="cm">/* &lt;=&gt; c = 0b0000000000000111; that's 0x0007 in hexadecimal */</span>
+
+   <span class="n">printf</span> <span class="p">(</span><span class="s">"%04X ET %04X = %04X</span><span class="se">\n</span><span class="s">, a, b, c);</span><span class="err">
+</span></code></pre></div></div>
+
+<p>To build the mask, simply apply a left shift to the (unsigned) constant <code class="language-plaintext highlighter-rouge">1</code> and then flip the result with the NOT operator. The amount of shifting corresponds to the position of the bit we want to clear. Example:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">);</span>  <span class="cm">/* &lt;=&gt; b = 0b1111111111111110 &lt;=&gt; bit  0 is cleared */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">);</span>  <span class="cm">/* &lt;=&gt; b = 0b1111111111111011 &lt;=&gt; bit  2 is cleared */</span>
+   <span class="kt">uint16_t</span> <span class="n">b</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">);</span> <span class="cm">/* &lt;=&gt; b = 0b0111111111111111 &lt;=&gt; bit 15 is cleared */</span>
+</code></pre></div></div>
+
+<h2 id="read-the-state-of-a-bit-in-a-value">Read the state of a bit in a value</h2>
+
+<p>We again need to use a mask here and the AND operator. The mask should contain 0 except for the bit to be tested which is set to 1. Thus, the result will contain 0s for the 0 bits of the mask and the state of the evaluated bit (at bit=1 of the mask). That is, if the final result is 0, the tested bit is equal to 0, otherwise it is equal to 1.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/* test the state of bit 2 of a: */</span>
+   <span class="kt">uint16_t</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x000F</span><span class="p">;</span> <span class="cm">/* &lt;=&gt; a = 0b0000000000001111; */</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">))</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">"bit 2 == 1"</span><span class="p">);</span>   
+   <span class="k">else</span>
+      <span class="nf">puts</span><span class="p">(</span><span class="s">"bit 2 == 0"</span><span class="p">);</span>
+   
+</code></pre></div></div>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
