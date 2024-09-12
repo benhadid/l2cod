@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> MIPS Assembler Language - Architecture des ordinateurs / Automne 2023 </title>
+  <meta name="description" content="Objectives      Introduction to the MARS simulator.        Learn how to assemble, run and debug a MIPS program.  PreambleThis lab introduces you to programmi...">
+  
+
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/04_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">MIPS Assembler Language</h1>
+    <p class="post-meta">Publié le
+      <!--
+      Sunday
+      29/10/2023
+      -->
+      
+      Dimanche
+      29
+      
+      Octobre
+      2023
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Échéance :
+      <!-- 05/11/2023 -->
+
+      
+      Dimanche
+      5
+      
+      Novembre
+      2023
+    </span>
+    
+
+    <br />
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_04.zip">démarrage</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Introduction to the <a href="/l2ado/static_files/docs/MARS">MARS simulator</a>.</p>
+  </li>
+  <li>
+    <p>Learn how to assemble, run and debug a MIPS program.</p>
+  </li>
+</ul>
+
+<h1 id="preamble">Preamble</h1>
+
+<p>This lab introduces you to programming in the MIPS assembly language. In particular, exercises 1 and 2 below require the re-implementation in the MIPS assembly language of two exercises already encountered in the <a href="/l2ado/labs/03_lab.html">previous Lab</a>. Start by downloading the startup file and unzip its content into a directory of your choice.</p>
+
+<p><span style="color: firebrick">
+Requested modifications/implementations are to be carried out in the associated <code class="language-plaintext highlighter-rouge">impl.s</code> file of each exercise
+</span></p>
+
+<p>To test and verify your implementations, you can run the following commands in UN*X environment:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>path/to/lab4
+<span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- to be done once (makes sure you can execute the script run_test.sh)</span>
+<span class="gp">$</span><span class="w"> </span>./run_tests.sh           <span class="c"># &lt;-- execute this script each time you want to test your implementations </span>
+</code></pre></div></div>
+
+<p>Correct execution of the script will display on your screen the results of some validation tests. The bash script <code class="language-plaintext highlighter-rouge">run_tests.sh</code> actually launches several commands of the form</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">java -jar munit.jar "exercise_dir/impl.s" "exercise_dir/TestImpl.class"
+</span></code></pre></div></div>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">munit.jar</code> is a java library used to automatically test MIPS programs.</p>
+  </li>
+  <li>
+    <p>To get an idea of ​​the tests performed for a given exercise, you can consult the associated file <code class="language-plaintext highlighter-rouge">TestImpl.java</code> from the exercise directory. For the curious, these files implement <a href="https://junit.org/junit5/">junit</a> unit tests.</p>
+  </li>
+</ul>
+
+<p><strong>Hint:</strong></p>
+<ul>
+  <li>
+    <p>You can use the MARS simulator to implement and test your codes. Here is <a href="/l2ado/static_files/docs/MARS">a quick tutorial</a> on the functionalities of this software.</p>
+  </li>
+  <li>
+    <p>To test your implementations of exercises 3 to 5 in the MARS environment, you will need to declare a <code class="language-plaintext highlighter-rouge">.data</code> segment and implement a <code class="language-plaintext highlighter-rouge">main</code> function in a <code class="language-plaintext highlighter-rouge">.text</code> segment. The <code class="language-plaintext highlighter-rouge">main</code> function must then call your function with the appropriate parameters. Have a look at the codes of exercises 1 and 2 to see how this is done.</p>
+  </li>
+</ul>
+
+<h1 id="exercise-1--sum-of-squares">Exercise 1 : (sum of squares)</h1>
+
+<p>The sum of squares of <em>N</em> integers is described as follows:</p>
+
+\[sum = \sum_{i=0}^{N-1} n_i^2\]
+
+<p>where \(n_0, n_1, ..., n_{N-1}\) are integer numbers (i.e. of type <code class="language-plaintext highlighter-rouge">int</code>).</p>
+
+<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">SumOfSquares()</code> in <code class="language-plaintext highlighter-rouge">sum_of_squares/impl.s</code>. This function must return in the register <code class="language-plaintext highlighter-rouge">$v0</code> the sum of the squares of the elements of an array of <strong>words</strong>. The size of the array is given in register <code class="language-plaintext highlighter-rouge">$a0</code>, and the pointer to the array is given in register <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+
+<p><strong>Hint:</strong> Do exercise #1 of the lab “<a href="/l2ado/labs/03_lab.html">Unstructured Programming »</a>”, then convert your C code into MIPS using the MIPS reference <a href="/l2ado/static_files/docs/fiche_mips.pdf">card</a> .</p>
+
+<h1 id="exercise-2--strcmp">Exercise 2 : (strcmp)</h1>
+
+<p>In the standard C library, the <code class="language-plaintext highlighter-rouge">strcmp</code> function (see <code class="language-plaintext highlighter-rouge">man 3 strcmp</code>) compares, character by character, two strings to establish which character string comes first in the standard lexicographical order -i.e. based on the ASCII values ​​of the characters. Here are some examples:</p>
+
+<ul>
+  <li>“a” &lt; “b”</li>
+  <li>“abc” &lt; “abcd”</li>
+  <li>“A” &lt; “a”</li>
+</ul>
+
+<p>The strings to compare are represented by contiguous bytes (each byte is an ASCII code) in memory followed by the NUL character (0x00).</p>
+
+<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">StrCmp(char* str1, char* str2)</code> in <code class="language-plaintext highlighter-rouge">strcmp/impl.s</code>. This function must return  in the register <code class="language-plaintext highlighter-rouge">$v0</code> the result of the comparison of two character strings. If the first string is less than the second, then <code class="language-plaintext highlighter-rouge">$v0</code> will be negative. If the two strings are similar then <code class="language-plaintext highlighter-rouge">$v0</code> will be null. Finally, if the first string is greater than the second then <code class="language-plaintext highlighter-rouge">$v0</code> will be positive. The pointer to the first (resp. second) string is given in register <code class="language-plaintext highlighter-rouge">$a0</code> (resp. <code class="language-plaintext highlighter-rouge">$a1</code>).</p>
+
+<p><strong>Hint:</strong> Do exercise #2 of the lab “<a href="/l2ado/labs/03_lab.html">Unstructured Programming »</a>”, then convert your C code into MIPS using the MIPS reference <a href="/l2ado/static_files/docs/fiche_mips.pdf">card</a> .</p>
+
+<h1 id="exercice-3--reverse">Exercice 3 : (reverse)</h1>
+
+<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">reverse(int* array, int size)</code> in <code class="language-plaintext highlighter-rouge">reverse/impl.s</code>. This function should reverse the order of the elements in <code class="language-plaintext highlighter-rouge">array</code> from the end to the beginning. For example, if</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  
+</code></pre></div></div>
+
+<p>then, after applying the <code class="language-plaintext highlighter-rouge">reverse</code> function on <code class="language-plaintext highlighter-rouge">array</code> the result should be:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>  
+</code></pre></div></div>
+
+<p>The MIPS function <code class="language-plaintext highlighter-rouge">reverse</code> gets the address of <code class="language-plaintext highlighter-rouge">array</code> in the register <code class="language-plaintext highlighter-rouge">$a0</code> and the <code class="language-plaintext highlighter-rouge">size</code> of the array in the register <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+
+<h1 id="exercise-4--in_range">Exercise 4 : (in_range)</h1>
+
+<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">in_range(min, max, value)</code> in <code class="language-plaintext highlighter-rouge">in_range/impl.s</code>. This function should return 1 in <code class="language-plaintext highlighter-rouge">$v0</code> if <code class="language-plaintext highlighter-rouge">min &lt;= value &lt;= max</code> and 0 otherwise. You can assume:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">min</code> is given in register <code class="language-plaintext highlighter-rouge">$a0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">max</code> is given in register <code class="language-plaintext highlighter-rouge">$a1</code></li>
+  <li>and <code class="language-plaintext highlighter-rouge">value</code> is given in  register <code class="language-plaintext highlighter-rouge">$a2</code></li>
+</ul>
+
+<h1 id="exercise-5--discrete">Exercise 5 : (discrete)</h1>
+
+<p>Let a discrete function <code class="language-plaintext highlighter-rouge">f()</code> defined on the set {-3, -2, -1, 0, 1, 2, 3} as follows:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span>
+   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">61</span>
+   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">17</span>
+   <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">38</span>
+   <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">19</span>
+   <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">42</span>
+   <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">f(int i)</code> in <code class="language-plaintext highlighter-rouge">discrete/impl.s</code> <strong>WITHOUT</strong> using comparaison statements! The argument for the function <code class="language-plaintext highlighter-rouge">f()</code> is given in register <code class="language-plaintext highlighter-rouge">$a0</code> and the result should be returned in <code class="language-plaintext highlighter-rouge">$v0</code>.</p>
+
+<p><strong>Hint:</strong> How to read a word from a memory in MIPS?</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

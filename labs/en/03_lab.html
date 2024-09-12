@@ -304,7 +304,7 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
 
 <p>The character strings to compare are represented by contiguous bytes in memory (each byte is an ASCII character) followed by the NUL character (0x00).</p>
 
-<p>Write the body of the function <code class="language-plaintext highlighter-rouge">StrCmp(const char *s1, const char *s2)</code> in the file <code class="language-plaintext highlighter-rouge">src/StrCmp.c</code>. This function compares two character strings.</p>
+<p>Write the body of the function <code class="language-plaintext highlighter-rouge">StrCmp(char *s1, char *s2)</code> in the file <code class="language-plaintext highlighter-rouge">src/StrCmp.c</code>. This function compares two character strings.</p>
 
 <p>The arguments <code class="language-plaintext highlighter-rouge">s1</code> and <code class="language-plaintext highlighter-rouge">s2</code> hold the addresses in memory of the two strings to compare. The memory address of the beginning of the first string is in <code class="language-plaintext highlighter-rouge">s1</code>, and the memory address of the start of the second string is in <code class="language-plaintext highlighter-rouge">s2</code>. If the first string is greater than the second, return a positive number. If the second string is larger, return a negative number. If the strings are equal, return the value 0.</p>
 
