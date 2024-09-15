@@ -314,7 +314,7 @@ syscall # system call to exit
 <tr>
 <td style="text-align:center">$28</td>
 <td style="text-align:center">$gp</td>
-<td style="text-align:left">Pointer to global data of the program</td>
+<td style="text-align:left">pointer to global data of the program</td>
 </tr>
 
 <tr>
@@ -374,76 +374,76 @@ syscall # system call to exit
 
 <h2 id="arithmetic-instructions">Arithmetic instructions</h2>
 
-<pre><code class="language-RTL"> add    rd, rs, rt     # rd = rs + rt                      (addition)
- sub    rd, rs, rt     # rd = rs – rt                      (substruction) 
- addu   rd, rs, rt     # rd = rs + rt                      (unsigned addition)  
- subu   rd, rs, rt     # rd = rs - rt                      (unsigned substruction)  
- addi   rt, rs, Imm    # rt = rs + Imm                     (Imm is a 16-bit signed constant)
- addiu  rt, rs, Imm    # rt = rs + Imm                     (Imm is a 16-bit unsigned constant)
+<pre><code class="language-RTL"> add    rd, rs, rt     # rd = rs + rt                 (addition)
+ sub    rd, rs, rt     # rd = rs – rt                 (substruction) 
+ addu   rd, rs, rt     # rd = rs + rt                 (unsigned addition)  
+ subu   rd, rs, rt     # rd = rs - rt                 (unsigned substruction)  
+ addi   rt, rs, Imm    # rt = rs + Imm                (Imm is a 16-bit signed constant)
+ addiu  rt, rs, Imm    # rt = rs + Imm                (Imm is a 16-bit unsigned constant)
 
- mult   rs, rt         # [HI,LO] = rs * rt                 (multiplication) 
- multu  rs, rt         # [HI,LO] = rs * rt                 (unsigned multiplication)
+ mult   rs, rt         # [HI,LO] = rs * rt            (multiplication) 
+ multu  rs, rt         # [HI,LO] = rs * rt            (unsigned multiplication)
  
- div    rs, rt         # HI = rs % rt; LO = rs / rt        (division)
- divu   rs, rt         # HI = rs % rt; LO = rs / rt        (unsigned division)  
+ div    rs, rt         # HI = rs % rt; LO = rs / rt   (division)
+ divu   rs, rt         # HI = rs % rt; LO = rs / rt   (unsigned division)  
 </code></pre>
 
 <h2 id="logic-instructions">Logic instructions</h2>
 
-<pre><code class="language-RTL"> or    rd, rs, rt      # rd = rs | rt                      (logical OR)
- and   rd, rs, rt      # rd = rs &amp; rt                      (logical AND)
- xor   rd, rs, rt      # rd = rs ^ rt                      (logical eXclusive OR) 
- nor   rd, rs, rt      # rd = ~(rs | rt)                   (logical NOT OR)
- ori   rt, rs, Imm     # rt = rs | Imm                     (Imm is a 16-bit unsigned constant)
- andi  rt, rs, Imm     # rt = rs &amp; Imm                     (Imm is a 16-bit unsigned constant)
- xori  rt, rs, Imm     # rt = rs ^ Imm                     (Imm is a 16-bit unsigned constant) 
+<pre><code class="language-RTL"> or    rd, rs, rt      # rd = rs | rt                 (logical OR)
+ and   rd, rs, rt      # rd = rs &amp; rt                 (logical AND)
+ xor   rd, rs, rt      # rd = rs ^ rt                 (logical eXclusive OR) 
+ nor   rd, rs, rt      # rd = ~(rs | rt)              (logical NOT OR)
+ ori   rt, rs, Imm     # rt = rs | Imm                (Imm is a 16-bit unsigned constant)
+ andi  rt, rs, Imm     # rt = rs &amp; Imm                (Imm is a 16-bit unsigned constant)
+ xori  rt, rs, Imm     # rt = rs ^ Imm                (Imm is a 16-bit unsigned constant) 
 
- sllv  rd, rt, rs      # rd = rt &lt;&lt; rs                     (logical shift left with rs[4..0])
- srlv  rd, rt, rs      # rd = rt &gt;&gt;&gt; rs                    (logical shift right with rs[4..0]) 
- srav  rd, rt, rs      # rd = rt &gt;&gt; rs                     (arithmetic shift right with rs[4..0]) 
+ sllv  rd, rt, rs      # rd = rt &lt;&lt; rs                (logical shift left with rs[4..0])
+ srlv  rd, rt, rs      # rd = rt &gt;&gt;&gt; rs               (logical shift right with rs[4..0]) 
+ srav  rd, rt, rs      # rd = rt &gt;&gt; rs                (arithmetic shift right with rs[4..0]) 
 
- sll   rd, rt, Sha     # rd = rt &lt;&lt; Sha                    (logical shift left with 0 &lt;= Sha &lt;=31)
- srl   rd, rt, Sha     # rd = rt &gt;&gt;&gt; Sha                   (logical shift right with 0 &lt;= Sha &lt;=31)
- sra   rd, rt, Sha     # rd = rt &gt;&gt; Sha                    (Arithmetic shift right with 0 &lt;= Sha &lt;= 31)     
+ sll   rd, rt, Sha     # rd = rt &lt;&lt; Sha               (logical shift left with 0 &lt;= Sha &lt;=31)
+ srl   rd, rt, Sha     # rd = rt &gt;&gt;&gt; Sha              (logical shift right with 0 &lt;= Sha &lt;=31)
+ sra   rd, rt, Sha     # rd = rt &gt;&gt; Sha               (Arithmetic shift right with 0 &lt;= Sha &lt;= 31)     
 
- slt   rd, rs, rt      # rd = rs &lt; rt ? 1 : 0              (if rs &lt; rt then rd = 1 else rd = 0)
- sltu  rd, rs, rt      # rd = rs &lt; rt ? 1 : 0              (same as slt with unsigned operands)
- slti  rt, rs, Imm     # rt = rs &lt; Imm ? 1 : 0             (same as slt with Imm a 16-bit signed constant)
- sltiu rt, rs, Imm     # rt = rs &lt; Imm ? 1 : 0             (same as sltu with Imm a 16-bit unsigned constant)
+ slt   rd, rs, rt      # rd = rs &lt; rt ? 1 : 0         (if rs &lt; rt then rd = 1 else rd = 0)
+ sltu  rd, rs, rt      # rd = rs &lt; rt ? 1 : 0         (rs and rt are unsigned operands)
+ slti  rt, rs, Imm     # rt = rs &lt; Imm ? 1 : 0        (similar to slt with Imm a 16-bit signed constant)
+ sltiu rt, rs, Imm     # rt = rs &lt; Imm ? 1 : 0        (similar to sltu with Imm a 16-bit unsigned constant)
 </code></pre>
 
 <h2 id="data-transfer-instructions">Data transfer instructions</h2>
 
-<pre><code class="language-RTL"> mfhi  rd              # rd = HI                           (move HI register to rd register)
- mflo  rd              # rd = LO                           (move LO register to rd register)
- mthi  rs              # HI = rs                           (move rs register to HI register)
- mtlo  rs              # LO = rs                           (move rs register to LO register)
- lui   rt, Imm         # rt = Imm &lt;&lt; 16                    (rt[31..16] = Imm, rt[15..0] = 0)
+<pre><code class="language-RTL"> mfhi  rd              # rd = HI                      (move HI register to rd register)
+ mflo  rd              # rd = LO                      (move LO register to rd register)
+ mthi  rs              # HI = rs                      (move rs register to HI register)
+ mtlo  rs              # LO = rs                      (move rs register to LO register)
+ lui   rt, Imm         # rt = Imm &lt;&lt; 16               (rt[31..16] = Imm, rt[15..0] = 0)
 
- lw    rt, Imm(rs)     # rt = MEM[rs + Imm]                (load a 'word' from memory)
- sw    rt, Imm(rs)     # MEM[rs + Imm] = rt                (store a 'word' into memory)
- lh    rt, Imm(rs)     # rt = MEM[rs + Imm]                (load a 'half-word' from memory)
- lhu   rt, Imm(rs)     # rt = MEM[rs + Imm]                (load an unsigned 'half-word' from memory - i.e. do zero extension)
- sh    rt, Imm(rs)     # MEM[rs + Imm] = rt                (store a'half-word' into memory)
- lb    rt, Imm(rs)     # rt = MEM[rs + Imm]                (load a byte from memory)
- lbu   rt, Imm(rs)     # rt = MEM[rs + Imm]                (load an unsigned byte from memory - i.e. do zero extension)
- sb    rt, Imm(rs)     # MEM[rs + Imm] = rt                (store a byte into memory)
+ lw    rt, Imm(rs)     # rt = MEM[rs + Imm]           (load a 'word' from memory)
+ sw    rt, Imm(rs)     # MEM[rs + Imm] = rt           (store a 'word' into memory)
+ lh    rt, Imm(rs)     # rt = MEM[rs + Imm]           (load a 'half-word' from memory - i.e. do sign extension)
+ lhu   rt, Imm(rs)     # rt = MEM[rs + Imm]           (load an unsigned 'half-word' from memory - i.e. do zero extension)
+ sh    rt, Imm(rs)     # MEM[rs + Imm] = rt           (store a'half-word' into memory)
+ lb    rt, Imm(rs)     # rt = MEM[rs + Imm]           (load a byte from memory - i.e. do sign extension)
+ lbu   rt, Imm(rs)     # rt = MEM[rs + Imm]           (load an unsigned byte from memory - i.e. do zero extension)
+ sb    rt, Imm(rs)     # MEM[rs + Imm] = rt           (store a byte into memory)
 </code></pre>
 
 <h2 id="branching-instructions">Branching instructions</h2>
 
-<pre><code class="language-RTL"> beq   rs, rt, label   # if (rs == rt) goto label          (take the branch if equal)
- bne   rs, rt, label   # if (rs != rt) goto label          (take the branch if not equal)
- bgez  rs, label       # if (rs &gt;= 0) goto label           (take the branch if greater than or equal to zero)
- bgtz  rs, label       # if (rs &gt;  0) goto label           (take the branch if greater than zero)
- blez  rs, label       # if (rs &lt;= 0) goto label           (take the branch if less than or equal to zero)
- bltz  rs, label       # if (rs &lt;  0) goto label           (take the branch if less than zero)
+<pre><code class="language-RTL"> beq   rs, rt, label   # if (rs == rt) goto label     (take the branch if equal)
+ bne   rs, rt, label   # if (rs != rt) goto label     (take the branch if not equal)
+ bgez  rs, label       # if (rs &gt;= 0) goto label      (take the branch if greater than or equal to zero)
+ bgtz  rs, label       # if (rs &gt;  0) goto label      (take the branch if greater than zero)
+ blez  rs, label       # if (rs &lt;= 0) goto label      (take the branch if less than or equal to zero)
+ bltz  rs, label       # if (rs &lt;  0) goto label      (take the branch if less than zero)
  
- j     label           # goto label                        (jump to address)
- jal   label           # $ra = $pc + 4 ; goto label        (jump to address and link with the returning position)
- jr    rs              # $pc = rs                          (jump to address in register rs)
- jalr  rs              # $ra = $pc + 4 ; $pc = rs          (jump to address in register rs and link the returning point)   
- jalr  rd, rs          # rd  = $pc + 4 ; $pc = rs          (jump to address in register rs and link the returning point in rd)
+ j     label           # goto label                   (jump to address)
+ jal   label           # $ra = $pc + 4 ; goto label   (jump to address and link in $ra the returning position)
+ jr    rs              # $pc = rs                     (jump to address in register rs)
+ jalr  rs              # $ra = $pc + 4 ; $pc = rs     (jump to address in register rs and link in $ra the returning position)   
+ jalr  rd, rs          # rd  = $pc + 4 ; $pc = rs     (jump to address in register rs and link in rd the returning position)
 </code></pre>
 
 <h2 id="system-calls-instructions">System calls instructions</h2>
@@ -485,7 +485,7 @@ syscall # system call to exit
 <tr>
 <td style="text-align:left">Read a string of characters from the terminal</td>
 <td style="text-align:center">8</td>
-<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$a0</code> = memory addresse where to store the string<br /><code class="language-plaintext highlighter-rouge">$a1</code> = maximum number of characters to read from the terminal</td>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$a0</code> = memory address where to store the string<br /><code class="language-plaintext highlighter-rouge">$a1</code> = maximum number of characters to read from the terminal</td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
@@ -497,14 +497,14 @@ syscall # system call to exit
 <tr>
 <td style="text-align:left">Print a character</td>
 <td style="text-align:center">11</td>
-<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$a0</code> = ascii code of the character to print</td>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$a0</code> = character to print</td>
 <td style="text-align:left"></td>
 </tr>
 <tr>
 <td style="text-align:left">Read a character from the terminal</td>
 <td style="text-align:center">12</td>
 <td style="text-align:left"></td>
-<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$v0</code> = ascii code of the returned charcater</td>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">$v0</code> = returned character</td>
 </tr>
 </tbody>
 </table>
@@ -512,7 +512,7 @@ syscall # system call to exit
 <p>The code example below shows a simple program that prompts the user for a value (an integer) and then displays that value on the MARS console (our simulated screen). Five system calls are used. The first system call displays the string <code class="language-plaintext highlighter-rouge">str1</code>, the second system call reads an integer as input. The third call displays the string <code class="language-plaintext highlighter-rouge">str2</code>, the fourth system call displays the value that was entered by the user, and the fifth system call exits the program.</p>
 
 <pre><code class="language-mips">.data
-str1:     .asciiz   "Enterr a value: "
+str1:     .asciiz   "Enter a value: "
 str2:     .asciiz   "You entered the value: "
 
 
@@ -528,7 +528,7 @@ main:
                         # The value is returned in $v0
 
    add  $s0, $v0, $0    # $s0 = $v0  ($s0 = value entered by the user)
-   addi $v0, $0, 4      # $v0 = servuce number for 'print a string of characters'
+   addi $v0, $0, 4      # $v0 = service number for 'print a string of characters'
    la   $a0, str2       # $a0 = memory address of the string to print (here str2) 
    syscall              # a system call for printing the string str2
 
@@ -721,44 +721,41 @@ n: .word 9
 </code></pre>
 
 <ul>
-  <li>The label <code class="language-plaintext highlighter-rouge">n</code> is chosen to mimic the <em>variable name</em> in C. We could have chosen any other name for the label! As long as we keep track of the association between the variable name and the defined label, it should not go wrong!</li>
-  <li><code class="language-plaintext highlighter-rouge">.word</code> allows us to allocate a 32-bit space pointed to by the label we just defined  (i.e. n),</li>
-  <li><code class="language-plaintext highlighter-rouge">9</code> is the value stored in the alocated space  (this is the value assigned to the variable <code class="language-plaintext highlighter-rouge">n</code> in C).</li>
+  <li>The label <code class="language-plaintext highlighter-rouge">n</code> is chosen to mimic the <em>variable name</em> in C. We could choose any other name for the label as long as we keep track of the association between the variable name in C and the defined label in MIPS.</li>
+  <li><code class="language-plaintext highlighter-rouge">.word</code> allocates a 32-bit space pointed to by the label we just defined (i.e. n),</li>
+  <li><code class="language-plaintext highlighter-rouge">9</code> is the value stored in the allocated space (this is the value assigned to the variable <code class="language-plaintext highlighter-rouge">n</code> in C).</li>
 </ul>
 
-<p>Let’s move on to initializing <code class="language-plaintext highlighter-rouge">curr_fib</code> and <code class="language-plaintext highlighter-rouge">next_fib</code>. Since these are local variables in our C code, we will associate them to some registers of the MIPS processor. By convention, registers <code class="language-plaintext highlighter-rouge">$s0</code>-<code class="language-plaintext highlighter-rouge">$s7</code> are used for local variables in MIPS.</p>
+<p>Now, we need to declare and initialise <code class="language-plaintext highlighter-rouge">curr_fib</code> and <code class="language-plaintext highlighter-rouge">next_fib</code>. Since these are local variables in our C code, we will simply associate some registers to them. By convention, registers <code class="language-plaintext highlighter-rouge">$s0</code> – <code class="language-plaintext highlighter-rouge">$s7</code> are used for local variables in MIPS.</p>
 
 <pre><code class="language-mips">.text
 main:
     add  $s0, $0, $0    # curr_fib = 0
     addi $s1, $0,  1    # next_fib = 1
 </code></pre>
-
 <ul>
-  <li>We added the <code class="language-plaintext highlighter-rouge">.text</code> directive here. Any instruction under this directive belongs to our <em>executable code</em>.</li>
-  <li>Remember that register $0 is immutable. It always contains the value 0.</li>
+  <li>We added the <code class="language-plaintext highlighter-rouge">.text</code> directive here. Any instruction under this directive belongs to the <em>executable code</em>.</li>
+  <li>Recall that register $0 is immutable. It always contains the value 0.</li>
   <li>The local variable <code class="language-plaintext highlighter-rouge">new_fib</code> is not declared (we try not to declare variables in assembly when we can associate registers to them. Can you tell why?).</li>
 </ul>
 
-<p>Now let’s move on to the loop and start by initializing its iteration variable. The following code sets <code class="language-plaintext highlighter-rouge">i</code> to the value of <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<p>Let’s move on to the loop and start by initialising the iteration variable. The following code sets <code class="language-plaintext highlighter-rouge">i</code> to the value of <code class="language-plaintext highlighter-rouge">n</code>.</p>
 
 <pre><code class="language-mips">    la $t0, n           # load in $t0 the address n (remember, n is a label, hence an address!)
     lw $t0, 0($t0)      # load in $t0 the value stored at the address defined by the label n. $t0 is now our variable i.
 </code></pre>
 
-<p>The <code class="language-plaintext highlighter-rouge">la</code> instruction loads the address associated with the label (here, <code class="language-plaintext highlighter-rouge">n</code>) into a given register (here, <code class="language-plaintext highlighter-rouge">$t0</code>). The first line basically defines <code class="language-plaintext highlighter-rouge">$t0</code> to be a pointer to <code class="language-plaintext highlighter-rouge">n</code>. the second line uses <code class="language-plaintext highlighter-rouge">lw</code> to dereference <code class="language-plaintext highlighter-rouge">$t0</code> and sets this register to the value stored in <code class="language-plaintext highlighter-rouge">n</code>.</p>
+<p>The <code class="language-plaintext highlighter-rouge">la</code> instruction loads the address associated with the label (here, <code class="language-plaintext highlighter-rouge">n</code>) into a register (here, <code class="language-plaintext highlighter-rouge">$t0</code>). The first line basically defines <code class="language-plaintext highlighter-rouge">$t0</code> to be a pointer to <code class="language-plaintext highlighter-rouge">n</code>. the second line uses <code class="language-plaintext highlighter-rouge">lw</code> to dereference <code class="language-plaintext highlighter-rouge">$t0</code> and sets this register to the value stored in <code class="language-plaintext highlighter-rouge">n</code>.</p>
 
 <p>In C language, the MIPS instructions above look like this</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">t0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
- <span class="n">t0</span> <span class="o">=</span> <span class="o">*</span><span class="n">t0</span><span class="p">;</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">t0</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>    <span class="c1">// you may get errors and warnings when compiling this in C, but</span>
+ <span class="n">t0</span> <span class="o">=</span> <span class="o">*</span><span class="n">t0</span><span class="p">;</span>   <span class="c1">// can be fixed with the right type casting and some parenthesis</span>
 </code></pre></div></div>
 
-<p>Vous pensez probablement : « Pourquoi ne pouvons-nous pas définir directement <code class="language-plaintext highlighter-rouge">$t0</code> sur <code class="language-plaintext highlighter-rouge">n</code> ? » Dans la section <code class="language-plaintext highlighter-rouge">.text</code> du code, il n’y a aucun moyen d’accéder directement à <code class="language-plaintext highlighter-rouge">n</code> qui est dans la section <code class="language-plaintext highlighter-rouge">.data</code> (Nous ne pouvons pas écrire <code class="language-plaintext highlighter-rouge">add $t0, n, $0</code> car les arguments de l’instruction <code class="language-plaintext highlighter-rouge">add</code> <strong>doivent être des registres</strong> et <code class="language-plaintext highlighter-rouge">n</code> <strong>n’est pas</strong> un registre). La seule façon d’accéder à <code class="language-plaintext highlighter-rouge">n</code> est d’obtenir son adresse avec l’instruction <code class="language-plaintext highlighter-rouge">la</code>. Une fois l’adresse de <code class="language-plaintext highlighter-rouge">n</code> connue, nous pouvons accéder au contenu de la variable avec <code class="language-plaintext highlighter-rouge">lw</code>. L’instruction <code class="language-plaintext highlighter-rouge">lw</code> permet d’affecter au registre <code class="language-plaintext highlighter-rouge">rt</code> (<code class="language-plaintext highlighter-rouge">$t0</code> pour cet exemple) la donnée stockée en mémoire <code class="language-plaintext highlighter-rouge">MEM[Imm + rs]</code> (<code class="language-plaintext highlighter-rouge">MEM[0 + $t0]</code> pour cet exemple).</p>
+<p>You’re probably thinking: “Why can’t we directly set <code class="language-plaintext highlighter-rouge">$t0</code> to <code class="language-plaintext highlighter-rouge">n</code>?” In the <code class="language-plaintext highlighter-rouge">.text</code> section of the code, there is no way to directly access <code class="language-plaintext highlighter-rouge">n</code> which is in the <code class="language-plaintext highlighter-rouge">.data</code> section (We cannot write <code class="language-plaintext highlighter-rouge">add $t0, n, $0 </code> because the arguments of the <code class="language-plaintext highlighter-rouge">add</code> instruction <strong>must be registers</strong> and <code class="language-plaintext highlighter-rouge">n</code> <strong>IS NOT</strong> a register). The only way to access <code class="language-plaintext highlighter-rouge">n</code> is to get its address with the <code class="language-plaintext highlighter-rouge">la</code> instruction. Once the address of <code class="language-plaintext highlighter-rouge">n</code> is known, we can get its content (with <code class="language-plaintext highlighter-rouge">lw</code> since <code class="language-plaintext highlighter-rouge">n</code> is a 32-bit value). Recall that <code class="language-plaintext highlighter-rouge">lw</code> assigns to register <code class="language-plaintext highlighter-rouge">rt</code> (<code class="language-plaintext highlighter-rouge">$t0</code>, in our case) the data content stored at memory address <code class="language-plaintext highlighter-rouge">Imm + rs</code> (i.e. <code class="language-plaintext highlighter-rouge">rt = MEM[Imm + rs]</code>).</p>
 
-<p>You’re probably thinking: “Why can’t we directly set <code class="language-plaintext highlighter-rouge">$t0</code> to <code class="language-plaintext highlighter-rouge">n</code>?” In the <code class="language-plaintext highlighter-rouge">.text</code> section of the code, there is no way to directly access <code class="language-plaintext highlighter-rouge">n</code> which is in the <code class="language-plaintext highlighter-rouge">.data</code> section (We cannot write <code class="language-plaintext highlighter-rouge">add $t0, n, $0 </code> because the arguments of the <code class="language-plaintext highlighter-rouge">add</code> instruction <strong>must be registers</strong> and <code class="language-plaintext highlighter-rouge">n</code> <strong>IS NOT</strong> a register). The only way to access <code class="language-plaintext highlighter-rouge">n</code> is to get its address with the <code class="language-plaintext highlighter-rouge">la</code> instruction. Once the address of <code class="language-plaintext highlighter-rouge">n</code> is known, we can access the contents of the variable with <code class="language-plaintext highlighter-rouge">lw</code>. The <code class="language-plaintext highlighter-rouge">lw</code> instruction allows one to assign to the register <code class="language-plaintext highlighter-rouge">rt</code> (<code class="language-plaintext highlighter-rouge">$t0</code>, in our case) the data stored in memory <code class="language-plaintext highlighter-rouge">MEM[Imm + rs]</code> (<code class="language-plaintext highlighter-rouge">MEM[0 + $t0]</code> in our case).</p>
-
-<p>Let’s move on to the loop now and start by implementing the code for the iteration:</p>
+<p>Let’s move on to the loop and begin by implementing the code for the iteration:</p>
 
 <pre><code class="language-mips">WHILE:
     beq $t0, $0, ELIHW  # exit the loop once we have completed n iterations
@@ -771,23 +768,20 @@ ELIHW:
 
 <ul>
   <li>
-    <p>The first line (<code class="language-plaintext highlighter-rouge">WHILE:</code>) is a label that maeks the start of the loop.</p>
+    <p>The first line (<code class="language-plaintext highlighter-rouge">WHILE:</code>) is a label that marks the start of the loop.</p>
   </li>
   <li>
-    <p>La ligne suivante (<code class="language-plaintext highlighter-rouge">beq $t0, $0, ELIHW</code>) définie notre condition de sortie. Ici, nous branchons sur une autre étiquette, <code class="language-plaintext highlighter-rouge">ELIHW</code>, une fois que <code class="language-plaintext highlighter-rouge">$t0</code> (qui représente la variable <code class="language-plaintext highlighter-rouge">i</code>) atteigne la valeur <code class="language-plaintext highlighter-rouge">0</code>.</p>
-  </li>
-  <li>
-    <p>The following line (<code class="language-plaintext highlighter-rouge">beq $t0, $0, ELIHW</code>) implements the exit condition. Here, one branches to label <code class="language-plaintext highlighter-rouge">ELIHW</code> once <code class="language-plaintext highlighter-rouge">$t0</code> reaches the value <code class="language-plaintext highlighter-rouge">0</code> (remeber that we set <code class="language-plaintext highlighter-rouge">$t0</code> to represent the variable <code class="language-plaintext highlighter-rouge">i</code>) .</p>
+    <p>The following line (<code class="language-plaintext highlighter-rouge">beq $t0, $0, ELIHW</code>) implements the exit condition. Here, the code branches to label <code class="language-plaintext highlighter-rouge">ELIHW</code> once <code class="language-plaintext highlighter-rouge">$t0</code> reaches the value <code class="language-plaintext highlighter-rouge">0</code> (remember that we set <code class="language-plaintext highlighter-rouge">$t0</code> to represent the variable <code class="language-plaintext highlighter-rouge">i</code>) .</p>
   </li>
   <li>
     <p>At the end of the loop body, the line (<code class="language-plaintext highlighter-rouge">addi $t0, $t0, -1</code>) decrements the variable <code class="language-plaintext highlighter-rouge">i</code>.</p>
   </li>
   <li>
-    <p>The next statement (<code class="language-plaintext highlighter-rouge">j WHILE</code>) returns to the start of the loop.</p>
+    <p>The next statement (<code class="language-plaintext highlighter-rouge">j WHILE</code>) returns to the beginning of the loop.</p>
   </li>
 </ul>
 
-<p>Now let’s add the body of the loop.</p>
+<p>Now, to the body of the loop…</p>
 
 <pre><code class="language-mips">WHILE:
     beq $t0, $0, ELIHW  # exit the loop once we have completed n iterations
@@ -803,7 +797,7 @@ ELIHW:
 
 <p>Nothing special here, the corresponding C lines are indicated in the comments.</p>
 
-<p>Let’s move on to displaying the nth Fibonacci number! Recall that displaying data on the console (i.e. <code class="language-plaintext highlighter-rouge">printf("...");</code> and the like in C) are system calls managed by the operating system! Therefore, we will use the special “<code class="language-plaintext highlighter-rouge">syscall</code>” instruction. And since we want to print an integer (i.e. the value of <code class="language-plaintext highlighter-rouge">curr_fib</code> stored in <code class="language-plaintext highlighter-rouge">$s0</code>), we need to set <code class="language-plaintext highlighter-rouge">$v0</code> to <code class="language-plaintext highlighter-rouge">1</code> and copy the integer value into ` $a0`.</p>
+<p>Let’s move on to displaying the nth Fibonacci number! Recall that displaying data on the console (i.e. <code class="language-plaintext highlighter-rouge">printf("...");</code> and the like) are system calls managed by the operating system! Therefore, we will use the special “<code class="language-plaintext highlighter-rouge">syscall</code>” instruction. And since we want to print an integer (i.e. the value of <code class="language-plaintext highlighter-rouge">curr_fib</code> stored in <code class="language-plaintext highlighter-rouge">$s0</code>), we need to set <code class="language-plaintext highlighter-rouge">$v0</code> to <code class="language-plaintext highlighter-rouge">1</code> and copy the integer value into <code class="language-plaintext highlighter-rouge">$a0</code>.</p>
 
 <pre><code class="language-mips">ELIHW:
     addi $v0,  $0, 1    # $v0 = service number for 'print an integer' 
