@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Structured and Unstructured Programming - Computer Design / Fall 2024 </title>
+  <meta name="description" content="IntroductionUnstructured programming is historically the oldest programming paradigm and capable of creating Turing-complete algorithms (see also Turing mach...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/en/non_structured_programming">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Materials
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Structured and Unstructured Programming</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p><strong>Unstructured programming</strong> is historically the oldest programming paradigm and capable of creating <a href="https://en.wikipedia.org/wiki/Turing-complete">Turing-complete</a> algorithms (see also <a href="https://en.wikipedia.org/wiki/Turing_machine">Turing machine</a>).</p>
+
+<p>There are high-level and low-level programming languages ​​that use <strong>Unstructured Programming</strong>. Some of the languages ​​commonly classified as “<em>unstructured</em>” include JOSS, FOCAL, TELCOMP, Assembly languages, MS-DOS command files, and early versions of Fortran, BASIC, COBOL, and MUMPS.</p>
+
+<p>A program written in an <em>unstructured</em> way uses <strong>jump instructions</strong> (i.e. the <code class="language-plaintext highlighter-rouge">goto</code> instruction) to <em>labels</em> or to instruction addresses. The lines of this program are usually numbered (as in BASIC) or may have “<em>labels</em>” which allows the flow of execution to branch to any line of the program. This is in contrast to <strong>Structured Programming</strong> which uses <em>block constructs</em> (i.e. <code class="language-plaintext highlighter-rouge">if/then/else</code> statements) and loops (i.e. <code class="language-plaintext highlighter-rouge">while</code>, <code class="language-plaintext highlighter-rouge">for</code>, …).</p>
+
+<p>This may not be so obvious, but you have already done “<a href="http://pise.info/algo/complements.htm">Structured Programming</a>” when learning Algorithmics! Take for example the following construct in C:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="cm">/* Condition */</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="cm">/* Block */</span>
+<span class="p">}</span>
+
+<span class="cm">/* next statements... */</span>
+</code></pre></div></div>
+
+<p>When <em>condition</em> is false, the program execution skips the block (delimited by curly braces) of the <code class="language-plaintext highlighter-rouge">if</code> statement and executes the next statements. In other words, there is a <strong>jump/branch</strong> to the <em>next</em> block of code! In <em>unstructured</em> programming, it is the programmer (you) who explicitly introduces <em>jump statements</em> into the program. Thus, the previous example in an <em>unstructured</em> format becomes:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="cm">/* NOT Condition */</span><span class="p">)</span> <span class="k">goto</span> <span class="n">FI</span><span class="p">;</span>
+
+<span class="cm">/* Block */</span>
+
+<span class="n">FI</span><span class="o">:</span>
+
+<span class="cm">/* remaining od the program ... */</span>
+</code></pre></div></div>
+
+<p>Here, a <code class="language-plaintext highlighter-rouge">goto</code> statement with the associated <em>label</em> (i.e. the <code class="language-plaintext highlighter-rouge">FI</code> text) is introduced into the program to accomplish the same task as before. Note that:</p>
+<ul>
+  <li>the condition of the <code class="language-plaintext highlighter-rouge">if</code> statement is flipped here (with the NOT keyword) to achieve the same behavior as in the  <em>structured</em> code (i.e. take the <strong>branch</strong> if <em>Condition</em> is false),</li>
+  <li>and, the removal of the curly braces which are no longer required in this case.</li>
+</ul>
+
+<p>A <code class="language-plaintext highlighter-rouge">goto</code> statement in C programming allows you to unconditionally jump from the <code class="language-plaintext highlighter-rouge">goto</code> instruction to a labeled statement in the <ins><strong>same function</strong></ins>. The syntax for a <code class="language-plaintext highlighter-rouge">goto</code> statement in C looks like:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">goto</span> <span class="n">label</span><span class="p">;</span>
+<span class="p">..</span>
+<span class="p">.</span>
+<span class="n">label</span><span class="o">:</span> <span class="n">instruction</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">label</code> can be any alphanumeric string (except C keywords), and can be defined anywhere in a C function (i.e. above or below a <code class="language-plaintext highlighter-rouge">goto</code> statement).</p>
+
+<h1 id="examples-of-structured-and-unstructured-codes">Examples of “structured” and “unstructured” codes</h1>
+
+<h2 id="ifthenelse-statements">if/then/else statements</h2>
+
+<div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Structed Code</th>
+<th style="text-align:center">Unstructured Code</th>      
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="k">if</span><span class="p">(</span><span class="cm"> /* Condition */ </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cm"> /* Block 1 */ </span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="cm"> /* Block 2 */ </span>
+<span class="p">}</span>
+
+<span class="cm"> /* next statements... */ </span>
+</pre>
+</td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="k">if</span><span class="p">(</span><span class="cm"> /* NOT Condition */ </span><span class="p">)</span><span class="k"> goto</span><span class="n"> ESLE</span><span class="p">;</span>
+
+<span class="cm"> /* Block 1 */</span>
+<span class="k">goto</span><span class="n"> FI</span><span class="p">;</span>
+<span class="n">ESLE</span><span class="o">:</span>
+
+<span class="cm"> /* Block 2 */</span>
+
+<span class="n">FI</span><span class="o">:</span>
+<span class="cm"> /* next statements... */</span>
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>Here, two <code class="language-plaintext highlighter-rouge">goto</code> statements are introduced: the first <code class="language-plaintext highlighter-rouge">goto</code> (i.e. <code class="language-plaintext highlighter-rouge">goto ESLE</code>) allows to branch to the <code class="language-plaintext highlighter-rouge">else</code> block if the condition is false. In case the condition is true, <em>Block 1</em> is executed and the second <code class="language-plaintext highlighter-rouge">goto</code> at the end of this block (i.e. <code class="language-plaintext highlighter-rouge">goto FI</code>) allows to jump to the “<em>next statements</em>” of the program and not execute <em>Block 2</em>.</p>
+
+<h2 id="switchcase-statements">switch/case statements</h2>
+
+<p>A naive approach to converting a <code class="language-plaintext highlighter-rouge">switch/case</code> block of code into an <em>unstructured</em> program would be to rewrite this block as a series of <code class="language-plaintext highlighter-rouge">if/then/else</code>statements and subsequently convert these instructions as described earlier. Another, more efficient approach would use the following steps:</p>
+
+<ol>
+  <li>
+    <p>Convert each <code class="language-plaintext highlighter-rouge">case i</code> statement into a unique label (ex: <code class="language-plaintext highlighter-rouge">case 5</code> will become <code class="language-plaintext highlighter-rouge">ESAC5</code>).</p>
+  </li>
+  <li>
+    <p>allocate an array before the <code class="language-plaintext highlighter-rouge">switch</code> statement with enough space to hold all the addresses ​​of the <code class="language-plaintext highlighter-rouge">labels</code> produced in step 1 (i.e. labels ESAC0, ESAC1, …).</p>
+  </li>
+  <li>
+    <p>add a label at the end of the <code class="language-plaintext highlighter-rouge">switch/case</code> block (ex: <code class="language-plaintext highlighter-rouge">KAERB:</code>) and convert each <code class="language-plaintext highlighter-rouge">break</code> statement of the <code class="language-plaintext highlighter-rouge">switch</code> block to a <code class="language-plaintext highlighter-rouge">goto</code> statement to this new label (ex: <code class="language-plaintext highlighter-rouge">goto KAERB;</code>) in order to jump to the end of the block.</p>
+  </li>
+  <li>
+    <p>Finally, the <code class="language-plaintext highlighter-rouge">switch</code> statement is converted with a couple of instructions: We need first to <em>evaluate</em> the <code class="language-plaintext highlighter-rouge">expression</code> of the <code class="language-plaintext highlighter-rouge">switch</code> statement and then according to this value we retrieve the address of the label stored in the allocated array from step 2. We then make the appropriate jump with a <code class="language-plaintext highlighter-rouge">goto</code> instruction again (see below).</p>
+  </li>
+</ol>
+
+<div>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center">Structed Code</th>
+      <th style="text-align:center">Unstructured Code</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+
+<span class="k">switch</span><span class="p">(</span><span class="cm"> /* Expression */ </span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">case</span><span class="mi"> 0</span><span class="p">:</span><span class="cm"> /* Block 0 */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span><span class="mi"> 1</span><span class="p">:</span><span class="cm"> /* Block 1 */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="p"> ... </span>
+  <span class="k">case</span><span class="mi"> N</span><span class="p">:</span><span class="cm"> /* Block N */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="nl">default</span><span class="p">:</span><span class="cm"> /* Default */ </span>         
+<span class="p">}</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+</td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="kt">void</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[]</span><span class="o"> = </span><span class="p">{</span><span class="o"> &amp;&amp;</span><span class="n">ESAC0</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">ESAC1</span><span class="p">, ...,</span><span class="o"> &amp;&amp;</span><span class="n">ESACN</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">TLUAFED</span><span class="p"> };</span>
+<span class="k">goto</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[</span><span class="cm"> /* Expression */ </span><span class="p">];</span>
+
+<span class="n">ESAC0</span><span class="o">:</span><span class="cm"> /* Block 0 */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="n">ESAC1</span><span class="o">:</span><span class="cm"> /* Block 1 */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">ESACN</span><span class="o">:</span><span class="cm"> /* Block N */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="n">TLUAFED</span><span class="o">:</span><span class="cm"> /* Default */</span>         
+<span class="n">KAERB</span><span class="o">:</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>NOTE</strong>: The steps described above assumes the use of the GCC compiler which provides a feature called “<a href="http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html">labels as values</a>” - Other C compilers might use other methods for the conversion.</p>
+
+<h2 id="while-and-for-loops">“while” and “for” loops</h2>
+
+<p>Converting a <code class="language-plaintext highlighter-rouge">while</code> loop to “unstructured code” is very similar to converting an <code class="language-plaintext highlighter-rouge">if/then</code> block. Indeed, a quick comparison between the “unstructured code” below and that of the <code class="language-plaintext highlighter-rouge">if/then</code> block introduced earlier in this page shows that, in addition to the flipping of the condition expression (i.e. NOT Condition), we substitute the <code class="language-plaintext highlighter-rouge">while</code> statement with a <code class="language-plaintext highlighter-rouge">if</code> statement and insert a second <code class="language-plaintext highlighter-rouge">goto</code> at the end of the loop block, just before the exit <code class="language-plaintext highlighter-rouge">NEXT:</code> label. This allows us to loop back and test the condition expression again for a new iteration.</p>
+
+<div>
+<table>
+  <thead>
+    <tr>
+<th style="text-align:center">Structed Code</th>
+<th style="text-align:center">Unstructured Code</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+
+<span class="k">while</span><span class="p">(</span><span class="cm"> /* Condition */ </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cm"> /* Block */ </span>
+<span class="p">}</span>
+
+<span class="cm"> /* next statements... */ </span>
+</pre>
+</td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="n">ELIHW</span><span class="o">:</span>
+<span class="k">if</span><span class="p">(</span><span class="cm"> /* NOT Condition */ </span><span class="p">)</span><span class="k"> goto</span><span class="n"> NEXT</span><span class="p">;</span>
+
+<span class="cm"> /* Block */</span>
+<span class="k">goto</span><span class="n"> ELIHW</span><span class="p">;</span>
+<span class="n">NEXT</span><span class="o">:</span>
+<span class="cm"> /* next statements... */</span>
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>To convert a <code class="language-plaintext highlighter-rouge">for</code> loop into unstructured code, note that this loop is conceptually equivalent to a <code class="language-plaintext highlighter-rouge">while</code> loop. Indeed, it is possible/easy to rewrite any <code class="language-plaintext highlighter-rouge">for</code> loop in the C language into a <code class="language-plaintext highlighter-rouge">while</code> loop (see the example below).</p>
+
+<div>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center">for loop</th>
+      <th style="text-align:center"></th>
+      <th style="text-align:center">while loop</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+
+<span class="k">for</span><span class="p">(</span><span class="n"> i</span><span class="o"> =</span><span class="mi"> 0</span><span class="p">;</span><span class="n"> i</span><span class="o"> &lt;</span><span class="n"> N</span><span class="p">;</span><span class="n"> i</span><span class="o">++</span><span class="p">  )</span>
+<span class="p">{</span>
+<span class="cm">    /* Block */</span>
+
+<span class="p">}</span>
+
+<span class="cm">/* next statements... */</span>      
+</pre>
+</td>
+<td><font size="+4"> &#8660; </font></td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="n">i</span><span class="o"> =</span><span class="mi"> 0</span>;
+<span class="k">while</span><span class="p">(</span><span class="n"> i</span><span class="o"> &lt;</span><span class="n"> N</span><span class="p"> )</span>
+<span class="p">{</span>
+<span class="cm">    /* Block */</span>
+<span class="n">    i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="dowhile-loops">“do..while” loops</h2>
+
+<p>Enfin, comme pour la boucle <code class="language-plaintext highlighter-rouge">while</code> vue plus haut, la transformation vers un code non structuré de la boucle <code class="language-plaintext highlighter-rouge">do..while</code> requiert le remplacement du mot clé <code class="language-plaintext highlighter-rouge">while</code> par le mot clé <code class="language-plaintext highlighter-rouge">if</code>. Notons toutefois, que la condition de la boucle reste inchangée (c.-à-d. non inversée). Notons aussi qu’un seul <code class="language-plaintext highlighter-rouge">goto</code> est introduit pour retourner au début de la boucle <code class="language-plaintext highlighter-rouge">do / while</code>.</p>
+
+<p>Finally, as for the <code class="language-plaintext highlighter-rouge">while</code> loop seen above, transforming the <code class="language-plaintext highlighter-rouge">do..while</code> loop into unstructured code requires replacing the <code class="language-plaintext highlighter-rouge">while</code> statement with a <code class="language-plaintext highlighter-rouge">if</code> statement. Note, however, that the loop condition remains unchanged (i.e. not inverted). Note also that a single <code class="language-plaintext highlighter-rouge">goto</code> is introduced here (to return to the start of the <code class="language-plaintext highlighter-rouge">do..while</code> loop).</p>
+
+<div>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center">Structed Code</th>
+<th style="text-align:center">Unstructured Code</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="k">do</span>
+<span class="p">{</span>
+<span class="cm">    /* Block */</span>
+<span class="p">}</span>
+<span class="k">while</span><span class="p">(</span><span class="cm"> /* Condition */</span><span class="p"> );</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+  </td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="n">OD</span><span class="o">:</span>
+
+<span class="cm">/* Block */</span>
+
+<span class="k">if</span><span class="p">(</span><span class="cm"> /* Condition */ </span><span class="p">)</span><span class="k"> goto</span><span class="n"> OD</span><span class="p">;</span>
+
+<span class="cm">/* next statements... */</span>        
+</pre>
+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

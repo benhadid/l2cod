@@ -18,10 +18,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Compiling and debugging C programs in UN*X - Architecture des ordinateurs / Automne 2023 </title>
+  <title> Compiling and debugging C programs in UN*X - Computer Design / Fall 2024 </title>
   <meta name="description" content="Objectives      Learn basic UN*X shell commands.        Learn how to compile and execute C programs on the lab machines (Linux environment).        Hands-on ...">
   
-
   <!--for gitlab pages -->
   
 
@@ -34,7 +33,7 @@
 
   <link rel="stylesheet" href="/l2ado/_css/main.css">
   <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/01_lab">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -61,10 +60,10 @@
           <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;">
 <a class="schoolname" style="font-size: 15px;" href=""></a>
+          <br>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</b></a></span>
           <br>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</b></a></span>
-          <br>
-          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
           </td>
         </tr></table>
 
@@ -79,9 +78,7 @@
       </a>  
 
     <div class="trigger">
-<h1>Main Navigation</h1>
-
- <ul class="menu">
+<h1>Main Navigation</h1> <ul class="menu">
     
     <li>
 
@@ -89,7 +86,7 @@
       
 
       <a class="page-link" href="/l2ado/">
-        <i class="fa fa-home fa-lg"></i> Accueil
+        <i class="fa fa-home fa-lg"></i> Home
       </a>
 
     </li>
@@ -100,7 +97,7 @@
       
 
       <a class="page-link" href="/l2ado/schedule/">
-        <i class="fas fa-calendar-alt"></i> Calendrier
+        <i class="fas fa-calendar-alt"></i> Schedule
       </a>
 
     </li>
@@ -111,7 +108,7 @@
       
 
       <a class="page-link" href="/l2ado/lectures/">
-        <i class="fas fa-book-reader"></i> Cours
+        <i class="fas fa-book-reader"></i> Lectures
       </a>
 
     </li>
@@ -122,7 +119,7 @@
       
 
       <a class="page-link" href="/l2ado/discussions/">
-        <i class="fas fa-user-graduate"></i> T. Dirigés
+        <i class="fas fa-user-graduate"></i> Seminars
       </a>
 
     </li>
@@ -133,7 +130,7 @@
       
 
       <a class="page-link" href="/l2ado/labs/">
-        <i class="fas fa-laptop-code"></i> T. Pratiques
+        <i class="fas fa-laptop-code"></i> Labs
       </a>
 
     </li>
@@ -144,7 +141,7 @@
       
 
       <a class="page-link" href="/l2ado/quizzes/">
-        <i class="fas fa-question-circle"></i> Quiz
+        <i class="fas fa-question-circle"></i> Quizzes
       </a>
 
     </li>
@@ -155,7 +152,7 @@
       
 
       <a class="page-link" href="/l2ado/projects/">
-        <i class="fas fa-user-graduate"></i> Projets
+        <i class="fas fa-user-graduate"></i> Projects
       </a>
 
     </li>
@@ -166,21 +163,21 @@
       
 
       <a class="page-link" href="/l2ado/materials/">
-        <i class="fas fa-book"></i> Ressources
+        <i class="fas fa-book"></i> Materials
       </a>
 
     </li>
     
 </ul>
-
-
-     </div>  
+ </div>  
+    
     </nav>
-
   </div>
 
-  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2ado/_images/pattern.png');"></div>
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );">
+  </div>
 
 </header>
 
@@ -191,31 +188,31 @@
 
   <header class="post-header">
     <h1 class="post-title">Compiling and debugging C programs in UN*X</h1>
-    <p class="post-meta">Publié le
+    <p class="post-meta">Published on 
       <!--
-      Sunday
-      01/10/2023
+      Wednesday
+      25/09/2024
       -->
       
-      Dimanche
-      1
+      Wednesday
+      25
       
-      Octobre
-      2023
+      September
+      2024
     </p>
   </header>
 
   <div>
     
-    <span style="font-weight: bold">Échéance :
-      <!-- 08/10/2023 -->
+    <span style="font-weight: bold"> Due on 
+      <!-- 03/10/2024 -->
 
       
-      Dimanche
-      8
+      Thursday
+      3
       
-      Octobre
-      2023
+      October
+      2024
     </span>
     
 
@@ -223,7 +220,7 @@
     
 
     
-    <p style="font-weight: bold">Télécharger
+    <p style="font-weight: bold">Download
 
       
 
@@ -290,7 +287,7 @@
 
 <p>Entering the above statement (without the $) into a “Terminal” (press Ctrl+Alt+T to open a Terminal window in Ubuntu) will execute the command. Here the instruction simply displays the message “Hello world” (without the quotes).</p>
 
-<p>Flags are used to specify options for the command to execute or modify its behavior. They usually start with one or two dashes and may take an additional argument.</p>
+<p>Flags are used to specify options for the command to execute or modify its behaviour. They usually start with one or two dashes and may take an additional argument.</p>
 
 <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span>gcc <span class="nt">--help</span>
 <span class="gp">$</span><span class="w"> </span><span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"Hello</span><span class="se">\n</span><span class="s2">world"</span>

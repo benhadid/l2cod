@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Le simulateur MARS - Architecture des ordinateurs / Automne 2024 </title>
+  <meta name="description" content="IntroductionMARS (Mips Assembly and Runtime Simulator) est un outil utilisé pour assembler et simuler l’exécution de programmes en langage assembleur MIPS. I...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/fr/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/fr/docs/fr/MARS">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2024 - " href="https://benhadid.github.io/l2ado/fr/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/fr/" title="Architecture des ordinateurs / Automne 2024 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Le simulateur MARS</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p>MARS (<strong>Mi</strong>ps <strong>A</strong>ssembly and <strong>R</strong>untime <strong>S</strong>imulator) est un outil utilisé pour assembler et simuler l’exécution de programmes en langage assembleur MIPS. Il peut être utilisé à partir de la ligne de commande ou via son environnement de développement intégré (IDE). MARS est programme Java et nécessite au moins la version 1.5 de J2SE Java Runtime Environment (JRE) pour fonctionner. Il est distribué sous forme de fichier JAR exécutable depuis le site de l’<a href="http://www.cs.missouristate.edu/MARS/">Université de l’État du Missouri</a>.</p>
+
+<p>MARS est déjà installé sur les machines des salles TP et dans la VM <a href="/l2ado/fr/materials">fournie</a>. Pour lancer MARS depuis ces machines, entrez la commande suivante dans un terminal</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>mars
+</code></pre></div></div>
+
+<p>Il y a deux fenêtres principales dans MARS (voir figure ci-dessous) :</p>
+
+<ul>
+  <li>
+    <p>La fenêtre d’édition « <strong>Edit</strong> » : utilisée pour créer et modifier un programme MIPS</p>
+  </li>
+  <li>
+    <p>La fenêtre d’exécution « <strong>Execute</strong> » : utilisée pour exécuter et déboguer un programme MIPS</p>
+  </li>
+</ul>
+
+<p>Pour basculer entre ces fenêtres, cliquez sur les onglets en haut.</p>
+
+<p><img src="/l2ado/static_files/images/mars.png" alt="MARS" height="100%" width="100%" class="aligncenter" /></p>
+
+<p>Il y a deux zones de message organisées sous forme d’onglets au bas de la figure ci-dessus :</p>
+
+<ul>
+  <li>
+    <p>L’onglet « <strong>Mars Messages</strong> » : utilisé pour afficher des messages tels que les erreurs d’assemblage ou d’exécution et les messages d’information. Vous pouvez cliquer sur les messages d’erreur d’assemblage pour sélectionner la ligne de code correspondante dans l’éditeur.</p>
+  </li>
+  <li>
+    <p>L’onglet « <strong>Run I/O</strong> » : Utilisé au moment de l’exécution pour afficher la sortie du programme sur la console et saisir éventuellement des entrées pour celui-ci.</p>
+  </li>
+</ul>
+
+<p>La fenêtre « <strong>Execute</strong> » contient trois volets principaux :</p>
+
+<ul>
+  <li>
+    <p><strong>Text Segment</strong> : affiche le code machine et les adresses associées.</p>
+  </li>
+  <li>
+    <p><strong>Data Segment</strong> : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données.</p>
+  </li>
+  <li>
+    <p><strong>Labels</strong> : affiche les adresses des éléments étiquetés comme les variables et les points de saut. Si l’anglet n’est pas visible sur votre simulateur, vous pouvez l’activer à partir du menu « <strong>Settings | Show Labels Window (symbol table)</strong> »</p>
+  </li>
+</ul>
+
+<p>La figure ci-dessous montre les volets de la fenêtre « <strong>Execute</strong> » et souligne les fonctionnalités suivantes :</p>
+
+<ol>
+  <li>
+    <p>L’onglet de la fenêtre « <strong>Execute</strong> ».</p>
+  </li>
+  <li>
+    <p>Code assembleur affiché avec adresses et code machine associés.</p>
+  </li>
+  <li>
+    <p>Valeurs stockées dans le segment de données. Vous pouvez les modifier directement dans cette zone.</p>
+  </li>
+  <li>
+    <p>Commandes de navigation dans la zone de segment de données. Permet aussi de basculer pour afficher le segment de pile.</p>
+  </li>
+  <li>
+    <p>Basculer entre l’affichage décimal et hexadécimal des adresses et les valeurs dans la mémoire et dans les registres.</p>
+  </li>
+  <li>
+    <p>Les étiquettes et leurs adresses mémoire correspondantes.</p>
+  </li>
+  <li>
+    <p>Valeurs stockées dans les registres. Vous pouvez modifier directement ces valeurs dans cette zone.</p>
+  </li>
+  <li>
+    <p>Cases à cocher utilisées pour configurer les « points d’arrêt » pour chaque instruction MIPS. Utile pour le débogage.</p>
+  </li>
+  <li>
+    <p>Sélection de la vitesse d’exécution. Utile pour le débogage.</p>
+  </li>
+</ol>
+
+<p><img src="/l2ado/static_files/images/mars_execute_annotated.png" alt="MARS" height="100%" width="100%" class="aligncenter" /></p>
+
+<p>À tout moment, la fenêtre de registre MIPS apparaît sur le côté droit de l’écran, même lorsque vous êtes en mode édition et n’exécutez pas de programme. Cela sert de référence utile pour les noms de registre et leur utilisation. Déplacez la souris sur le nom du registre pour voir les info-bulles.</p>
+
+<p>Il existe trois onglets de registres :</p>
+
+<ul>
+  <li>
+    <p><strong>Registers</strong> : Les registres entiers $0 à $31, HI, LO, et le PC.</p>
+  </li>
+  <li>
+    <p><strong>Coproc 0</strong> : registres pour les codes d’exceptions, d’interruptions, et de status.</p>
+  </li>
+  <li>
+    <p><strong>Coproc 1</strong> : registres pour le calcul en virgule flottante.</p>
+  </li>
+</ul>
+
+<h1 id="assemblage-exécution-et-débogage-de-programmes-mips">Assemblage, Exécution, et Débogage de programmes MIPS</h1>
+
+<p>Pour assembler le code actuellement dans l’onglet « <strong>Edit</strong> », sélectionnez « <strong>Assemble</strong> » dans le menu « <strong>Run</strong> » ou utilisez l’icône <img src="/l2ado/static_files/images/mars_assemble_icon.png" alt="MARS" /> de la barre d’outils.</p>
+
+<p>S’il y’a des erreurs de syntaxe dans le programme, elles apparaîtront dans l’onglet « <strong>Mars Messages</strong> » en bas de la fenêtre MARS. Chaque message d’erreur contient la ligne et la colonne où l’erreur s’est produite.</p>
+
+<p>Si le programme MIPS s’assemble avec succès, les registres sont initialisés et les segment de code et de données sont remplis, comme illustré à la figure ci-dessous.</p>
+
+<p><img src="/l2ado/static_files/images/mars_execute.png" alt="MARS" height="100%" width="100%" class="aligncenter" /></p>
+
+<p>Après avoir exécuté la commande « <strong>Assemble</strong> », vous pouvez maintenant exécuter le programme. Le menu « <strong>Run</strong> » et la barre d’outils contiennent les options d’exécution suivantes :</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="13%" />
+<col width="10%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Menu</th>
+<th style="text-align:center">Icône</th>
+<th style="text-align:center">Action</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:left">Run | Assemble</td>
+<td style="text-align:center"><img src="/l2ado/static_files/images/mars_assemble_icon.png" alt="MARS" /></td>
+<td>Assemble le programme</td>
+</tr>
+
+<tr>
+<td style="text-align:left">Run | Go</td>
+<td style="text-align:center"><img src="/l2ado/static_files/images/mars_execute_go.png" alt="GO" /></td>
+<td>Exécute le programme jusqu’à la fin ou jusqu’au prochain « point d’arrêt »</td>
+</tr>
+
+<tr>
+<td style="text-align:left">Run | Reset</td>
+<td style="text-align:center"><img src="/l2ado/static_files/images/mars_execute_reset.png" alt="RESET" /></td>
+<td>Réinitialise le programme et le simulateur aux valeurs initiales. Permet de redémarrer l’exécution du programme.</td>
+</tr>
+
+<tr>
+<td style="text-align:left">Run | Step</td>
+<td style="text-align:center"><img src="/l2ado/static_files/images/mars_execute_step.png" alt="STEP" /></td>
+<td>Exécution pas-à-pas : Exécute une instruction à la fois. Permet de déboguer le programme en inspectant les registres et la mémoire après avoir exécuté chaque instruction.</td>
+</tr>
+
+<tr>
+<td style="text-align:left">Run | BackStep</td>
+<td style="text-align:center"><img src="/l2ado/static_files/images/mars_execute_backstep.png" alt="BACKSTEP" /></td>
+<td>Un pas en arrière : Annule l’exécution de la dernière instruction.</td>
+</tr>
+
+<tr>
+<td style="text-align:center" colspan="2"><img src="/l2ado/static_files/images/mars_execute_speed.png" alt="SPEED" /></td>
+<td>Ce curseur permet d’exécuter le programme à pleine vitesse ou de le ralentir pour qu’on puisse voir l’évolution de l’exécution.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Pendant l’exécution du programme, l’instruction en cours est surlignée en jaune et le registre qui a été modifié en dernier est surligné en vert. De plus, la variable qui vient d’être mise à jour dans le segment de données est surlignée en bleu. Ces effets de couleurs ne sont perceptibles que si vous exécutez le programme en mode « pas-à-pas » ou à une vitesse réduite.</p>
+
+<h2 id="assemblage-dans-mars-de-projet-constitué-de-plusieurs-fichiers">Assemblage dans MARS de projet constitué de plusieurs fichiers</h2>
+
+<p>Parfois, il est possible que nous ayons à assembler plusieurs fichiers en même temps pour un projet. Par exemple, implémenter une fonction spécifique dans un fichier et utiliser un autre fichier « test » fourni pour s’assurer que notre fonction est implémentée correctement.</p>
+
+<p>Le simulateur MARS permet d’assembler et de lier plusieurs fichiers dans un seul programme. Suivez les étapes ci-dessous pour activer cette fonctionnalité, si besoin.</p>
+
+<ol>
+  <li>Placez les fichiers du projet dans un même répertoire.</li>
+  <li>Depuis le menu de MARS, activez l’option « <strong>Settings | Assemble all files in directory</strong> ».</li>
+  <li>De plus, pour que l’exécution commence toujours à partir de votre fonction ‘main’, activer l’option « <strong>Settings | Initialize program counter to global ‘main’</strong> ».</li>
+  <li>Assemblez le fichier principal du projet (c.-à-d. le fichier contenant votre fonction ‘main’); MARS se chargera d’assembler et lier les appels vers les autres fichiers.</li>
+  <li>Happy MIPSing !</li>
+</ol>
+
+<p>Pour plus de détails sur le simulateur MARS, reportez-vous à la <a href="http://courses.missouristate.edu/KenVollmar/MARS">documentation MARS</a>.</p>
+
+<h1 id="exemples-dutilisation">Exemples d’utilisation</h1>
+
+<h2 id="exemple-1--hello-world-dans-mips-">Exemple 1 : ‘Hello world’ dans MIPS !</h2>
+
+<ol>
+  <li>Tapez dans MARS le programme illustré dans la figure ci-dessous.</li>
+  <li>Découvrez comment afficher et masquer les numéros de ligne.</li>
+  <li>Assemblez et exécutez le programme.</li>
+  <li>Quelle est la sortie du programme ? et où apparaît-elle ?</li>
+</ol>
+
+<p><img src="/l2ado/static_files/images/mars_hello.png" alt="MARS" height="93%" width="93%" class="wp-caption aligncenter" /></p>
+
+<h2 id="exemple-2--usage-avancé-du-simulateur-mars">Exemple 2 : Usage avancé du simulateur MARS</h2>
+
+<ol>
+  <li>Ouvrez et assemblez dans MARS le fichier <code class="language-plaintext highlighter-rouge">Fibonacci.asm</code>  disponible depuis ce <a href="http://courses.missouristate.edu/KenVollmar/MARS">site</a>.</li>
+  <li>Identifiez les emplacements et les valeurs des données initialisées.</li>
+  <li>Basculer le format d’affichage entre décimal et hexadécimal.</li>
+  <li>Exécutez le programme à une vitesse de 3 instructions par seconde ou moins.</li>
+  <li>Exécutez le programme pas-à-pas et remarquez comment les valeurs changent dans les registres et dans la mémoire.</li>
+  <li>Observez la sortie du programme dans la fenêtre d’affichage « <strong>Run I/O</strong> ».</li>
+  <li>Définissez un « <strong>point d’arrêt</strong> » à la première instruction qui affiche les résultats. Quelle est l’adresse de cette instruction ?</li>
+  <li>Exécutez le programme à vitesse normale et remarquez comment il s’arrête au « <strong>point d’arrêt</strong> ».</li>
+  <li>Changez la ligne :
+    <pre><code class="language-mips">   space: .asciiz " "    # space to insert between numbers
+</code></pre>
+    <p>à cette ligne</p>
+
+    <pre><code class="language-mips">   space: .asciiz "\n"   # space to insert between numbers
+</code></pre>
+
+    <p>Exécutez le programme encore une fois. Que remarquez-vous ?</p>
+  </li>
+</ol>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

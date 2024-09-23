@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Functions and Calling Convention in MIPS - Computer Design / Fall 2024 </title>
+  <meta name="description" content="IntroductionA function is an algorithmic concept used to structure programs to make them easier to understand and manipulate. In fact, a function  is a block...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/en/MIPS_Calling_Convention">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Materials
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Functions and Calling Convention in MIPS</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p>A function is an algorithmic concept used to structure programs to make them easier to understand and manipulate. In fact, a function</p>
+<ul>
+  <li>is a block of instructions that can be called as needed at different points in a program.</li>
+  <li>can receive parameters and return results. Parameters and results act as an interface between the function and the rest of the program.</li>
+</ul>
+
+<p>To execute a function, the program must perform the following steps:</p>
+<ol>
+  <li>The program must put the parameters where the callee function can access them.</li>
+  <li>Transfers control to the <em>callee function</em>.</li>
+  <li>Executes the instructions of the <em>callee function</em>.</li>
+  <li>The <em>callee function</em> must put the results where the <em>caller function</em> can access them.</li>
+  <li>Returns control to the <em>caller function</em>.</li>
+</ol>
+
+<p>Registers are the fastest place to pass parameters to a function and return results. The MIPS R3000 processor has 32 registers, 24 of which can be “freely” used for data storage by your program. You might think that this is a problem if we ever plan to implement complex programs that use dozens or even hundreds of functions. This is, however, not really a limitation because we have access to stack memory which we can also use for temporary data storage.</p>
+
+<p>Indeed, data contained in the registers can be stored on the stack, so that these same registers can be reused by a <em>callee</em> function. When this function returns, and so that the program can continue its normal execution, these registers are restored to their initial state from the data saved on the stack.</p>
+
+<p>There is an established convention that dictates who (between the caller and the callee functions) is responsible for saving registers on the stack. This is called the “MIPS calling convention.” In particular, the MIPS architecture respects the following software convention for transmitting parameters and returning results:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">$a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code> : Four registers for passing arguments to the callee function.</li>
+  <li><code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code> : Two registers for returning results to the caller function.</li>
+  <li><code class="language-plaintext highlighter-rouge">$ra</code> : This register contains the address to which the program will return in the caller function</li>
+</ul>
+
+<p>In MIPS, the <code class="language-plaintext highlighter-rouge">jal</code> instruction (i.e. jump-and-link) is used to call a function; and the <code class="language-plaintext highlighter-rouge">jr</code> instruction (i.e. jump register) is used to return control to the caller function. So, to call a function, we use the <code class="language-plaintext highlighter-rouge">jal</code> instruction as follows:</p>
+
+<pre><code class="language-mips">  jal func    # func is a label that marks the start of the function we would like to call.  
+  ...         # next instruction 
+</code></pre>
+
+<p>The above instruction stores the address of the instruction that succeeds <code class="language-plaintext highlighter-rouge">jal</code> in register <code class="language-plaintext highlighter-rouge">$ra</code> and jumps to the first instruction of the function marked with the label <code class="language-plaintext highlighter-rouge">func</code>. To return from a function, we use the instruction:</p>
+
+<pre><code class="language-mips">  jr $ra      # $ra register contains the address of 'next instruction' above
+</code></pre>
+
+<p>This instruction assigns to the <code class="language-plaintext highlighter-rouge">$pc</code> register (program counter) the value stored in <code class="language-plaintext highlighter-rouge">$ra</code>. I.e. it allows one to jump to the address contained in register <code class="language-plaintext highlighter-rouge">$ra</code>.</p>
+
+<p>Consider the example shown below of a C function (left) that checks whether a character <code class="language-plaintext highlighter-rouge">ch</code> is in lowercase or not. The equivalent version in MIPS is shown on the right. In accordance with the MIPS calling convention, function <code class="language-plaintext highlighter-rouge">islower</code> assumes that the <code class="language-plaintext highlighter-rouge">ch</code> argument is passed in register <code class="language-plaintext highlighter-rouge">$a0</code>. The result of the function is returned in register <code class="language-plaintext highlighter-rouge">$v0</code>.</p>
+
+<div id="CvsMIPS">
+  <div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="kt">int</span> <span class="nf">islower</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span><span class="o">&lt;=</span><span class="sc">'z'</span><span class="p">)</span>  
+      <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+  
+  <div>
+
+    <pre><code class="language-mips">  islower:
+     blt $a0, 'a', sinon   # branch if $a0 &lt; 'a' 
+     bgt $a0, 'z', sinon   # branch if $a0 &gt; 'z' 
+     li $v0, 1             # $v0 = 1
+     jr	 $ra               # return to caller 
+  sinon:
+     li $v0, 0             # $v0 = 0
+     jr $ra                # return to caller
+</code></pre>
+
+  </div>  
+</div>
+
+<!--
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr height ="px | %">
+<td markdown="1">
+
+  ```c
+
+  int islower(char ch) {
+    if (ch>='a' && ch<='z')  
+      return 1;
+    else
+      return 0;
+  }
+
+  ```
+
+</td>
+<td markdown="1">
+
+  ```mips
+  islower:
+     blt $a0, 'a', sinon   # branche si $a0 < 'a' 
+     bgt $a0, 'z', sinon   # branche si $a0 > 'z' 
+     li $v0, 1             # $v0 = 1
+     jr	 $ra               # retour à l’appelant 
+  sinon:
+     li $v0, 0             # $v0 = 0
+     jr $ra                # retour à l’appelant
+  ```
+
+</td>
+</tr>
+</tbody>
+</table>
+-->
+
+<p>To call <code class="language-plaintext highlighter-rouge">islower</code> in MIPS, the <em>caller</em> must first copy the <code class="language-plaintext highlighter-rouge">ch</code> character into the <code class="language-plaintext highlighter-rouge">$a0</code> register, then execute the “function call” with the <code class="language-plaintext highlighter-rouge">jal</code> instruction:</p>
+
+<pre><code class="language-mips">   move $a0, ...    # copy of character ch into register $a0
+   jal	islower	    # calling the islower function
+   . . .            # next instruction (returns here after executing islower)
+</code></pre>
+
+<p>In fact, the MIPS ISA provides a second instruction for calling functions: the <code class="language-plaintext highlighter-rouge">jalr</code>instruction  (i.e jump-and-link-register). Indeed, unlike the <code class="language-plaintext highlighter-rouge">jal</code> instruction where the jump address is coded in the instruction itself via a label, the <code class="language-plaintext highlighter-rouge">jalr</code> instruction allows one to call functions whose addresses are stored in registers.</p>
+
+<h1 id="the-stack-segment">The Stack Segment</h1>
+
+<p>When loaded into memory by the operating system, each program has three segments: There is the <strong>code segment</strong> which contains the machine code instructions, the <strong>data segment</strong> which includes the program data and constants, and the <strong>stack segment</strong> which provides a space that can be used by functions. The programmer has no control over the location of these segments in memory.</p>
+
+<p>The stack segment can be used by functions to</p>
+<ul>
+  <li>transmit numerous parameters,</li>
+  <li>allocate local variables, and</li>
+  <li>preserve the content of registers between function calls. 
+Without this segment, it would be “mission impossible” to write nested and/or recursive functions.</li>
+</ul>
+
+<p>In MIPS, when a program is loaded into memory, the operating system initialises the stack-pointer register <code class="language-plaintext highlighter-rouge">$sp</code> (i.e. register <code class="language-plaintext highlighter-rouge">$29</code>) with the address of the <strong>stack segement</strong>. In fact, the address in <code class="language-plaintext highlighter-rouge">$sp</code> points to the <strong>top of the stack</strong>. For example, in the <a href="/l2ado/static_files/docs/MARS.html">MARS</a> simultor, the (initial) value of the stack-pointer <code class="language-plaintext highlighter-rouge">$sp</code> is set to <code class="language-plaintext highlighter-rouge">0x7fffeffc</code>.</p>
+
+<p><img src="/l2ado/static_files/images/MemSegments.png" alt="MemSegments" height="50%" width="50%" class="aligncenter" /></p>
+
+<p>A function can reserve space on the stack to save registers and/or to allocate local variables. This space is called a <strong>stackframe</strong> To allocate a stackframe of <code class="language-plaintext highlighter-rouge">n</code> bytes, the stack pointer is decremented by <code class="language-plaintext highlighter-rouge">n</code>:</p>
+
+<pre><code class="language-mips">   addiu $sp, $sp, -n      # allocate n bytes on the stack (note: n is a constant)
+</code></pre>
+
+<p>To free a stackframe of n bytes, one increments the stack pointer by <code class="language-plaintext highlighter-rouge">n</code>:</p>
+
+<pre><code class="language-mips">   addiu $sp, $sp,  n      # free n bytes from the stack (note: n is a constant)
+</code></pre>
+
+<p>The figure below illustrates the state of the stack segment before the call, during execution, and after returning from a function call. Initially, the stack register <code class="language-plaintext highlighter-rouge">$sp</code> points to the top of the <strong>caller function</strong>’s stackframe. Once the call is made, register <code class="language-plaintext highlighter-rouge">$sp</code> is decremented to make space on the top of the stack segment to store the stackframe of the <strong>callee function</strong>. Finally, when the callee function returns, register <code class="language-plaintext highlighter-rouge">$sp</code> is incremented so that it points again to the stackframe of the caller function, thus freeing the memory allocated on the stack. Note that, the stack segment increases (resp. decreaases) toward lower (resp. higher) memory addresses.</p>
+
+<p><img src="/l2ado/static_files/images/StackSegment.png" alt="StackSegment" height="80%" width="80%" class="aligncenter" /></p>
+
+<p>An example of a function <code class="language-plaintext highlighter-rouge">f()</code> that allocates a stackframe is shown below. The function is not final in a sens that it in turn calls other functions <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">reverse()</code> and <code class="language-plaintext highlighter-rouge">print()</code>. Therefore, the return address of <code class="language-plaintext highlighter-rouge">f()</code> (i.e. contained in <code class="language-plaintext highlighter-rouge">$ra</code>) must be saved on the stack before calling <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">reverse()</code> or <code class="language-plaintext highlighter-rouge">print()</code>. Additionally, the stackframe of <code class="language-plaintext highlighter-rouge">f()</code> must also have space for the local integer <code class="language-plaintext highlighter-rouge">array</code> (10 integer elements = 40 bytes) as shown below.</p>
+
+<div id="CvsMIPS">
+  <div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> 
+   <span class="p">{</span>
+     <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span> 
+     <span class="n">read</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+     <span class="n">reverse</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+     <span class="n">print</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  
+   <span class="p">}</span>
+
+</code></pre></div>    </div>
+
+  </div>
+  
+  <div>
+
+    <p><img src="/l2ado/static_files/images/Trame-de-pile.png" alt="TramePile" height="72%" width="72%" class="aligncenter" />
+       <br /></p>
+  </div>  
+</div>
+
+<p>The translation of function <code class="language-plaintext highlighter-rouge">f()</code> into MIPS is shown below. The function allocates a stackframe of 44 bytes. The stack-pointer <code class="language-plaintext highlighter-rouge">$sp</code> contains the address of the top of the stack. The stack segment is accessed using the same instructions we use to read or write data to the <code class="language-plaintext highlighter-rouge">.data</code> segment (i.e. instructions <code class="language-plaintext highlighter-rouge">lw/sw</code> and the like). Various offset values ​​are used to access different elements on the stack.</p>
+
+<pre><code class="language-mips">f:   addiu $sp, $sp, -44     # reserves a 44-byte stack frame
+     sw    $ra, 40($sp)      # save $ra on the stack
+     add   $a0, $zero, $sp   # $a0 is set to the stack pointer
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   read              # call function 'read'
+     add   $a0, $zero, $sp   # $a0 is set to the stack pointer
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   reverse           # call function 'reverse'
+     add   $a0, $zero, $sp   # $a0 is set to the stack pointer
+     addi  $a1, $zero, 10    # $a1 = 10
+     jal   print             # call function 'print'
+     lw    $ra, 40($sp)      # restore the value of $ra from the stack
+     addiu $sp, $sp, 44      # free the 44-byte stack frame
+     jr    $ra               # return to the caller function
+</code></pre>
+
+<h1 id="convention-between-the-caller-and-callee-functions-in-mips">Convention between the Caller and Callee functions in MIPS</h1>
+
+<p>According to the calling convention, MIPS registers are divided into two groups: registers saved/restored by the <em>caller</em> function and registers saved/restored by the <em>callee</em> function. The following table show which register is managed by wihch function type.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Number</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0</td>
+<td style="text-align:center">$0</td>
+<td style="text-align:left">Always equal to 0</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$1</td>
+<td style="text-align:center">$at</td>
+<td style="text-align:left">is used by the assembler tool for pseudo instruction expansion</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$2-$3</td>
+<td style="text-align:center">$v0-$v1</td>
+<td style="text-align:left">hold the values ​​returned by the called functions</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$4-$7</td>
+<td style="text-align:center">$a0-$a3</td>
+<td style="text-align:left">used to pass arguments to functions</td>
+</tr>
+
+<tr class="appelante-row-highlight">
+<td style="text-align:center">$8-$15 , $24-$25</td>
+<td style="text-align:center">$t0-$t9</td>
+<td style="text-align:left">for handling temporary data</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$16-$23</td>
+<td style="text-align:center">$s0-$s7</td>
+<td style="text-align:left">store local data to functions</td>
+</tr>
+
+<tr>
+<td style="text-align:center">$26-$27</td>
+<td style="text-align:center">$k0-$k1</td>
+<td style="text-align:left">kernel registers – used by exception/interrupt routines</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$28</td>
+<td style="text-align:center">$gp</td>
+<td style="text-align:left">pointer to global data of the program</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$29</td>
+<td style="text-align:center">$sp</td>
+<td style="text-align:left">stack pointer</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$30</td>
+<td style="text-align:center">$fp</td>
+<td style="text-align:left">frame pointer</td>
+</tr>
+
+<tr class="appelee-row-highlight">
+<td style="text-align:center">$31</td>
+<td style="text-align:center">$ra</td>
+<td style="text-align:left">stores the return address (i.e. where to return to in the calling function)</td>
+</tr>
+</tbody>
+</table>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr>
+<td class="appelee-highlight" style="text-align:left"></td>
+<td style="text-align:left">Saved/Restored by the callee function</td>
+</tr>
+<tr>
+<td class="appelante-highlight" style="text-align:left"></td>
+<td style="text-align:left">Saved/Restored by the caller function</td>
+</tr>    
+</tbody>
+</table>
+
+<p>Temporary registers (<code class="language-plaintext highlighter-rouge">$t0</code>-<code class="language-plaintext highlighter-rouge">$t9</code>), argument registers (<code class="language-plaintext highlighter-rouge">a0</code>-<code class="language-plaintext highlighter-rouge">$a3</code>) and value registers (<code class="language-plaintext highlighter-rouge">$v0</code>-<code class="language-plaintext highlighter-rouge">$v1</code>) are managed by the <strong>caller</strong> function. This means that it is the responsibility of the current function to save these registers (on the stack) before calling another function <strong>if the content of those registers are required after the call</strong>! The <strong>callee</strong> function has the freedom to modify any of these registers without worrying about their previous content. Once the <strong>called</strong> function completes, these registers may possibly have changed and it is the responsibility of the <strong>caller</strong> function to restore these registers (from the stack) to their initial state prior to the function call.</p>
+
+<p>On the other hand, the registers highlighted in <span style="background-color:#ffd6b0bb">salmon colour</span> in the table above are saved and restored by the <strong>callee</strong> function. I.e. it is the responsibility of the callee function to save these registers (on the stack) before possibly modifying their content. However, before the <strong>callee</strong> function returns, and if these registers have actually been modified, then the callee function <strong>must restore</strong> these registers (from the stack) to their initial state.</p>
+
+<p>With this calling convention, one notes the following: 1) The <strong>caller</strong> function assumes that the values ​​in the « <span style="background-color:#ffd6b0bb">salmon-coloured</span> » registers will not change after a function call (because the <strong>callee</strong> function should save/restore them); 2) The <strong>callee</strong> function assumes that the values ​​in the « <span style="background-color:#c5e4f0d5">sky blue</span> » registers are free to be modified in any way (because the <strong>caller</strong> function must save them before the call if it needs their contents later on).</p>
+
+<h1 id="example-of-savingrestoring-registers-between-function-calls">Example of saving/restoring registers between function calls</h1>
+
+<p>Let us now try to put this calling convention into practice. Consider the assembly code structure below for a function named <code class="language-plaintext highlighter-rouge">func1</code>. Suppose that <code class="language-plaintext highlighter-rouge">func1</code> is a function called by another function (say, the <code class="language-plaintext highlighter-rouge">main</code> function). Looking at the code, one observes that <code class="language-plaintext highlighter-rouge">func1</code> also calls another function named <code class="language-plaintext highlighter-rouge">func2</code>. When <code class="language-plaintext highlighter-rouge">func1</code> was called by the <code class="language-plaintext highlighter-rouge">main</code> function, <code class="language-plaintext highlighter-rouge">func1</code> was the <em>callee</em>. However, when <code class="language-plaintext highlighter-rouge">func1</code> calls <code class="language-plaintext highlighter-rouge">func2</code>, <code class="language-plaintext highlighter-rouge">func1</code> becomes the <em>caller</em>. Therefore, <code class="language-plaintext highlighter-rouge">func1</code> will have to assume the responsibilities of being a <em>callee</em> and a <em>caller</em> function!</p>
+
+<pre><code class="language-mips">func1: # modifies $a0, $t0, $v0 and $s0. $ra points to the `main` function.
+    # Checkpoint 1: What do you need to do before you start modifying registers?
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 2: What do you need to do before you call another function?
+    
+    # input argument at $a0, return value at $v0  
+    jal func2   # call func2
+    # Checkpoint 3: What do you need to do after a function call?
+    
+    # Some code using $v0, $t0, and $s0
+    # Checkpoint 4: What do you need to do before this function returns?
+    
+    jr $ra   # function return
+</code></pre>
+
+<p>Storing values ​​on the stack is done using the <code class="language-plaintext highlighter-rouge">sw</code> instruction to the address supplied by the stack pointer <code class="language-plaintext highlighter-rouge">$sp</code> adjusted with an appropriate <em>offset</em>. Conversely, retrieving values ​​from the stack is done using the <code class="language-plaintext highlighter-rouge">lw</code> instruction. So, whenever we want to store values ​​on the stack, we need to adjust the stack pointer by decreasing it. On the other hand, whenever we want to retrieve values ​​from the stack, the stack pointer is adjusted in the opposite direction (i.e. by increasing the stack pointer). Following these procedures will ensure that <code class="language-plaintext highlighter-rouge">$sp</code> points to the same position in memory at the beginning and end of the function call. This is how functions use the stack memory segment as temporary storage.</p>
+
+<p>Let’s try to complete the code at each indicated “checkpoint”.</p>
+
+<p><strong>For checkpoint 1</strong>, since <code class="language-plaintext highlighter-rouge">func1</code> is a callee here (i.e. called by <code class="language-plaintext highlighter-rouge">main</code> or any other function), it must save all the « <span style="background-color:#ffd6b0bb">salmon-coloured</span> » registers that it is likely to modify. In particular, as <code class="language-plaintext highlighter-rouge">func1</code> lists a <code class="language-plaintext highlighter-rouge">jal</code> instruction (i.e. <code class="language-plaintext highlighter-rouge">jal func2</code> ), it must save <code class="language-plaintext highlighter-rouge">$ra</code> on the stack (remember that the <code class="language-plaintext highlighter-rouge">jal</code> instruction modifies the content of the <code class="language-plaintext highlighter-rouge">$ra</code> register). Therefore, since we must save two registers (the second being <code class="language-plaintext highlighter-rouge">$s0</code>), the <code class="language-plaintext highlighter-rouge">$sp</code> pointer is adjusted (decremented) by two words (8 bytes):</p>
+
+<pre><code class="language-mips">    # Checkpoint 1: What do you need to do before you start modifying registers?
+    addi $sp $sp -8   # Push the stack pointer down by 2 words (8 bytes)
+    sw $ra 0($sp)     # Save the return address register $ra
+    sw $s0 4($sp)     # Save the "stored" register $s0
+</code></pre>
+
+<p><br /></p>
+
+<p><strong>For checkpoint 2</strong>, we notice that the <code class="language-plaintext highlighter-rouge">$a0</code>, <code class="language-plaintext highlighter-rouge">$t0</code>, and <code class="language-plaintext highlighter-rouge">$s0</code> registers have potentially been modified, and we are now about to call the <code class="language-plaintext highlighter-rouge">func2</code> function (<code class="language-plaintext highlighter-rouge">func1</code> now becomes the <em>caller</em>). We also notice that later in the code (i.e. after checkpoint 3), we use the contents of <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$s0</code> registers again.</p>
+
+<p>So, from the perspective of <code class="language-plaintext highlighter-rouge">func1</code>, these two registers should be unchanged after calling <code class="language-plaintext highlighter-rouge">func2</code>. We know that if <code class="language-plaintext highlighter-rouge">func2</code> follows the calling convention, it should save the register <code class="language-plaintext highlighter-rouge">$s0</code> on the stack and retrieve its initial value before exiting and returning to <code class="language-plaintext highlighter-rouge">func1</code>… this coincides with our goal regarding <code class="language-plaintext highlighter-rouge">$s0</code>! However, according to this same convention, the content of <code class="language-plaintext highlighter-rouge">$t0</code> will not be saved/restored by <code class="language-plaintext highlighter-rouge">func2</code>. In fact, function <code class="language-plaintext highlighter-rouge">func2</code> has complete freedom to use and modify the content of this register without caring about its initial state before the call. So, as the caller of <code class="language-plaintext highlighter-rouge">func2</code>, function <code class="language-plaintext highlighter-rouge">func1</code> is also responsible for saving the content of <code class="language-plaintext highlighter-rouge">$t0</code> on the stack. As a result, we have the following code:</p>
+
+<pre><code class="language-mips">    # Checkpoint 2: What do you need to do before you call another function?
+    addi $sp $sp -4   # Push the stack pointer down by 1 word (4 bytes)
+    sw $t0 0($sp)     # Save the temporary register ($t0)
+</code></pre>
+
+<p><br /></p>
+
+<p><strong>For checkpoint 3</strong>, function <code class="language-plaintext highlighter-rouge">func2</code> has completed and <code class="language-plaintext highlighter-rouge">$v0</code> contains the value returned by that function. <code class="language-plaintext highlighter-rouge">func1</code> is now about to perform some operations using that value and the data in registers <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$s0</code>. Again, if <code class="language-plaintext highlighter-rouge">func2</code> had followed the calling convention, the value of register <code class="language-plaintext highlighter-rouge">$s0</code> would be unchanged from <code class="language-plaintext highlighter-rouge">func1</code>’s perspective. However, <code class="language-plaintext highlighter-rouge">$t0</code> may have changed. Good thing we saved its contents on the stack before calling <code class="language-plaintext highlighter-rouge">func2</code>! So all we have to do is retrieve and restore that value. Hence, the following code:</p>
+
+<pre><code class="language-mips">    # Checkpoint 3: What do you need to do after a function call?
+    lw $t0 0($sp)     # Retrieve the saved temporary register $t0 from the stack
+    addi $sp $sp 4    # Adjust the stack pointer up by 1 word (4 bytes)
+</code></pre>
+
+<p><br /></p>
+
+<p><strong>Finally, for checkpoint 4</strong>, we are now at the point where <code class="language-plaintext highlighter-rouge">func1</code> has completed its operations and is about to exit and return to <code class="language-plaintext highlighter-rouge">main</code>. However, before executing the return instruction, <code class="language-plaintext highlighter-rouge">func1</code> must ensure that it has also fulfilled its responsibilities as a <em>callee</em> function. Earlier in checkpoint 1, we saved the contents of <code class="language-plaintext highlighter-rouge">$ra</code> and <code class="language-plaintext highlighter-rouge">$s0</code> registers to the stack.. now it is time to retrieve them! Indeed, during the execution of <code class="language-plaintext highlighter-rouge">func1</code>, the function modified the contents of <code class="language-plaintext highlighter-rouge">$s0</code> and <code class="language-plaintext highlighter-rouge">$ra</code> registers. As the <em>callee</em> function relative to <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">func1</code> has the responsibility of returning the values ​​of these registers to their initial states before returning to <code class="language-plaintext highlighter-rouge">main</code>. Concequently, we have the following code:</p>
+
+<pre><code class="language-mips"># Checkpoint 4: What do you need to do before this function returns?
+    lw $s0 4($sp)     # Retrieve the original stored register $s0
+    lw $ra 0($sp)     # Retrieve the original return address $ra. This points back to the main function.
+    addi $sp $sp 8    # Adjust the stack pointer up by 2 words (8 bytes)
+</code></pre>
+
+<p><br /></p>
+
+<p>This completes our implementation of the MIPS calling convention for <code class="language-plaintext highlighter-rouge">func1</code>. Here is the complete code:</p>
+
+<pre><code class="language-mips">func1: # modifies $a0, $t0, $v0 and $s0. $ra points to the `main` function.
+    # Checkpoint 1: What do you need to do before you start modifying registers?
+    addi $sp $sp -8   # Push the stack pointer down by 2 words (8 bytes)
+    sw $ra 0($sp)     # Save the return address register $ra
+    sw $s0 4($sp)     # Save the "stored" register $s0
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 2: What do you need to do before you call another function?
+    addi $sp $sp -4   # Push the stack pointer down by 1 word (4 bytes)
+    sw $t0 0($sp)     # Save the temporary register $t0
+    
+    # input argument at $a0, return value at $v0  
+    jal func2  # call func2
+    # Checkpoint 3: What do you need to do after a function call?
+    lw $t0 0($sp)     # Retrieve the saved temporary register from the stack
+    addi $sp $sp 4    # Adjust the stack pointer up by 1 word (4 bytes)
+    
+    # Some block of code using $a0, $t0, and $s0
+    # Checkpoint 4: What do you need to do before this function returns?
+    lw $s0 4($sp)     # Retrieve the original saved register $s0
+    lw $ra 0($sp)     # Retrieve the original return address $ra. This points back to the main function.
+    addi $sp $sp 8    # Adjust the stack pointer up by 2 words (8 bytes)
+    
+    jr $ra   # function return
+</code></pre>
+
+<p><br /></p>
+
+<p>Suppose the register <code class="language-plaintext highlighter-rouge">$sp</code> points to memory address <code class="language-plaintext highlighter-rouge">0x7FFFFFF0</code> at the beginning of <code class="language-plaintext highlighter-rouge">func1</code>.</p>
+
+<fieldset class="checkoff">
+ <legend>Check-up</legend>
+
+<details>
+<summary>
+At what memory address is <code class="language-plaintext highlighter-rouge">$s0</code> stored?
+</summary>
+<p style="color: firebrick">
+The stack pointer was adjusted by <code class="language-plaintext highlighter-rouge">-8</code>, but <code class="language-plaintext highlighter-rouge">$s0</code> is stored at <code class="language-plaintext highlighter-rouge">$sp + 4</code>. So, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0 - 8 + 4 = 0x7FFFFFEC</code>.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+At what memory address is <code class="language-plaintext highlighter-rouge">$t0</code> stored?
+</summary>
+<p style="color: firebrick">
+The stack pointer was adjusted by <code class="language-plaintext highlighter-rouge">-8</code> at the beginning, then before storing <code class="language-plaintext highlighter-rouge">$t0</code> we adjust it again by <code class="language-plaintext highlighter-rouge">-4</code>. So, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0 - 8 - 4 = 0x7FFFFFE4</code>
+</p>
+</details>
+      <br />
+<details>
+<summary>
+At the end of <code class="language-plaintext highlighter-rouge">func1</code> (on line <code class="language-plaintext highlighter-rouge">jr $ra</code>), what address does register <code class="language-plaintext highlighter-rouge">$sp</code> now point to?
+</summary>
+<p style="color: firebrick">
+It should be back to the initial value since we retrieved the saved data and adjusted the stack pointer accordingly. So, <code class="language-plaintext highlighter-rouge">0x7FFFFFF0</code>.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+If we did not implement the code in checkpoints 2 and 3, what would be the consequences?
+</summary>
+<p style="color: firebrick">
+After checkpoint 3, we notice that <code class="language-plaintext highlighter-rouge">func1</code> is using <code class="language-plaintext highlighter-rouge">$t0</code> again. Since <code class="language-plaintext highlighter-rouge">$t0</code> is a register managed by the caller, <code class="language-plaintext highlighter-rouge">func2</code> (which is the <em>callee</em> function) is free to modify <code class="language-plaintext highlighter-rouge">$t0</code> without worrying about restoring its initial value. If <code class="language-plaintext highlighter-rouge">$t0</code> was indeed modified by <code class="language-plaintext highlighter-rouge">func2</code>, then the calculations performed by <code class="language-plaintext highlighter-rouge">func1</code> will be wrong since the call to <code class="language-plaintext highlighter-rouge">func2</code> changed one of its temporary registers.
+</p>
+</details>
+      <br />
+<details>
+<summary>
+If we didn’t save the <code class="language-plaintext highlighter-rouge">$ra</code> register at the beginning, what would be the consequences?
+</summary>
+<p style="color: firebrick">
+At the beginning of <code class="language-plaintext highlighter-rouge">func1</code>, the <code class="language-plaintext highlighter-rouge">$ra</code> register points to the instruction that follows the <code class="language-plaintext highlighter-rouge">jal func1</code> instruction in <code class="language-plaintext highlighter-rouge">main</code>. Each time the <code class="language-plaintext highlighter-rouge">jal</code> or <code class="language-plaintext highlighter-rouge">jalr</code> instruction is executed, the content of the <code class="language-plaintext highlighter-rouge">$ra</code> register is modified so that it points to the instruction that comes just after this <code class="language-plaintext highlighter-rouge">jal</code>/<code class="language-plaintext highlighter-rouge">jalr</code>. Therefore, when <code class="language-plaintext highlighter-rouge">jr $ra</code> is executed at the end, the program continues its execution where the <code class="language-plaintext highlighter-rouge">$ra</code> register points (i.e. to the instruction that follows the <code class="language-plaintext highlighter-rouge">jal/jalr</code>).
+<br /><br />
+In our example, <code class="language-plaintext highlighter-rouge">func1</code> calls <code class="language-plaintext highlighter-rouge">func2</code> with <code class="language-plaintext highlighter-rouge">jal func2</code>. This changes the content of <code class="language-plaintext highlighter-rouge">$ra</code> so that it points to the instruction that comes right after it (i.e. <code class="language-plaintext highlighter-rouge">lw $t0 0($sp)</code>). So, if we had neglected to save <code class="language-plaintext highlighter-rouge">$ra</code> before calling <code class="language-plaintext highlighter-rouge">func2</code>, when <code class="language-plaintext highlighter-rouge">func1</code> executes the instruction <code class="language-plaintext highlighter-rouge">jr $ra</code> at the end, we would loop over to the instruction (<code class="language-plaintext highlighter-rouge">lw $t0 0($sp)</code>) instead of returning to the <code class="language-plaintext highlighter-rouge">main</code> function. This is not the intended flow of execution.
+</p>
+</details>
+      
+</fieldset>
+
+<h1 id="from-c-to-mips-functions-calling">From C to MIPS (functions calling)</h1>
+
+<p>As done <a href="/l2ado/docs/en/MIPS_Assembly_Language"> previously </a>, we will translate the C program below into MIPS. The added difficulty here is that we must follow the MIPS calling convention when writing MIPS code.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">source</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">dest</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"sum: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s first rewrite the C source code into an equivalent yet “<a href="/l2ado/docs/en/non_structured_programming"> unstructured </a>”  form.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">source</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">dest</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nl">WHILE:</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="p">;</span>
+    <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">WHILE</span><span class="p">;</span>    
+<span class="nl">ELIHW:</span>    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"sum: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now let’s move on to the MIPS conversion and start by defining the <code class="language-plaintext highlighter-rouge">source</code> and <code class="language-plaintext highlighter-rouge">dest</code> arrays. We need to declare our arrays in the <code class="language-plaintext highlighter-rouge">.data</code> section as shown below:</p>
+
+<pre><code class="language-mips">.data
+source:
+    .word   3, 1, 4, 1, 5, 9, 0
+dest:
+    .word   0, 0, 0, 0, 0, 0, 0, 0, 0, 0   # alternatively, you could also put:   .space  40    # ( 10 x 4 bytes )
+</code></pre>
+
+<p>Next, we translate the C function:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">-</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The MIPS calling convention states that</p>
+<ul>
+  <li>The value of <code class="language-plaintext highlighter-rouge">x</code> can be retrieved from register <code class="language-plaintext highlighter-rouge">$a0</code>.</li>
+  <li>The returned value must be put in the register <code class="language-plaintext highlighter-rouge">$v0</code>.</li>
+</ul>
+
+<p>The MIPS version of <code class="language-plaintext highlighter-rouge">fun()</code> is given below with exhaustive comments.</p>
+
+<pre><code class="language-mips">.text
+fun:
+    addi $t0, $a0, 1    # $t0 = x + 1
+    sub  $t1, $0, $a0   # $t1 = -x
+    mul  $v0, $t0, $t1  # $v0 = (x + 1) * (-x)
+    jr $ra              # return to the caller
+</code></pre>
+
+<fieldset class="checkoff">
+ <legend>Check-up</legend>
+<details>
+<summary>
+Why weren’t the contents of <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$t1</code> saved before these registers were used?
+</summary>
+<p style="color: firebrick">
+<code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$t1</code> are registers managed by the <em>caller</em> function. The MIPS calling convention does not guarantee that registers managed by the caller will remain unchanged after a function call. Therefore, <code class="language-plaintext highlighter-rouge">fun</code> can modify <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$t1</code> without worrying about their old values. If the function that called <code class="language-plaintext highlighter-rouge">fun</code> had values ​​stored in <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$t1</code> that it wanted to use after <code class="language-plaintext highlighter-rouge">fun</code> returned, it should save <code class="language-plaintext highlighter-rouge">$t0</code> and <code class="language-plaintext highlighter-rouge">$t1</code> before calling <code class="language-plaintext highlighter-rouge">fun</code>.
+</p>
+</details>
+</fieldset>
+
+<p>Let’s now translate the <code class="language-plaintext highlighter-rouge">main</code> function to MIPS (for the moment, we’ll ignore the MIPS calling convention relative to storing/restoring data from the stack) …</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The C code above becomes in MIPS:</p>
+
+<pre><code class="language-mips">main:
+    addi $t0, $0, 0   # $t0 &lt;-&gt; k   = 0
+    addi $s0, $0, 0   # $s0 &lt;-&gt; sum = 0
+</code></pre>
+
+<p>Next, let’s get the addresses of the two arrays <code class="language-plaintext highlighter-rouge">source[]</code> and <code class="language-plaintext highlighter-rouge">dest[]</code>.</p>
+
+<pre><code class="language-mips">    la $s1, source
+    la $s2, dest
+</code></pre>
+
+<p>Remember that the <code class="language-plaintext highlighter-rouge">la</code> instruction retrieves the address associated with the label given as a parameter. This is the <strong>only way</strong> to access the <code class="language-plaintext highlighter-rouge">source[]</code> and <code class="language-plaintext highlighter-rouge">dest[]</code> addresses. <code class="language-plaintext highlighter-rouge">$s1</code> is now a pointer to the <code class="language-plaintext highlighter-rouge">source[]</code> array and <code class="language-plaintext highlighter-rouge">$s2</code> is a pointer to the <code class="language-plaintext highlighter-rouge">dest[]</code> array.</p>
+
+<p>Now to translating the loop:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">WHILE:</span>    
+    <span class="k">if</span> <span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="p">;</span>
+    <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">dest</span><span class="p">[</span><span class="n">k</span><span class="p">];</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">WHILE</span><span class="p">;</span>    
+<span class="n">ELIHW</span><span class="o">:</span>    
+</code></pre></div></div>
+
+<p>First, we’ll translate the iteration instructions of the loop.</p>
+
+<pre><code class="language-mips">WHILE:
+    sll $s3, $t0, 2        #1
+    add $t1, $s1, $s3      #2
+    lw  $t2, 0($t1)        #3
+    beq $t2, $0, ELIHW     #4
+    
+    ...
+
+    addi t0, t0, 1         #5
+    j WHILE                #6
+ELIHW:
+</code></pre>
+
+<ol>
+  <li>Lines 1 to 3 are needed to access element <code class="language-plaintext highlighter-rouge">k</code> (stored in <code class="language-plaintext highlighter-rouge">$t0</code>) in array <code class="language-plaintext highlighter-rouge">source[]</code>. We start by calculating the index <strong>in bytes</strong> of the element in the array. As <code class="language-plaintext highlighter-rouge">source[]</code> is an array of integers, so the size of each element is <code class="language-plaintext highlighter-rouge">4 bytes</code>. This means we need to multiply <code class="language-plaintext highlighter-rouge">$t0</code> by <code class="language-plaintext highlighter-rouge">4</code> to calculate the index in bytes. To multiply a value by four, simply shift it to the left by two binary positions.</li>
+  <li>Next, we need to add this byte index to the pointer <code class="language-plaintext highlighter-rouge">$s1</code> to calculate the address of <code class="language-plaintext highlighter-rouge">source[k]</code>.</li>
+  <li>Once the address is known, we can load in <code class="language-plaintext highlighter-rouge">$t2</code> the value of the element <code class="language-plaintext highlighter-rouge">source[k]</code>.</li>
+  <li>Next, we check if the loaded element is equal to 0. If so, we jump to the exit of the loop.</li>
+  <li>At the end of the loop, we increment <code class="language-plaintext highlighter-rouge">k</code> by 1</li>
+  <li>Finally, we loop back to the beginning of the loop</li>
+</ol>
+
+<p>Let’s now add instructions to implement the body of the loop while taking into account the MIPS calling convention in relation to passing (resp. returning) parameters (resp. results) between functions…</p>
+
+<pre><code class="language-mips">WHILE:
+    sll $s3, $t0, 2         
+    add $t1, $s1, $s3       
+    lw  $t2, 0($t1)         
+    beq $t2, $0, ELIHW      
+ 
+    add $a0, $0, $t2    # 1
+     
+    jal fun             # 2
+     
+    add $t3, $s2, $s3   # 3
+    sw $v0, 0($t3)      # 4
+    add $s0, $s0, $v0   # 5
+
+    addi $t0, $t0, 1          
+    j WHILE                 
+ELIHW:
+</code></pre>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">fun</code> takes the argument <code class="language-plaintext highlighter-rouge">x</code>. in MIPS, We need to pass this argument via register <code class="language-plaintext highlighter-rouge">$a0</code> so that <code class="language-plaintext highlighter-rouge">fun</code> can retrieve it.</li>
+  <li>Calling the <code class="language-plaintext highlighter-rouge">fun</code> function. The <code class="language-plaintext highlighter-rouge">jal</code> instruction automatically saves the address of the instruction (#3) in <code class="language-plaintext highlighter-rouge">$ra</code>.</li>
+  <li>Next, we want to store the value returned by <code class="language-plaintext highlighter-rouge">fun</code> in the <code class="language-plaintext highlighter-rouge">dest[]</code> array. First, we need to calculate the address of where we want to store the value in <code class="language-plaintext highlighter-rouge">dest[]</code>. In this sense, and since it is the same position <code class="language-plaintext highlighter-rouge">k</code> in an array of integers, we can reuse the index in bytes calculated previously (i.e. <code class="language-plaintext highlighter-rouge">$s3</code>) and add it to the array pointer <code class="language-plaintext highlighter-rouge">dest[]</code> (i.e. <code class="language-plaintext highlighter-rouge">$s2</code>).</li>
+  <li>Storing the value returned by <code class="language-plaintext highlighter-rouge">fun</code> in <code class="language-plaintext highlighter-rouge">dest[k]</code>. Recall that <code class="language-plaintext highlighter-rouge">fun</code> should put the returned value in <code class="language-plaintext highlighter-rouge">$v0</code>.</li>
+  <li>Increment the <code class="language-plaintext highlighter-rouge">sum</code> variable by <code class="language-plaintext highlighter-rouge">dest[k]</code>.</li>
+</ol>
+
+<p>Last, to the MIPS implementation of the exit of the <code class="language-plaintext highlighter-rouge">main</code> function (still excluding the MIPS calling convention relative to storing/restoring data from the stack) …</p>
+
+<pre><code class="language-mips">ELIHW:
+    addi $v0, $0,  1  # syscall service number, 1 = 'print an integer'
+    addi $a0, $s0, 0  # argument to syscall, $a0 = integer to print
+    syscall           # system call (prints an integer)
+    addi $v0, $0, 10  # syscall service number, 10 = program exit 
+    syscall           # system call (exit the program)
+</code></pre>
+
+<p>The content of the <code class="language-plaintext highlighter-rouge">sum</code> variable is stored in the <code class="language-plaintext highlighter-rouge">$s0</code> register. Remember that in order to print this value, we need to put it in <code class="language-plaintext highlighter-rouge">$a0</code> before the first system call (and set service number <code class="language-plaintext highlighter-rouge">1</code> in <code class="language-plaintext highlighter-rouge">$v0</code>).</p>
+
+<p>Now that most of the logic of our program is translated into MIPS, we need to finaliee it by introducing the necessary instructions in order to respect the calling convention for the <code class="language-plaintext highlighter-rouge">main</code> and <code class="language-plaintext highlighter-rouge">fun</code> functions (i.e. adding save/restore instructions on the stack).</p>
+
+<p>First, let’s add the appropriate instructions around <code class="language-plaintext highlighter-rouge">jal fun</code>. We need to save all registers of the <em>caller</em> function (i.e. the <code class="language-plaintext highlighter-rouge">main</code> function) whose values ​​we want to remain the same after calling <code class="language-plaintext highlighter-rouge">fun</code>. In this case, we can see that we are using registers <code class="language-plaintext highlighter-rouge">$t0</code>, <code class="language-plaintext highlighter-rouge">$t1</code>, <code class="language-plaintext highlighter-rouge">$t2</code>, <code class="language-plaintext highlighter-rouge">$t3</code>, <code class="language-plaintext highlighter-rouge">$a0</code> and <code class="language-plaintext highlighter-rouge">$v0</code> in <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<fieldset class="checkoff">
+ <legend>Check-up</legend>
+<details>
+<summary>
+Do we need to backup and restore all these registers?
+</summary>
+<p style="color: firebrick">
+No, we only need to backup and restore <code class="language-plaintext highlighter-rouge">$t0</code>. We use <code class="language-plaintext highlighter-rouge">$t1</code>, <code class="language-plaintext highlighter-rouge">$t2</code> and <code class="language-plaintext highlighter-rouge">$a0</code> before <code class="language-plaintext highlighter-rouge">fun</code>, but we don’t reuse their values ​​afterward. Additionally, we write in <code class="language-plaintext highlighter-rouge">$t3</code> (and <code class="language-plaintext highlighter-rouge">$v0</code>) after <code class="language-plaintext highlighter-rouge">fun</code>. <code class="language-plaintext highlighter-rouge">$t0</code> is the only register in the caller function whose value must remain the same before and after calling <code class="language-plaintext highlighter-rouge">fun</code>.
+</p>
+</details>
+</fieldset>
+
+<p>Let’s add the appropriate instructions around <code class="language-plaintext highlighter-rouge">jal fun</code>.</p>
+
+<pre><code class="language-mips">addi $sp, $sp, -4
+sw $t0, 0($sp)
+jal fun
+lw $t0, 0($sp)
+addi $sp, $sp, 4
+</code></pre>
+
+<p>Now to the prologue and epilogue of the <code class="language-plaintext highlighter-rouge">main</code> function…</p>
+
+<fieldset class="checkoff">
+ <legend>Check-up</legend>
+<details>
+<summary>
+What part of the calling convention is missing for the <code class="language-plaintext highlighter-rouge">main</code> function?
+</summary>
+<p style="color: firebrick">
+With respect to the operating system, <code class="language-plaintext highlighter-rouge">main</code> is a callee function… and we are overwriting registers that should be preserved by the callee function! Remember that it is the callee function which should ensure that these registers are kept the same before returning to the caller function.
+</p>
+</details>
+
+<details>
+<summary>
+What registers should be preserved by the <code class="language-plaintext highlighter-rouge">main</code> function?
+</summary>
+<p style="color: firebrick">
+All the registers that we overwrite and which must be preserved  by the callee function. For <code class="language-plaintext highlighter-rouge">main</code>, these are the registers <code class="language-plaintext highlighter-rouge">$s0</code>-<code class="language-plaintext highlighter-rouge">$s3</code> and <code class="language-plaintext highlighter-rouge">$ra</code>.
+</p>
+</details>
+</fieldset>
+
+<p>It can be difficult to understand why we need to save <code class="language-plaintext highlighter-rouge">$ra</code>. Recall that another function (i.e. the operating system) called <code class="language-plaintext highlighter-rouge">main</code>. When this function called <code class="language-plaintext highlighter-rouge">main</code>, it stored a return address in <code class="language-plaintext highlighter-rouge">$ra</code> so that <code class="language-plaintext highlighter-rouge">main</code> would know where to return when it finished executing. When <code class="language-plaintext highlighter-rouge">main</code> calls <code class="language-plaintext highlighter-rouge">fun</code>, it must store a return address in <code class="language-plaintext highlighter-rouge">$ra</code> so that <code class="language-plaintext highlighter-rouge">fun</code> knows where to return when it has finished executing. Therefore, <code class="language-plaintext highlighter-rouge">main</code> must save <code class="language-plaintext highlighter-rouge">$ra</code> before overwriting it with <code class="language-plaintext highlighter-rouge">jal fun</code>.</p>
+
+<p>Concequently, here is the prologue and epilogue of the <code class="language-plaintext highlighter-rouge">main</code> function:</p>
+
+<pre><code class="language-mips">main:
+    # BEGIN PROLOGUE
+    addi $sp, $sp, -20
+    sw $s0, 0($sp)
+    sw $s1, 4($sp)
+    sw $s2, 8($sp)
+    sw $s3, 12($sp)
+    sw $ra, 16($sp)
+    # END PROLOGUE
+    ...
+    ...
+ELIHW:
+    addi $v0, $0,  1   # syscall service number, 1 = 'print an integer'
+    addi $a0, $s0, 0   # argument to syscall, $a0 = integer to print
+    syscall            # system call (prints an integer)
+
+    # BEGIN EPILOGUE
+    lw $s0, 0($sp)
+    lw $s1, 4($sp)
+    lw $s2, 8($sp)
+    lw $s3, 12($sp)
+    lw $ra, 16($sp)
+    addi $sp, $sp, 20
+    # END EPILOGUE
+    addi $v0, $0, 10  # syscall service number, 10 = program exit 
+    syscall           # system call (exit the program)
+</code></pre>
+
+<p>The whole MIPS program is available from <a href="/l2ado/static_files/docs/c2mips.s">here</a>.</p>
+
+<h1 id="recursive-calls-in-mips">Recursive calls in MIPS</h1>
+
+<p>A recursive function is a function that calls itself. The translation of a recursive C function into its equivalent in the MIPS assembly language is done in the same way as before. The trick here is to assume the recursive call as if we were calling <em>some different</em> function from the function itself, then apply the MIPS calling convention for the caller and callee functions accordingly.</p>
+
+<div id="CvsMIPS">
+  <div>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+
+
+  <span class="c1">// C version    </span>
+  <span class="kt">int</span> <span class="nf">fact</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> 
+  <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+     <span class="k">else</span> 
+        <span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+
+
+
+
+</code></pre></div>    </div>
+
+  </div>
+  <div>
+
+    <pre><code class="language-mips">   # Version MIPS  (n &lt;-&gt; $a0, n! &lt;-&gt; $v0)
+   0  fact:	
+   1     bge  $a0, 2, else   # branch to else if (n &gt;= 2)
+   2     li   $v0, 1         # $v0 = 1
+   3     jr   $ra            # return to the caller function
+   4  else:				
+   5     addi $sp, $sp, -8   # allocate a stackframe of 8 bytes
+   6     sw   $a0, 0($sp)    # save n onto the stack
+   7     sw   $ra, 4($sp)    # save the returning address on the stack
+   8     addi $a0, $a0, -1   # argument $a0 = n - 1
+   9     jal  fact           # recursive call. I.e. fact(n-1)
+  10     lw   $a0, 0($sp)    # restore $a0 = n from the stack
+  11     lw   $ra, 4($sp)    # restore the returning address
+  12     mul  $v0, $a0, $v0  # put in $v0 = n * fact(n-1)
+  13     addi $sp, $sp, 8    # free the stackframe
+  14     jr   $ra            # return to the caller function
+</code></pre>
+
+  </div>
+</div>
+
+<p>The code snippet above shows an example of a recursive function (the factorial function) in C language (left) and its version in MIPS assembly (right). If (n &lt; 2) then the function completes and returns to the caller function. There is no need to allocate a stack frame in this case. However, if (n &gt;= 2) then the factorial function allocates an 8-byte stack frame to save the <code class="language-plaintext highlighter-rouge">$a0</code> and <code class="language-plaintext highlighter-rouge">$ra</code> registers before calling itself again.</p>
+
+<p>The register <code class="language-plaintext highlighter-rouge">$a0</code> (i.e. argument <code class="language-plaintext highlighter-rouge">n</code>) is saved on the stack because it is necessary to recover the initial value of this register (used in line 12) after the recursive call returns (this register is modified in the recursive call on line 8). The register <code class="language-plaintext highlighter-rouge">$ra</code> is saved on the stack because its value is modified by the recursive call (line 9).</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

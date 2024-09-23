@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Programmation « non structurée » - Architecture des ordinateurs / Automne 2024 </title>
+  <meta name="description" content="Objectifs      Rappel sur les structures de contrôle dans le langage C        Connaître la «  Programmation structurée et non structurée »  PréambuleToute pe...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/fr/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/fr/labs/fr/03_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2024 - " href="https://benhadid.github.io/l2ado/fr/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/fr/" title="Architecture des ordinateurs / Automne 2024 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Programmation « non structurée »</h1>
+    <p class="post-meta">Publié le 
+      <!--
+      Tuesday
+      15/10/2024
+      -->
+      
+      Mardi
+      15
+      
+      Octobre
+      2024
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold"> Echéance : 
+      <!-- 22/10/2024 -->
+
+      
+      Mardi
+      22
+      
+      Octobre
+      2024
+    </span>
+    
+
+    <br />
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/fr/static_files/labs/lab_03.zip">démarrage</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectifs">Objectifs</h1>
+
+<ul>
+  <li>
+    <p>Rappel sur les structures de contrôle dans le langage C</p>
+  </li>
+  <li>
+    <p>Connaître la « <a href="/l2ado/fr/docs/fr/non_structured_programming"> Programmation structurée et non structurée</a> »</p>
+  </li>
+</ul>
+
+<h1 id="préambule">Préambule</h1>
+
+<p>Toute personne qui s’initie à la plongé sous-marine commence d’abord par apprendre les bases de cette technique dans une piscine ! Similairement, avant de s’attaquer à la programmation en assembleur (quelque chose qui effraie beaucoup d’étudiants), les exercices suivants vous apprennent à écrire des programmes simples dans le langage C mais qui se rapproche un pas de l’assembleur.</p>
+
+<p>Commencez d’abord par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Dans ce TP, il est demandé d’écrire des solutions dans le langage C aux problèmes donnés ci-dessous avec la contrainte suivante : Aucun mot clé <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>, <code class="language-plaintext highlighter-rouge">do</code>, <code class="language-plaintext highlighter-rouge">switch</code> ou <code class="language-plaintext highlighter-rouge">else</code> ne peut être utilisé dans vos programmes.</p>
+
+<p>Pour vérifier l’exactitude de vos implémentations dans les exercices ci-dessous, configurez puis compilez les codes fournis à l’aide des commandes suivantes (sous environnement UN*X) :</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab3
+<span class="gp">$</span><span class="w"> </span><span class="nb">mkdir </span>build      <span class="c"># étape de configuration</span>
+<span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>build         <span class="c"># à réaliser la première </span>
+<span class="gp">$</span><span class="w"> </span>cmake ..         <span class="c"># fois seulement</span>
+<span class="gp">$</span><span class="w"> </span>make             <span class="c"># &lt;- compilation - exécutez cette commande à chaque fois que vous modifiez vos fichiers ".c"</span>
+</code></pre></div></div>
+
+<p>Si la compilation se passe sans erreurs, vous pouvez exécuter les tests de validation à l’aide de la commande</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>
+</code></pre></div></div>
+
+<p>Cette commande affichera sur votre écran le résultat de quelques tests qui vont vous permettre de vérifier si vous avez implémenté correctement les tâches assignées.</p>
+
+<p><strong>Indication</strong> : Écrivez d’abord vos algorithmes d’une manière standard (c.-à-d. avec les mots-clés <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>, …), ensuite vous pouvez les convertir en des codes sans ces mots clés en vous aidant des exemples et indications donnés dans le document « <a href="/l2ado/fr/docs/fr/non_structured_programming"> Programmation structurée et non structurée</a> ».</p>
+
+<h1 id="exercice-1--somme-des-carrés">Exercice 1 : (Somme des carrés)</h1>
+
+<p>En mathématiques, la somme des carrés de <em>N</em> nombres entiers est décrit comme suit :</p>
+
+\[sum = \sum_{i=0}^{N-1} n_i^2\]
+
+<p>où \(n_0, n_1, ..., n_{N-1}\) sont des nombres entiers.</p>
+
+<p>Ecrivez le corp de la fonction <code class="language-plaintext highlighter-rouge">SumOfSquares(int count, const int *tab)</code> dans le fichier <code class="language-plaintext highlighter-rouge">src/SumOfSquares.c</code> qui retourne la somme des carrés des éléments d’un tableau d’entiers.
+Le paramètre <code class="language-plaintext highlighter-rouge">count</code> est le nombre des éléments du tableau, et <code class="language-plaintext highlighter-rouge">tab</code> est un pointeur sur un tableau de type <code class="language-plaintext highlighter-rouge">int</code>.</p>
+
+<p><strong>Contraintes à respecter :</strong></p>
+<ul>
+  <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>SumOfSquares.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="exercice-2--strcmp">Exercice 2 : (StrCmp)</h1>
+
+<p>Dans la bibliothèque standard du langage C, la fonction <code class="language-plaintext highlighter-rouge">strcmp()</code> (cf. <code class="language-plaintext highlighter-rouge">man 3 strcmp</code>) compare, caractère par caractère, deux chaînes en mémoire pour établir quelle chaîne de caractères vient en premier dans l’ordre lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :</p>
+
+<ul>
+  <li>“a” &lt; “b”</li>
+  <li>“abc” &lt; “abcd”</li>
+  <li>“A” &lt; “a”</li>
+</ul>
+
+<p>Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un caractère ASCII) suivi du caractère NUL (0x00).</p>
+
+<p>Ecrivez le corp de la fonction <code class="language-plaintext highlighter-rouge">StrCmp(const char *s1, const char *s2)</code> dans le fichier <code class="language-plaintext highlighter-rouge">src/StrCmp.c</code> qui compare deux chaînes de caractères.
+Les arguments <code class="language-plaintext highlighter-rouge">s1</code> et <code class="language-plaintext highlighter-rouge">s2</code> de la fonction <code class="language-plaintext highlighter-rouge">StrCmp(...)</code> sont les adresses des deux chaînes à comparer. L’adresse mémoire du début de la première chaîne est dans <code class="language-plaintext highlighter-rouge">s1</code>, et l’adresse mémoire du début de la deuxième chaîne est dans <code class="language-plaintext highlighter-rouge">s2</code>. 
+Si la première chaîne est supérieure à la seconde, renvoyez un nombre positif. Si la deuxième chaîne est plus grande, renvoyez un nombre négatif. Si les chaînes sont égales, renvoyez la valeur 0.</p>
+
+<p><strong>Contraintes à respecter :</strong></p>
+<ul>
+  <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>StrCmp.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="exercice-3--calculatrice">Exercice 3 : (Calculatrice)</h1>
+
+<p>Ecrivez le corp de la fonction <code class="language-plaintext highlighter-rouge">calculatrice(float nbr1, float nbr2, char op)</code> dans le fichier <code class="language-plaintext highlighter-rouge">src/calc.c</code> qui retourne le résultat de l’opération <code class="language-plaintext highlighter-rouge">nbr1 op nbr2</code>, où <code class="language-plaintext highlighter-rouge">nbr1</code> et <code class="language-plaintext highlighter-rouge">nbr2</code> sont deux nombres de type <code class="language-plaintext highlighter-rouge">float</code>, et <code class="language-plaintext highlighter-rouge">op</code> est un caractère indicant le type de l’opération :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  '+' : opération d'addition
+  '-' : opération de soustraction
+  '*' : opération de multiplication
+  '/' : opération de division
+</code></pre></div></div>
+
+<p>si <code class="language-plaintext highlighter-rouge">op</code> est différent des quatre opérations indiquées ci-dessus alors la fonction doit retourner la valeur <code class="language-plaintext highlighter-rouge">NAN</code> (cf. <code class="language-plaintext highlighter-rouge">man 3 nan</code>).</p>
+
+<p><strong>Contraintes à respecter :</strong></p>
+<ul>
+  <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>calc.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="exercice-4--atoi">Exercice 4 : (AtoI)</h1>
+
+<p>Dans la bibliothèque standard du langage C, la fonction <code class="language-plaintext highlighter-rouge">atoi(char *ptr)</code> converti la chaîne de caractère pointée par <code class="language-plaintext highlighter-rouge">ptr</code> en un entier. Par exemple, pour les chaînes de caractères suivantes :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">char</span> <span class="n">str1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"1234"</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">str2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"-1234"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>l’exécution de la fonction <code class="language-plaintext highlighter-rouge">atoi(str1)</code> retournera l’entier 1234. et la fonction <code class="language-plaintext highlighter-rouge">atoi(str2)</code> retournera l’entier -1234.</p>
+
+<p>Ecrivez votre version du corp de la fonction <code class="language-plaintext highlighter-rouge">AtoI(char *str)</code> dans le fichier ` src/AtoI.c<code class="language-plaintext highlighter-rouge"> qui retourne l'entier représenté par la chaîne de caractères </code>char* str<code class="language-plaintext highlighter-rouge">. Contrairement à la fonction standard </code>atoi()<code class="language-plaintext highlighter-rouge">, vous pouvez vous limiter aux chaînes de caractères de la forme </code>[-]14207…<code class="language-plaintext highlighter-rouge">. **N.B.** les crochets </code>[]` indiquent l’éventualité d’avoir un caractère optionnel pour le signe et ne font pas partie de la chaîne de caractères !</p>
+
+<p><strong>Contraintes à respecter :</strong></p>
+<ul>
+  <li><strong><em>mot-clés interdits</em> : for, while, do, switch, else</strong></li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vvv test de vérification des contraintes  vvv   </span>
+lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</span><span class="o">=</span>AtoI.c <span class="nt">--for</span> <span class="nt">--while</span> <span class="nt">--switch</span> <span class="nt">--else</span> <span class="nt">--ternary</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Conception de circuits logiques avec Logisim - Architecture des ordinateurs / Automne 2024 </title>
+  <meta name="description" content="Objectifs      Apprendre à concevoir et déboguer des circuits logiques simples dans Logisim        Acquérir une expérience dans la conception et le débogage ...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/fr/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/fr/labs/fr/07_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2024 - " href="https://benhadid.github.io/l2ado/fr/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;">
+<a class="schoolname" style="font-size: 15px;" href=""></a>
+          <br>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/fr/" title="Architecture des ordinateurs / Automne 2024 - "><b>Architecture des ordinateurs</b></a></span>
+          <br>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewbox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"></path>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"></path>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></path>
+        </svg>
+      </a>  
+
+    <div class="trigger">
+<h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/">
+        <i class="fa fa-home fa-lg"></i> Accueil
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/fr/materials/">
+        <i class="fas fa-book"></i> Ressources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );">
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Conception de circuits logiques avec Logisim</h1>
+    <p class="post-meta">Publié le 
+      <!--
+      Tuesday
+      19/11/2024
+      -->
+      
+      Mardi
+      19
+      
+      Novembre
+      2024
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold"> Echéance : 
+      <!-- 26/11/2024 -->
+
+      
+      Mardi
+      26
+      
+      Novembre
+      2024
+    </span>
+    
+
+    <br>
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/fr/static_files/labs/lab_07.zip">démarrage</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br>
+  <article class="post-content">
+    <h1 id="objectifs">Objectifs</h1>
+
+<ul>
+  <li>
+    <p>Apprendre à concevoir et déboguer des circuits logiques simples dans <strong>Logisim</strong></p>
+  </li>
+  <li>
+    <p>Acquérir une expérience dans la conception et le débogage de circuits logiques</p>
+  </li>
+</ul>
+
+<h1 id="préambule">Préambule</h1>
+
+<p>Si vous ne connaissez pas le logiciel de conception de circuit <strong>Logisim</strong>, commencez par vous familiarisez avec cet outil en suivant ce <a href="/l2ado/fr/static_files/docs/Logisim_tutoriel">tutoriel</a> et ces <a href="/l2ado/fr/static_files/docs/Logisim_astuces">astuces</a> d’utilisation.</p>
+
+<p>Ce TP est organisé en trois exercices :</p>
+<ul>
+  <li>
+<strong>Circuit de rotation (circuits combinatoires) —</strong> particulièrement utile pour la partie UAL du projet</li>
+  <li>
+<strong>Machine à états —</strong> le processeur est simplement une grosse machine à états finis</li>
+  <li>
+<strong>Pipelining —</strong> version très simplifiée de la parallélisation matérielle dans un processeur</li>
+</ul>
+
+<p>Pour tester vos implémentations des circuits de ce TP, lancez les commandes suivante dans un terminal :</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab7
+<span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- à faire la première fois seulement</span>
+<span class="gp">$</span><span class="w"> </span>./run_tests.sh           <span class="c"># &lt;-- exécutez cela chaque fois que vous voulez tester vos circuits </span>
+</code></pre></div></div>
+
+<p>Ce script copie vos circuits <code class="language-plaintext highlighter-rouge">ex?.circ</code> dans le répertoire <code class="language-plaintext highlighter-rouge">testing/circ_files/</code>, exécute les circuits testeurs <code class="language-plaintext highlighter-rouge">ex?_test.circ</code> avec différentes entrées et comparera les sorties de vos circuits aux résultats attendus. Par conséquent, veuillez ne rien modifier dans le dossier <code class="language-plaintext highlighter-rouge">lab7/testing</code>. Vous êtes encouragé, par contre, à consulter le contenu de ce répertoire pour avoir une idée sur les éléments utilisés pour tester automatiquement vos circuits. Cela vous sera très utile pour votre mini-project !</p>
+
+<div class="bs-callout bs-callout-danger">
+  <h4><b>ATTENTION</b></h4>
+
+  <p>Vos fichiers <b>ex?.circ</b> doivent correspondre aux socles <b>ex?_test.circ</b> fournis. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou les sorties des circuits. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
+
+  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrées / sorties entre votre circuit et le circuit 'socle', ouvrez le fichier socle <b>ex?_test.circ</b> dans Logisim et assurez-vous qu’il n’y a pas d’erreurs de branchement (c.-à-d. pas de fils rouges / oranges).</p>
+</div>
+
+<h1 id="exercice-1--circuit-de-rotation-à-droite">Exercice 1 : (Circuit de rotation à droite)</h1>
+
+<p>Avec des séparateurs et des multiplexeurs, vous allez implémenter un bloc logique combinatoire non trivial : <code class="language-plaintext highlighter-rouge">rotr</code>, qui signifie « Rotate Right ». L’idée est que <code class="language-plaintext highlighter-rouge">rotr A, B</code> « fera pivoter » les bits de l’entrée <code class="language-plaintext highlighter-rouge">A</code> vers la droite <code class="language-plaintext highlighter-rouge">B</code> bits fois. Ainsi, si <code class="language-plaintext highlighter-rouge">A</code> est <code class="language-plaintext highlighter-rouge">0b1011010101110011</code> et <code class="language-plaintext highlighter-rouge">B</code> est <code class="language-plaintext highlighter-rouge">0b0101</code> (5 en décimal), la sortie du bloc <code class="language-plaintext highlighter-rouge">rotr</code> sera <code class="language-plaintext highlighter-rouge">0b1001110110101011</code>. Notez que les 5 bits les plus à droite ont été extraits de l’extrémité droite de la valeur de <code class="language-plaintext highlighter-rouge">A</code> et injectés de nouveau à son extrémité gauche. En langage <a href="https://fr.wikipedia.org/wiki/Register_Transfer_Language">RTL</a>, l’opération ressemble à ceci <code class="language-plaintext highlighter-rouge">R = A &gt;&gt; B | A &lt;&lt; (16 - B)</code>.</p>
+
+<p>À l’aide de Logisim, implémentez dans <code class="language-plaintext highlighter-rouge">ex1.circ</code> le sous circuit nommé <code class="language-plaintext highlighter-rouge">rotr</code> ayant les entrées suivantes :</p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">A</code> (16-bits), la donnée sur 16 bits à faire pivoter</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">B</code> (4-bits), la quantité de rotation (pourquoi 4 bits ?)</li>
+</ul>
+
+<p>La sortie du circuit doit être la valeur de l’entrée <code class="language-plaintext highlighter-rouge">A</code> pivotée à droite de <code class="language-plaintext highlighter-rouge">B</code> positions. Vous n’êtes <strong>PAS</strong> autorisé à utiliser les composants de décalages Logisim dans votre solution. Toutefois, tout autre composant combinatoire (MUX, constantes, portes logiques, additionneurs, etc.) est autorisé. Votre solution ne doit <strong>PAS</strong> également utiliser une horloge ou des éléments cadencés, comme les registres.</p>
+
+<p><strong>Indication 1</strong> : Avant de commencer, vous devez réfléchir à la façon dont vous pourriez décomposer ce problème. Pensez à utiliser des sous-circuits (squelettes déjà fournis) !</p>
+
+<p><strong>Indication 2</strong> : La représentation RTL de <code class="language-plaintext highlighter-rouge">rotr</code> donnée ci-dessus ne signifie pas forcement que c’est la meilleure façon d’implémenter la solution au problème. Pensez aux bits de l’entrée <code class="language-plaintext highlighter-rouge">B</code> et réfléchissez à la manière d’utiliser efficacement les séparateurs (<em>i.e.</em> splitters) ! Pouvez-vous faire quelque chose avec la représentation en binaire de <code class="language-plaintext highlighter-rouge">B</code> ? Pour rappel, un <code class="language-plaintext highlighter-rouge">1</code> peut représenter un signal <code class="language-plaintext highlighter-rouge">ON</code> et un <code class="language-plaintext highlighter-rouge">0</code> représentera dans ce cas un signal <code class="language-plaintext highlighter-rouge">OFF</code>. Disons que nous voulons effectuer une rotation 9 fois. 9 est <strong>1001</strong> en binaire, ou <code class="language-plaintext highlighter-rouge">1 * 8 + 0 * 4 + 0 * 2 + 1 * 1</code>. Pouvez-vous utiliser cela pour créer un circuit propre ? Utiliser les emplacements de sous-circuits <code class="language-plaintext highlighter-rouge">rot*</code> fournis dans <code class="language-plaintext highlighter-rouge">ex1.circ</code> !</p>
+
+<h1 id="exercise-2--feux-tricolores-défectueux">Exercise 2 : (Feux tricolores défectueux)</h1>
+
+<p>Une machine d’états (c.-à-d. automate) est un outil très polyvalent utilisé pour développer des systèmes pour toutes sortes d’applications. Dans cet exercice, nous modélisons, en tant qu’une machine d’états finis, les feux tricolores utilisées dans la régulation de la circulation routière. En ce sens, nous utilisons un registre pour stocker l’état de l’automate dans lequel nous nous trouvons actuellement, et une logique combinatoire pour lier l’entrée et l’état actuel de l’automate à la sortie et à l’état suivant de celui-ci.</p>
+
+<p>L’automate possède trois (3) états :</p>
+
+<p>. ROUGE codé par la valeur binaire 00
+ . VERT codé par la valeur binaire 01
+ . ORANGE codé par la valeur binaire 10</p>
+
+<p>L’entrée est un « signal de déclenchement ». Lorsqu’il est à (1), l’automate passe à l’état suivant (c.-à-d. notre feu de circulation change de couleur). Lorsqu’il est égal à (0), l’automate boucle dans l’état actuel (c.-à-d. notre feu de circulation conserve la même couleur). Un tel signal de déclenchement pourrait être périodique, contrôlé manuellement ou par un autre système (tel qu’un système de surveillance du trafic).</p>
+
+<p>La sortie de l’automate est la même que son état suivant (voir ci-dessous).</p>
+
+<p><img src="/l2ado/static_files/images/fsm-traffic-lights.png" alt="FSM Traffic lights" class="marginleft20px" height="40%" width="40%"></p>
+
+<p>Ainsi, les feux tricolores s’allument comme suit : <strong>ROUGE ⟶ VERT ⟶ ORANGE ⟶ ROUGE</strong> et ainsi de suite.</p>
+
+<p>Voici la table de vérité associée à notre automate</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%">
+<col width="20%">
+<col width="20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">État actuel</th>
+<th style="text-align:center">Entrée</th>
+<th style="text-align:center">Nouvel état</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>00</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>01</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>01</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>10</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>10</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>00</strong></td>
+</tr>
+
+</tbody>
+</table>
+
+<h2 id="tâches-à-effectuer">Tâches à effectuer</h2>
+
+<p>Une implémentation défectueuse de l’automate est fournie dans le circuit <code class="language-plaintext highlighter-rouge">ex2.circ</code>. Votre tâche consiste à corriger ce circuit pour qu’il fonctionne correctement. En particulier, trois bogues ont été insérés dans les (sous)circuits suivants :</p>
+
+<ol>
+  <li>
+<strong>Etat_bit_0</strong> : Observez les couleurs des fils et voyez si quelque chose ne va pas ici.</li>
+  <li>
+<strong>Etat_bit_1</strong> : Encore une fois, vérifiez les couleurs des fils. Une connexion vous semble désactivée ? Utilisez la table de vérité pour vous guider.</li>
+  <li>
+<strong>FSM</strong> : La broche en entrée <code class="language-plaintext highlighter-rouge">clk</code> est pilotée par un signal d’horloge fourni par le socle de test <code class="language-plaintext highlighter-rouge">testing/circ_files/ex2_test.circ</code>. Vous pouvez simuler manuellement ce signal en cliquant sur la broche <code class="language-plaintext highlighter-rouge">clk</code> après avoir sélectionné l’outil ‘Poke’ (c.-à-d. l’icône <img src="/l2ado/static_files/images/poke.gif" alt="Poke Tool"> dans la barre d’outils). Vous pouvez également utiliser cet outil pour vérifier l’état des fils et des autres broches du circuit. Cela devrait vous aider à voir pourquoi notre implémentation de l’automate ne se comporte pas comme prévu.</li>
+</ol>
+
+<p>Veuillez noter qu’il n’y a pas d’erreurs dans les sous-circuits <strong>FSMLogic</strong> ou <strong>Helper</strong>. Le sous-circuit <strong>Helper</strong> est utilisé pour mapper les états de l’automate aux diodes <strong>ROUGE</strong>, <strong>VERTE</strong> et <strong>ORANGE</strong>; et pour fournir un signal de déclenchement. Vous n’avez pas besoin d’examiner le fonctionnement de ce circuit pour cet exercice, mais n’hésitez pas à le faire <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.</p>
+
+<p>Un fonctionnement correct du circuit est illustré ci-dessous</p>
+
+<p><img src="/l2ado/static_files/images/traffic-lights.gif" alt="Traffic lights" class="wp-caption aligncenter" height="70%" width="70%"></p>
+
+<h1 id="exercise-3--chaîne-de-traitement">Exercise 3 : (Chaîne de traitement)</h1>
+
+<p>Pour cet exercice, vous pouvez supposer que les registres portent initialement la valeur zéro. Le fichier de démarrage fourni <code class="language-plaintext highlighter-rouge">ex3.circ</code> devrait comprendre un sous-circuit appelé <strong>non_pipelined</strong> qui ressemble à ceci :</p>
+
+<p><img src="/l2ado/static_files/images/non_pipelined.png" alt="Non pipelined" class="wp-caption aligncenter" height="70%" width="70%"></p>
+
+<p>Ce circuit prend deux valeurs en entrées, les multiplie ensemble, puis ajoute le résultat à la valeur d’état actuelle. Nous aimerions améliorer les performances de ce circuit et le faire tourner à une fréquence d’horloge plus élevée. En ce sens, il est requis d’implémenter dans le sous-circuit <strong>pipelined</strong> la version parallélisée de ce circuit en utilisant un pipeline à deux étages :</p>
+<ul>
+  <li>un étage pour la multiplication et</li>
+  <li>un étage pour l’addition, dans cet ordre.</li>
+</ul>
+
+<p>Votre circuit <strong>pipelined</strong> sera considéré “correct” si-et-seulement-si les sorties produites par ce circuit correspondent à la séquence de sorties qu’émettrait la version <strong>non_pipelined</strong>, à l’exception d’un zéro additionnel en amont.</p>
+
+<p>Explicitement, la version séquentielle fournie dans le sous-circuit <strong>non_pipelined</strong> produit la séquence suivante de nombres : [3, 5, 1, 2, 4, -1, 0, 0, …]. Donc, votre circuit <strong>pipelined</strong> sera considéré comme “correct” s’il émet la séquence suivante de nombres : [0, 3, 5, 1, 2, 4, -1, 0, 0, …].</p>
+
+<p><strong>Indication</strong> : Pour implémenter la version <strong>pipelined</strong> du circuit, vous aurez besoin d’introduire une mémoire tampon pour contenir la valeur intermédiaire du calcul entre les étages du pipeline.</p>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br>
+16000 Alger<br>
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

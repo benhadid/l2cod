@@ -18,10 +18,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Unstructured programming - Architecture des ordinateurs / Automne 2023 </title>
-  <meta name="description" content="Objectives      Refresh on “Structured Programming” in the C language        Learn “Unstructured” Programming  PreambleAnyone who wishes to learn scuba divin...">
+  <title> Unstructured programming - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Objectives      Refresh on “Structured Programming” in the C language        Learn “ Structured and Unstructured Programming”  PreambleAnyone who wishes to l...">
   
-
   <!--for gitlab pages -->
   
 
@@ -34,7 +33,7 @@
 
   <link rel="stylesheet" href="/l2ado/_css/main.css">
   <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/03_lab">
-  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2023 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -60,10 +59,10 @@
       <table><tr>
           <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
           <br/>
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2023 - "><b>Architecture des ordinateurs</a></b></span>
-          <br/>
-          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2023</span>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
           </td>
         </tr></table>
 
@@ -77,9 +76,7 @@
         </svg>
       </a>  
 
-    <div class="trigger"><h1>Main Navigation</h1>
-
- <ul class="menu">
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
     
     <li>
 
@@ -87,7 +84,7 @@
       
 
       <a class="page-link" href="/l2ado/">
-        <i class="fa fa-home fa-lg"></i> Accueil
+        <i class="fa fa-home fa-lg"></i> Home
       </a>
 
     </li>
@@ -98,7 +95,7 @@
       
 
       <a class="page-link" href="/l2ado/schedule/">
-        <i class="fas fa-calendar-alt"></i> Calendrier
+        <i class="fas fa-calendar-alt"></i> Schedule
       </a>
 
     </li>
@@ -109,7 +106,7 @@
       
 
       <a class="page-link" href="/l2ado/lectures/">
-        <i class="fas fa-book-reader"></i> Cours
+        <i class="fas fa-book-reader"></i> Lectures
       </a>
 
     </li>
@@ -120,7 +117,7 @@
       
 
       <a class="page-link" href="/l2ado/discussions/">
-        <i class="fas fa-user-graduate"></i> T. Dirigés
+        <i class="fas fa-user-graduate"></i> Seminars
       </a>
 
     </li>
@@ -131,7 +128,7 @@
       
 
       <a class="page-link" href="/l2ado/labs/">
-        <i class="fas fa-laptop-code"></i> T. Pratiques
+        <i class="fas fa-laptop-code"></i> Labs
       </a>
 
     </li>
@@ -142,7 +139,7 @@
       
 
       <a class="page-link" href="/l2ado/quizzes/">
-        <i class="fas fa-question-circle"></i> Quiz
+        <i class="fas fa-question-circle"></i> Quizzes
       </a>
 
     </li>
@@ -153,7 +150,7 @@
       
 
       <a class="page-link" href="/l2ado/projects/">
-        <i class="fas fa-user-graduate"></i> Projets
+        <i class="fas fa-user-graduate"></i> Projects
       </a>
 
     </li>
@@ -164,21 +161,21 @@
       
 
       <a class="page-link" href="/l2ado/materials/">
-        <i class="fas fa-book"></i> Ressources
+        <i class="fas fa-book"></i> Materials
       </a>
 
     </li>
     
 </ul>
-
-
-     </div>  
+ </div>  
+    
     </nav>
-
   </div>
 
-  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
-  background-image: url('/l2ado/_images/pattern.png');" />
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
 
 </header>
 
@@ -189,31 +186,31 @@
 
   <header class="post-header">
     <h1 class="post-title">Unstructured programming</h1>
-    <p class="post-meta">Publié le
+    <p class="post-meta">Published on 
       <!--
-      Sunday
-      15/10/2023
+      Tuesday
+      15/10/2024
       -->
       
-      Dimanche
+      Tuesday
       15
       
-      Octobre
-      2023
+      October
+      2024
     </p>
   </header>
 
   <div>
     
-    <span style="font-weight: bold">Échéance :
-      <!-- 22/10/2023 -->
+    <span style="font-weight: bold"> Due on 
+      <!-- 22/10/2024 -->
 
       
-      Dimanche
+      Tuesday
       22
       
-      Octobre
-      2023
+      October
+      2024
     </span>
     
 
@@ -221,7 +218,7 @@
     
 
     
-    <p style="font-weight: bold">Télécharger
+    <p style="font-weight: bold">Download
 
       
 
@@ -243,7 +240,7 @@
     <p>Refresh on “Structured Programming” in the C language</p>
   </li>
   <li>
-    <p>Learn “<a href="/l2ado/static_files/docs/non_structured_programming.html">Unstructured</a>” Programming</p>
+    <p>Learn “<a href="/l2ado/docs/en/non_structured_programming"> Structured and Unstructured Programming</a>”</p>
   </li>
 </ul>
 
@@ -269,7 +266,7 @@
 
 <p>This command will display on your screen the results of some tests which will allow you to check if you have correctly implemented the assigned tasks.</p>
 
-<p><strong>Hint</strong>: Write your solution in a standard way (i.e. with the keywords <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>, …), then you can convert it into an unstructured code (without these keywords) using the examples and indications given in the document “<a href="/l2ado/static_files/docs/non_structured_programming.html">Structured and Unstructured Programming</a>”.</p>
+<p><strong>Hint</strong>: Write your solution in a standard way (i.e. with the keywords <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>, …), then you can convert it into an unstructured code (without these keywords) using the examples and indications given in the document “<a href="/l2ado/docs/en/non_structured_programming"> Structured and Unstructured Programming</a>”.</p>
 
 <h1 id="exercise-1-sum-of-squares">Exercise 1: (Sum of squares)</h1>
 
