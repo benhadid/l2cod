@@ -18,7 +18,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Mécanisme d’exception dans MIPS - Computer Design / Fall 2024 </title>
+  <title> Exception mechanisms in MIPS - Computer Design / Fall 2024 </title>
   <meta name="description" content="IntroductionConditional and jump instructions change the flow of execution in a program. Exceptions are events that occur during program execution and also c...">
   
   <!--for gitlab pages -->
@@ -185,7 +185,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Mécanisme d’exception dans MIPS</h1>
+    <h1 class="post-title">Exception mechanisms in MIPS</h1>
   </header>
 
   <article class="post-content">
@@ -310,7 +310,7 @@
   </div>  
 </div>
 
-<p>The second column in the tables above shows the state of the Coprocessor0 registers when an exception occurs. The exception program register <strong>epc ($14)</strong> stores the address of the instruction when the exception occured. The value of <strong>epc</strong> in the first example is <strong>0x00400010</strong>. This value is the address in memory of the <code class="language-plaintext highlighter-rouge">add</code> instruction that caused the arithmetic overflow. In the second example, the <strong>epc</strong> register contains the value <strong>0x0040001c</strong>, which corresponds to the address of the <code class="language-plaintext highlighter-rouge">sw</code> instruction that attempted to write to an illegal address in memory. In the third example, <strong>epc</strong> contains the value <strong>0x00400028</strong>, which is the address of the <code class="language-plaintext highlighter-rouge">lw</code> instruction that generated the misaligned address exception.</p>
+<p>The screenshots on the right above show the states of Coprocessor0 registers when exceptions occur. The exception program register <strong>epc ($14)</strong> stores the address of the instruction when the exception occured. The value of <strong>epc</strong> in the first example is <strong>0x00400010</strong>. This value is the address in memory of the <code class="language-plaintext highlighter-rouge">add</code> instruction that caused the arithmetic overflow. In the second example, the <strong>epc</strong> register contains the value <strong>0x0040001c</strong>, which corresponds to the address of the <code class="language-plaintext highlighter-rouge">sw</code> instruction that attempted to write to an illegal address in memory. In the third example, <strong>epc</strong> contains the value <strong>0x00400028</strong>, which is the address of the <code class="language-plaintext highlighter-rouge">lw</code> instruction that generated the misaligned address exception.</p>
 
 <p>If a read, write, jump, or branch instruction creates an exception, then <strong>vaddr ($8)</strong> register will contain the invalid address that caused the exception. Continuing with the examples above, the illegal write address that caused the exception in the <code class="language-plaintext highlighter-rouge">sw</code> instruction example is <strong>vaddr = 0x00000004</strong>, and the misaligned address in the <code class="language-plaintext highlighter-rouge">lw</code> read instruction example is <strong>vaddr = 0x10010001</strong>.</p>
 
