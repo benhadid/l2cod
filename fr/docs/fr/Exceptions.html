@@ -310,7 +310,7 @@
   </div>  
 </div>
 
-<p>La deuxième colonne du tableau ci-dessus montre l’état des registres du coprocesseur 0 quand une exception se produit. Le registre de programme d’exception <strong>epc ($14)</strong> stocke l’adresse de l’instruction à l’origine de l’exception. La valeur de <strong>epc</strong> dans le premier exemple est <strong>0x00400010</strong>. Cette valeur est l’adresse dans la mémoire de l’instruction <code class="language-plaintext highlighter-rouge">add</code> qui a provoqué le débordement arithmétique. Dans le second exemple, le registre <strong>epc</strong> contient la valeur <strong>0x0040001c</strong> qui correspond à l’adresse de l’instruction <code class="language-plaintext highlighter-rouge">sw</code> ayant tenté d’écrire dans une adresse illégale en mémoire. Dans le troisième exemple, <strong>epc</strong> contient la valeur <strong>0x00400028</strong>, qui correspond à l’adresse de l’instruction <code class="language-plaintext highlighter-rouge">lw</code> ayant généré l’exception d’adresse mal alignée.</p>
+<p>La deuxième colonne dans les tableaux ci-dessus montre l’état des registres du coprocesseur 0 quand une exception se produit. Le registre de programme d’exception <strong>epc ($14)</strong> stocke l’adresse de l’instruction à l’origine de l’exception. La valeur de <strong>epc</strong> dans le premier exemple est <strong>0x00400010</strong>. Cette valeur est l’adresse dans la mémoire de l’instruction <code class="language-plaintext highlighter-rouge">add</code> qui a provoqué le débordement arithmétique. Dans le second exemple, le registre <strong>epc</strong> contient la valeur <strong>0x0040001c</strong> qui correspond à l’adresse de l’instruction <code class="language-plaintext highlighter-rouge">sw</code> ayant tenté d’écrire dans une adresse illégale en mémoire. Dans le troisième exemple, <strong>epc</strong> contient la valeur <strong>0x00400028</strong>, qui correspond à l’adresse de l’instruction <code class="language-plaintext highlighter-rouge">lw</code> ayant généré l’exception d’adresse mal alignée.</p>
 
 <p>Si une instruction de lecture, d’écriture, de saut ou de branchement crée une exception, alors le registre <strong>vaddr ($8)</strong> contiendra l’adresse non valide qui a provoqué l’exception. Si nous reprenons les exemples ci-dessus, l’adresse d’écriture non autorisée qui a provoqué l’exception dans l’exemple de l’instruction <code class="language-plaintext highlighter-rouge">sw</code> est <strong>vaddr = 0x00000004</strong>, et l’adresse mal alignée dans l’exemple de l’instruction de lecture <code class="language-plaintext highlighter-rouge">lw</code> est <strong>vaddr = 0x10010001</strong>.</p>
 
@@ -404,7 +404,7 @@
 <tr>
 <td style="text-align:center">13</td>
 <td style="text-align:center">TRAP</td>
-<td style="text-align:left">Exception provoquée par une instruction <strong>trap</strong></td>
+<td style="text-align:left">Exception provoquée par une instruction <code class="language-plaintext highlighter-rouge">trap</code></td>
 </tr>
 
 <tr>
@@ -528,7 +528,7 @@
 
 <h1 id="gestionnaire-dexceptions">Gestionnaire d’exceptions</h1>
 
-<p>La structure de la mémoire dans une architecture MIPS est illustrée ci-dessous. Le système d’exploitation apparaît dans la moitié supérieure de l’espace d’adressage, accessible uniquement lorsque le processeur s’exécute en mode superviseur. Le segment de code du superviseur du système d’exploitation commence à l’adresse <strong>0x80000000</strong> et le segment de données du superviseur commence à l’adresse <strong>0x90000000</strong>. Le dernier segment de l’espace d’adressage est <em>mappé</em> (voir paragraphe ci-dessous) aux périphériques d’Entrée / Sortie à partir de l’adresse <strong>0xffff0000</strong>.</p>
+<p>La structure de la mémoire dans une architecture MIPS est illustrée ci-dessous. Le système d’exploitation apparaît dans la moitié supérieure de l’espace d’adressage, accessible uniquement lorsque le processeur s’exécute en mode superviseur. Le segment de code du superviseur commence à l’adresse <strong>0x80000000</strong> et le segment de données du superviseur commence à l’adresse <strong>0x90000000</strong>. Le dernier segment de l’espace d’adressage est <em>mappé</em> (voir paragraphe ci-dessous) aux périphériques d’Entrée / Sortie à partir de l’adresse <strong>0xffff0000</strong>.</p>
 
 <p><img src="/l2ado/static_files/images/mips_memory.png" alt="MIPS_MEMORY" height="35%" width="35%" class="aligncenter" /></p>
 

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Mécanisme d’exception dans MIPS - Computer Design / Fall 2024 </title>
+  <meta name="description" content="IntroductionConditional and jump instructions change the flow of execution in a program. Exceptions are events that occur during program execution and also c...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/en/Exceptions">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Resources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Mécanisme d’exception dans MIPS</h1>
+  </header>
+
+  <article class="post-content">
+    <h1 id="introduction">Introduction</h1>
+
+<p>Conditional and jump instructions change the flow of execution in a program. <strong>Exceptions</strong> are events that occur during program execution and also change the flow of execution.</p>
+
+<p>An exception is said to be <strong>synchronous</strong> if it is caused by an instruction in the current program. Arithmetic exceptions (division by zero, overflow, …), access to invalid memory addresses are examples of synchronous exceptions. An exception is said to be <strong>asynchronous</strong> if it is caused by an I/O device (keyboard, mouse, …). This type of exception is not related to program execution and is also called <strong>hardware interrupts</strong>.</p>
+
+<p>When an exception occurs, the current program is suspended and control is transferred to an <strong>exception handler</strong> to process the exception that occurred. Once the exception is handled, control is returned back to the program which resumes its execution from where it has been suspended. In contrast to traditional function calls, the <strong>exception handler</strong> is a “suddenly called” procedure (without parameters or return value).</p>
+
+<p>There are two modes of program execution in a MIPS processor. The <strong>user</strong> mode and the <strong>supervisor</strong> mode (aka <strong>kernel</strong> mode). Standard programs run in user mode. The processor switches to supervisor mode when an exception occurs. The exception handling mechanism in MIPS is implemented by an <strong>auxiliary coprocessor</strong> called: <strong>Coprocessor0</strong>. This device contains several registers which store information about the exception.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="text-align:left; vertical-align:top"><strong>vaddr ($8)</strong></td>
+<td style="text-align:left">Contains the memory address whose access is invalid. Caused by a load, store, or fetch instruction.</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><strong>status ($12)</strong></td>
+<td style="text-align:left">Interruption mask (see below).</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><strong>cause ($13)</strong></td>
+<td style="text-align:left">Exception type and pending interrupts (see below).</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><strong>epc ($14)</strong></td>
+<td style="text-align:left">Holds the instruction address (i.e. content of $pc) when the exception occurred.</td>
+</tr>
+</tbody>
+</table>
+
+<p>In MARS, the values ​​of the registers: <strong>vaddr</strong>, <strong>status</strong>, <strong>cause</strong> and <strong>epc</strong> are accessible from the <strong>Coprocessor 0</strong> tab.</p>
+
+<p><img src="/l2ado/static_files/images/coprocessor0.png" alt="Coprocessor0" height="50%" width="50%" class="aligncenter" /></p>
+
+<p>Examples of code to generate software exceptions are shown below. The first example initializes the register <code class="language-plaintext highlighter-rouge">$t0</code> with <strong>0x7fffffff</strong> and <code class="language-plaintext highlighter-rouge">$t1</code> with <strong>1</strong>. The <code class="language-plaintext highlighter-rouge">addu</code> instruction performs an unsigned addition and therefore ignores the overflow. However, the <code class="language-plaintext highlighter-rouge">add</code> instruction performs a signed addition and since there is an overflow here, this instruction will cause an <strong>arithmetic overflow exception</strong>. In the second example, an attempt is made to store data at an illegal address in memory. In the third example, we are trying to read a word from a misaligned address in memory. And in the last example, the very effect of inserting a <strong>breakpoint</strong> (i.e.a <code class="language-plaintext highlighter-rouge">break</code> instruction) into a program (while debugging) will cause an exception.</p>
+
+<div id="CvsMIPS">
+  <div>
+
+    <pre><code class="language-mips">  # Exception de débordement arithmétique
+  li     $t0, 0x7fffffff    # $t0 = MAX_INT 
+  li     $t1, 1             # $t1 = 1
+  addu   $t2, $t0, $t1      # Ignore Overflow 
+  add    $t3, $t0, $t1      # Detect Overflow
+</code></pre>
+
+  </div>
+  
+  <div>
+
+    <p><img src="/l2ado/static_files/images/overflow.png" alt="Overflow" height="72%" width="72%" class="aligncenter" />
+  <br /></p>
+  </div>  
+</div>
+
+<div id="CvsMIPS">
+  <div>
+
+    <pre><code class="language-mips">  # Exception d’adresse invalide
+  # Ne peut pas sauvegarder à l’adresse 4 
+  li     $t0, 4
+  li     $a0, 5
+  sw     $a0, ($t0)
+</code></pre>
+
+  </div>
+  
+  <div>
+
+    <p><img src="/l2ado/static_files/images/invalid_address.png" alt="Overflow" height="72%" width="72%" class="aligncenter" />
+  <br /></p>
+  </div>  
+</div>
+
+<div id="CvsMIPS">
+  <div>
+
+    <pre><code class="language-mips">  # Exception d’adresse mal alignée
+  .data
+  arr: .word 12, 17
+  . . .
+  la     $t0, arr
+  lw     $t0, 1($t0)
+</code></pre>
+
+  </div>
+  
+  <div>
+
+    <p><img src="/l2ado/static_files/images/notaligned.png" alt="Overflow" height="72%" width="72%" class="aligncenter" />
+  <br /></p>
+  </div>  
+</div>
+
+<div id="CvsMIPS">
+  <div>
+
+    <pre><code class="language-mips">  # Exception point d’arrêt (Breakpoint)
+  # causée par l’instruction break
+  .text
+  . . .
+  break
+</code></pre>
+
+  </div>
+  
+  <div>
+
+    <p><img src="/l2ado/static_files/images/breakpoint.png" alt="Overflow" height="72%" width="72%" class="aligncenter" />
+  <br /></p>
+  </div>  
+</div>
+
+<p>The second column in the tables above shows the state of the Coprocessor0 registers when an exception occurs. The exception program register <strong>epc ($14)</strong> stores the address of the instruction when the exception occured. The value of <strong>epc</strong> in the first example is <strong>0x00400010</strong>. This value is the address in memory of the <code class="language-plaintext highlighter-rouge">add</code> instruction that caused the arithmetic overflow. In the second example, the <strong>epc</strong> register contains the value <strong>0x0040001c</strong>, which corresponds to the address of the <code class="language-plaintext highlighter-rouge">sw</code> instruction that attempted to write to an illegal address in memory. In the third example, <strong>epc</strong> contains the value <strong>0x00400028</strong>, which is the address of the <code class="language-plaintext highlighter-rouge">lw</code> instruction that generated the misaligned address exception.</p>
+
+<p>If a read, write, jump, or branch instruction creates an exception, then <strong>vaddr ($8)</strong> register will contain the invalid address that caused the exception. Continuing with the examples above, the illegal write address that caused the exception in the <code class="language-plaintext highlighter-rouge">sw</code> instruction example is <strong>vaddr = 0x00000004</strong>, and the misaligned address in the <code class="language-plaintext highlighter-rouge">lw</code> read instruction example is <strong>vaddr = 0x10010001</strong>.</p>
+
+<p>The <strong>cause ($13)</strong> register provides information (i.e. exception code) about the reason of the exception and any pending interrupts, if any. The <strong>exception code</strong> is stored in bits 2 through 6 of the <strong>cause</strong> register.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/cause_register.png" alt="Cause" height="72%" width="72%" class="aligncenter" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>cause</strong> register</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>The MIPS architecture defines numeric codes (values) for different types of exceptions. Some of these codes are listed below.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Code</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">INT</td>
+<td style="text-align:left">Hardware Interrupt</td>
+</tr>
+
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">ADDRL</td>
+<td style="text-align:left">Address error exception caused by data loading (load) or fetching (fetch) instructions</td>
+</tr>
+
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">ADDRS</td>
+<td style="text-align:left">Address error exception caused by a data save instruction (store)</td>
+</tr>
+
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">IBUS</td>
+<td style="text-align:left">Bus error while fetcing an instruction</td>
+</tr>
+
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">DBUS</td>
+<td style="text-align:left">Bus error while loading or saving data</td>
+</tr>
+
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">SYSCALL</td>
+<td style="text-align:left">A system call exception caused by a <code class="language-plaintext highlighter-rouge">syscall</code> instruction</td>
+</tr>
+
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">BKPT</td>
+<td style="text-align:left">Breakpoint exception caused by a <code class="language-plaintext highlighter-rouge">break</code> instruction</td>
+</tr>
+
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">RI</td>
+<td style="text-align:left">Exception due to “reserved” instruction</td>
+</tr>
+
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">OVF</td>
+<td style="text-align:left">Overflow exception</td>
+</tr>
+
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">TRAP</td>
+<td style="text-align:left">Exception caused by a <code class="language-plaintext highlighter-rouge">trap</code> instruction</td>
+</tr>
+
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">FPE</td>
+<td style="text-align:left">Floating point arithmetic exception</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <strong>status ($12)</strong> register controls interrupt permissions. Bit 0 (<strong>IE</strong> - <strong>I</strong>nterrupt <strong>E</strong>nable) enables or disables interrupts globally. Bit 1 is called the <strong>E</strong>xception <strong>L</strong>evel<strong>. This bit is normally 0 unless an exception/interrupt occurs, in which case it is set to 1. The **interrupt mask</strong> is an 8-bit field. One bit for each of the six hardware and two software interrupt levels. When a mask bit is 1, interrupts at that level are autorised. When a mask bit is 0, the interrupts associated with that level are masked (i.e. disabled). When an interrupt occurs, the associated bit in the <strong>cause</strong> register (interrupt pending) is set even if the mask bit is cleared. When an interrupt is pending, it will be processed by the processor once its mask bit is set.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/status_register.png" alt="Cause" height="72%" width="72%" class="aligncenter" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>status</strong> register</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h1 id="coprocessor0-instructions">Coprocessor0 instructions</h1>
+
+<p>When an exception occurs, the processor switches to <strong>supervisor</strong> mode. The Coprocessor0 registers are accessible only when the processor is in this execution mode.</p>
+
+<p>The contents of the Coprocessor0 registers can be transferred to/from this device using the <code class="language-plaintext highlighter-rouge">mfc0</code> and <code class="language-plaintext highlighter-rouge">mtc0</code> instructions, respectively. It is also possible to transfer data between the Coprocessor 0 registers and memory using the additional <code class="language-plaintext highlighter-rouge">lwc0</code> and <code class="language-plaintext highlighter-rouge">swc0</code> instructions.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Instruction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">mfc0 rd, c0src</code></td>
+<td style="text-align:left">Copy register <code class="language-plaintext highlighter-rouge">c0src</code> from Coprocessor0 to destination register <code class="language-plaintext highlighter-rouge">rd</code></td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">mtc0 rs, c0dst</code></td>
+<td style="text-align:left">Copy source register <code class="language-plaintext highlighter-rouge">rs</code> to Coprocessor0 register <code class="language-plaintext highlighter-rouge">c0src</code></td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">lwc0 c0dst, addr</code></td>
+<td style="text-align:left">Reads a word from memory and copies it into the <code class="language-plaintext highlighter-rouge">c0dst</code> register</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">swc0 c0dst, addr</code></td>
+<td style="text-align:left">Saves the content of register<code class="language-plaintext highlighter-rouge">c0src</code> to memory</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">eret</code></td>
+<td style="text-align:left">Set EL = 0 (switch to user mode) and return: <code class="language-plaintext highlighter-rouge">$pc = $epc + 4</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>The MIPS architecture also defines special instructions that <strong>cause</strong> exceptions and switch the processor from “user mode” to “supervisor mode”. These are the <code class="language-plaintext highlighter-rouge">trap</code>, <code class="language-plaintext highlighter-rouge">break</code>, and <code class="language-plaintext highlighter-rouge">syscall</code> instructions:</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Instruction</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">teq rs, rt</code></td>
+<td style="text-align:left">Generates a trap exception if registers <code class="language-plaintext highlighter-rouge">rs</code> and <code class="language-plaintext highlighter-rouge">rt</code> are equal</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">tne rs, rt</code></td>
+<td style="text-align:left">Generates a trap exception if <code class="language-plaintext highlighter-rouge">rs</code> is different from <code class="language-plaintext highlighter-rouge">rt</code></td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">tlt rs, rt</code></td>
+<td style="text-align:left">Generates a trap exception if <code class="language-plaintext highlighter-rouge">rs</code> is less than <code class="language-plaintext highlighter-rouge">rt</code></td>
+</tr>
+
+<tr>
+<td style="text-align:center"> . . .</td>
+<td style="text-align:left">other trap instructions exist</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">break</code></td>
+<td style="text-align:left">Generates a Breakpoint exception</td>
+</tr>
+
+<tr>
+<td style="text-align:left"><code class="language-plaintext highlighter-rouge">syscall</code></td>
+<td style="text-align:left">Generates a “system call” exception.</td>
+</tr>
+
+</tbody>
+</table>
+
+<p>Trap instructions (<code class="language-plaintext highlighter-rouge">teq</code>, <code class="language-plaintext highlighter-rouge">tne</code>, …) generate the <strong>TRAP</strong> exception (code 13). The <code class="language-plaintext highlighter-rouge">break</code> instruction generates the <strong>breakpoint</strong> exception (code 9), and the <code class="language-plaintext highlighter-rouge">syscall</code> instruction triggers the <strong>system call</strong> exception (code 8).</p>
+
+<h1 id="exception-handler">Exception Handler</h1>
+
+<p>The memory layout in a MIPS architecture is shown below. The operating system appears in the top half of the address space, accessible only when the processor is running in supervisor mode. The supervisor code segment starts at address <strong>0x80000000</strong> and the supervisor data segment starts at address <strong>0x90000000</strong>. The last segment of the address space is <em>mapped</em> (see paragraph below) to the I/O devices starting at address <strong>0xffff0000</strong>.</p>
+
+<p><img src="/l2ado/static_files/images/mips_memory.png" alt="MIPS_MEMORY" height="35%" width="35%" class="aligncenter" /></p>
+
+<p>In MIPS, when a function is called using the <code class="language-plaintext highlighter-rouge">jal</code> instruction, control is transferred to the address provided by the instruction and the return address is stored in <code class="language-plaintext highlighter-rouge">$ra</code> register. In the case of an exception/interrupt, there is no explicit call… when an exception occurs, control is transferred to the fixed address <strong>0x80000180</strong>. The exception handler must be implemented at this address. The return address from the exception cannot be stored in <code class="language-plaintext highlighter-rouge">$ra</code> because it will modify a return address that was placed in that register before the exception occurred. It is the <strong>epc</strong> register in Coprocessor0 that plays the role of the <code class="language-plaintext highlighter-rouge">$ra</code> register when an exception occurs (i.e. the <strong>epc</strong> register stores the address of the instruction that was executing when the exception occurred).</p>
+
+<p>An exception handler must perform five steps:</p>
+
+<ol>
+  <li>Save the standard processor registers before modifying them in the exception handler.</li>
+  <li>Identify the exception that occurred by examining the contents of the Coprocessor0 registers.</li>
+  <li>Execute the exception-specific routine, usually via a branch table.</li>
+  <li>Restore all possibly modified standard registers in the exception handler.</li>
+  <li>Continue execution of the program in “user mode” or terminate the program if it cannot be restarted</li>
+</ol>
+
+<p>The exception handler must preserve the value of any registers it might modify so that execution of the interrupted program can resume  at a later time. The MIPS architecture reserves registers <code class="language-plaintext highlighter-rouge">$26</code> and <code class="language-plaintext highlighter-rouge">$27</code> (i.e. <code class="language-plaintext highlighter-rouge">$k0</code> and <code class="language-plaintext highlighter-rouge">$k1</code>) for use by the exception handler. The handler can modify these two registers without having to save them first. Other processor registers must be saved <strong>in memory</strong> before being modified in the exception handler.</p>
+
+<p>For example, the exception handler shown below saves registers <code class="language-plaintext highlighter-rouge">$at</code>, <code class="language-plaintext highlighter-rouge">$a0</code>, and <code class="language-plaintext highlighter-rouge">$v0</code> in the supervisor data segment (at address <code class="language-plaintext highlighter-rouge">_regs</code>) before modifying them, and restores their contents at the end of the routine before <strong>eret</strong>urning  to the suspended program. In fact, since the <strong>epc</strong> register contains the address of the instruction at the time the exception occurred, the return address must be incremented by 4 to avoid executing the same instruction again.</p>
+
+<p>Here is the complete routine. The program displays the address of the instruction that caused the exception and its code.</p>
+
+<pre><code class="language-mips"># Exception Handler starts here
+.ktext 0x80000180
+move $k0, $at                     # $k0 = $at
+la $k1, _regs                     # $k1 = address of _regs
+sw $k0, 0($k1)                    # save $at
+sw $v0, 4($k1)                    # save $v0
+sw $a0, 8($k1)                    # save $a0
+ 
+la $a0, _msg1                     # $a0 = address of _msg1
+li $v0, 4                         # $v0 = service 4
+syscall                           # Print _msg1
+mfc0 $a0, $14                     # $a0 = EPC
+li $v0, 34                        # $v0 = service 34
+syscall                           # print EPC in hexadecimal
+
+la $a0, _msg2                     # $a0 = address of _msg2
+li $v0, 4                         # $v0 = service 4
+syscall                           # Print _msg2
+mfc0 $a0, $13                     # $a0 = cause
+srl $a0, $a0, 2                   # shift right by 2 bits
+andi $a0, $a0, 31                 # $a0 = exception code
+li $v0, 1                         # $v0 = service 1
+syscall                           # Print exception code
+
+la $a0, _msg3                     # $a0 = address of _msg3
+li $v0, 4                         # $v0 = service 4
+syscall                           # Print _msg3
+
+la $k1, _regs                     # $k1 = address of _regs
+lw $at, 0($k1)                    # restore $at
+lw $v0, 4($k1)                    # restore $v0
+lw $a0, 8($k1)                    # restore $a0
+
+mtc0 $zero, $8                    # clear vaddr
+mfc0 $k0, $14                     # $k0 = EPC
+addiu $k0, $k0, 4                 # Increment $k0 by 4
+mtc0 $k0, $14                     # EPC = point to next instruction
+
+eret                              # exception return: PC = EPC
+
+# kernel data is stored here
+.kdata
+
+_msg1:   .asciiz    "\nException caused by instruction at address: "
+_msg2:   .asciiz    "\nException Code = "
+_msg3:   .asciiz    "\nIgnore and continue program ...\n"
+_regs:   .word 0:3               # Space for saved registers
+</code></pre>
+
+<h1 id="memory-mapped-inputsoutputs">Memory mapped inputs/outputs</h1>
+
+<p>In any computer, the input and output devices are located outside the processor chip. A MIPS processor communicates with the I/O devices using a technique called memory-mapped I/O.</p>
+
+<p>With memory-mapped I/O, there is no need to add additional instructions to the MIPS instruction set. Any <code class="language-plaintext highlighter-rouge">lw</code> or <code class="language-plaintext highlighter-rouge">sw</code> instruction with an effective address equal to or greater than <code class="language-plaintext highlighter-rouge">0xffff0000</code> will not access main memory but an address reserved for accessing the I/O device registers. The I/O device controllers are connected to the system’s I/O bus as shown below.</p>
+
+<p><img src="/l2ado/static_files/images/ES_MIPS.png" alt="MAPPEDIO" height="60%" width="60%" class="aligncenter" /></p>
+
+<p>When a key is pressed on the keyboard, the <strong>Data</strong> register stores the associated character and the Ready bit in the <strong>Control</strong> register is set. The following MIPS code provides an example of memory-mapped access to the keyboard controller registers using the <strong>polling</strong> method:</p>
+
+<pre><code class="language-mips">li     $t0, 0xffff0000      # Address of keyboard control register
+li     $t1, 0               # Initialize wait_counter = 0
+
+wait_keyboard:
+
+lw     $t2, ($t0)           # Read the keyboard control register
+andi   $t2, $t2, 1          # Extract ready bit
+addiu  $t1, $t1, 1          # wait_counter++ (counts iterations)
+beqz   $t2, waitkeyboard    # loop back while not ready
+lw     $a0, 4($t0)          # Get character from keyboard
+</code></pre>
+
+<p>The frequency of typing characters on the keyboard is very slow compared to the speed at which a processor can execute instructions. Typically, millions of instructions are executed in the period of time a key is pressed in succession. In our example, the <code class="language-plaintext highlighter-rouge">$t1</code> register keeps track of the number of iterations performed in the <code class="language-plaintext highlighter-rouge">wait_keyboard</code> loop before a key is pressed. The <code class="language-plaintext highlighter-rouge">lw</code> instruction at the end of the loop fetches the character from the keyboard’s <strong>Data</strong> register, which also clears the ready bit. A MIPS program can only read the contents of the keyboard’s data register. Writing to this register has no effect.</p>
+
+<p>Communication with the graphics card can be done in a similar way via polling. The display registers are mapped to addresses <strong>0xffff0008</strong> and <strong>0xffff000c</strong>. Indeed, as seen in the code below, as long as the ready bit of the <strong>Control</strong> register is clear, the routine will continue to loop through that register. We should not write characters to the <strong>Data</strong> register until the display is ready to receive them. The display controller clears the ready bit when a character is written to the <strong>Data</strong> register and sets it to <strong>1</strong> again once the character is displayed.</p>
+
+<pre><code class="language-mips">li    $t0, 0xffff0008      # Address of display control register 
+
+wait_display:
+
+lw    $t2, ($t0)           # Read the display control register
+andi  $t2, $t2, 1          # Extract ready bit
+beqz  $t2, wait_display    # loop back while not ready
+sw    $a0, 4($t0)          # Send character to display
+</code></pre>
+
+<p>The main disadvantage of the polling method is that it keeps the processor busy, wasting millions of cycles before the I/O device (such as the keyboard) is ready. An alternative method is to use interrupts. These can be enabled for the keyboard by setting the <strong>Interrupt Enable</strong> bit in the keyboard’s <strong>Control</strong> register as follows:</p>
+
+<pre><code class="language-mips">li  $t0, 0xffff0000   # Address of keyboard control register
+li  $t1, 2             
+sw  $t1, ($t0)        # Enable keyboard interrupt
+</code></pre>
+
+<p>When a key is pressed, the keyboard sends an interrupt signal to the MIPS processor and initialises the <strong>cause</strong> register to the value <strong>0x00000100</strong>. Bit 8 in the <strong>cause</strong> register is set to indicate that the keyboard has interrupted the processor. In order for the character entered on the keyboard to be used by the running program, an interrupt handler must be written to read the character from the keyboard <strong>Data</strong> register and return it to the program.</p>
+
+<p>Recent I/O device controllers (such as hard drives and network cards) use DMA (Direct Memory Access) to transfer blocks of data directly between the device and memory. As controllers become more complex, more than two registers are associated with each device controller. Typically, the I/O device manufacturer provides programmers with a manual (<em>English</em> Data sheet) on how to properly communicate with that device’s controller.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
