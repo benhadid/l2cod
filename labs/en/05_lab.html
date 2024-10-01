@@ -18,8 +18,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Appel de fonctions dans MIPS - Computer Design / Fall 2024 </title>
-  <meta name="description" content="Objectifs      Maîtrise de la convention d’appel de fonctions dans MIPS        Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS  Préam...">
+  <title> Function Calling in MIPS - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Objectives      Know how function calling is done/managed in MIPS        Know how to assemble multiple files in MARS  PreambleBegin by downloading the starte...">
   
   <!--for gitlab pages -->
   
@@ -32,7 +32,7 @@
   <!--for github-->
 
   <link rel="stylesheet" href="/l2ado/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/fr/05_lab">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/05_lab">
   <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
@@ -185,7 +185,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Appel de fonctions dans MIPS</h1>
+    <h1 class="post-title">Function Calling in MIPS</h1>
     <p class="post-meta">Published on 
       <!--
       Tuesday
@@ -233,35 +233,36 @@
 
   <br />
   <article class="post-content">
-    <h1 id="objectifs">Objectifs</h1>
+    <h1 id="objectives">Objectives</h1>
 
 <ul>
   <li>
-    <p>Maîtrise de la convention d’appel de fonctions dans MIPS</p>
+    <p>Know how function calling is done/managed in MIPS</p>
   </li>
   <li>
-    <p>Maîtriser l’assemblage de plusieurs fichiers d’un projet MIPS avec MARS</p>
+    <p>Know how to assemble multiple files in MARS</p>
   </li>
 </ul>
 
-<h1 id="préambule">Préambule</h1>
+<h1 id="preamble">Preamble</h1>
 
-<p>Commencez par télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Après avoir codé les fonctions des exercices ci-dessous, vous pouvez vérifier l’exactitude de vos implémentations en lançant les commandes suivantes sous environnement UN*X. (c.f. Le <a href="/l2ado/labs/04_lab.html">TP précédent</a>) :</p>
+<p>Begin by downloading the starter file and unzip its content to a folder of your choice. Once work done as requested in the exercises below, you can check the correctness of your implementations by running the following commands in the UN*X environment. (c.f. the         <a href="/l2ado/labs/en/04_lab">previous lab</a>          ):</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab5
-<span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- à faire la première fois seulement</span>
-<span class="gp">$</span><span class="w"> </span>./run_tests.sh           <span class="c"># &lt;-- exécutez cela chaque fois que vous voulez tester vos codes </span>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>path/to/lab5
+<span class="gp">$</span><span class="w"> </span><span class="nb">chmod</span> +x run_test.sh     <span class="c"># &lt;-- to do once only (makes sure you can execute the script run_test.sh)</span>
+<span class="gp">$</span><span class="w"> </span>./run_tests.sh           <span class="c"># &lt;-- execute this script each time you want to test your implementations </span>
 </code></pre></div></div>
-<h1 id="exercice-1--n_choose_k">Exercice 1 : (n_choose_k)</h1>
 
-<p>Afin de respecter la convention d’appel de fonctions dans MIPS, ajoutez dans le code <code class="language-plaintext highlighter-rouge">nchoosek/impl.s</code> aux endroits indiqués par le marqueur <code class="language-plaintext highlighter-rouge">### VOTRE CODE ICI ###</code> le prologue et l’épilogue de la fonction <code class="language-plaintext highlighter-rouge">nchoosek()</code> afin qu’elle calcule <em>le nombre de combinaisons de n éléments distincts choisis k fois</em>. Ceci peut être calculé à l’aide de factorielles, mais nous le ferons en recherchant l’entrée (n, k) dans le <a href="https://fr.wikipedia.org/wiki/Triangle_de_Pascal">triangle de Pascal</a>.</p>
+<h1 id="exercise-1--n_choose_k">Exercise 1 : (n_choose_k)</h1>
 
-<h1 id="exercice-2--polynôme">Exercice 2 : (polynôme)</h1>
+<p>To comply with the calling convention in MIPS, add the prologue and the epilogue of the <code class="language-plaintext highlighter-rouge">nchoosek()</code> function in file <code class="language-plaintext highlighter-rouge">nchoosek/impl.s</code>. You only need to edit places in the code indicated with the marker <code class="language-plaintext highlighter-rouge">### YOUR CODE HERE ###</code>.  The function <code class="language-plaintext highlighter-rouge">nchoosek()</code> should compute <em>the number of combinations of n distinct elements chosen k times</em>. This can be done using factorials, but we will do it by looking for the entry (n, k) in the <a href="https://fr.wikipedia.org/wiki/Pascal_Triangle">Pascal triangle</a>.</p>
 
-<p>Une translation de code en C vers l’assembleur MIPS est donnée ci-dessous. Ici, le programme principal appelle la fonction <code class="language-plaintext highlighter-rouge">poly()</code> d’une manière répétitive pour les valeurs de <code class="language-plaintext highlighter-rouge">i</code> allant de 2 à 4. L’argument de la fonction <code class="language-plaintext highlighter-rouge">poly()</code> est passé dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>.</p>
+<h1 id="exercise-2--polynomial">Exercise 2 : (polynomial)</h1>
+
+<p>A translation of C code to the MIPS assembler is given below. Here, the main program calls the <code class="language-plaintext highlighter-rouge">poly()</code> function in a repetitive manner for values ​​of <code class="language-plaintext highlighter-rouge">i</code> ranging from 2 to 4. The argument of the <code class="language-plaintext highlighter-rouge">poly()</code> function is passed in the register <code class="language-plaintext highlighter-rouge">$a0 </code>.</p>
 
 <pre><code class="language-assembly">#
-# Description:  Calcule du polynôme x^4 + x^3 + 1, pour x allant de 2 à 4
+# Description:  Computes the polynomial x^4 + x^3 + 1, for x in range 2 to 4
 
 # i  &lt;-&gt;  $s0
 
@@ -285,14 +286,13 @@ m_for:  add     $a0, $s0, $0    #   for (i=2; i&lt;=4; i++) {
         addi    $v0, $0, 10     #     exit
         syscall                 #}      .
 </code></pre>
+<p>While respecting the MIPS calling convention, write in <code class="language-plaintext highlighter-rouge">poly/impl.s</code> the body of the function <code class="language-plaintext highlighter-rouge">poly(int x)</code> which computes the polynomial \(x^4 + x^3 + 1\).</p>
 
-<p>Écrivez dans <code class="language-plaintext highlighter-rouge">poly/impl.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">poly(int x)</code> qui calcule le polynôme \(x^4 + x^3 + 1\) en respectant la convention d’appel de fonctions dans MIPS.</p>
+<p><strong>Hint</strong>: Consider defining a function <code class="language-plaintext highlighter-rouge">pow(x, n)</code> which will be called by the <code class="language-plaintext highlighter-rouge">poly()</code> function to compute \(x^n\).</p>
 
-<p><strong>Indication</strong> : Pensez à définir une fonction <code class="language-plaintext highlighter-rouge">pow(x, n)</code> qui sera appelée par la fonction <code class="language-plaintext highlighter-rouge">poly()</code> et qui calcule \(x^n\).</p>
+<h1 id="exercise-3--linked-list">Exercise 3 : (linked list)</h1>
 
-<h1 id="exercice-3--liste-chaînée">Exercice 3 : (liste chaînée)</h1>
-
-<p>Soit une liste chaînée décrite avec la structure de donnée ci-dessous</p>
+<p>Consider a linked list described as below</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
@@ -300,9 +300,11 @@ m_for:  add     $a0, $s0, $0    #   for (i=2; i&lt;=4; i++) {
 <span class="p">};</span>
 </code></pre></div></div>
 
-<p>Dans cet exercice, vous allez compléter l’implémentation de la fonction <code class="language-plaintext highlighter-rouge">map()</code> dans <code class="language-plaintext highlighter-rouge">map/impl.s</code> qui modifie les champs <code class="language-plaintext highlighter-rouge">value</code> de la liste chaînée. Les modifications se feront sur place (au lieu de créer et renvoyer une nouvelle liste avec les valeurs modifiées).</p>
+<p>In this exercise, you will complete the implementation of the <code class="language-plaintext highlighter-rouge">map()</code> function in <code class="language-plaintext highlighter-rouge">map/impl.s</code>. <code class="language-plaintext highlighter-rouge">map()</code> modifies the <code class="language-plaintext highlighter-rouge">value</code> fields of a linked list given as an argument. Modifications will be made in place (instead of creating and returning a new list with the modified values).</p>
 
-<p>La fonction <code class="language-plaintext highlighter-rouge">map()</code> prend deux paramètres; le pointeur tête-de-liste (<em>c.-à-d.</em> l’adresse du premier nœud la liste); et un <em>pointeur de fonction</em> qui prend un <code class="language-plaintext highlighter-rouge">int</code> en argument et renvoie un <code class="language-plaintext highlighter-rouge">int</code> en sortie. La fonction <code class="language-plaintext highlighter-rouge">map()</code> parcourt de manière récursive la liste et applique la fonction donnée en paramètre au champ <code class="language-plaintext highlighter-rouge">value</code> de chaque nœud de la liste. Une implémentation en C de la fonction <code class="language-plaintext highlighter-rouge">map()</code> serait comme suit :</p>
+<p>The <code class="language-plaintext highlighter-rouge">map()</code> function takes two parameters; the head-of-list pointer (<em>i.e.</em> the address of the first node in the list); and a <em>function pointer</em> which takes an <code class="language-plaintext highlighter-rouge">int</code> as argument and returns an <code class="language-plaintext highlighter-rouge">int</code> as output.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">map()</code> function recursively traverses the list and applies the function given as a parameter to the <code class="language-plaintext highlighter-rouge">value</code> field of each node in the list. A C implementation of the <code class="language-plaintext highlighter-rouge">map()</code> function would be as follows:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">map</span> <span class="p">(</span><span class="k">struct</span> <span class="n">node</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">))</span>
 <span class="p">{</span>
@@ -312,35 +314,35 @@ m_for:  add     $a0, $s0, $0    #   for (i=2; i&lt;=4; i++) {
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>La déclaration <code class="language-plaintext highlighter-rouge">int (*f)(int)</code> signifie simplement que <code class="language-plaintext highlighter-rouge">f</code> est un <em>pointeur de fonction</em> qui, en langage C, est utilisé exactement comme toute autre fonction (si vous êtes curieux, consultez ce <a href="https://www.geeksforgeeks.org/function-pointer-in-c/">lien</a> pour apprendre davantage sur leur utilisation).</p>
+<p>The declaration <code class="language-plaintext highlighter-rouge">int (*f)(int)</code> simply means that <code class="language-plaintext highlighter-rouge">f</code> is a <em>function pointer</em> which, in C language, is used exactly like any other function (if you’re curious, check out this <a href="https://www.geeksforgeeks.org/function-pointer-in-c/">link</a> to learn more about their use).</p>
 
-<p>Pour votre implémentation en assembleur MIPS de la fonction <code class="language-plaintext highlighter-rouge">map()</code>, vous aurez besoin d’utiliser l’instruction <code class="language-plaintext highlighter-rouge">jalr</code>. Cette instruction permet de sauter à l’adresse contenue dans le registre donné en paramètre et de stocker l’adresse de retour (c.-à-d. l’adresse de l’instruction après <code class="language-plaintext highlighter-rouge">jalr</code>) dans le registre <code class="language-plaintext highlighter-rouge">$ra</code>.</p>
+<p>For your MIPS assembly implementation of the <code class="language-plaintext highlighter-rouge">map()</code> function, you will need to use the <code class="language-plaintext highlighter-rouge">jalr</code> instruction. This instruction allows you to jump to the address contained in the register given as a parameter and store the return address (i.e. the address of the instruction after <code class="language-plaintext highlighter-rouge">jalr</code>) in register <code class="language-plaintext highlighter-rouge">$ra</code>. In fact, the <code class="language-plaintext highlighter-rouge">jalr</code> instruction is to <code class="language-plaintext highlighter-rouge">jr</code> as <code class="language-plaintext highlighter-rouge">jal</code> is to <code class="language-plaintext highlighter-rouge">j</code>. For example, we can use the <code class="language-plaintext highlighter-rouge">jalr</code> instruction to call a function instead of <code class="language-plaintext highlighter-rouge">jal</code> as shown below:</p>
 
-<p>En fait, l’instruction <code class="language-plaintext highlighter-rouge">jalr</code> est à <code class="language-plaintext highlighter-rouge">jr</code> ce que <code class="language-plaintext highlighter-rouge">jal</code> est à <code class="language-plaintext highlighter-rouge">j</code>. Par exemple, pour appeler une fonction, nous pourrions utiliser l’instruction <code class="language-plaintext highlighter-rouge">jalr</code> au lieu de l’instruction <code class="language-plaintext highlighter-rouge">jal</code> comme illustré ci-dessous :</p>
-
-<pre><code class="language-assembly"># Nous aimerions appeler la fonction `garply`, sans utiliser l'instruction `jal`.
-la $t0, garply 	# nous utilisons la pseudo-instruction `la` pour charger l'adresse de `garply` dans un registre (ici $t0)
-jalr $t0       	# puis, nous utilisons l'instruction `jalr` pour l'appel de fonction.
+<pre><code class="language-assembly"># We would like to call the `garply` function, without using the `jal` instruction.
+la $t0, garply 	# we use the `la` pseudo-instruction to load the address of `garply` into a register (here, $t0)
+jalr $t0       	# then we use the `jalr` instruction for the function call.
 </code></pre>
 
-<p>Le fichier <code class="language-plaintext highlighter-rouge">map/impl.s</code> contient 12 emplacements où il est indiqué <code class="language-plaintext highlighter-rouge">### VOTRE CODE ICI ###</code>. Insérez à ces endroits du code des <strong>instructions MIPS qui correspondent aux indications données dans les commentaires adjacents</strong> pour terminer l’implémentation de la fonction <code class="language-plaintext highlighter-rouge">map()</code>.</p>
+<p>The <code class="language-plaintext highlighter-rouge">map/impl.s</code> file contains 12 locations where it says <code class="language-plaintext highlighter-rouge">### YOUR CODE HERE ###</code>. To complete the implementation of the <code class="language-plaintext highlighter-rouge">map()</code> function, insert MIPS instructions at these code locations according to the <strong>indications given in the adjacent comments</strong>.</p>
 
-<p>Une fois le code complété, l’exécution du programme dans MARS devrait donner un résultat similaire à celui-ci :</p>
+<p>Once your code is complete, running the program in MARS should produce a result similar to this one:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Liste Avant : 9 8 7 6 5 4 3 2 1 0
-Liste Après : 81 64 49 36 25 16 9 4 1 0
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">List Before: 9 8 7 6 5 4 3 2 1 0
+List After: 81 64 49 36 25 16 9 4 1 0
 </span></code></pre></div></div>
 
-<h2 id="remarque-">Remarque :</h2>
-<p>Pour exécuter ou tester votre code dans MARS,</p>
+<h2 id="notes">Notes:</h2>
+<p>To run or test your code in MARS,</p>
 <ul>
-  <li>chargez le fichier associé <code class="language-plaintext highlighter-rouge">map/impl_runner.s</code> dans MARS et cochez l’option <strong>Settings | Assemble all files in directory</strong> dans le menu,</li>
-  <li>commentez dans le code la ligne indiquée par le marqueur <code class="language-plaintext highlighter-rouge"># &lt;&lt;&lt; Commentez sous MARS</code></li>
+  <li>load the file <code class="language-plaintext highlighter-rouge">map/impl_runner.s</code> into MARS and toggle <strong>Settings | Assemble all files in directory</strong> in the menu,</li>
+  <li>comment in the code the line indicated by the marker <code class="language-plaintext highlighter-rouge"># &lt;&lt;&lt; Comment under MARS</code></li>
 </ul>
 
-<h1 id="exercise-4--liste-chaînée-bis">Exercise 4 : (liste chaînée-bis)</h1>
+<h1 id="exercise-4--linked-list--bis">Exercise 4 : (linked list – bis)</h1>
 
-<p>Dans l’exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque nœud dans une liste chaînée. Ici, vous travaillerez avec une version similaire mais légèrement plus complexe. En effet, au lieu d’avoir une liste chaînée de « <code class="language-plaintext highlighter-rouge">int</code> », notre structure de données est une liste chaînée de tableaux de « <code class="language-plaintext highlighter-rouge">int</code> ». Pour rappel, lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement sa taille dans une variable. Voici, en langage C, à quoi ressemble la structure de notre liste chaînée :</p>
+<p>In the previous exercise, you completed a MIPS procedure that applied a function to each node in a linked list. Here you will work with a similar but slightly more complex version. That is, instead of having a linked list of <code class="language-plaintext highlighter-rouge">int</code>s, our data structure is now a linked list of arrays of <code class="language-plaintext highlighter-rouge">int</code>s.</p>
+
+<p>Recall that, when we need to work with a dynamic array in C, we must explicitly store its size in a variable. Here is, in C language, what the structure of our linked list looks like:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
     <span class="kt">int</span><span class="o">*</span> <span class="n">arr</span><span class="p">;</span>
@@ -349,7 +351,7 @@ Liste Après : 81 64 49 36 25 16 9 4 1 0
 <span class="p">};</span>
 </code></pre></div></div>
 
-<p>Voici également une implémentation en C qui montre ce que fait la nouvelle fonction <code class="language-plaintext highlighter-rouge">map</code> : Dans chaque nœud de la liste chaînée, nous parcourons chaque élément du tableau dynamique et lui appliquons une fonction donnée. Le résultat de la fonction est stocké dans le tableau en écrasant l’ancienne valeur.</p>
+<p>Here is as well a C implementation that shows what the new <code class="language-plaintext highlighter-rouge">map</code> function does: for each node of the linked list, we iterate through each element of the dynamic array and apply a given function. The result of the function is stored in place overwriting the old value.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">map</span><span class="p">(</span><span class="k">struct</span> <span class="n">node</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">int</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
@@ -360,26 +362,26 @@ Liste Après : 81 64 49 36 25 16 9 4 1 0
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="tâches-à-effectuer">Tâches à effectuer</h2>
+<h2 id="tasks-to-do">Tasks to do:</h2>
 
-<p>Trouvez et corrigez les erreurs dans <code class="language-plaintext highlighter-rouge">map2d/impl.s</code>. En ce sens, aidez-vous des lignes commentées dans le fichier source et <strong>assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires</strong>. Voici quelques indications :</p>
+<p>Find and fix errors in <code class="language-plaintext highlighter-rouge">map2d/impl.s</code>. In this sense, take help from the commented lines in the source file and <strong>make sure that the MIPS instructions correspond to the indications given in the comments</strong>. Here are some hints:</p>
 
 <ul>
-  <li>Pourquoi avons-nous besoin de sauvegarder des informations dans la pile avant d’exécuter l’instruction <code class="language-plaintext highlighter-rouge">jal</code> ?</li>
-  <li>Quelle est la différence entre « <code class="language-plaintext highlighter-rouge">add $t0, $s0, $0</code> » et « <code class="language-plaintext highlighter-rouge">lw $t0, 0($s0)</code> » ?</li>
-  <li>Faites attention aux types des attributs dans la structure <code class="language-plaintext highlighter-rouge">struct node</code>.</li>
+  <li>Why do we need to save information to the stack before executing the <code class="language-plaintext highlighter-rouge">jal</code> instruction?</li>
+  <li>What is the difference between “<code class="language-plaintext highlighter-rouge">add $t0, $s0, $0</code>” and “<code class="language-plaintext highlighter-rouge">lw $t0, 0($s0)</code>”?</li>
+  <li>Pay attention to the attribute types in the <code class="language-plaintext highlighter-rouge">struct node</code> structure.</li>
 </ul>
 
-<p>Pour référence, l’exécution du programme dans MARS devrait donner le résultat suivant :</p>
+<p>For reference, running the “corrected” program in MARS should give the following result:</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">Listes avant :
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">List before:
 5 2 7 8 1
 1 6 3 8 4
 5 2 7 4 3
 1 2 3 4 7
 5 6 7 8 9
 
-Listes après :
+List after:
 30 6 56 72 2
 2 42 12 72 20
 30 6 56 20 12
@@ -387,11 +389,11 @@ Listes après :
 30 42 56 72 90
 </span></code></pre></div></div>
 
-<h2 id="remarque--1">Remarque :</h2>
-<p>Pour exécuter ou tester votre code dans MARS,</p>
+<h2 id="notes-1">Notes:</h2>
+<p>To run or test your code in MARS,</p>
 <ul>
-  <li>chargez le fichier associé <code class="language-plaintext highlighter-rouge">map2d/impl_runner.s</code> dans MARS et cochez l’option <strong>Settings | Assemble all files in directory</strong> dans le menu,</li>
-  <li>commentez dans le code la ligne indiquée par le marqueur <code class="language-plaintext highlighter-rouge"># &lt;&lt;&lt; Commentez sous MARS</code></li>
+  <li>load the file <code class="language-plaintext highlighter-rouge">map2d/impl_runner.s</code> into MARS and toggle <strong>Settings | Assemble all files in directory</strong> in the menu,</li>
+  <li>comment in the code the line indicated by the marker <code class="language-plaintext highlighter-rouge"># &lt;&lt;&lt; Comment under MARS</code></li>
 </ul>
 
   </article>
