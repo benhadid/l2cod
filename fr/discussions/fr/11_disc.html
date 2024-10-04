@@ -18,7 +18,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Introduction to MIPS - 2/2 - Computer Design / Fall 2024 </title>
+  <title> Mémoire Cache - Architecture des ordinateurs / Automne 2024 </title>
   <meta name="description" content="">
   
   <!--for gitlab pages -->
@@ -31,9 +31,9 @@
   <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
   <!--for github-->
 
-  <link rel="stylesheet" href="/l2ado/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado/discussions/en/04_disc">
-  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+  <link rel="stylesheet" href="/l2ado/fr/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/fr/discussions/fr/11_disc">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2024 - " href="https://benhadid.github.io/l2ado/fr/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
@@ -60,9 +60,9 @@
           <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
           <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
           <br/>      
-          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/fr/" title="Architecture des ordinateurs / Automne 2024 - "><b>Architecture des ordinateurs</a></b></span>
           <br/>
-          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2024</span>
           </td>
         </tr></table>
 
@@ -83,8 +83,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/">
-        <i class="fa fa-home fa-lg"></i> Home
+      <a class="page-link" href="/l2ado/fr/">
+        <i class="fa fa-home fa-lg"></i> Accueil
       </a>
 
     </li>
@@ -94,8 +94,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/schedule/">
-        <i class="fas fa-calendar-alt"></i> Schedule
+      <a class="page-link" href="/l2ado/fr/schedule/">
+        <i class="fas fa-calendar-alt"></i> Calendrier
       </a>
 
     </li>
@@ -105,8 +105,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/lectures/">
-        <i class="fas fa-book-reader"></i> Lectures
+      <a class="page-link" href="/l2ado/fr/lectures/">
+        <i class="fas fa-book-reader"></i> Cours
       </a>
 
     </li>
@@ -116,8 +116,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/discussions/">
-        <i class="fas fa-user-graduate"></i> Seminars
+      <a class="page-link" href="/l2ado/fr/discussions/">
+        <i class="fas fa-user-graduate"></i> T. Dirigés
       </a>
 
     </li>
@@ -127,8 +127,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/labs/">
-        <i class="fas fa-laptop-code"></i> Labs
+      <a class="page-link" href="/l2ado/fr/labs/">
+        <i class="fas fa-laptop-code"></i> T. Pratiques
       </a>
 
     </li>
@@ -138,8 +138,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/quizzes/">
-        <i class="fas fa-question-circle"></i> Quizzes
+      <a class="page-link" href="/l2ado/fr/quizzes/">
+        <i class="fas fa-question-circle"></i> Quiz
       </a>
 
     </li>
@@ -149,8 +149,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/projects/">
-        <i class="fas fa-user-graduate"></i> Projects
+      <a class="page-link" href="/l2ado/fr/projects/">
+        <i class="fas fa-user-graduate"></i> Projets
       </a>
 
     </li>
@@ -160,8 +160,8 @@
       
       
 
-      <a class="page-link" href="/l2ado/materials/">
-        <i class="fas fa-book"></i> Resources
+      <a class="page-link" href="/l2ado/fr/materials/">
+        <i class="fas fa-book"></i> Ressources
       </a>
 
     </li>
@@ -185,15 +185,15 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Introduction to MIPS - 2/2</h1>
-    <p class="post-meta">Published on 
+    <h1 class="post-title">Mémoire Cache</h1>
+    <p class="post-meta">Publié le 
       
 
       
-      Tuesday
-      29
+      Dimanche
+      8
       
-      October
+      Décembre
       2024
     </p>
 
@@ -201,22 +201,22 @@
 
   <div>
     
-    <span style="font-weight: bold">  Due on 
+    <span style="font-weight: bold">  Echéance : 
       
  
       
-      Friday
-      8
+      Lundi
+      16
       
-      November
+      Décembre
       2024
     </span>
 
     
-    <p style="font-weight: bold"> Download 
+    <p style="font-weight: bold"> Télécharger 
       
       [
-        <a href="/l2ado/static_files/discussions/sem_3.pdf"> Worksheet</a>
+        <a href="/l2ado/fr/static_files/discussions/td_7.pdf"> Énoncé</a>
         
       ]
       
@@ -231,7 +231,7 @@
   <article class="post-content">
     
 <!--Github-->
-<iframe src="https://benhadid.github.io/l2ado/static_files/discussions/sem_3.pdf" width="100%" height="800em"></iframe>
+<iframe src="https://benhadid.github.io/l2ado/static_files/discussions/td_7.pdf" width="100%" height="800em"></iframe>
 
   </article>
 
