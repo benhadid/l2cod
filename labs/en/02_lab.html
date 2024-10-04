@@ -300,67 +300,18 @@ flip_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x0000006e
 flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e, correct
 </code></pre></div></div>
 
-<h1 id="exercise-2-lfsr">Exercise 2: (LFSR)</h1>
+<h1 id="exercise-2-binary2int">Exercise 2: (binary2int)</h1>
 
-<p>In this exercise, you will implement the function <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> which computes the next iteration of a Linear Feedback Shift Register <a href="https://fr.wikipedia.org/wiki/Registre_%C3%A0_d%C3 %A9calage_%C3%A0_r%C3%A9troaction_lin%C3%A9aire">LFSR</a>. Applications that use LFSRs include: digital television, CDMA cell phones, Ethernet, USB 3.0 and much more! In <code class="language-plaintext highlighter-rouge">lfsr.c</code>, implement the <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> function so that it performs the operation shown below:</p>
-
-<p><img src="/l2ado/static_files/images/lfsr.gif" alt="LFSR" height="50%" width="50%" class="aligncenter" /></p>
-
-<h2 id="indications">Indications:</h2>
-<ul>
-  <li>
-    <p>If you are wondering what this function is for… it generates pseudo-random numbers.</p>
-  </li>
-  <li>
-    <p>Each time <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> is called, the content of the register is moved one bit to the right.</p>
-  </li>
-  <li>
-    <p>This motion is neither a logical nor an <a href="https://fr.wikipedia.org/wiki/Op%C3%A9ration_bit_%C3%A0_bit#D%C3%A9calage_arithm%C3%A9tique">arithmetic</a> shift. On the left side, a bit is injected and is equal to the <strong>exclusive OR (XOR)</strong> of the bits originating from positions <strong>0</strong>, <strong>2</strong>, <strong>3</strong> and <strong>5</strong>.</p>
-  </li>
-  <li>
-    <p>In the image above, the red symbol depicting a plus sign in a circle represents an <strong>exclusive OR</strong>. Recall that this operator takes two inputs <code class="language-plaintext highlighter-rouge">{a, b}</code> and performs the operation <code class="language-plaintext highlighter-rouge">a ^ b</code>.</p>
-  </li>
-  <li>
-    <p>If you implemented <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> correctly, the function should print all 65535 positive 16-bit integers before returning to the initial starting number.</p>
-  </li>
-  <li>
-    <p>Note that the leftmost bit is the MSB (Most Significant Bit) and the rightmost bit is the LSB (Least Significat Bit).</p>
-  </li>
-</ul>
+<p>Given a binary input string (e.g. ‘1110010’), your program should return its integer equivalent. The program should stop conversion at the first invalid input (if any) and return the converted value.</p>
 
 <h2 id="tasks-to-carry-out-1">Tasks to carry out:</h2>
 
-<p>Implement the <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> function in the <code class="language-plaintext highlighter-rouge">lfsr.c</code> file then compile and run the program (using the <code class="language-plaintext highlighter-rouge">make</code> command under UN*X - see below). Verify that the result displayed on your screen looks like the following:</p>
+<p>Implement the <code class="language-plaintext highlighter-rouge">bin2int_conversion()</code> function in the <code class="language-plaintext highlighter-rouge">bin2int.c</code> file then compile and run the program (using the <code class="language-plaintext highlighter-rouge">make</code> command under UN*X - see below). Correct execution of the program will display on your screen the results of some validation tests.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make lfsr
-<span class="nv">$ </span>./lfsr
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make bin2int
+<span class="nv">$ </span>./bin2int
 
-My number is: 1
-My number is: 5185
-My number is: 38801
-My number is: 52819
-My number is: 21116
-My number is: 54726
-My number is: 26552
-My number is: 46916
-My number is: 41728
-My number is: 26004
-My number is: 62850
-My number is: 40625
-My number is: 647
-My number is: 12837
-My number is: 7043
-My number is: 26003
-My number is: 35845
-My number is: 61398
-My number is: 42863
-My number is: 57133
-My number is: 59156
-My number is: 13312
-My number is: 16285
- ... etc., etc ...
-Got 65535 numbers before cycling!
-Congratulations! It works!
+
 </code></pre></div></div>
 
 <h1 id="exercise-3-memory-access">Exercise 3: (Memory access)</h1>
