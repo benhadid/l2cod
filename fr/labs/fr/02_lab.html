@@ -300,67 +300,26 @@ flip_bit<span class="o">(</span>0x0000004e,5<span class="o">)</span>: 0x0000006e
 flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e, correct
 </code></pre></div></div>
 
-<h1 id="exercice-2--lfsr">Exercice 2 : (LFSR)</h1>
+<h1 id="exercise-2-binary2int">Exercise 2: (binary2int)</h1>
 
-<p>Dans cet exercice, vous implémenterez une fonction <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> pour calculer la prochaine itération d’un registre à décalage à rétroaction linéaire <a href="https://fr.wikipedia.org/wiki/Registre_%C3%A0_d%C3%A9calage_%C3%A0_r%C3%A9troaction_lin%C3%A9aire">LFSR</a>. Les applications qui utilisent les LFSR sont: la télévision numérique, les téléphones portables CDMA, Ethernet, USB 3.0 et bien plus encore ! Dans <code class="language-plaintext highlighter-rouge">lfsr.c</code>, implémentez la fonction <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> pour qu’elle réalise l’opération illustrée ci-dessous :</p>
-
-<p><img src="/l2ado/static_files/images/lfsr.gif" alt="LFSR" height="50%" width="50%" class="aligncenter" /></p>
-
-<h2 id="explications-">Explications :</h2>
-<ul>
-  <li>
-    <p>Si vous vous demandez à quoi sert cette fonction… elle est utilisée pour générer des nombres pseudo-aléatoires.</p>
-  </li>
-  <li>
-    <p>A chaque appel à <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code>, le contenu du registre est déplacé d’un bit vers la droite.</p>
-  </li>
-  <li>
-    <p>Ce décalage n’est ni un décalage logique ni un <a href="https://fr.wikipedia.org/wiki/Op%C3%A9ration_bit_%C3%A0_bit#D%C3%A9calage_arithm%C3%A9tique">décalage arithmétique</a>. Sur le côté gauche, nous injectons un bit qui est égal au <strong>OU exclusif (XOR)</strong> des bits originaires des positions <strong>0</strong>, <strong>2</strong>, <strong>3</strong> et <strong>5</strong>.</p>
-  </li>
-  <li>
-    <p>Dans l’image ci-dessus, le symbole rouge illustrant un signe <code class="language-plaintext highlighter-rouge">plus dans un cercle</code> représente un <strong>OU exclusif</strong>. Rappelons que cet opérateur prend deux entrées <code class="language-plaintext highlighter-rouge">{a , b}</code> et réalise l’opération <code class="language-plaintext highlighter-rouge">a ^ b</code>.</p>
-  </li>
-  <li>
-    <p>Si vous avez implémenté correctement <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code>, la fonction devrait afficher tous les 65535 entiers positifs sur 16 bits avant de revenir au nombre initial de départ.</p>
-  </li>
-  <li>
-    <p>Notez que le bit le plus à gauche est le MSB (bit de poids fort) et le bit le plus à droite est le LSB (bit de poids faible).</p>
-  </li>
-</ul>
+<p>Étant donné une chaîne de caractère de ‘0’ et de ‘1’ (par exemple « 1110010 »), votre programme doit renvoyer son équivalent ‘entier’. Le programme doit arrêter la conversion à la première entrée invalide (le cas échéant) et renvoyer la valeur convertie.</p>
 
 <h2 id="tâches-à-réaliser--1">Tâches à réaliser :</h2>
 
-<p>Implémentez la fonction <code class="language-plaintext highlighter-rouge">lfsr_calculate()</code> dans le fichier <code class="language-plaintext highlighter-rouge">lfsr.c</code> puis compilez et exécutez le programme (à l’aide de la commande <code class="language-plaintext highlighter-rouge">make</code> sous UN*X - voir ci-dessous). Vérifiez que le résultat affiché sur votre écran ressemble à ce qui suit :</p>
+<p>Implémentez la fonction <code class="language-plaintext highlighter-rouge">bin2int_conversion()</code> dans le fichier <code class="language-plaintext highlighter-rouge">bin2int.c</code> puis compilez et exécutez le programme (en utilisant la commande <code class="language-plaintext highlighter-rouge">make</code> sous UN*X - voir ci-dessous). L’exécution correcte du programme affichera sur votre écran les résultats de certains tests de validation.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make lfsr
-<span class="nv">$ </span>./lfsr
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make bin2int
+<span class="nv">$ </span>./bin2int
 
-My number is: 1
-My number is: 5185
-My number is: 38801
-My number is: 52819
-My number is: 21116
-My number is: 54726
-My number is: 26552
-My number is: 46916
-My number is: 41728
-My number is: 26004
-My number is: 62850
-My number is: 40625
-My number is: 647
-My number is: 12837
-My number is: 7043
-My number is: 26003
-My number is: 35845
-My number is: 61398
-My number is: 42863
-My number is: 57133
-My number is: 59156
-My number is: 13312
-My number is: 16285
- ... etc etc ...
-Got 65535 numbers before cycling!
-Congratulations! It works!
+bin2int_conversion<span class="o">(</span><span class="s1">'10011001'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'10011101'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'01011001'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'00110001'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'10010.01'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'100+1111'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'101011001'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'0110000'</span><span class="o">)</span>... correct
+
 </code></pre></div></div>
 
 <h1 id="exercise-3--accès-mémoire">Exercise 3 : (Accès mémoire)</h1>
