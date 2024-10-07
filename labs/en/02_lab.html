@@ -18,7 +18,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Data manipulation - Computer Design / Fall 2024 </title>
+  <title> Bitwise operations in C - Computer Design / Fall 2024 </title>
   <meta name="description" content="Objectives      Learn to perform bit manipulations.        Learn to identify potential problems related to dynamic memory management.  Exercise 1: (BitOps)Be...">
   
   <!--for gitlab pages -->
@@ -185,7 +185,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Data manipulation</h1>
+    <h1 class="post-title">Bitwise operations in C</h1>
     <p class="post-meta">Published on 
       <!--
       Sunday
@@ -246,17 +246,17 @@
 
 <h1 id="exercise-1-bitops">Exercise 1: (BitOps)</h1>
 
-<p>Begin by downloading the starter file for this lab (from the top of this document) and unzip its content to a directory of your choice. Then implement in the <code class="language-plaintext highlighter-rouge">bit_ops.c</code> file, the functions <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> and <code class="language-plaintext highlighter-rouge">flip_bit()</code> (see description below). You can  <strong>ONLY</strong> use <a href="/l2ado/docs/en/bitwise_operations_in_c">bit operations</a> like <strong>AND</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>), <strong>OR ** (<code class="language-plaintext highlighter-rouge">|</code>), **XOR</strong> (<code class="language-plaintext highlighter-rouge">^</code>), <strong>NOT</strong> (<code class="language-plaintext highlighter-rouge">~</code>), <strong>left shift</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) and <strong>right shift</strong> (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>). You cannot use <code class="language-plaintext highlighter-rouge">for</code>/<code class="language-plaintext highlighter-rouge">while</code>/<code class="language-plaintext highlighter-rouge">do</code> loops or <code class="language-plaintext highlighter-rouge">if/else</code> and <code class="language-plaintext highlighter-rouge">switch/case</code> branch statements. You also cannot use arithmetic operations (modulo (%), division, subtraction, addition or multiplication) for this exercise.</p>
+<p>Begin by downloading the starter file for this lab (from the top of this document) and unzip its content to a directory of your choice. Then implement in the <code class="language-plaintext highlighter-rouge">bit_ops.c</code> file, the functions <code class="language-plaintext highlighter-rouge">get_bit()</code>, <code class="language-plaintext highlighter-rouge">set_bit()</code> and <code class="language-plaintext highlighter-rouge">flip_bit()</code> (see description below). You can  <strong>ONLY</strong> use <a href="/l2ado/docs/en/bitwise_operations_in_c">bit operations</a> like <strong>AND</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>), <strong>OR</strong> (<code class="language-plaintext highlighter-rouge">|</code>), <strong>XOR</strong> (<code class="language-plaintext highlighter-rouge">^</code>), <strong>NOT</strong> (<code class="language-plaintext highlighter-rouge">~</code>), <strong>left shift</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;</code>) and <strong>right shift</strong> (<code class="language-plaintext highlighter-rouge">&gt;&gt;</code>). You cannot use <code class="language-plaintext highlighter-rouge">for</code>/<code class="language-plaintext highlighter-rouge">while</code>/<code class="language-plaintext highlighter-rouge">do</code> loops or <code class="language-plaintext highlighter-rouge">if/else</code> and <code class="language-plaintext highlighter-rouge">switch/case</code> branch statements. You also cannot use arithmetic operations (modulo (%), division, subtraction, addition or multiplication) for this exercise.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Return the nth bit of x.</span>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Return the n-th bit of x.</span>
 <span class="c1">// You may assume 0 &lt;= n &lt;= 31</span>
 <span class="n">bool</span> <span class="nf">get_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">);</span>
 
-<span class="c1">// Set the nth bit of the value of x to v.</span>
+<span class="c1">// Set the n-th bit of the value of x to v.</span>
 <span class="c1">// You may assume 0 &lt;= n &lt;= 31, and v is either 0 or 1</span>
 <span class="kt">void</span> <span class="nf">set_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">bool</span> <span class="n">v</span><span class="p">);</span>
 
-<span class="c1">// Invert the nth bit of the value of x.</span>
+<span class="c1">// Invert the n-th bit of the value of x.</span>
 <span class="c1">// You may assume 0 &lt;= n &lt;= 31</span>
 <span class="kt">void</span> <span class="nf">flip_bit</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">n</span><span class="p">);</span>
 </code></pre></div></div>
@@ -302,7 +302,7 @@ flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e
 
 <h1 id="exercise-2-binary2int">Exercise 2: (binary2int)</h1>
 
-<p>Given a binary input string (e.g. ‘1110010’), your program should return its integer equivalent. The program should stop conversion at the first invalid input (if any) and return the converted value.</p>
+<p>Given a binary input string (e.g. ‘1110010’), your program should return its integer equivalent (e.g. 114). The program should stop conversion at the first invalid input (if any) and return the converted value.</p>
 
 <h2 id="tasks-to-carry-out-1">Tasks to carry out:</h2>
 
@@ -311,14 +311,14 @@ flip_bit<span class="o">(</span>0x0000004e,9<span class="o">)</span>: 0x0000024e
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make bin2int
 <span class="nv">$ </span>./bin2int
 
-bin2int_conversion<span class="o">(</span><span class="s1">'10011001'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'10011101'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'01011001'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'00110001'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'10010.01'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'100+1111'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'101011001'</span><span class="o">)</span>... correct
-bin2int_conversion<span class="o">(</span><span class="s1">'0110000'</span><span class="o">)</span>... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'10011001'</span><span class="o">)</span> <span class="o">=</span> 153    ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'10011101'</span><span class="o">)</span> <span class="o">=</span> 157    ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'01011001'</span><span class="o">)</span> <span class="o">=</span> 89     ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'00110001'</span><span class="o">)</span> <span class="o">=</span> 49     ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'10010.01'</span><span class="o">)</span> <span class="o">=</span> 18     ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'100+1111'</span><span class="o">)</span> <span class="o">=</span> 4      ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'101011001'</span><span class="o">)</span> <span class="o">=</span> 345   ... correct
+bin2int_conversion<span class="o">(</span><span class="s1">'0110000'</span><span class="o">)</span> <span class="o">=</span> 48      ... correct
 
 </code></pre></div></div>
 
