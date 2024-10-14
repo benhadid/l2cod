@@ -259,6 +259,13 @@
 <span class="gp">$</span><span class="w"> </span>make             <span class="c"># &lt;- compilation - exécutez cette commande à chaque fois que vous modifiez vos fichiers ".c"</span>
 </code></pre></div></div>
 
+<p>Si votre système d’exploitation (ex: la machine virtuelle) vous donne un avertissement indiquant que « cmake » est inconnu/non installé, vous devez dans ce cas installer « cmake » avant de continuer avec les exercices de ce TP. Veuillez ouvrir une console (dans la machine virtuelle) et saisir :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>cmake
+</code></pre></div></div>
+
+<p>Lorsqu’on vous demande le mot de passe, tapez simplement : « user » (sans les guillemets). Le mot de passe saisi ne s’affichera pas à l’écran. Refaites ensuite les deux dernières étapes mentionnées ci-dessus (c’est-à-dire exécuter <code class="language-plaintext highlighter-rouge">cmake ..</code> puis <code class="language-plaintext highlighter-rouge">make</code>).</p>
+
 <p>Si la compilation se passe sans erreurs, vous pouvez exécuter les tests de validation à l’aide de la commande</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>
@@ -304,6 +311,8 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
 <p>Ecrivez le corp de la fonction <code class="language-plaintext highlighter-rouge">StrCmp(const char *s1, const char *s2)</code> dans le fichier <code class="language-plaintext highlighter-rouge">src/StrCmp.c</code> qui compare deux chaînes de caractères.
 Les arguments <code class="language-plaintext highlighter-rouge">s1</code> et <code class="language-plaintext highlighter-rouge">s2</code> de la fonction <code class="language-plaintext highlighter-rouge">StrCmp(...)</code> sont les adresses des deux chaînes à comparer. L’adresse mémoire du début de la première chaîne est dans <code class="language-plaintext highlighter-rouge">s1</code>, et l’adresse mémoire du début de la deuxième chaîne est dans <code class="language-plaintext highlighter-rouge">s2</code>. 
 Si la première chaîne est supérieure à la seconde, renvoyez un nombre positif. Si la deuxième chaîne est plus grande, renvoyez un nombre négatif. Si les chaînes sont égales, renvoyez la valeur 0.</p>
+
+<p><strong>Indication :</strong> Pensez à implémenter chaque cas possible, même lorsque des chaînes NULL sont fournies.</p>
 
 <p><strong>Contraintes à respecter :</strong></p>
 <ul>

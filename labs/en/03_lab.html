@@ -252,14 +252,21 @@
 
 <p>To check whether your implementations are correct, configure then compile the programs with the following commands (under UN*X environment):</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>path/to/the/directory/lab3
-<span class="gp">$</span><span class="w"> </span><span class="nb">mkdir </span>build  <span class="c"># three configuration </span>
-<span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>build     <span class="c"># steps to do the </span>
-<span class="gp">$</span><span class="w"> </span>cmake..      <span class="c"># first time only</span>
-<span class="gp">$</span><span class="w"> </span>make         <span class="c"># &lt;- compile the programs - run this command every time you modify your ".c" files</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>path/to/the/directory/lab3
+<span class="nv">$ </span><span class="nb">mkdir </span>build  <span class="c"># three configuration </span>
+<span class="nv">$ </span><span class="nb">cd </span>build     <span class="c"># steps to do the </span>
+<span class="nv">$ </span>cmake ..     <span class="c"># first time only</span>
+<span class="nv">$ </span>make         <span class="c"># &lt;- compile the programs - run this command every time you modify your ".c" files</span>
 </code></pre></div></div>
 
-<p>If the compilation process goes without errors, you can run the validation tests using the command</p>
+<p>If your OS (i.e. the VM) gives you a warning about “cmake” unknown/not installed, you need in this case to install “cmake” before continuing with the lab. Please open a console in the VM, and type:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>cmake
+</code></pre></div></div>
+
+<p>When prompted for the password, just type: “user” (without the quotes). The typed password will not show on the screen. Then redo the last two steps mentioned above (i.e. executing <code class="language-plaintext highlighter-rouge">cmake ..</code> then <code class="language-plaintext highlighter-rouge">make</code>).</p>
+
+<p>If the compilation process goes without errors, you can run the validation tests for the exercises using the command</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>
 </code></pre></div></div>
@@ -304,6 +311,8 @@ lab3/src<span class="nv">$ </span>python3 test.py <span class="nt">--filename</s
 <p>Write the body of the function <code class="language-plaintext highlighter-rouge">StrCmp(char *s1, char *s2)</code> in the file <code class="language-plaintext highlighter-rouge">src/StrCmp.c</code>. This function compares two character strings.</p>
 
 <p>The arguments <code class="language-plaintext highlighter-rouge">s1</code> and <code class="language-plaintext highlighter-rouge">s2</code> hold the addresses in memory of the two strings to compare. The memory address of the beginning of the first string is in <code class="language-plaintext highlighter-rouge">s1</code>, and the memory address of the start of the second string is in <code class="language-plaintext highlighter-rouge">s2</code>. If the first string is greater than the second, return a positive number. If the second string is larger, return a negative number. If the strings are equal, return the value 0.</p>
+
+<p><strong>Hint:</strong> Try implementing code for every possible case even when NULL strings are supplied.</p>
 
 <p><strong>Constraints to respect:</strong></p>
 <ul>
