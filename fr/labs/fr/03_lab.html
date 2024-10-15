@@ -252,11 +252,11 @@
 
 <p>Pour vérifier l’exactitude de vos implémentations dans les exercices ci-dessous, configurez puis compilez les codes fournis à l’aide des commandes suivantes (sous environnement UN*X) :</p>
 
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab3
-<span class="gp">$</span><span class="w"> </span><span class="nb">mkdir </span>build      <span class="c"># étape de configuration</span>
-<span class="gp">$</span><span class="w"> </span><span class="nb">cd </span>build         <span class="c"># à réaliser la première </span>
-<span class="gp">$</span><span class="w"> </span>cmake ..         <span class="c"># fois seulement</span>
-<span class="gp">$</span><span class="w"> </span>make             <span class="c"># &lt;- compilation - exécutez cette commande à chaque fois que vous modifiez vos fichiers ".c"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>chemin/vers/le/repertoire/lab3
+<span class="nv">$ </span><span class="nb">mkdir </span>build      <span class="c"># étape de configuration</span>
+<span class="nv">$ </span><span class="nb">cd </span>build         <span class="c"># à réaliser la première </span>
+<span class="nv">$ </span>cmake ..         <span class="c"># fois seulement</span>
+<span class="nv">$ </span>make             <span class="c"># &lt;- compilation - exécutez cette commande chaque fois que vous modifiez vos fichiers ".c"</span>
 </code></pre></div></div>
 
 <p>Si votre système d’exploitation (ex: la machine virtuelle) vous donne un avertissement indiquant que « cmake » est inconnu/non installé, vous devez dans ce cas installer « cmake » avant de continuer avec les exercices de ce TP. Veuillez ouvrir une console (dans la machine virtuelle) et saisir :</p>
@@ -268,7 +268,7 @@
 
 <p>Si la compilation se passe sans erreurs, vous pouvez exécuter les tests de validation à l’aide de la commande</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ctest <span class="nt">--output-on-failure</span>  <span class="c"># &lt;- tester vos programmes - exécutez cette commande après chaque make "réussi" (c.-à-d. pas d'erreurs de compilation)</span>
 </code></pre></div></div>
 
 <p>Cette commande affichera sur votre écran le résultat de quelques tests qui vont vous permettre de vérifier si vous avez implémenté correctement les tâches assignées.</p>
