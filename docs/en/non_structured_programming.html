@@ -207,7 +207,7 @@
 <span class="cm">/* next statements... */</span>
 </code></pre></div></div>
 
-<p>When <em>condition</em> is false, the program execution skips the block (delimited by curly braces) of the <code class="language-plaintext highlighter-rouge">if</code> statement and executes the next statements. In other words, there is a <strong>jump/branch</strong> to the <em>next</em> block of code! In <em>unstructured</em> programming, it is the programmer (you) who explicitly introduces <em>jump statements</em> into the program. Thus, the previous example in an <em>unstructured</em> format becomes:</p>
+<p>When <em>condition</em> is false, the program execution skips the block (delimited by curly braces) of the <code class="language-plaintext highlighter-rouge">if</code> statement and executes the <em>next statements</em>. In other words, there is a <strong>jump/branch</strong> to the <em>next</em> block of code! In <em>unstructured</em> programming, it is the programmer (you) who explicitly introduces <em>jump statements</em> into the program. Thus, the previous example in an <em>unstructured</em> format becomes:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="cm">/* NOT Condition */</span><span class="p">)</span> <span class="k">goto</span> <span class="n">FI</span><span class="p">;</span>
 
@@ -220,8 +220,8 @@
 
 <p>Here, a <code class="language-plaintext highlighter-rouge">goto</code> statement with the associated <em>label</em> (i.e. the <code class="language-plaintext highlighter-rouge">FI</code> text) is introduced into the program to accomplish the same task as before. Note that:</p>
 <ul>
-  <li>the condition of the <code class="language-plaintext highlighter-rouge">if</code> statement is flipped here (with the NOT keyword) to achieve the same behavior as in the  <em>structured</em> code (i.e. take the <strong>branch</strong> if <em>Condition</em> is false),</li>
-  <li>and, the removal of the curly braces which are no longer required in this case.</li>
+  <li>the condition of the <code class="language-plaintext highlighter-rouge">if</code> statement is flipped here (with the NOT keyword) to achieve the same behavior as in the  <em>structured</em> format (i.e. take the <strong>branch</strong> if <em>Condition</em> is false),</li>
+  <li>and, the removal of the curly braces which are no longer required.</li>
 </ul>
 
 <p>A <code class="language-plaintext highlighter-rouge">goto</code> statement in C programming allows you to unconditionally jump from the <code class="language-plaintext highlighter-rouge">goto</code> instruction to a labeled statement in the <ins><strong>same function</strong></ins>. The syntax for a <code class="language-plaintext highlighter-rouge">goto</code> statement in C looks like:</p>
@@ -282,78 +282,6 @@
 </div>
 
 <p>Here, two <code class="language-plaintext highlighter-rouge">goto</code> statements are introduced: the first <code class="language-plaintext highlighter-rouge">goto</code> (i.e. <code class="language-plaintext highlighter-rouge">goto ESLE</code>) allows to branch to the <code class="language-plaintext highlighter-rouge">else</code> block if the condition is false. In case the condition is true, <em>Block 1</em> is executed and the second <code class="language-plaintext highlighter-rouge">goto</code> at the end of this block (i.e. <code class="language-plaintext highlighter-rouge">goto FI</code>) allows to jump to the “<em>next statements</em>” of the program and not execute <em>Block 2</em>.</p>
-
-<h2 id="switchcase-statements">switch/case statements</h2>
-
-<p>A naive approach to converting a <code class="language-plaintext highlighter-rouge">switch/case</code> block of code into an <em>unstructured</em> program would be to rewrite this block as a series of <code class="language-plaintext highlighter-rouge">if/then/else</code>statements and subsequently convert these instructions as described earlier. Another, more efficient approach would use the following steps:</p>
-
-<ol>
-  <li>
-    <p>Convert each <code class="language-plaintext highlighter-rouge">case i</code> statement into a unique label (ex: <code class="language-plaintext highlighter-rouge">case 5</code> will become <code class="language-plaintext highlighter-rouge">ESAC5</code>).</p>
-  </li>
-  <li>
-    <p>allocate an array before the <code class="language-plaintext highlighter-rouge">switch</code> statement with enough space to hold all the addresses ​​of the <code class="language-plaintext highlighter-rouge">labels</code> produced in step 1 (i.e. labels ESAC0, ESAC1, …).</p>
-  </li>
-  <li>
-    <p>add a label at the end of the <code class="language-plaintext highlighter-rouge">switch/case</code> block (ex: <code class="language-plaintext highlighter-rouge">KAERB:</code>) and convert each <code class="language-plaintext highlighter-rouge">break</code> statement of the <code class="language-plaintext highlighter-rouge">switch</code> block to a <code class="language-plaintext highlighter-rouge">goto</code> statement to this new label (ex: <code class="language-plaintext highlighter-rouge">goto KAERB;</code>) in order to jump to the end of the block.</p>
-  </li>
-  <li>
-    <p>Finally, the <code class="language-plaintext highlighter-rouge">switch</code> statement is converted with a couple of instructions: We need first to <em>evaluate</em> the <code class="language-plaintext highlighter-rouge">expression</code> of the <code class="language-plaintext highlighter-rouge">switch</code> statement and then according to this value we retrieve the address of the label stored in the allocated array from step 2. We then make the appropriate jump with a <code class="language-plaintext highlighter-rouge">goto</code> instruction again (see below).</p>
-  </li>
-</ol>
-
-<div>
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:center">Structed Code</th>
-      <th style="text-align:center">Unstructured Code</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-<td class="language-c highlighter-rouge">
-<pre class="highlight">
-
-<span class="k">switch</span><span class="p">(</span><span class="cm"> /* Expression */ </span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">case</span><span class="mi"> 0</span><span class="p">:</span><span class="cm"> /* Block 0 */</span>
-          <span class="k">break</span><span class="p">;</span>
-  <span class="k">case</span><span class="mi"> 1</span><span class="p">:</span><span class="cm"> /* Block 1 */</span>
-          <span class="k">break</span><span class="p">;</span>
-  <span class="p"> ... </span>
-  <span class="k">case</span><span class="mi"> N</span><span class="p">:</span><span class="cm"> /* Block N */</span>
-          <span class="k">break</span><span class="p">;</span>
-  <span class="nl">default</span><span class="p">:</span><span class="cm"> /* Default */ </span>         
-<span class="p">}</span>
-
-<span class="cm">/* next statements... */</span>
-</pre>
-</td>
-<td class="language-c highlighter-rouge">
-<pre class="highlight">
-<span class="kt">void</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[]</span><span class="o"> = </span><span class="p">{</span><span class="o"> &amp;&amp;</span><span class="n">ESAC0</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">ESAC1</span><span class="p">, ...,</span><span class="o"> &amp;&amp;</span><span class="n">ESACN</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">TLUAFED</span><span class="p"> };</span>
-<span class="k">goto</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[</span><span class="cm"> /* Expression */ </span><span class="p">];</span>
-
-<span class="n">ESAC0</span><span class="o">:</span><span class="cm"> /* Block 0 */</span>
-<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
-<span class="n">ESAC1</span><span class="o">:</span><span class="cm"> /* Block 1 */</span>
-<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="n">ESACN</span><span class="o">:</span><span class="cm"> /* Block N */</span>
-<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
-<span class="n">TLUAFED</span><span class="o">:</span><span class="cm"> /* Default */</span>         
-<span class="n">KAERB</span><span class="o">:</span>
-
-<span class="cm">/* next statements... */</span>
-</pre>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<p><strong>NOTE</strong>: The steps described above assumes the use of the GCC compiler which provides a feature called “<a href="http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html">labels as values</a>” - Other C compilers might use other methods for the conversion.</p>
 
 <h2 id="while-and-for-loops">“while” and “for” loops</h2>
 
@@ -482,6 +410,77 @@
 </table>
 </div>
 
+<h2 id="switchcase-statements">switch/case statements</h2>
+
+<p>A naive approach to converting a <code class="language-plaintext highlighter-rouge">switch/case</code> block of code into an <em>unstructured</em> program would be to rewrite this block as a series of <code class="language-plaintext highlighter-rouge">if/then/else</code>statements and subsequently convert these instructions as described earlier. Another, more efficient approach would use the following steps:</p>
+
+<ol>
+  <li>
+    <p>Convert each <code class="language-plaintext highlighter-rouge">case i</code> statement into a unique label (ex: <code class="language-plaintext highlighter-rouge">case 5</code> will become <code class="language-plaintext highlighter-rouge">ESAC5</code>).</p>
+  </li>
+  <li>
+    <p>allocate an array before the <code class="language-plaintext highlighter-rouge">switch</code> statement with enough space to hold all the addresses ​​of the <code class="language-plaintext highlighter-rouge">labels</code> produced in step 1 (i.e. labels ESAC0, ESAC1, …).</p>
+  </li>
+  <li>
+    <p>add a label at the end of the <code class="language-plaintext highlighter-rouge">switch/case</code> block (ex: <code class="language-plaintext highlighter-rouge">KAERB:</code>) and convert each <code class="language-plaintext highlighter-rouge">break</code> statement of the <code class="language-plaintext highlighter-rouge">switch</code> block to a <code class="language-plaintext highlighter-rouge">goto</code> statement to this new label (ex: <code class="language-plaintext highlighter-rouge">goto KAERB;</code>) in order to jump to the end of the block.</p>
+  </li>
+  <li>
+    <p>Finally, the <code class="language-plaintext highlighter-rouge">switch</code> statement is converted with a couple of instructions: We need first to <em>evaluate</em> the <code class="language-plaintext highlighter-rouge">expression</code> of the <code class="language-plaintext highlighter-rouge">switch</code> statement and then according to this value we retrieve the address of the label stored in the allocated array from step 2. We then make the appropriate jump with a <code class="language-plaintext highlighter-rouge">goto</code> instruction again (see below).</p>
+  </li>
+</ol>
+
+<div>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:center">Structed Code</th>
+      <th style="text-align:center">Unstructured Code</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+
+<span class="k">switch</span><span class="p">(</span><span class="cm"> /* Expression */ </span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">case</span><span class="mi"> 0</span><span class="p">:</span><span class="cm"> /* Block 0 */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span><span class="mi"> 1</span><span class="p">:</span><span class="cm"> /* Block 1 */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="p"> ... </span>
+  <span class="k">case</span><span class="mi"> N</span><span class="p">:</span><span class="cm"> /* Block N */</span>
+          <span class="k">break</span><span class="p">;</span>
+  <span class="nl">default</span><span class="p">:</span><span class="cm"> /* Default */ </span>         
+<span class="p">}</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+</td>
+<td class="language-c highlighter-rouge">
+<pre class="highlight">
+<span class="kt">void</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[]</span><span class="o"> = </span><span class="p">{</span><span class="o"> &amp;&amp;</span><span class="n">ESAC0</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">ESAC1</span><span class="p">, ...,</span><span class="o"> &amp;&amp;</span><span class="n">ESACN</span><span class="p">,</span><span class="o"> &amp;&amp;</span><span class="n">TLUAFED</span><span class="p"> };</span>
+<span class="k">goto</span><span class="o"> *</span><span class="n">SwitchTab</span><span class="p">[</span><span class="cm"> /* Expression */ </span><span class="p">];</span>
+
+<span class="n">ESAC0</span><span class="o">:</span><span class="cm"> /* Block 0 */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="n">ESAC1</span><span class="o">:</span><span class="cm"> /* Block 1 */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">ESACN</span><span class="o">:</span><span class="cm"> /* Block N */</span>
+<span class="k">goto</span><span class="n"> KAERB</span><span class="p">;</span>
+<span class="n">TLUAFED</span><span class="o">:</span><span class="cm"> /* Default */</span>         
+<span class="n">KAERB</span><span class="o">:</span>
+
+<span class="cm">/* next statements... */</span>
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>NOTE</strong>: The steps described above assumes the use of the GCC compiler which provides a feature called “<a href="http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html">labels as values</a>” - Other C compilers might use other methods for the conversion.</p>
 
   </article>
 
