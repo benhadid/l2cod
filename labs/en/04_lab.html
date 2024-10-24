@@ -188,12 +188,12 @@
     <h1 class="post-title">MIPS Assembler Language</h1>
     <p class="post-meta">Published on 
       <!--
-      Sunday
-      20/10/2024
+      Thursday
+      24/10/2024
       -->
       
-      Sunday
-      20
+      Thursday
+      24
       
       October
       2024
@@ -203,11 +203,11 @@
   <div>
     
     <span style="font-weight: bold"> Due on 
-      <!-- 04/11/2024 -->
+      <!-- 07/11/2024 -->
 
       
-      Monday
-      4
+      Thursday
+      7
       
       November
       2024
@@ -279,11 +279,14 @@ Modifications/implementations are to be done in <code class="language-plaintext 
     <p>You can use the MARS simulator to implement and test your codes. Here is <a href="/l2ado/static_files/docs/MARS">a quick tutorial</a> on the functionalities of this software.</p>
   </li>
   <li>
-    <p>To test your implementations of exercises 3 to 5 in the MARS environment, you will need to declare a <code class="language-plaintext highlighter-rouge">.data</code> segment and implement a <code class="language-plaintext highlighter-rouge">main</code> function in a <code class="language-plaintext highlighter-rouge">.text</code> segment. The <code class="language-plaintext highlighter-rouge">main</code> function must then call your function with the appropriate parameters. Have a look at the codes of exercises 1 and 2 to see how this is done.</p>
+    <p>To test your implementations of exercises 3 to 5 in the MARS environment, you will need to implement your own <code class="language-plaintext highlighter-rouge">runner.s</code> files. Have a look at the files <code class="language-plaintext highlighter-rouge">sum_of_squares/runner.s</code> and <code class="language-plaintext highlighter-rouge">strcmp/runner.s</code> in exercises 1 &amp; 2 respectively to get some ideas how this can be done.</p>
+  </li>
+  <li>
+    <p>Read the comments in <code class="language-plaintext highlighter-rouge">impl.s</code> files to see which registers you should use for coding.</p>
   </li>
 </ul>
 
-<h1 id="exercise-1--sum-of-squares">Exercise 1 : (sum of squares)</h1>
+<h1 id="exercise-1-sum-of-squares">Exercise 1: (sum of squares)</h1>
 
 <p>The sum of squares of <em>N</em> integers is described as follows:</p>
 
@@ -295,7 +298,7 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 <p><strong>Hint:</strong> Do exercise #1 of the lab “<a href="/l2ado/labs/03_lab.html">Unstructured Programming »</a>”, then convert your C code into MIPS using the MIPS reference <a href="/l2ado/static_files/docs/fiche_mips.pdf">card</a> .</p>
 
-<h1 id="exercise-2--strcmp">Exercise 2 : (strcmp)</h1>
+<h1 id="exercise-2-strcmp">Exercise 2: (strcmp)</h1>
 
 <p>In the standard C library, the <code class="language-plaintext highlighter-rouge">strcmp</code> function (see <code class="language-plaintext highlighter-rouge">man 3 strcmp</code>) compares, character by character, two strings to establish which character string comes first in the standard lexicographical order -i.e. based on the ASCII values ​​of the characters. Here are some examples:</p>
 
@@ -311,7 +314,7 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 <p><strong>Hint:</strong> Do exercise #2 of the lab “<a href="/l2ado/labs/03_lab.html">Unstructured Programming »</a>”, then convert your C code into MIPS using the MIPS reference <a href="/l2ado/static_files/docs/fiche_mips.pdf">card</a> .</p>
 
-<h1 id="exercice-3--reverse">Exercice 3 : (reverse)</h1>
+<h1 id="exercice-3-reverse">Exercice 3: (reverse)</h1>
 
 <p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">reverse(int* array, int size)</code> in <code class="language-plaintext highlighter-rouge">reverse/impl.s</code>. This function should reverse the order of the elements in <code class="language-plaintext highlighter-rouge">array</code> from the end to the beginning. For example, if</p>
 
@@ -325,7 +328,7 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 <p>The MIPS function <code class="language-plaintext highlighter-rouge">reverse</code> gets the address of <code class="language-plaintext highlighter-rouge">array</code> in the register <code class="language-plaintext highlighter-rouge">$a0</code> and the <code class="language-plaintext highlighter-rouge">size</code> of the array in the register <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
 
-<h1 id="exercise-4--in_range">Exercise 4 : (in_range)</h1>
+<h1 id="exercise-4-in_range">Exercise 4: (in_range)</h1>
 
 <p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">in_range(min, max, value)</code> in <code class="language-plaintext highlighter-rouge">in_range/impl.s</code>. This function should return 1 in <code class="language-plaintext highlighter-rouge">$v0</code> if <code class="language-plaintext highlighter-rouge">min &lt;= value &lt;= max</code> and 0 otherwise. You can assume:</p>
 
@@ -335,22 +338,27 @@ Modifications/implementations are to be done in <code class="language-plaintext 
   <li>and <code class="language-plaintext highlighter-rouge">value</code> is given in  register <code class="language-plaintext highlighter-rouge">$a2</code></li>
 </ul>
 
-<h1 id="exercise-5--discrete">Exercise 5 : (discrete)</h1>
+<h1 id="exercice-5-conjucture">Exercice 5: (conjucture)</h1>
 
-<p>Let a discrete function <code class="language-plaintext highlighter-rouge">f()</code> defined on the set {-3, -2, -1, 0, 1, 2, 3} as follows:</p>
+<p>Take any <strong>positive</strong> integer <code class="language-plaintext highlighter-rouge">N</code>. If <code class="language-plaintext highlighter-rouge">N</code> is even, divide <code class="language-plaintext highlighter-rouge">N</code> by 2 to get <code class="language-plaintext highlighter-rouge">N / 2</code>. If N is odd, multiply N by 3 and add 1 to get <code class="language-plaintext highlighter-rouge">3N + 1</code>. Repeat the process indefinitely. A mathematical conjecture (i.e. not proven, yet) states that no matter which number you start with, you will always reach 1 eventually.</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span>
-   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">61</span>
-   <span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">17</span>
-   <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">38</span>
-   <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">19</span>
-   <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">42</span>
-   <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">5</span>
-</code></pre></div></div>
+<p>Given a number <code class="language-plaintext highlighter-rouge">N</code>, implement the mips function <code class="language-plaintext highlighter-rouge">steps(int N)</code> in <code class="language-plaintext highlighter-rouge">conjecture/impl.s</code> which  returns the number of steps required to reach 1.</p>
 
-<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">f(int i)</code> in <code class="language-plaintext highlighter-rouge">discrete/impl.s</code> <strong>WITHOUT</strong> using comparaison statements! The argument for the function <code class="language-plaintext highlighter-rouge">f()</code> is given in register <code class="language-plaintext highlighter-rouge">$a0</code> and the result should be returned in <code class="language-plaintext highlighter-rouge">$v0</code>.</p>
+<p><strong>Example:</strong> Starting with <code class="language-plaintext highlighter-rouge">N = 12</code>, the steps would be as follows:</p>
 
-<p><strong>Hint:</strong> How to read a word from a memory in MIPS?</p>
+\[\begin{aligned}
+   12 \div 2  &amp;= 6  \\
+    6 \div 2  &amp;= 3  \\
+ 3 \times 3 + 1 &amp;= 10  \\
+   10 \div 2  &amp;= 5   \\
+ 5 \times 3 + 1 &amp;= 16   \\
+   16 \div 2  &amp;= 8   \\
+    8 \div 2  &amp;= 4   \\
+    4 \div 2  &amp;= 2   \\
+    2 \div 2  &amp;= 1   \\
+\end{aligned}\]
+
+<p>Resulting in 9 steps. So for input N = 12, <code class="language-plaintext highlighter-rouge">steps(int N)</code> should return the value 9.</p>
 
 
   </article>
