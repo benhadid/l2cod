@@ -658,7 +658,7 @@ next:
                          #                           branch to L1. Therefore, if this condition (i.e. c &gt; d) is not 
                          #                           true as well, than skip the execution of the if-statement.  
 L1:  
-  addi   $s4, $s0, 1     # e = 1
+  addi   $s4, $0, 1      # e = 1
 next: 
   . . .
 </code></pre>
@@ -698,7 +698,7 @@ next:
     <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
 
 <span class="nl">WHILE:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="o">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">goto</span> <span class="n">ELIHW</span><span class="p">;</span>
     <span class="n">new_fib</span>  <span class="o">=</span> <span class="n">curr_fib</span> <span class="o">+</span> <span class="n">next_fib</span><span class="p">;</span>
     <span class="n">curr_fib</span> <span class="o">=</span> <span class="n">next_fib</span><span class="p">;</span>
     <span class="n">next_fib</span> <span class="o">=</span> <span class="n">new_fib</span><span class="p">;</span>
