@@ -18,8 +18,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Astuces d'utilisation dans Logisim - Computer Design / Fall 2024 </title>
-  <meta name="description" content="Astuce #1 : Fonction ‘zoom’ dans LogisimCette fonction permet de zoomer sur des circuits et vous sera très utile, particulièrement pendant la conception de c...">
+  <title> Tips for Logisim - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Tip #1: ‘zoom’ function in LogisimThis feature allows you to zoom in on circuits and will be very useful, especially when designing very complex circuits. Th...">
   
   <!--for gitlab pages -->
   
@@ -32,7 +32,7 @@
   <!--for github-->
 
   <link rel="stylesheet" href="/l2ado/_css/main.css">
-  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/fr/Logisim_astuces">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/en/Logisim_astuces">
   <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
 
   <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
@@ -185,41 +185,41 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Astuces d'utilisation dans Logisim</h1>
+    <h1 class="post-title">Tips for Logisim</h1>
   </header>
 
   <article class="post-content">
-    <h1 id="astuce-1--fonction-zoom-dans-logisim">Astuce #1 : Fonction ‘zoom’ dans Logisim</h1>
+    <h1 id="tip-1-zoom-function-in-logisim">Tip #1: ‘zoom’ function in Logisim</h1>
 
-<p>Cette fonction permet de zoomer sur des circuits et vous sera très utile, particulièrement pendant la conception de circuits très complexes. Cette fonctionnalité est accessible depuis le coin inférieur gauche de la fenêtre Logisim (cf. figure ci-dessous ). 
+<p>This feature allows you to zoom in on circuits and will be very useful, especially when designing very complex circuits. This functionality is accessible from the lower left corner of the Logisim window (see below). 
 <img src="/l2ado/static_files/images/zoom_button.png" alt="Zoom" height="75%" width="75%" class="wp-caption aligncenter" /></p>
 
-<h1 id="astuce-2--comment-connecter-un-séparateur-à-une-porte-logique">Astuce #2 : Comment connecter un séparateur à une porte logique</h1>
+<h1 id="tip-2-how-to-connect-a-splitter-to-a-logic-gate">Tip #2: How to connect a splitter to a logic gate</h1>
 
-<p>Pour connecter un séparateur à une porte logique, l’approche naïve consiste à connecter les fils un à un comme illustré à l’image de gauche. Il est plus facile de <em>coller</em> la porte logique au séparateur puis de déplacer la porte loin du séparateur pour construire les fils de connexion.</p>
+<p>To connect a splitter to a logic gate, the naive approach is to connect the wires one by one as shown in the left image. It’s easier to <em>glue</em> the logic gate to the splitter and then move the gate away from the splitter to build the connecting wires.</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_bad.gif" alt="méthode naïve" class="center-image" height="70%" width="70%" /></th>
-      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_good.gif" alt="méthode rapide" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_bad.gif" alt="naive method" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_good.gif" alt="quick method" class="center-image" height="70%" width="70%" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">méthode naïve</td>
-      <td style="text-align: center">méthode rapide</td>
+      <td style="text-align: center"><strong>naive method</strong></td>
+      <td style="text-align: center"><strong>quick method</strong></td>
     </tr>
   </tbody>
 </table>
 
 <p><br /></p>
 
-<p>Cette astuce est très utile lorsque vous avez beaucoup d’entrées à connecter (comme 32 entrées par exemple). Vous pouvez également utiliser cette technique pour connecter des séparateurs avec d’autres séparateurs.</p>
+<p>This tip is very useful when you have a lot of inputs to connect (like 32 inputs for example). You can also use this technique to connect splitters with other splitters.</p>
 
-<h1 id="astuce-3--inverser-une-entrée-dune-porte-logique">Astuce #3 : Inverser une entrée d’une porte logique</h1>
+<h1 id="tip-3-invert-an-input-of-a-logic-gate">Tip #3: Invert an input of a logic gate</h1>
 
-<p>Parfois, nous avons besoin d’inverser une entrée à une porte logique. Dans ce cas, au lieu d’insérer une porte ‘SAUF’ supplémentaire entre l’entrée et le circuit, nous ajoutons un petit cercle pour inverser l’entrée de la porte logique.</p>
+<p>Sometimes we need to invert an input to a logic gate. In this case, instead of inserting an additional ‘<strong>NOT</strong>’ gate between the input and the circuit, we ‘add’ a small circle to invert the logic gate input.</p>
 
 <table>
   <thead>
@@ -230,31 +230,31 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">insertion d’une porte ‘SAUF’</td>
-      <td style="text-align: center">insertion d’un cercle</td>
+      <td style="text-align: center"><strong>inserting a ‘NOT’ gate</strong></td>
+      <td style="text-align: center"><strong>inserting a ‘circle’</strong></td>
     </tr>
   </tbody>
 </table>
 
 <p><br /></p>
 
-<p>Pour ajouter un cercle, procédez comme suit :</p>
+<p>To add a circle, follow these steps:</p>
 
 <ol>
   <li>
-    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+    <p>Enable the “<strong>Select tool</strong>” mode (i.e. click on the black arrow at the top left of the window).</p>
   </li>
   <li>
-    <p>Sélectionnez la porte logique à laquelle vous souhaitez ajouter le(s) cercle(s).</p>
+    <p>Select the logic gate to which you want to add the circle(s).</p>
   </li>
   <li>
-    <p>Dans l’onglet des propriétés de la porte (section en bas à gauche de votre fenêtre), choisissez l’entrée ou les entrées à inverser.</p>
+    <p>In the properties tab (bottom left section of your window), choose the input(s) to invert.</p>
   </li>
 </ol>
 
-<h1 id="astuce-4--changer-lapparence-dune-porte-logique">Astuce #4 : Changer l’apparence d’une porte logique</h1>
+<h1 id="tip-4-change-the-appearance-of-a-logic-gate">Tip #4: Change the appearance of a logic gate</h1>
 
-<p>Vous pouvez modifier l’attribut d’orientation (Nord, Sud, Est ou Ouest) et le nombre d’entrées d’une porte logique. Cela permet de modifier l’apparence (et la fonctionnalité) de la porte. Vous pouvez également modifier l’attribut “Data Bits” pour indiquer le nombre de bits que chaque entrée aura (les exemples ci-dessous ont des entrées sur 1 bit).</p>
+<p>You can modify the orientation (i.e. North, South, East or West) and the number of inputs of a logic gate. This allows you to change the appearance (and functionality) of the gate. You can also change the “<strong>Data Bits</strong>” attribute (i.e. the width) to indicate how many bits each entry will have.</p>
 
 <table>
   <thead>
@@ -265,54 +265,54 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">Porte ET à 4 entrées orientée vers l’est</td>
-      <td style="text-align: center">Porte OU à 10 entrées orientée face au sud</td>
+      <td style="text-align: center"><strong>4-input AND gate facing east</strong></td>
+      <td style="text-align: center"><strong>10-input OR gate facing south</strong></td>
     </tr>
   </tbody>
 </table>
 
 <p><br /></p>
 
-<p>Pour modifier l’apparence d’une porte logique, procédez comme suit :</p>
+<p>To change the appearance of a logic gate, follow these steps:</p>
 
 <ol>
   <li>
-    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+    <p>Enable the “<strong>Select tool</strong>” mode (i.e. click on the black arrow at the top left of the window).</p>
   </li>
   <li>
-    <p>Cliquez sur la porte dont vous voulez changer l’apparence.</p>
+    <p>Click on the gate whose appearance you want to change.</p>
   </li>
   <li>
-    <p>Dans l’onglet des propriétés de la porte (section en bas à gauche de votre fenêtre), éditez les paramètres “Facing” et “Appearance” à votre guise.</p>
+    <p>In the properties tab (bottom left section of your window), edit the “<strong>Facing</strong>” and “<strong>Appearance</strong>” settings as desired.</p>
   </li>
 </ol>
 
-<h1 id="astuce-5--inverser-les-broches-du-séparateur">Astuce #5 : Inverser les broches du Séparateur</h1>
+<h1 id="tip-5-reverse-the-splitter-pins">Tip #5: Reverse the Splitter Pins</h1>
 
-<p>Parfois, il est préférable d’inverser les broches du séparateur pour avoir un circuit logique moins encombré. Cela est particulièrement utile quand vous avez un séparateur avec beaucoup de broches à inverser.</p>
+<p>Sometimes it is better to reverse the splitter pins to have a less cluttered logic circuit. This is especially useful when you have a splitter with a lot of pins to reverse.</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_bad.gif" alt="méthode naïve" class="center-image" height="70%" width="70%" /></th>
-      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_good.gif" alt="méthode rapide" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_bad.gif" alt="naive method" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_good.gif" alt="quick method" class="center-image" height="70%" width="70%" /></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">méthode naïve</td>
-      <td style="text-align: center">méthode rapide</td>
+      <td style="text-align: center"><strong>naive method</strong></td>
+      <td style="text-align: center"><strong>quick method</strong></td>
     </tr>
   </tbody>
 </table>
 
 <p><br /></p>
 
-<p>Cliquez avec le bouton droit sur un séparateur et choisissez “distribute ascending/descending” pour modifier la distribution.</p>
+<p>Right-click a splitter and choose “<strong>distribute ascending/descending</strong>” to change the distribution.</p>
 
-<h1 id="astuce-6--changer-lapparence-dun-séparateur">Astuce #6 : Changer l’apparence d’un séparateur</h1>
+<h1 id="tip-6-change-the-appearance-of-a-splitter">Tip #6: Change the appearance of a Splitter</h1>
 
-<p>Vous pouvez modifier l’orientation du séparateur (directions Nord, Sud, Est ou Ouest) ainsi que son apparence (Left-Handed, Right-Handed, Centered ou Legacy).Essayez de jouer avec ces différents attributs pour identifier ceux qui conviennent le mieux à votre circuit.</p>
+<p>You can change the orientation of a Splitter (North, South, East or West directions) as well as its appearance (Left-Handed, Right-Handed, Centered or Legacy). Try playing with these different attributes to identify which ones look best for your circuit.</p>
 
 <table>
   <thead>
@@ -323,27 +323,28 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">séparateur “Right-handed”<br />orienté vers le sud</td>
-      <td style="text-align: center">séparateur “Centered”<br />orienté vers l’est</td>
+      <td style="text-align: center"><strong>“Right-handed” separator</strong><br /><strong>facing south</strong></td>
+      <td style="text-align: center"><strong>“Centered” separator</strong><br /><strong>facing east</strong></td>
     </tr>
   </tbody>
 </table>
 
 <p><br /></p>
 
-<p>Pour modifier l’apparence d’un séparateur, procédez comme suit :</p>
+<p>To change the appearance of a Spliiter, follow these steps:</p>
 
 <ol>
   <li>
-    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+    <p>Enable the “<strong>Select tool</strong>” mode (i.e. click on the black arrow at the top left of the window).</p>
   </li>
   <li>
-    <p>Cliquez sur le séparateur dont vous souhaitez modifier l’apparence.</p>
+    <p>Click the Splitter whose appearance you want to change.</p>
   </li>
   <li>
-    <p>Dans l’onglet des propriétés du séparateur (section en bas à gauche de votre fenêtre), éditez les paramètres “Facing” et “Appearance” à votre guise.</p>
+    <p>In the properties tab (bottom left section of your window), edit the “<strong>Facing</strong>” and “<strong>Appearance</strong>” settings as desired.</p>
   </li>
 </ol>
+
 
   </article>
 

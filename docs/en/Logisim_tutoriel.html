@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Logic circuit simulation software (Logisim) - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Logisim is a tool for designing and simulating simple logic circuits. To launch the software on a lab machine (or the VM), run the following command from a t...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/docs/en/Logisim_tutoriel">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Resources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Logic circuit simulation software (Logisim)</h1>
+  </header>
+
+  <article class="post-content">
+    <p><a href="https://fr.wikipedia.org/wiki/Logisim">Logisim</a> is a tool for designing and simulating simple logic circuits. To launch the software on a lab machine (or the VM), run the following command from a terminal:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>logisim
+</code></pre></div></div>
+
+<h1 id="the-basics">The basics</h1>
+
+<p>Let’s start by creating a very simple circuit of logic gates:</p>
+
+<ol>
+  <li>
+    <p><img src="/l2ado/static_files/images/and.gif" alt="AND Gate" /> Start by clicking on the “AND gate” button (left panel - “<strong>Gates</strong>” folder). You will notice that a shadow of an AND gate will follow your cursor movements. Click once in the main schematic window to place an AND gate.</p>
+  </li>
+  <li>
+    <p><img src="/l2ado/static_files/images/input.gif" alt="Input Pin" /> Click on the “<strong>Pin</strong>” button (under “<strong>Wiring</strong>” - folder). Now, place two input pins to the left of your AND gate.</p>
+  </li>
+  <li>
+    <p><img src="/l2ado/static_files/images/input.gif" alt="Input Pin" /> Click on the “<strong>Pin</strong>” button again and place an output pin to the right of your AND gate. In the “<strong>Selection: Pin</strong>” panel (below left), change the <strong>Output?</strong> value to “Yes” and the “<strong>Facing</strong>” parameter to “<strong>West</strong>”. Your diagram should look like this:
+<img src="/l2ado/static_files/images/and_2_1.gif" alt="2 Inputs AND Gate" class="wp-caption aligncenter" /></p>
+  </li>
+  <li>
+    <p><img src="/l2ado/static_files/images/selection.gif" alt="Selection Tool" /> Click the “<strong>Select tool</strong>” button. Click and drag to connect the input pins to the left side of the AND gate. This will take several steps, as you can only draw vertical and horizontal wires. Simply draw a wire horizontally, release the mouse button, then click and drag down from the end of the wire to continue vertically. You can attach the wire to any pin on the left side of the AND gate. Repeat the same procedure to connect the output (right side) of the AND gate. After completing these steps, your circuit should look like this:
+<img src="/l2ado/static_files/images/connected_and_2_1.gif" alt="2 Inputs AND Gate" class="wp-caption aligncenter" />
+  You can also change the number of inputs of the “AND gate” by clicking on it with the “<strong>Select tool</strong>” and changing the “<strong>Number of Inputs</strong>” property in the “<strong>Properties</strong>” pane (below left).</p>
+  </li>
+  <li>
+    <p><img src="/l2ado/static_files/images/poke.gif" alt="Poke Tool" /> Finally, click on the “<strong>Poke</strong>” tool then try clicking on the input pins of your circuit. Observe what happens. Does this match what you think an AND gate should do?</p>
+  </li>
+</ol>
+
+<h1 id="subcircuits">Subcircuits</h1>
+
+<p>Just as programs written in a high-level language can contain auxiliary functions, a circuit diagram can contain subcircuits. In this part, we will create several subcircuits to demonstrate their use.</p>
+
+<ol>
+  <li>
+    <p>Open the circuit <a href="/l2ado/static_files/src/ex1.circ">ex1.circ</a> (<strong>File | Open 🡒 ex1.circ</strong>). The <strong>NAND1</strong> subcircuit window is automatically selected for you by Logisim.</p>
+  </li>
+  <li>
+    <p>In this window, create a simple <code class="language-plaintext highlighter-rouge">NAND</code> circuit with two input pins on the left side and one output pin on the right side. Do this without using the <strong>NAND</strong> gate found in the <strong>Gates</strong> folder (i.e. use only the <strong>AND</strong>, <strong>OR</strong> and <strong>NOT</strong> gates). You can change the labels of the inputs and outputs of the circuit by changing the “<strong>Label</strong>” property in the “<strong>Properties</strong>” pane.</p>
+  </li>
+  <li>
+    <p>To create the additional subcircuits: <code class="language-plaintext highlighter-rouge">NOR</code>, <code class="language-plaintext highlighter-rouge">XOR</code>, <code class="language-plaintext highlighter-rouge">2-to-1 MUX</code>, and <code class="language-plaintext highlighter-rouge">4-to-1 MUX</code>; double-click the circuit name in the “<strong>Design</strong>” pane on the left and repeat the steps you have done for the <code class="language-plaintext highlighter-rouge">NAND</code> subcircuit. Do not use any built-in gates other than <strong>AND</strong>, <strong>OR</strong>, and <strong>NOT</strong>. However, once you have built a subcircuit, you can use it to create additional subcircuits (click once the created subcircuit in the “<strong>Design</strong>” pane and then click again in the Design window to insert it as a component).</p>
+
+    <p><strong>Note</strong>: For the <code class="language-plaintext highlighter-rouge">4-to-1 MUX</code>, <code class="language-plaintext highlighter-rouge">Sel0</code> and <code class="language-plaintext highlighter-rouge">Sel1</code> correspond to the 0th and 1st bits of the 2-bit selector, respectively.</p>
+  </li>
+</ol>
+
+<h1 id="advanced-features">Advanced features</h1>
+
+<h2 id="tunnels">Tunnels</h2>
+
+<p>A <a href="http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/tunnel.html">tunnel</a> allows you to draw an “invisible wire” to connect two points together. Tunnels are grouped by labels (label names are case sensitive). They are used as follows:</p>
+
+<p><img src="/l2ado/static_files/images/tunnels1.png" alt="Logisim Tunnel" class="wp-caption" /></p>
+
+<p>This has the same effect as:</p>
+
+<p><img src="/l2ado/static_files/images/tunnels2.png" alt="Logisim Linking" class="wp-caption" /></p>
+
+<p>It is highly recommend you use tunnels with Logisim, as they make your circuits much cleaner and therefore easier to understand/debug.</p>
+
+<h2 id="splitter">Splitter</h2>
+
+<p>This is an essential tool when designing circuits in Logisim. To demonstrate its use, you will build a circuit that manipulates an 8-bit number.</p>
+
+<ol>
+  <li>
+    <p>Create a new subcircuit and give it a name (e.g. “Ex2”).</p>
+  </li>
+  <li>
+    <p>Add an 8-bit input pin to your circuit and label it (e.g. “In1”).</p>
+  </li>
+  <li>
+    <p>Add a 1-bit output pin labeled “Out1” and an 8-bit output pin labeled “Out2” to your circuit.</p>
+  </li>
+  <li>
+    <p>Select the Splitter circuit from the “<strong>Wiring</strong>” folder in Logisim. This circuit takes an input bus and splits it into a set of smaller width buses. Conversely, it can also be used to recombine many sets of wires into a larger bus.</p>
+  </li>
+  <li>
+    <p>Before placing your circuit, change the “<strong>Bit Width In</strong>” property (bus width) to 8 and the “<strong>Fan Out</strong>” property (# of branches) to 3. If you move your cursor over the schematic, your cursor should look like this: <img src="/l2ado/static_files/images/splitter.gif" alt="Logisim Splitter" /></p>
+  </li>
+  <li>
+    <p>Now, select which bits to send to which branch of the splitter. The least significant bit is bit 0 and the most significant bit is bit 7. Make sure the bits 1 to 6 appear on branch #1 (the middle one) and leave the other two bits mapped to their default configuration. The “None” option means that the selected bit will not be mapped to any of the branches of the splitter.</p>
+  </li>
+  <li>
+    <p>Once the splitter is configured, you can place it in your circuit.</p>
+  </li>
+  <li>
+    <p>Route the <code class="language-plaintext highlighter-rouge">In1</code> input pin to the splitter. Attach a 2-input <strong>AND</strong> gate to branches 0 and 2 of the splitter and route the output of this gate to the output pin <code class="language-plaintext highlighter-rouge">Out1</code>.</p>
+  </li>
+  <li>
+    <p>Now, suppose the input is a number represented by “a sign bit and a magnitude”. Add the necessary logic so that <code class="language-plaintext highlighter-rouge">Out2</code> represents the negative value of the input <code class="language-plaintext highlighter-rouge">In1</code>(<a href="https://en.wikipedia.org/wiki/Signed_number_representations#Signed_magnitude_representation">Sign and magnitude</a> is another way to represent signed values – like 2’s complement).</p>
+  </li>
+</ol>
+
+<h2 id="bit-extender">Bit Extender</h2>
+
+<p>When you change the width of a bus, you must use a <a href="http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/extender.html">bit extender</a>. For example, consider the following implementation of extending an 8-bit bus to a 16-bit bus using splitter:</p>
+
+<p><img src="/l2ado/static_files/images/extend1.png" alt="Logisim Extender 1" class="wp-caption" /></p>
+
+<p>Whereas the following is much simpler, easier to read, and less error-prone:</p>
+
+<p><img src="/l2ado/static_files/images/extend2.png" alt="Logisim Extender 2" class="wp-caption" /></p>
+
+<p>Furthermore, consider the case of bit deletion. In the example below, an 8-bit bus is converted to a 4-bit bus by removing the 4 most significant bits:</p>
+
+<p><img src="/l2ado/static_files/images/extend3.png" alt="Logisim Extender 3" class="wp-caption" /></p>
+
+<p>Despite its name, a bit extender can also perform this same operation:</p>
+
+<p><img src="/l2ado/static_files/images/extend4.png" alt="Logisim Extender 4" class="wp-caption" /></p>
+
+<h1 id="design-example-1-build-a-4-bit-adder">Design example 1: Build a 4-Bit “adder”</h1>
+
+<p>Now that you have gained some experience with Logisim, let’s design a slightly more complex circuit: a 4-bit adder!</p>
+
+<p>An “adder” is a <a href="https://en.wikipedia.org/wiki/Logic_circuit">logic circuit</a> used to perform additions. This circuit is very common in processors. It is used to perform arithmetic calculations in ALUs (i.e. Arithmetic Logic Units) but also to calculate the memory addresses for next instructions.</p>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Adder">full</a> “adder” adds three numbers, often written as <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">Cin</code>; <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> are the operands, and <code class="language-plaintext highlighter-rouge">Cin</code> is the carry-in (possible result of a previous addition). The full “adder” is usually composed of a cascade of simple 8-bit, 16-bit, 32-bit, … adders.</p>
+
+<p>In the notation below, A[4] indicates that the input is named “ <strong>A</strong> “ and is 4-bits wide. The input should not be named “ <strong>A[4]</strong> “ in Logisim!</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr>
+<th>Add4 :</th>
+<td>S = A + B + Cin; Cout = carry out</td>
+</tr>
+<tr>
+<th>Operands :</th>
+<td>A[4], B[4], Cin</td>
+</tr>
+<tr>
+<th>Result :</th>
+<td>S[4], Cout</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">S</code> output is calculated by adding <code class="language-plaintext highlighter-rouge">A</code> , <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">Cin</code>. <code class="language-plaintext highlighter-rouge">A</code> , <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">S</code> are two’s complement numbers. If an overflow occurs, the <code class="language-plaintext highlighter-rouge">Cout</code> output should be set. In this case, the <code class="language-plaintext highlighter-rouge">S</code> output is the calculated value when all overflow errors are ignored.</p>
+
+<h2 id="truth-table-of-a-1-bit-adder">Truth table of a 1-bit adder</h2>
+
+<p>A truth table shows how the output of a logic circuit should respond to various combinations of inputs. For example, if all the inputs to a full adder are “0s”, the outputs should also be “0s”. Complete the truth table below.</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">Cin</th>
+<th style="text-align:center">Cout</th>
+<th style="text-align:center">S</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+
+</tbody>
+</table>
+
+<h2 id="builing-a-1-bit-adder">builing a “1-bit adder”</h2>
+
+<p>The above truth table can also be expressed using Boolean algebra.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   S =  A ⊕ B ⊕ Cin  
+Cout = (A ∧ B) ∨ (Cin ∧ (A ⊕ B) )
+</code></pre></div></div>
+
+<p>Hence the following diagram for our 1-bit adder.</p>
+
+<p><img src="/l2ado/static_files/images/Full_Adder.png" alt="Full Adder" class="wp-caption aligncenter" /></p>
+
+<p>A procedure called the Karnaugh table, named after Maurice Karnaugh, a telecommunications engineer at Bell Labs in 1953, makes it very easy to convert the truth table into a Boolean algebra representation. You can check out this <a href="https://en.wikipedia.org/wiki/Karnaugh_table">article</a> on Karnaugh tables to refresh your memory.</p>
+
+<p>Implement this 1-bit adder in Logisim and verify that your circuit works correctly (use the truth table above for your comparisons).</p>
+
+<h2 id="builing-a-4-bit-adder">Builing a “4-bit adder”</h2>
+
+<p>A 4-bit adder is made by cascading 4 1-bit adders, where the output of the current adder feeds the next adder.</p>
+
+<p><img src="/l2ado/static_files/images/4bitAdder.png" alt="Full 4-bit Adder" height="50%" width="50%" class="wp-caption aligncenter" /></p>
+
+<p>Build the 4-bit adder in Logisim by reusing the 1-bit adder you designed earlier as a subcircuit.</p>
+
+<p><strong>Hints</strong>:</p>
+<ul>
+  <li>Use <em>splitters</em></li>
+  <li>Use <em>tunnels</em></li>
+  <li>Use probes to debug your circuit. You can connect probes to the input/output busses and set the values to display in decimal for quick verification. Refer to the <a href="http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/probe.html">help page</a> for more information.</li>
+  <li>Use subcircuits to create your 4-bit adder, and then optionally a 32-bit adder.</li>
+</ul>
+
+<h1 id="design-example-2-implementing-a-finite-state-machine">Design example 2: Implementing a finite state machine</h1>
+
+<p>Let’s now implement a circuit that continuously increments a value. The difference between this circuit and the circuits you’ve built so far is that it <strong>writes</strong> this value to a <strong>register</strong> (defining thus the state of the circuit).</p>
+
+<ol>
+  <li>
+    <p>Open the <a href="/l2ado/static_files/src/ex2.circ">ex2.circ</a> circuit (<strong>File | Open 🡒 ex2.circ</strong>) and navigate to the (initially empty) <code class="language-plaintext highlighter-rouge">AddMachine</code> subcircuit.</p>
+  </li>
+  <li>
+    <p>The Logisim “<strong>Arithmetic</strong>” library contains elements that perform basic mathematical operations:
+    <img src="/l2ado/static_files/images/logisim_arithmetic.gif" alt="Logisim Arithmetic" class="aligncenter" /></p>
+  </li>
+  <li>
+    <p>Select the <code class="language-plaintext highlighter-rouge">Adder</code> subcircuit from the “<strong>Arithmetic</strong>” library and place it in your <code class="language-plaintext highlighter-rouge">AddMachine</code> subcircuit.</p>
+  </li>
+  <li>
+    <p>Select <code class="language-plaintext highlighter-rouge">Register</code> from the <code class="language-plaintext highlighter-rouge">Memory</code> library and place a register in your subcircuit. Below is an image showing the components of a “logisim” register 
+    <img src="/l2ado/static_files/images/register.png" alt="Logisim Register" class="wp-caption aligncenter" /></p>
+  </li>
+  <li>
+    <p>Connect a clock to your register. You can find the clock circuit element in the <code class="language-plaintext highlighter-rouge">Wiring</code> folder of the circuit browser.</p>
+  </li>
+  <li>
+    <p>Connect the output of the adder to the input of the register and the output of the register to the input of the adder. You may get the error “<em>Incompatible widths</em>” when connecting the components. This means that the wire you are drawing is trying to connect two pins with different bit widths. Switch to the “<strong>Selection</strong>” mode if necessary (the “arrow” button pressed), then click on the adder component. The “<strong>Data Bits</strong>” property in the lower left field of the window shows/defines the number of bits of the input and output of the adder. Change this field if necessary to make the error disappear.</p>
+  </li>
+  <li>
+    <p>Connect a constant <code class="language-plaintext highlighter-rouge">1</code> set to 8 bits to the second input of the adder. You can find the <code class="language-plaintext highlighter-rouge">Constant</code> circuit element in the <code class="language-plaintext highlighter-rouge">Wiring</code> library.</p>
+  </li>
+  <li>
+    <p>Add two output pins to your circuit so that you can monitor what is coming out of the adder and the register. The output of the adder should be connected to <code class="language-plaintext highlighter-rouge">ADD_OUT</code> and the output of the register to <code class="language-plaintext highlighter-rouge">REG_OUT</code>. In the end, your circuit should look like this:
+    <img src="/l2ado/static_files/images/AddMachine.png" alt="Add Machine" class="wp-caption aligncenter" /></p>
+  </li>
+  <li>
+    <p>Now run your circuit from the <strong>Simulate | Ticks Enabled</strong> menu (or the keyboard combination <strong>Control + K</strong>). Your circuit should now display a binary counter.</p>
+  </li>
+  <li>
+    <p>If you want to run your circuit faster, you can change the “tick” frequency in <strong>Simulate | Tick Frequency</strong>.</p>
+  </li>
+</ol>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
