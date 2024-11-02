@@ -236,7 +236,7 @@
 <div id="CvsMIPS">
   <div>
 
-    <pre><code class="language-mips">  # Exception de débordement arithmétique
+    <pre><code class="language-mips">  # Arithmetic overflow exception
   li     $t0, 0x7fffffff    # $t0 = MAX_INT 
   li     $t1, 1             # $t1 = 1
   addu   $t2, $t0, $t1      # Ignore Overflow 
@@ -255,8 +255,8 @@
 <div id="CvsMIPS">
   <div>
 
-    <pre><code class="language-mips">  # Exception d’adresse invalide
-  # Ne peut pas sauvegarder à l’adresse 4 
+    <pre><code class="language-mips">  # Invalid address exception
+  # cannot save to address 4 in memory 
   li     $t0, 4
   li     $a0, 5
   sw     $a0, ($t0)
@@ -274,7 +274,7 @@
 <div id="CvsMIPS">
   <div>
 
-    <pre><code class="language-mips">  # Exception d’adresse mal alignée
+    <pre><code class="language-mips">  # Unaligned memory address exception
   .data
   arr: .word 12, 17
   . . .
@@ -294,8 +294,8 @@
 <div id="CvsMIPS">
   <div>
 
-    <pre><code class="language-mips">  # Exception point d’arrêt (Breakpoint)
-  # causée par l’instruction break
+    <pre><code class="language-mips">  # Breakpoint exception
+  # caused by a "break" instruction
   .text
   . . .
   break
