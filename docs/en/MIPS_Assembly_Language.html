@@ -520,7 +520,7 @@ main:
    la   $a0, str1       # $a0 = memory address of the string to print (here str1)
    syscall              # a system call for printing the string str1
 
-   addi $v0, 5          # $v0 = service number for 'read an integer'
+   addi $v0, $0, 5      # $v0 = service number for 'read an integer'
    syscall              # a system call for reading an integer from the console. 
                         # The value is returned in $v0
 
