@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title> MIPS Assembler Language - Computer Design / Fall 2024 </title>
-  <meta name="description" content="Objectives      Introduction to the MARS simulator.        Learn how to assemble, run and debug a MIPS program.  PreambleThis lab introduces you to programmi...">
+  <meta name="description" content="Objectives  Learn coding in MIPS assemblyPreambleThis lab introduces you to programming in the MIPS assembly language. In particular, exercises 1 and 2 below...">
   
   <!--for gitlab pages -->
   
@@ -188,14 +188,14 @@
     <h1 class="post-title">MIPS Assembler Language</h1>
     <p class="post-meta">Published on 
       <!--
-      Thursday
-      24/10/2024
+      Wednesday
+      06/11/2024
       -->
       
-      Thursday
-      24
+      Wednesday
+      6
       
-      October
+      November
       2024
     </p>
   </header>
@@ -203,11 +203,11 @@
   <div>
     
     <span style="font-weight: bold"> Due on 
-      <!-- 07/11/2024 -->
+      <!-- 14/11/2024 -->
 
       
       Thursday
-      7
+      14
       
       November
       2024
@@ -236,12 +236,7 @@
     <h1 id="objectives">Objectives</h1>
 
 <ul>
-  <li>
-    <p>Introduction to the <a href="/l2ado/static_files/docs/MARS">MARS simulator</a>.</p>
-  </li>
-  <li>
-    <p>Learn how to assemble, run and debug a MIPS program.</p>
-  </li>
+  <li>Learn coding in MIPS assembly</li>
 </ul>
 
 <h1 id="preamble">Preamble</h1>
@@ -269,14 +264,14 @@ Modifications/implementations are to be done in <code class="language-plaintext 
     <p><code class="language-plaintext highlighter-rouge">munit.jar</code> is a java library used to automatically test MIPS programs.</p>
   </li>
   <li>
-    <p>To get an idea on what tests are performed for a given exercise, have a look inside the associated file <code class="language-plaintext highlighter-rouge">TestImpl.java</code> from the exercise directory. For the curious, these files implement <a href="https://junit.org/junit5/">junit</a> unit tests.</p>
+    <p>To get an idea on what tests are performed for a given exercise, have a look inside the associated file <code class="language-plaintext highlighter-rouge">TestImpl.java</code> from the exercise folder. For the curious, these files implement <a href="https://junit.org/junit5/">junit</a> unit tests.</p>
   </li>
 </ul>
 
 <p><strong>Hint:</strong></p>
 <ul>
   <li>
-    <p>You can use the MARS simulator to implement and test your codes. Here is <a href="/l2ado/static_files/docs/MARS">a quick tutorial</a> on the functionalities of this software.</p>
+    <p>You can use the MARS simulator to implement and test your codes. Here is <a href="/l2ado/docs/en/MARS">a quick tutorial</a> on the functionalities of this software. If using MARS, load the <code class="language-plaintext highlighter-rouge">exercise/runner.s</code> file into the editor and uncomment the last line to include your implementation in <code class="language-plaintext highlighter-rouge">exercise/impl.s</code>.</p>
   </li>
   <li>
     <p>To test your implementations of exercises 3 to 5 in the MARS environment, you will need to implement your own <code class="language-plaintext highlighter-rouge">runner.s</code> files. Have a look at the files <code class="language-plaintext highlighter-rouge">sum_of_squares/runner.s</code> and <code class="language-plaintext highlighter-rouge">strcmp/runner.s</code> in exercises 1 &amp; 2 respectively to get some ideas how this can be done.</p>
@@ -314,31 +309,7 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 <p><strong>Hint:</strong> Do exercise #2 of the lab “<a href="/l2ado/labs/03_lab.html">Unstructured Programming</a>”, then convert your C code into MIPS using the MIPS reference <a href="/l2ado/static_files/docs/fiche_mips.pdf">card</a> .</p>
 
-<h1 id="exercice-3-reverse">Exercice 3: (reverse)</h1>
-
-<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">reverse(int* array, int size)</code> in <code class="language-plaintext highlighter-rouge">reverse/impl.s</code>. This function should reverse the order of the elements in <code class="language-plaintext highlighter-rouge">array</code> from the end to the beginning. For example, if</p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  
-</code></pre></div></div>
-
-<p>then, after applying the <code class="language-plaintext highlighter-rouge">reverse</code> function on <code class="language-plaintext highlighter-rouge">array</code> the result should be:</p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>  
-</code></pre></div></div>
-
-<p>The MIPS function <code class="language-plaintext highlighter-rouge">reverse</code> gets the address of <code class="language-plaintext highlighter-rouge">array</code> in the register <code class="language-plaintext highlighter-rouge">$a0</code> and the <code class="language-plaintext highlighter-rouge">size</code> of the array in the register <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
-
-<h1 id="exercise-4-in_range">Exercise 4: (in_range)</h1>
-
-<p>Implement in MIPS the body of the function <code class="language-plaintext highlighter-rouge">in_range(min, max, value)</code> in <code class="language-plaintext highlighter-rouge">in_range/impl.s</code>. This function should return 1 in <code class="language-plaintext highlighter-rouge">$v0</code> if <code class="language-plaintext highlighter-rouge">min &lt;= value &lt;= max</code> and 0 otherwise. You can assume:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">min</code> is given in register <code class="language-plaintext highlighter-rouge">$a0</code></li>
-  <li><code class="language-plaintext highlighter-rouge">max</code> is given in register <code class="language-plaintext highlighter-rouge">$a1</code></li>
-  <li>and <code class="language-plaintext highlighter-rouge">value</code> is given in  register <code class="language-plaintext highlighter-rouge">$a2</code></li>
-</ul>
-
-<h1 id="exercice-5-conjucture">Exercice 5: (conjucture)</h1>
+<h1 id="exercice-3-conjucture">Exercice 3: (conjucture)</h1>
 
 <p>Take any <strong>positive</strong> integer <code class="language-plaintext highlighter-rouge">N</code>. If <code class="language-plaintext highlighter-rouge">N</code> is even, divide <code class="language-plaintext highlighter-rouge">N</code> by 2 to get <code class="language-plaintext highlighter-rouge">N / 2</code>. If N is odd, multiply N by 3 and add 1 to get <code class="language-plaintext highlighter-rouge">3N + 1</code>. Repeat the process indefinitely. A mathematical conjecture (i.e. not proven, yet) states that no matter which number you start with, you will always reach 1 eventually.</p>
 
@@ -359,6 +330,23 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 \end{aligned}\]
 
 <p>Resulting in 9 steps. So for input N = 12, <code class="language-plaintext highlighter-rouge">steps(int N)</code> should return the value 9.</p>
+
+<h1 id="exercise-4-isbn">Exercise 4: (ISBN)</h1>
+
+<p>The <a href="https://en.wikipedia.org/wiki/ISBN">International Standard Book Number (ISBN)</a> is a (unique) numeric commercial book identifier. Up to the end of December 2006, ISBNs were 10 digits in length (ISBN-10 format), but since 1 January 2007 they now consist of 13 digits (ISBN-13 format).</p>
+
+<p>The ISBN-10 format is 9 digits (0 to 9) plus one “check character” (either a digit or an <code class="language-plaintext highlighter-rouge">X</code>). In the case the “check character” is an <code class="language-plaintext highlighter-rouge">X</code>, this represents the value <code class="language-plaintext highlighter-rouge">10</code>. ISBNs normally contain dashes and look like: <strong>3-598-21507-X</strong>. To chech the validity of an ISBN-10 number, the following formula can be used:</p>
+
+\[\sum_{i=1}^{10} (11-i) \times x_i  \equiv  0\; (\mathrm{mod} \; 11)\]
+
+<p>For instance, to check the ISBN-10 number given above, one computes:</p>
+
+\[s = \left(  3 \times 10\right)  + \left( 5 \times  9\right)  + \left( 9 \times  8\right)  +
+    \left(  8 \times  7\right)  + \left( 2 \times  6\right)  + \left( 1 \times  5\right)  +
+    \left(  5 \times  4\right)  + \left( 0 \times  3\right)  + \left( 7 \times  2\right)  +
+    \left( 10 \times  1\right)  \equiv  0 \; \left( \mathrm{mod}  \; 11\right)\]
+
+<p>Given a string, write in <code class="language-plaintext highlighter-rouge">isbn/impl.s</code> a MIPS function that checks if the provided string is a valid ISBN-10. The program should be able to verify ISBN-10 both with and without separating dashes.</p>
 
 
   </article>
