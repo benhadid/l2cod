@@ -335,7 +335,9 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 <p>The <a href="https://en.wikipedia.org/wiki/ISBN">International Standard Book Number (ISBN)</a> is a (unique) numeric commercial book identifier. Up to the end of December 2006, ISBNs were 10 digits in length (ISBN-10 format), but since 1 January 2007 they now consist of 13 digits (ISBN-13 format).</p>
 
-<p>The ISBN-10 format is 9 digits (0 to 9) plus one “check character” (either a digit or an <code class="language-plaintext highlighter-rouge">X</code>). In the case the “check character” is an <code class="language-plaintext highlighter-rouge">X</code>, this represents the value <code class="language-plaintext highlighter-rouge">10</code>. ISBNs normally contain dashes and look like: <strong>3-598-21507-X</strong>. To chech the validity of an ISBN-10 number, the following formula can be used:</p>
+<p>The ISBN-10 format is 9 digits (0 to 9) plus one “check character” (either a digit or an <code class="language-plaintext highlighter-rouge">X</code>). In the case the “check character” is an <code class="language-plaintext highlighter-rouge">X</code>, this represents the value <code class="language-plaintext highlighter-rouge">10</code>. ISBNs normally contain dashes and look like: <strong>3-598-21507-X</strong>.</p>
+
+<p>A string is an ISBN-10 number if it verifies the following formula:</p>
 
 \[\sum_{i=1}^{10} (11-i) \times x_i  \equiv  0\; (\mathrm{mod} \; 11)\]
 
