@@ -339,14 +339,14 @@ Modifications/implementations are to be done in <code class="language-plaintext 
 
 \[\sum_{i=1}^{10} (11-i) \times x_i  \equiv  0\; (\mathrm{mod} \; 11)\]
 
-<p>For instance, to check the ISBN-10 number given above, one computes:</p>
+<p>For instance, applying the equation to the ISBN-10 number given above, yields:</p>
 
 \[s = \left(  3 \times 10\right)  + \left( 5 \times  9\right)  + \left( 9 \times  8\right)  +
     \left(  8 \times  7\right)  + \left( 2 \times  6\right)  + \left( 1 \times  5\right)  +
     \left(  5 \times  4\right)  + \left( 0 \times  3\right)  + \left( 7 \times  2\right)  +
     \left( 10 \times  1\right)  \equiv  0 \; \left( \mathrm{mod}  \; 11\right)\]
 
-<p>Given a string, write in <code class="language-plaintext highlighter-rouge">isbn/impl.s</code> a MIPS function that implements the check described above. The program should be able to verify strings both with and without separating dashes.</p>
+<p>Given a string, write in <code class="language-plaintext highlighter-rouge">isbn/impl.s</code> a MIPS function that implements the equation described above. The program should be able to verify strings both with and without separating dashes.</p>
 
 
   </article>
