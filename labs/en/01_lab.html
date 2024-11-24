@@ -484,7 +484,7 @@
   </li>
 </ol>
 
-<p>Type help from <code class="language-plaintext highlighter-rouge">gdb</code> for commands to perform these operations or use the <a href="/l2ado/static_files/docs/gdb5-refcard.pdf">GDB reference document</a>.</p>
+<p>Type help from <code class="language-plaintext highlighter-rouge">gdb</code> for commands to perform these operations or use the <a href="/l2ado/static_files/pdfs/gdb5-refcard.pdf">GDB reference document</a>.</p>
 
 <p>If you see an error message like <strong>“printf.c: No such file or directory”</strong>, you probably entered a <code class="language-plaintext highlighter-rouge">printf</code> function! If you continue the execution step by step, you will feel like you are going nowhere! CGDB is complaining because you don’t have the source file where <code class="language-plaintext highlighter-rouge">printf</code> is defined. To break this deadlock, use the <code class="language-plaintext highlighter-rouge">finish</code> command to run the program until the undefined function returns (in this case, until <code class="language-plaintext highlighter-rouge">printf</code> has finished). To avoid this kind of mishap NEXT time, use the <code class="language-plaintext highlighter-rouge">next</code> command to skip the line where <code class="language-plaintext highlighter-rouge">printf</code> is displayed.</p>
 
