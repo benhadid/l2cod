@@ -510,24 +510,24 @@
 
 <h3 id="testing-your-alu"><strong>Testing your ALU</strong></h3>
 
-<p>Un groupe de tests de cohérence de votre UAL est fourni dans le répertoire <code class="language-plaintext highlighter-rouge">tests/part_a/alu</code>. L’exécution du script <code class="language-plaintext highlighter-rouge">test_runner.py</code> (voir ci-dessous) exécutera les tests UAL et produira les résultats dans le répertoire <code class="language-plaintext highlighter-rouge">tests/part_a/alu/student_output</code>.</p>
+<p>A set of consistency tests for your ALU is provided in the <code class="language-plaintext highlighter-rouge">tests/part_a/alu</code> folder. Running the <code class="language-plaintext highlighter-rouge">test_runner.py</code> script (see below) will run the ALU tests and output the results to the <code class="language-plaintext highlighter-rouge">tests/part_a/alu/student_output</code> folder.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 test_runner.py part_a alu
 </code></pre></div></div>
 
-<p>Également fourni un fichier <code class="language-plaintext highlighter-rouge">binary_to_hex_alu.py</code> qui permet d’interpréter la sortie de l’UAL dans un format lisible. Pour l’utiliser, procédez comme suit :</p>
+<p>Also provided is a <code class="language-plaintext highlighter-rouge">binary_to_hex_alu.py</code> script that helps to convert the outputs of the ALU into a readable format. To use the script, type the following in the console:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>tests/part_a/alu
 <span class="nv">$ </span>python3 binary_to_hex_alu.py PATH_TO_OUTPUT_FILE
 </code></pre></div></div>
 
-<p>Par exemple, pour visualiser le fichier <code class="language-plaintext highlighter-rouge">reference_output/alu-add-ref.out</code>, procédez comme suit :</p>
+<p>For example, to view the content of the reference output file <code class="language-plaintext highlighter-rouge">reference_output/alu-add-ref.out</code>, do the following:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>tests/part_a/alu
 <span class="nv">$ </span>python3 binary_to_hex_alu.py reference_output/alu-add-ref.out
 </code></pre></div></div>
 
-<p>Si vous voulez voir la différence entre la sortie de votre circuit et la solution de référence, placez les sorties lisibles dans de nouveaux fichiers <code class="language-plaintext highlighter-rouge">.out</code> et comparez-les avec la commande <code class="language-plaintext highlighter-rouge">diff</code> (cf. <code class="language-plaintext highlighter-rouge">man diff</code>). Par exemple, pour le test <code class="language-plaintext highlighter-rouge">alu-add</code>, procédez comme suit :</p>
+<p>To see the difference between your circuit output and the reference solution, put the readable outputs into new <code class="language-plaintext highlighter-rouge">.out</code> files and compare them with the <code class="language-plaintext highlighter-rouge">diff</code> command (cf. <code class="language-plaintext highlighter-rouge">man diff</code> in a console). For example, for the <code class="language-plaintext highlighter-rouge">alu-add</code> test, you can do:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>tests/part_a/alu
 <span class="nv">$ </span>python3 binary_to_hex_alu.py reference_output/alu-add-ref.out <span class="o">&gt;</span> reference.out
