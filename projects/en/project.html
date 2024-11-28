@@ -349,11 +349,11 @@
 </tbody>
 </table>
 
-<p><strong>NOTES</strong>: In the « <a href="https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR">Von Neumann architecture</a> », course slides it is shown that and in order to build a multi-bit ALU (8 bits is given as an example), it is recommended to duplicate your 1-bit circuit and make the necessary adaptations to obtain an <em>n-bit</em> ALU. Good news! you don’t have to do that in this assignment… Logisim already does that for you! Simply choose the right bit width for your components’ inputs/outputs and that’s it (see figure below)</p>
+<p><strong>NOTES</strong>: In the « <a href="https://adminunivalger-my.sharepoint.com/:p:/g/personal/a_benhadid_univ-alger_dz/Ec9qgFqCw19Cklw28Wz2IUwBNHpbcR6KWH64mnbx533juQ?e=nQI2Mr">RAM and CPU</a> » lecture slides, it is shown that and in order to build a multi-bit ALU (8 bits is given as an example), one needs to duplicate a 1-bit circuit and “link” these copies together to get an <em>n-bit</em> ALU. Good news! you don’t have to do that in this assignment… Logisim already does that for you! Simply choose the right bit width for your components’ inputs/outputs and your are done (see figure below).</p>
 
 <p><img src="/l2ado/static_files/images/data_width.png" alt="data width" height="55%" width="55%" class="wp-caption aligncenter" /></p>
 
-<p>Below is the list of operations (and the associated <strong>ALUSel</strong> values) that your ALU must be able to perform. You can use any Logisim block or integrated function to implement your circuits (<strong>There is no need to reimplement the adder, shifter or multiplier circuits! Use the circuit blocks provided by Logisim for this purpose</strong>).</p>
+<p>The list below shows the operations (and the associated <strong>ALUSel</strong> values) that your ALU must be able to perform. You can use any Logisim block or integrated function to implement your circuits (<strong>There is no need to reimplement the adder, shifter or multiplier circuits! Use the circuit blocks provided by Logisim for this purpose</strong>).</p>
 
 <table class="styled-table">
 <colgroup>
@@ -485,23 +485,23 @@
     <p>The MIPS <code class="language-plaintext highlighter-rouge">add</code> operation is already implemented for you; feel free to use a similar structure to build the other functions.</p>
   </li>
   <li>
-    <p>When implementing <code class="language-plaintext highlighter-rouge">mul</code> and <code class="language-plaintext highlighter-rouge">mulh</code>, please note that the multiplication circuit block in Logisim has a “Carry Out” output that might be useful to you (the adder block also has this output, but you won’t needed it for this project).</p>
+    <p>When implementing <code class="language-plaintext highlighter-rouge">mul</code> and <code class="language-plaintext highlighter-rouge">mulh</code>, note that the multiplication circuit block in Logisim has a “Carry Out” output that might be useful (the adder block also has this output, but you won’t needed it for this project).</p>
   </li>
   <li>
-    <p>Splitters and Bit expanders will be very useful when implementing shift operations.</p>
+    <p>“Splitters” and “Bit extenders” could be very useful when implementing shift operations.</p>
   </li>
   <li>
-    <p>When wiring, use tunnels extensively! This will help you avoid crossing wires inadvertently (and causing unexpected errors).</p>
+    <p>Use tunnels extensively for the wirings! This will help you avoid crossing wires inadvertently (and causing unexpected errors).</p>
   </li>
   <li>
-    <p>A multiplexer (MUX) can be useful in deciding which output of which component you want to transmit. In other words, process the inputs in all components in a simultaneous manner, then, depending on the chosen operation, select the correct output to transmit.</p>
+    <p>A multiplexer (MUX) can be useful in deciding which output of which component you want to transmit. I.e. process the inputs in all components simultaneously, then, depending on the chosen operation, select the correct output to transmit.</p>
   </li>
 </ul>
 
 <div class="bs-callout bs-callout-danger">
   <h4>CAUTION</h4>
 
-  <p>You may apply any changes you see fit to <b>alu.circ</b>, but the circuit's inputs and outputs must obey the behavior specified above. Additionally, your <b>alu.circ</b> file must fit into the provided <b>alu_harness.circ</b> harness. This means you should <b>AVOID</b> rearranging the inputs or outputs of the <b>alu.circ</b> circuit. If you need more space, use tunnels!</p>
+  <p>You can make any changes you see fit to <b>alu.circ</b>, but the circuit's inputs and outputs must obey the behavior specified above. Additionally, your <b>alu.circ</b> must fit into the provided harness circuit <b>alu_harness.circ</b>. This means you should <b>AVOID</b> moving the inputs or outputs of the <b>alu.circ</b> circuit. If you need more space, use tunnels!</p>
 
   <p>If you create additional subcircuits, they must also be in <b>alu.circ</b> (i.e. you should not create new ".circ" files).</p>
 
@@ -535,13 +535,13 @@
 <span class="nv">$ </span>diff reference.out student.out
 </code></pre></div></div>
 
-<h2 id="tâche-2--banc-de-registres">Tâche 2 : Banc de Registres</h2>
+<h2 id="task-2-registers-file">Task 2: Registers File</h2>
 
-<p>Dans cette tâche, vous implémenterez <strong>les 32 registres $0 – $31</strong> spécifiés dans l’architecture MIPS. Pour faciliter l’implémentation, huit registres seront exposés à des fins de test et de débogage (voir la liste ci-dessous). Veuillez vous assurer que les valeurs de ces registres sont attachées aux sorties appropriées dans le fichier <code class="language-plaintext highlighter-rouge">regfile.circ</code>.</p>
+<p>In this task, you will implement the <strong>$0 – $31</strong>  registers specified in the MIPS architecture. To ease the implementation, eight registers will be ‘exposed’ for testing and debugging purposes (see the list below). Please ensure that the values ​​of these registers are attached to the appropriate outputs in <code class="language-plaintext highlighter-rouge">regfile.circ</code>.</p>
 
-<p>Votre « Banc de Registres » devrait pouvoir lire ou écrire depuis/dans les registres spécifiés dans une instruction MIPS et cela sans affecter les autres registres. Il y a une exception notable : votre « Banc de Registres » ne doit <strong>PAS</strong> écrire dans le registre <code class="language-plaintext highlighter-rouge">$0</code> même si une instruction tente de le faire. Pour rappel, le registre zéro doit <strong>TOUJOURS</strong> avoir la valeur <code class="language-plaintext highlighter-rouge">0</code>.</p>
+<p>Your “Registers File” should be able to read from or write to the registers specified in a MIPS instruction without affecting other registers. There is one notable exception: your “Registers File” should <strong>NOT</strong> write to the <code class="language-plaintext highlighter-rouge">$0</code> register even if an instruction attempts to do so. As a reminder, register <code class="language-plaintext highlighter-rouge">$zero</code> should <strong>ALWAYS</strong> be set to <code class="language-plaintext highlighter-rouge">0</code>.</p>
 
-<p>Les registres exposés et leurs numéros correspondants sont indiqués ci-dessous.</p>
+<p>The ‘exposed’ registers and their corresponding numbers are indicated below.</p>
 
 <table class="styled-table">
 <colgroup>
@@ -550,8 +550,8 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Numéro de registre</th>
-<th style="text-align:center">Nom du registre</th>
+<th style="text-align:center">Register's number</th>
+<th style="text-align:center">Register's name</th>
 </tr>
 </thead>
 <tbody>
@@ -591,7 +591,7 @@
 </table>
 
 <p><br />
-Un squelette du « Banc de Registres » à implémenter est fourni dans le fichier <code class="language-plaintext highlighter-rouge">regfile.circ</code>. Le circuit possède six entrées :</p>
+A skeleton circuit of the “Registers File” is provided in <code class="language-plaintext highlighter-rouge">regfile.circ</code>. The circuit has six inputs:</p>
 
 <table class="styled-table">
 <colgroup>
@@ -601,8 +601,8 @@ Un squelette du « Banc de Registres » à implémenter est fourni dans le fichi
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Nom de l'entrée</th>
-<th style="text-align:center">Largeur en bits</th>
+<th style="text-align:center">Input's name</th>
+<th style="text-align:center">Width (in bits)</th>
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
@@ -612,43 +612,44 @@ Un squelette du « Banc de Registres » à implémenter est fourni dans le fichi
 <tr>
 <td style="text-align:left"> <strong>Clock</strong></td>
 <td style="text-align:center">1</td>
-<td>Entrée fournissant l’horloge. Ce signal peut être acheminé à d’autres sous-circuits ou directement raccordé aux entrées d’horloge des unités de mémoire dans Logisim, mais ne doit en aucune façon être raccordé à des portes logiques (c.-à-d. ne l’inversez pas, n’appliquez pas la porte “ET” dessus, etc.)</td>
+<td>Input providing the clock. This signal can be routed to other subcircuits or directly connected to the clock inputs of the memory units in Logisim, but must not be connected to logic gates in any way (i.e. do not invert it, do not AND it, etc.)
+</td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>RegWEn</strong></td>
 <td style="text-align:center">1</td>
-<td>Active l’écriture des données au prochain front montant de l’horloge</td>
+<td>Enables data writing on the next rising edge of the clock</td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>rs</strong></td>
 <td style="text-align:center">5</td>
-<td>Détermine quelle valeur de registre est envoyée à la sortie <strong>Read_Data_1</strong> (voir ci-dessous)</td>
+<td>Selects which register value is sent to output <strong>Read_Data_1</strong> (see below)</td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>rt</strong></td>
 <td style="text-align:center">5</td>
-<td>Détermine quelle valeur de registre est envoyée à la sortie <strong>Read_Data_2</strong> (voir ci-dessous)</td>
+<td>Selects which register value is sent to output <strong>Read_Data_2</strong> (see below)</td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>rd</strong></td>
 <td style="text-align:center">5</td>
-<td>Sélectionne le registre qui recevra le contenu de <strong>Write_Data</strong> au prochain front montant de l’horloge, en supposant que <strong>RegWEn</strong> est à <strong>1</strong></td>
+<td>Selects which register will be updated with the content from <strong>Write_Data</strong> on the next rising edge of the clock (provided that <strong>RegWEn</strong> is <strong>1</strong>)</td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>Write_Data</strong></td>
 <td style="text-align:center">32</td>
-<td>Contient les données à écrire dans le registre identifié par l’entrée <strong>rd</strong> au prochain front montant de l’horloge, en supposant que <strong>RegWEn</strong> est à <strong>1</strong></td>
+<td>Data to be written to the register selected by <strong>rd</strong> on the next rising edge of the clock (provided that <strong>RegWEn</strong> is <strong>1</strong>)</td>
 </tr>
 </tbody>
 </table>
 
 <p><br />
-Le « Banc de Registres » dans <code class="language-plaintext highlighter-rouge">regfile.circ</code> possède également les sorties suivantes :</p>
+The “Registers File” in <code class="language-plaintext highlighter-rouge">regfile.circ</code> also has the following outputs:</p>
 
 <table class="styled-table">
 <colgroup>
@@ -658,8 +659,8 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Nom de la sortie</th>
-<th style="text-align:center">Largeur en bits</th>
+<th style="text-align:center">Output's name</th>
+<th style="text-align:center">Width (in bits)</th>
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
@@ -669,111 +670,112 @@ Le « Banc de Registres » dans <code class="language-plaintext highlighter-roug
 <tr>
 <td style="text-align:left"> <strong>Read_Data_1</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre identifié par l’entrée <strong>rs</strong></td>
+<td>Returns the content of register <strong>rs</strong></td>
 </tr>
 
 <tr>
 <td style="text-align:left"> <strong>Read_Data_2</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre identifié par l’entrée <strong>rt</strong></td>
+<td>Returns the content of register <strong>rt</strong></td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>ra</strong></td>
+<td style="text-align:left"> Value <strong>ra</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$ra</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>ra</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>sp</strong></td>
+<td style="text-align:left"> Value <strong>sp</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$sp</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$sp</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>t0</strong></td>
+<td style="text-align:left"> Value <strong>t0</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$t0</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$t0</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>t1</strong></td>
+<td style="text-align:left"> Value <strong>t1</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$t1</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$t1</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>t2</strong></td>
+<td style="text-align:left"> Value <strong>t2</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$t2</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$t2</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>s0</strong></td>
+<td style="text-align:left"> Value <strong>s0</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$s0</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$s0</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>s1</strong></td>
+<td style="text-align:left"> Value <strong>s1</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$s1</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$s1</strong> (output used for debugging and testing)</td>
 </tr>
 
 <tr>
-<td style="text-align:left"> Valeur <strong>a0</strong></td>
+<td style="text-align:left"> Value <strong>a0</strong></td>
 <td style="text-align:center">32</td>
-<td>Renvoie la valeur contenue dans le registre <strong>$a0</strong> (sortie utilisée pour le débogage et les tests)</td>
+<td>Returns the content of register <strong>$a0</strong> (output used for debugging and testing)</td>
 </tr>
 </tbody>
 </table>
 
-<p>Les sorties de test en haut du fichier <code class="language-plaintext highlighter-rouge">regfile.circ</code> sont présentes à des fins de test et de débogage. Un « Banc de Registres » réel ne possède pas ces sorties ! Pour ce mini-projet, assurez-vous qu’ils sont correctement raccordés aux registres indiqués parce que s’ils ne le sont pas, l’évaluateur automatique ne pourra pas évaluer votre devoir correctement ( et vous obtiendrez un zéro :sad: !).</p>
+<p>The test outputs at the top of the circuit in <code class="language-plaintext highlighter-rouge">regfile.circ</code> are there for testing and debugging purposes. A real “Registers file” does not have these outputs! Make sure they are properly connected to the indicated registers because if they are not, the autograder will not be able to evaluate your assignment correctly.</p>
 
-<p><strong>Indications</strong> :</p>
+<p><strong>Hints</strong> :</p>
 
 <ul>
   <li>
-    <p>Utilisez le copier-coller à volonté ! Afin d’éviter un travail répétitif (et ennuyeux), commencez par créer un registre complètement fonctionnel et utiliser le ensuite comme modèle pour construire les autres.</p>
+    <p>To avoid repetitive (and boring) work, start by creating a fully functional register and then use it as a template to build the others.</p>
   </li>
   <li>
-    <p>Il est recommandé de ne pas utiliser l’entrée « <code class="language-plaintext highlighter-rouge">enable</code> » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « <code class="language-plaintext highlighter-rouge">off</code> » la propriété “three-state?”.</p>
+    <p>It is recommended not to use the “<code class="language-plaintext highlighter-rouge">enable</code>” input on your MUXes. In fact, you can even disable this feature from the Logisim panel. It is also recommended to set the “three-state?” property to “<code class="language-plaintext highlighter-rouge">off</code>”.</p>
   </li>
   <li>
-    <p>Consultez l’étape 2 du TP <a href="/l2ado/labs/07_lab.html">Travaux Pratiques #7 - Conception de circuits avec Logisim</a> pour voir à quoi correspond chaque entrée/sortie d’un registre Logisim.</p>
+    <p>See step 2 of the <a href="/l2ado/labs/en/07_lab">Circuit Design with Logisim</a> lab to see what each input/output of a Logisim register corresponds to.</p>
   </li>
   <li>
-    <p>Comme pour la tâche de l’UAL, les multiplexeurs vous seront très utiles (les démultiplexeurs, également).</p>
+    <p>As with the ALU task, multiplexers will be very useful (demultiplexers, too).</p>
   </li>
   <li>
-    <p>Que se passe-t-il dans le « Banc de Registres » après l’exécution d’une instruction machine. Quelles valeurs changent ? Quelles valeurs restent les mêmes ? Les registres sont déclenchés par une horloge - qu’est-ce que cela signifie ?</p>
+    <p>What happens in the “Registers File” after a machine instruction is executed. Which values change? Which values stay the same? Registers are triggered by a clock - what does this mean?</p>
   </li>
   <li>
-    <p>Pour rappel, les registres possèdent une entrée « <code class="language-plaintext highlighter-rouge">enable</code> » ainsi qu’une entrée d’horloge.</p>
+    <p>As a reminder, registers have an “<code class="language-plaintext highlighter-rouge">enable</code>” input as well as a “<code class="language-plaintext highlighter-rouge">clock</code>” input.</p>
   </li>
   <li>
-    <p>Quelle est la valeur du registre <code class="language-plaintext highlighter-rouge">$0</code> ?</p>
+    <p>What is the value of register <code class="language-plaintext highlighter-rouge">$0</code>?</p>
   </li>
 </ul>
 
 <div class="bs-callout bs-callout-danger">
-  <h4>ATTENTION</h4>
+  <h4>CAUTION</h4>
 
-  <p>Vous pouvez apporter toutes les modifications souhaitées à <b>regfile.circ</b>, mais les entrées et sorties du circuit doivent obéir au comportement spécifié ci-dessus. De plus, votre fichier <b>regfile.circ</b> doit correspondre au socle <b>regfile_harness.circ</b> fourni. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou les sorties du circuit. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
+  <p>You can make any changes you want to <b>regfile.circ</b>, but the inputs and outputs of the circuit must follow the specifications given above. In addition, your <b>regfile.circ</b> must fit into the provided harness circuit <b>regfile_harness.circ</b>. This means that you must be careful <b>NOT</b> to move the inputs or outputs of the <b>regfile.circ</b> circuit. If you need more space, use tunnels!</p>
+  
+  <p>If you create additional subcircuits, they must also be in <b>regfile.circ</b> (i.e. do not create new .circ files).</p>
 
-  <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>regfile.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p>
+  <p>To verify that your changes have not broken the input/output mappings between your circuit and the harness, open the <b>regfile_harness.circ</b> file and make sure there are no wiring errors.</p>
 
-  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre les deux circuits, ouvrez le fichier <b>regfile_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
-<h3 id="tester-votre--banc-de-registres-"><strong>Tester votre « Banc de Registres »</strong></h3>
+<h3 id="testing-your-registers-file"><strong>Testing your “Registers File”</strong></h3>
 
-<p>Un groupe de tests de cohérence du « Banc de Registres » est fourni dans le répertoire <code class="language-plaintext highlighter-rouge">tests/part_a/regfile</code>. L’exécution du testeur (voir ci-dessous) pour ce groupe exécutera également les tests UAL et produira le résultat des tests dans le répertoire <code class="language-plaintext highlighter-rouge">tests/part_a/regfile/student_output</code>.</p>
+<p>A set of validity tests are provided in the <code class="language-plaintext highlighter-rouge">tests/part_a/regfile</code> folder. Running the tester (see below) will also run the ALU tests and output the results to the <code class="language-plaintext highlighter-rouge">tests/part_a/regfile/student_output</code> folder.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 test_runner.py part_a regfile
 </code></pre></div></div>
 
-<p>Également fourni un fichier <code class="language-plaintext highlighter-rouge">binary_to_hex_regfile.py</code> qui fonctionne d’une manière similaire au fichier <code class="language-plaintext highlighter-rouge">binary_to_hex_alu.py</code> de la tâche n°1.</p>
+<p>Also provided is a <code class="language-plaintext highlighter-rouge">binary_to_hex_regfile.py</code> script which works in a similar way to the <code class="language-plaintext highlighter-rouge">binary_to_hex_alu.py</code> script intriduced in task #1.</p>
 
 <h2 id="tâche-3--linstruction-addi">Tâche 3 : L’instruction <code class="language-plaintext highlighter-rouge">addi</code></h2>
 
