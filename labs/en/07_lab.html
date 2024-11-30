@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Logic Circuit Design with Logisim - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Objectives      Learn to design and debug simple logic circuits in Logisim        Gain experience in designing and debugging logic circuits  PreambleIf you a...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/07_lab">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;">
+<a class="schoolname" style="font-size: 15px;" href=""></a>
+          <br>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</b></a></span>
+          <br>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewbox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"></path>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"></path>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></path>
+        </svg>
+      </a>  
+
+    <div class="trigger">
+<h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Resources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );">
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Logic Circuit Design with Logisim</h1>
+    <p class="post-meta">Published on 
+      <!--
+      Sunday
+      01/12/2024
+      -->
+      
+      Sunday
+      1
+      
+      December
+      2024
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold"> Due on 
+      <!-- 08/12/2024 -->
+
+      
+      Sunday
+      8
+      
+      December
+      2024
+    </span>
+    
+
+    <br>
+    
+
+    
+    <p style="font-weight: bold">Download
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_07.zip"> starter</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br>
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Learn to design and debug simple logic circuits in <strong>Logisim</strong></p>
+  </li>
+  <li>
+    <p>Gain experience in designing and debugging logic circuits</p>
+  </li>
+</ul>
+
+<h1 id="preamble">Preamble</h1>
+
+<p>If you are not familiar with the circuit design software <strong>Logisim</strong>, start by familiarizing yourself with this tool by following this 
+“<a href="/l2ado/docs/en/Logisim_tutoriel"> tutorial </a>” and these “<a href="/l2ado/docs/en/Logisim_astuces"> tips </a>”.</p>
+
+<p>This lab is has three exercises:</p>
+<ul>
+  <li>
+<strong>Rotation circuit —</strong> particularly useful for the ALU part of the project</li>
+  <li>
+<strong>State machine circuit —</strong> the processor is simply a big finite state machine</li>
+  <li>
+<strong>Pipelining circuit —</strong> a very simplified version of hardware parallelization in a processor</li>
+</ul>
+
+<p>To test your implementations of the circuits, run the following commands in a terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>path/to/the/directory/lab7
+<span class="nv">$ </span><span class="nb">chmod</span> +x run_test.sh <span class="c"># &lt;-- to do the first time only</span>
+<span class="nv">$ </span>./run_tests.sh <span class="c"># &lt;-- run this each time you want to test your circuits</span>
+</code></pre></div></div>
+
+<p>This script copies your <code class="language-plaintext highlighter-rouge">ex?.circ</code> circuits into the <code class="language-plaintext highlighter-rouge">testing/circ_files/</code> folder, runs the <code class="language-plaintext highlighter-rouge">ex?_test.circ</code> test circuits with different inputs, and compares the outputs of your circuits to the expected results. Therefore,  do <strong>not</strong> change anything in the <code class="language-plaintext highlighter-rouge">lab7/testing</code> folder. You are encouraged, however, to look at the content of this folder to enhance your understanding of logisim and how testing of your circuits is done. This will be very useful for your mini-project!</p>
+
+<div class="bs-callout bs-callout-danger">
+  <h4><b>CAUTION</b></h4>
+
+  <p>Your <b>ex?.circ</b> files must fit into the provided <b>ex?_test.circ</b> harnesses. This means that you must be careful to <b>NOT</b> rearrange the inputs or outputs of the circuits. If you need more space, use tunnels!</p>
+
+  <p>To check that your changes have not broken the input/output mapping between your circuit and the 'harness' circuit, open the <b>ex?_test.circ</b> file in Logisim and make sure there are no connection errors (i.e. no red/orange wires).</p>
+</div>
+
+<h1 id="exercise-1-rotation-from-right-to-left">Exercise 1: (rotation from right-to-left)</h1>
+
+<p>With splitters and multiplexers, you need to implement a non-trivial combinational logic circuit: <code class="language-plaintext highlighter-rouge">rotr</code>, which stands for « Rotate Right ». The idea is that <code class="language-plaintext highlighter-rouge">rotr A, B</code> will « rotate » the bits of input <code class="language-plaintext highlighter-rouge">A</code> from right to left <code class="language-plaintext highlighter-rouge">B</code> bits times. So, if <code class="language-plaintext highlighter-rouge">A</code> is <code class="language-plaintext highlighter-rouge">0b1011010101110011</code> and <code class="language-plaintext highlighter-rouge">B</code> is <code class="language-plaintext highlighter-rouge">0b0101</code> (5 in decimal), the output of the <code class="language-plaintext highlighter-rouge">rotr</code> circuit will be <code class="language-plaintext highlighter-rouge">0b1001110110101011</code>. Note that the rightmost 5 bits have been extracted from the right end of the value of <code class="language-plaintext highlighter-rouge">A</code> and injected back into its left end. In <a href="https://fr.wikipedia.org/wiki/Register_Transfer_Language">RTL</a>, the operation looks like this <code class="language-plaintext highlighter-rouge">R = A &gt;&gt; B | A &lt;&lt; (16 - B)</code>.</p>
+
+<p>Using Logisim, implement in <code class="language-plaintext highlighter-rouge">ex1.circ</code> the subcircuit named <code class="language-plaintext highlighter-rouge">rotr</code> with the following inputs:</p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">A</code> (64-bit), the 64-bit data to rotate</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">B</code> (6-bit), the amount of rotation (why 6 bits?)</li>
+</ul>
+
+<p>The output of the circuit must be the value of input <code class="language-plaintext highlighter-rouge">A</code> rotated from right-to-left by <code class="language-plaintext highlighter-rouge">B</code> positions. You are <strong>NOT</strong> allowed to use Logisim shift components in your solution. However, any other combinational components (MUX, constants, logic gates, adders, etc.) are allowed. Your solution must <strong>NOT</strong> also use a clock or timed elements, such as registers.</p>
+
+<p><strong>Hint 1</strong>: Before you start, you need to think about how you could break down this problem. Consider using subcircuits (skeletons already provided)!</p>
+
+<p><strong>Hint 2</strong>: The RTL representation of <code class="language-plaintext highlighter-rouge">rotr</code> given above does not necessarily mean that it is the best way to implement the solution to the problem. Think about the bits of the input <code class="language-plaintext highlighter-rouge">B</code> and think about how to use splitters efficiently! Can you do something with the binary representation of <code class="language-plaintext highlighter-rouge">B</code>? As a reminder, a <code class="language-plaintext highlighter-rouge">1</code> can represent an <code class="language-plaintext highlighter-rouge">ON</code> signal and a <code class="language-plaintext highlighter-rouge">0</code> will represent an <code class="language-plaintext highlighter-rouge">OFF</code> signal. Let’s say we want to rotate 9 times. 9 is <strong>1001</strong> in binary, or <code class="language-plaintext highlighter-rouge">1 * 8 + 0 * 4 + 0 * 2 + 1 * 1</code>. Can you use this to create a clean circuit? Use the <code class="language-plaintext highlighter-rouge">rot*</code> subcircuit provided in <code class="language-plaintext highlighter-rouge">ex1.circ</code>!</p>
+
+<h1 id="exercise-2--faulty-traffic-lights">Exercise 2 : (Faulty traffic lights)</h1>
+
+<p>A state machine (i.e. automaton) is a very versatile tool used to develop systems for all kinds of applications. In this exercise, we model, as a finite state machine, the traffic lights used in road traffic control. In this sense, we use a register to store the state of the automaton we are currently in, and a combinational logic to link the input and current state of the automaton to the output and the next state of the machine.</p>
+
+<p>The automaton has three (3) states:</p>
+
+<p>. RED encoded by the binary value 00
+. GREEN encoded by the binary value 01
+. ORANGE encoded by the binary value 10</p>
+
+<p>The input is a “trigger signal”. When it is at (1), the automaton moves to the next state (i.e. our traffic light changes color). When equal to (0), the automaton loops in the current state (i.e. our traffic light keeps the same color). Such a trigger signal could be periodic, controlled manually or by another system (such as a traffic monitoring system).</p>
+
+<p>The output from the automaton circuit is the same as its next state (see below).</p>
+
+<p><img src="/l2ado/static_files/images/fsm-traffic-lights.png" alt="FSM Traffic lights" class="marginleft20px" height="40%" width="40%"></p>
+
+<p>So, the traffic lights go on as follows: <strong>RED ⟶ GREEN ⟶ ORANGE ⟶ RED</strong>.</p>
+
+<p>Here is the truth table associated with our automaton</p>
+
+<table class="styled-table">
+<colgroup>
+<col width="20%">
+<col width="20%">
+<col width="20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Current state</th>
+<th style="text-align:center">Input</th>
+<th style="text-align:center">New state</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>00</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>01</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>01</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>10</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center"><strong>10</strong></td>
+</tr>
+
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><strong>00</strong></td>
+</tr>
+
+</tbody>
+</table>
+
+<h2 id="tasks">Tasks</h2>
+
+<p>A faulty implementation of the automaton is provided in the circuit <code class="language-plaintext highlighter-rouge">ex2.circ</code>. Your task is to fix this circuit so that it works properly. In particular, three bugs have been inserted into the following (sub)circuits:</p>
+
+<ol>
+  <li>
+<strong>Bit_0_State</strong>: Look at the wire colors and see if something is wrong here.</li>
+  <li>
+<strong>Bit_1_State</strong>: Again, check the wire colors. Does a connection look off? Use the truth table to spot the problem.</li>
+  <li>
+<strong>FSM</strong>: The input pin <code class="language-plaintext highlighter-rouge">clk</code> is driven by a clock signal provided by the test harness <code class="language-plaintext highlighter-rouge">testing/circ_files/ex2_test.circ</code>. You can manually simulate this signal by clicking on the <code class="language-plaintext highlighter-rouge">clk</code> pin after selecting the ‘Poke’ tool (i.e. the <img src="/l2ado/static_files/images/poke.gif" alt="Poke Tool"> icon in the toolbar). You can also use this tool to check the status of the wires and other pins in the circuit. This should help you see why our PLC implementation is not behaving as expected.</li>
+</ol>
+
+<p>Note that there are no errors in the <strong>FSMLogic</strong> or <strong>Helper</strong> subcircuits. The <strong>Helper</strong> subcircuit is used to map the PLC states to the <strong>RED</strong>, <strong>GREEN</strong>, and <strong>ORANGE</strong> LEDs; and to provide a trigger signal. You do not need to examine the operation of this circuit for this exercise, but feel free to do so <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20">.</p>
+
+<p>A correct circuit works as shown below</p>
+
+<p><img src="/l2ado/static_files/images/traffic-lights.gif" alt="Traffic lights" class="wp-caption aligncenter" height="70%" width="70%"></p>
+
+<h1 id="exercise-3--datapath">Exercise 3 : (Datapath)</h1>
+
+<p>For this exercise, you can assume that the registers are initially set to zero. The provided starter file <code class="language-plaintext highlighter-rouge">ex3.circ</code> should include a subcircuit called <strong>non_pipelined</strong> that looks like this:</p>
+
+<p><img src="/l2ado/static_files/images/non_pipelined.png" alt="Non pipelined" class="wp-caption aligncenter" height="70%" width="70%"></p>
+
+<p>This circuit takes two values ​​as inputs, multiplies them together, and then adds the result to the current state value. We would like to improve the performance of this circuit and make it run at a higher clock frequency. In this sense, it is required to implement in the <strong>pipelined</strong> subcircuit the parallelized version using a two-stage pipeline:</p>
+<ul>
+  <li>one stage for multiplication and</li>
+  <li>one stage for addition, in that order.</li>
+</ul>
+
+<p>Your <strong>pipelined</strong> circuit will be considered “correct” if-and-only-if the outputs produced by this circuit match the sequence of outputs that the <strong>non_pipelined</strong> version would emit, except for an additional leading zero.</p>
+
+<p>Explicitly, the sequential version provided in the <strong>non_pipelined</strong> subcircuit produces the following sequence of numbers: [3, 5, 1, 2, 4, -1, 0, 0, …]. So, your <strong>pipelined</strong> circuit will be considered “correct” if it emits the following sequence of numbers: [0, 3, 5, 1, 2, 4, -1, 0, 0, …].</p>
+
+<p><strong>Hint</strong>: To implement the <strong>pipelined</strong> version, you will need to introduce “something” to hold the intermediate value of the computation between the pipeline stages.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br>
+16000 Alger<br>
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
