@@ -189,13 +189,13 @@
     <p class="post-meta">Publié le 
       <!--
       Sunday 
-      17/11/2024
+      01/12/2024
       -->
       
       Sunday
-      17
+      1
       
-      November
+      December
       2024
     </p>
   </header>
@@ -203,11 +203,11 @@
   <div>
     
     <span style="font-weight: bold">Échéance : 
-      <!-- 16/12/2024 -->
+      <!-- 19/12/2024 -->
 
       
-      Monday
-      16
+      Thursday
+      19
       
       December
       2024
@@ -875,7 +875,7 @@ The “<strong>Registers File</strong>” in <code class="language-plaintext hig
 
  <p>The <code>test_*_harness.circ</code> harnesses will be used by the consistency tests provided in the starter kit, so make sure that your <code>cpu_*.circ</code> processor fits properly into these sockets before testing your circuits, and especially when submitting your work for grading</p>
 
- <p>As with the ALU and the "**Registers File**" tasks, make sure <b>NOT</b> to move the input or output ports!</p>
+ <p>As with the ALU and the "Registers File" tasks, make sure <b>NOT</b> to move the input or output ports!</p>
 </div>
 
 <p>The processor has three inputs that come from the harness:</p>
@@ -1007,7 +1007,7 @@ This output holds the address of the instruction to retrieve from IMEM (in <code
 </tbody>
 </table>
 
-<h3 id="implementation-guidelines-single-cycle-processor">Implementation Guidelines: Single-Cycle Processor</h3>
+<h3 id="implementation-guidelines-for-the-single-cycle-processor">Implementation Guidelines for the single-cycle processor</h3>
 
 <p>These guidelines will help you implement the <code class="language-plaintext highlighter-rouge">addi</code> instruction in your <code class="language-plaintext highlighter-rouge">cpu_single.circ</code> processor. Each section below contains questions to think about and important hints. It is necessary to read and understand each question before moving on to the next one! You can even check the answers by clicking ▶ if you are unable to find the answers yourself.</p>
 
@@ -1327,15 +1327,15 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 <hr />
 
 <p><br /></p>
-<h1 id="partie-b--conception-de-version-avancée-du-processeur">Partie B : Conception de version avancée du processeur</h1>
+<h1 id="part-b-processor-design-advanced-version">Part B: Processor design (advanced version)</h1>
 
-<h2 id="tâche-4--plus-dinstructions">Tâche 4 : Plus d’instructions</h2>
+<h2 id="task-4-more-instructions">Task 4: More instructions</h2>
 
-<p>Dans la tâche n°3, vous avez implémenté un processeur basique en pipeline à deux étages capable d’exécuter les instructions <code class="language-plaintext highlighter-rouge">addi</code>. Maintenant, vous allez renforcer votre processeur en implémentant plus d’instructions !</p>
+<p>In Task #3, you implemented a basic two-stage pipeline processor capable of executing <code class="language-plaintext highlighter-rouge">addi</code> instructions. Now, you will beef up your processor by implementing more instructions!</p>
 
-<h3 id="larchitecture-du-jeu-dinstructions-isa">L’architecture du jeu d’instructions (ISA)</h3>
+<h3 id="the-instruction-set-architecture-isa-of-the-cpu">The Instruction Set Architecture (ISA) of the CPU</h3>
 
-<p>Votre implémentation du CPU sera évaluée uniquement sur les instructions énumérées ci-dessous. Votre processeur doit prendre en charge ces instructions, mais n’hésitez pas à implémenter des instructions supplémentaires si cela vous tente ! Assurez-vous, cependant, qu’aucune de vos instructions additionnelles n’affecte le fonctionnement des instructions spécifiées ici. L’implémentation d’instructions supplémentaires n’affectera pas votre score pour ce projet.</p>
+<p>Below is a set of instructions your CPU must support and will be evaluated on. You are free to implement additional instructions if you wish but make sure, however, that none of your additional instructions affect the operation of the instructions specified here. Implementing additional instructions will not affect your score for this project.</p>
 
 <table class="styled-table">
 <colgroup>
@@ -1349,7 +1349,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 <tr class="header">
 <th style="text-align:center">Instruction</th>
 <th style="text-align:center">Description</th>
-<th style="text-align:center">Opération</th>
+<th style="text-align:center">Operation</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:center">Opcode/Func</th>
 
@@ -1367,7 +1367,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sub</strong> rd, rs, rt</td>
-<td style="text-align:left">Soustraction</td>
+<td style="text-align:left">Substraction</td>
 <td style="text-align:left">R[rd] ← R[rs] - R[rt]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x22</td>
@@ -1375,7 +1375,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>addi</strong> rt, rs, imm</td>
-<td style="text-align:left">Addition<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">Addition<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rt] ← R[rs] + imm<sub>±</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x8</td>
@@ -1399,7 +1399,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>mulhu</strong> rd, rs, rt</td>
-<td style="text-align:left">Multiplication;<br />(params non signés)</td>
+<td style="text-align:left">Multiplication;<br />(unsigned params)</td>
 <td style="text-align:left">R[rd] ← (R[rs] x R[rt])[63:32]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x19</td>
@@ -1408,7 +1408,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>and</strong> rd, rs, rt</td>
-<td style="text-align:left">ET logique</td>
+<td style="text-align:left">logical AND</td>
 <td style="text-align:left">R[rd] ← R[rs] &amp; R[rt]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x24</td>
@@ -1416,7 +1416,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>or</strong> rd, rs, rt</td>
-<td style="text-align:left">OU logique</td>
+<td style="text-align:left">logical OR</td>
 <td style="text-align:left">R[rd] ← R[rs] | R[rt]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x25</td>
@@ -1424,7 +1424,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>xor</strong> rd, rs, rt</td>
-<td style="text-align:left">OU exclusif</td>
+<td style="text-align:left">Exclusive OR</td>
 <td style="text-align:left">R[rd] ← R[rs] ^ R[rt]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x26</td>
@@ -1432,7 +1432,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>andi</strong> rt, rs, imm</td>
-<td style="text-align:left">ET logique<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">logical AND<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rd] ← R[rs] &amp; imm<sub>0</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xC</td>
@@ -1440,7 +1440,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>ori</strong> rt, rs, imm</td>
-<td style="text-align:left">OU logique<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">logical OR<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rd] ← R[rs] | imm<sub>0</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xD</td>
@@ -1448,7 +1448,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>xori</strong> rt, rs, imm</td>
-<td style="text-align:left">OU exclusif<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">Exclusive OR<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rd] ← R[rs] ^ imm<sub>0</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xE</td>
@@ -1456,7 +1456,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sll</strong> rd, rt, sh</td>
-<td style="text-align:left">Décalage logique à gauche</td>
+<td style="text-align:left">Logical left shift</td>
 <td style="text-align:left">R[rd] ← R[rt] &lt;&lt; sh</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x0</td>
@@ -1464,7 +1464,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>srl</strong> rd, rt, sh</td>
-<td style="text-align:left">Décalage logique à droite</td>
+<td style="text-align:left">Logical right shift</td>
 <td style="text-align:left">R[rd] ← R[rt] &gt;&gt;&gt; sh</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x2</td>
@@ -1472,7 +1472,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sra</strong> rd, rt, sh</td>
-<td style="text-align:left">Décalage arithmétique à droite</td>
+<td style="text-align:left">Arithmetic shift</td>
 <td style="text-align:left">R[rd] ← R[rt] &gt;&gt; sh</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x3</td>
@@ -1480,7 +1480,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sllv</strong> rd, rt, rs</td>
-<td style="text-align:left">Décalage logique à gauche<br />avec registre</td>
+<td style="text-align:left">Logical left shift<br />with register</td>
 <td style="text-align:left">R[rd] ← R[rt] &lt;&lt; rs</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x4</td>
@@ -1488,7 +1488,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>srlv</strong> rd, rt, rs</td>
-<td style="text-align:left">Décalage logique à droite<br />avec registre</td>
+<td style="text-align:left">Logical right shift<br />with register</td>
 <td style="text-align:left">R[rd] ← R[rt] &gt;&gt;&gt; rs</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x6</td>
@@ -1496,7 +1496,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>srav</strong> rd, rt, rs</td>
-<td style="text-align:left">Décalage arithmétique à droite<br />avec registre</td>
+<td style="text-align:left">Arithmetic shift<br />with register</td>
 <td style="text-align:left">R[rd] ← R[rt] &gt;&gt; rs</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x7</td>
@@ -1504,7 +1504,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>slt</strong> rd, rs, rt</td>
-<td style="text-align:left">Positionné si inférieur</td>
+<td style="text-align:left">Set if less than</td>
 <td style="text-align:left">R[rd] ← R[rs] &lt; R[rt] ? 1 : 0</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x2A</td>
@@ -1512,7 +1512,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sltu</strong> rd, rs, rt</td>
-<td style="text-align:left">Positionné si inférieur (non signés)</td>
+<td style="text-align:left">Set if less than (unsigned)</td>
 <td style="text-align:left">R[rd] ← R[rs] &lt; R[rt] ? 1 : 0</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x2B</td>
@@ -1520,7 +1520,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>slti</strong> rt, rs, imm</td>
-<td style="text-align:left">Positionné si inférieur<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">Set if less than<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rt] ← R[rs] &lt; imm<sub>±</sub> ? 1 : 0</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xA</td>
@@ -1528,7 +1528,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sltiu</strong> rt, rs, imm</td>
-<td style="text-align:left">Positionné si inférieur (non signée)<br />(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left">Set if less than (unsigned)<br />(2<sup>nd</sup> param. : immediate)</td>
 <td style="text-align:left">R[rt] ← R[rs] &lt; imm<sub>±</sub> ? 1 : 0</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xB</td>
@@ -1536,7 +1536,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>j</strong> imm</td>
-<td style="text-align:left">Saut étiquette</td>
+<td style="text-align:left">Jump to Label</td>
 <td style="text-align:left">PC ← PC &amp; 0xF0000000 | (imm &lt;&lt; 2)</td>
 <td style="text-align:center">J</td>
 <td style="text-align:left"> 0x2</td>
@@ -1544,7 +1544,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>jal</strong> imm</td>
-<td style="text-align:left">Saut et liaison</td>
+<td style="text-align:left">Jump and link</td>
 <td style="text-align:left">$ra ← PC + 4;<br />PC ← PC &amp; 0xF0000000 | (imm &lt;&lt; 2)</td>
 <td style="text-align:center">J</td>
 <td style="text-align:left"> 0x3</td>
@@ -1552,7 +1552,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>jalr</strong> rd, rs</td>
-<td style="text-align:left">Saut et lien sur registre</td>
+<td style="text-align:left">Jump to register and link</td>
 <td style="text-align:left">R[rd] ← PC + 4;<br />PC ← R[rs]</td>
 <td style="text-align:center">R</td>
 <td style="text-align:left"> 0x0 / 0x9</td>
@@ -1560,7 +1560,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>beq</strong> rt, rs, imm</td>
-<td style="text-align:left">Branchement si égalité</td>
+<td style="text-align:left">Branch if equal</td>
 <td style="text-align:left">if (R[rs] == R[rt])<br /> PC ← PC + 4 + (imm<sub>±</sub>&lt;&lt; 2)</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x4</td>
@@ -1568,7 +1568,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>bne</strong> rt, rs, imm</td>
-<td style="text-align:left">Branchement si différent</td>
+<td style="text-align:left">Branch if not equal</td>
 <td style="text-align:left">if (R[rs] != R[rt])<br /> PC ← PC + 4 + (imm<sub>±</sub>&lt;&lt; 2)</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x5</td>
@@ -1576,7 +1576,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>lui</strong> rt, imm</td>
-<td style="text-align:left">Chargement immédiat</td>
+<td style="text-align:left">Load upper immediate</td>
 <td style="text-align:left">R[rt] ← imm &lt;&lt; 16</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0xF</td>
@@ -1584,7 +1584,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>lb</strong> rt, imm(rs)</td>
-<td style="text-align:left">Chargement octet</td>
+<td style="text-align:left">Load byte</td>
 <td style="text-align:left">R[rt] ← Mem( R[rs] + imm<sub>±</sub>, octet )<sub>±</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x20</td>
@@ -1592,7 +1592,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>lh</strong> rt, imm(rs)</td>
-<td style="text-align:left">Chargement demi-mot</td>
+<td style="text-align:left">Load half</td>
 <td style="text-align:left">R[rt] ← Mem( R[rs] + imm<sub>±</sub>, demi )<sub>±</sub></td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x21</td>
@@ -1600,7 +1600,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>lw</strong> rt, imm(rs)</td>
-<td style="text-align:left">Chargement mot</td>
+<td style="text-align:left">Load word</td>
 <td style="text-align:left">R[rt] ← Mem( R[rs] + imm<sub>±</sub>, mot )</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x23</td>
@@ -1608,7 +1608,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sb</strong> rt, imm(rs)</td>
-<td style="text-align:left">Sauvegarde octet</td>
+<td style="text-align:left">Store byte</td>
 <td style="text-align:left">Mem( R[rs] + imm<sub>±</sub> ) ← R[rt][7:0]</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x28</td>
@@ -1616,7 +1616,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sh</strong> rt, imm(rs)</td>
-<td style="text-align:left">Sauvegarde demi-mot</td>
+<td style="text-align:left">Store half</td>
 <td style="text-align:left">Mem( R[rs] + imm<sub>±</sub> ) ← R[rt][15:0]</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x29</td>
@@ -1624,7 +1624,7 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:left"><strong>sw</strong> rt, imm(rs)</td>
-<td style="text-align:left">Sauvegarde mot</td>
+<td style="text-align:left">Store word</td>
 <td style="text-align:left">Mem( R[rs] + imm<sub>±</sub> ) ← R[rt]</td>
 <td style="text-align:center">I</td>
 <td style="text-align:left"> 0x2b</td>
@@ -1633,22 +1633,22 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 </tbody>
 </table>
 
-<p><strong>Remarques</strong> :</p>
+<p><strong>Notes</strong> :</p>
 
 <ol>
-  <li>La notation imm<sub>±</sub> dans le tableau ci-dessus signifie « Application d’une extension de signe à l’immédiat imm ». La même remarque s’applique à Mem(…)<sub>±</sub>. Dans ce cas l’extension de signe est appliquée à l’octet ou le demi-mot récupéré depuis la mémoire.</li>
-  <li>La notation imm<sub>0</sub> signifie « Application d’une extension par des zéros à l’immédiat imm ».</li>
+  <li>The writing imm<sub>±</sub> in the table above means “Apply a sign extension to the immediate imm”. The same remark applies to Mem(…)<sub>±</sub>. In this case the sign extension is applied to the byte or half-word retrieved from memory.</li>
+  <li>The writing imm<sub>0</sub> means “Extend with zeros the immediate imm”.</li>
 </ol>
 
-<h3 id="info--mémoire-ram-circuit-memcirc">Info : Mémoire RAM (circuit <code class="language-plaintext highlighter-rouge">mem.circ</code>)</h3>
+<h4 id="data-memory-dmem-memcirc"><strong>Data Memory DMEM (<code class="language-plaintext highlighter-rouge">mem.circ</code>)</strong></h4>
 
-<p>L’unité de mémoire DMEM (fournie dans <code class="language-plaintext highlighter-rouge">mem.circ</code>) est déjà entièrement implémentée pour vous et raccordée aux sorties de votre processeur dans <code class="language-plaintext highlighter-rouge">test_harness.circ</code> ! C.-à-d. Il n’est pas nécessaire d’ajouter l’unité mémoire (<code class="language-plaintext highlighter-rouge">mem.circ</code>) à nouveau à votre implémentation. Au fait, cela entraînera un échec des scripts d’auto évaluation ce qui ne sera pas bon pour votre score :(.</p>
+<p>The DMEM memory unit (provided in <code class="language-plaintext highlighter-rouge">mem.circ</code>) is already fully implemented and connected to your processor outputs in <code class="language-plaintext highlighter-rouge">test_harness.circ</code>! I.e. there is no need to add the memory unit (<code class="language-plaintext highlighter-rouge">mem.circ</code>) again to your implementation. Doing so will actually cause the testing scripts to fail, which will not be good for your score :(.</p>
 
-<p>Notez que l’implémentation fournie de l’unité DMEM permet les inscriptions au niveau <strong>octet</strong>. Cela signifie que le signal <code class="language-plaintext highlighter-rouge">Write_En</code> a une largeur de 4 bits et agit comme un masque d’écriture pour les données en entrée. Par exemple, si <code class="language-plaintext highlighter-rouge">Write_En</code> vaut <code class="language-plaintext highlighter-rouge">0b1000</code>, alors seul l’octet le plus significatif du mot adressé en mémoire sera écrasé (ex: <code class="language-plaintext highlighter-rouge">sb $a0, 3($s0)</code>).</p>
+<p>Note that the provided implementation of DMEM allows writing at the <strong>byte</strong> level to memory. This means that the <code class="language-plaintext highlighter-rouge">Write_En</code> signal is 4 bits wide and acts as a write mask. For example, if <code class="language-plaintext highlighter-rouge">Write_En</code> is <code class="language-plaintext highlighter-rouge">0b1000</code>, then only the most significant byte of the addressed word in memory will be overwritten (e.g. <code class="language-plaintext highlighter-rouge">sb $a0, 3($s0)</code>).</p>
 
-<p>D’autre part, le port <code class="language-plaintext highlighter-rouge">ReadData</code> renverra toujours, indépendamment de <code class="language-plaintext highlighter-rouge">Write_En</code>, la valeur en mémoire (un mot entier) à l’adresse fournie. L’unité de mémoire ignore les deux bits de poids faible dans l’adresse que vous lui fournissez et traite son entrée comme une adresse de mot plutôt qu’une adresse d’octet. Par exemple, si vous entrez l’adresse 32 bits <code class="language-plaintext highlighter-rouge">0x00001007</code> (ex: <code class="language-plaintext highlighter-rouge">lb $a0, 7($s0)</code>, avec <code class="language-plaintext highlighter-rouge">$s0=0x0001000</code>), elle sera traitée comme l’adresse de mot <code class="language-plaintext highlighter-rouge">0x00001004</code>, et vous obtiendrez en sortie les 4 octets aux adresses <code class="language-plaintext highlighter-rouge">0x00001004</code>, <code class="language-plaintext highlighter-rouge">0x00001005</code>, <code class="language-plaintext highlighter-rouge">0x00001006</code> et <code class="language-plaintext highlighter-rouge">0x00001007</code>. Vous devez donc implémenter la logique de masque nécessaire pour inscrire que les octets requis (octet n° 3 pour l’exemple <code class="language-plaintext highlighter-rouge">lb $a0, 7($s0)</code>) dans le « banc de registres ».</p>
+<p>On the other hand, the <code class="language-plaintext highlighter-rouge">ReadData</code> port will always return the word stored at the provided address. The memory unit ignores the two least significant bits in the address you provide and treats its input as a word address rather than a byte address. For example, if you enter the 32-bit address <code class="language-plaintext highlighter-rouge">0x00001007</code> (e.g. <code class="language-plaintext highlighter-rouge">lb $a0, 7($s0)</code>, with <code class="language-plaintext highlighter-rouge">$s0=0x0001000</code>), it will be treated as word address <code class="language-plaintext highlighter-rouge">0x00001004</code>, and you will get the 4 bytes at addresses <code class="language-plaintext highlighter-rouge">0x00001004</code>, <code class="language-plaintext highlighter-rouge">0x00001005</code>, <code class="language-plaintext highlighter-rouge">0x00001006</code> and <code class="language-plaintext highlighter-rouge">0x00001007</code> as output. So you need to implement the necessary mask logic to write only the required byte(s)  into the “<strong>Registers File</strong>” (i.e. byte #3 for the example <code class="language-plaintext highlighter-rouge">lb $a0, 7($s0)</code>).</p>
 
-<p>Finalement, rappelez-vous que les accès non alignés à la RAM entraîneront des exceptions dans MIPS. Et comme nous n’implémentons aucune gestion des exceptions dans ce projet, vous pouvez supposer que seuls les accès sur des adresses alignées sont utilisés pour les instructions <code class="language-plaintext highlighter-rouge">lw</code>, <code class="language-plaintext highlighter-rouge">lh</code>, <code class="language-plaintext highlighter-rouge">sh</code> et <code class="language-plaintext highlighter-rouge">sw</code>. Cela signifie que les adresses utilisées avec les instructions <code class="language-plaintext highlighter-rouge">lw</code> et <code class="language-plaintext highlighter-rouge">sw</code> (resp. <code class="language-plaintext highlighter-rouge">lh</code> et <code class="language-plaintext highlighter-rouge">sh</code>) sont des multiples de 4 (resp. multiples de 2). La valeur 4 (resp. 2) correspond à la taille en octets d’un mot (resp. demi-mot) en mémoire.</p>
+<p>Finally, remember that unaligned RAM accesses will cause exceptions in MIPS. And since we do not implement any exception handling in this project, you can assume that only aligned address accesses are used for the <code class="language-plaintext highlighter-rouge">lw</code>, <code class="language-plaintext highlighter-rouge">lh</code>, <code class="language-plaintext highlighter-rouge">sh</code> and <code class="language-plaintext highlighter-rouge">sw</code> instructions. This means that the addresses used with the <code class="language-plaintext highlighter-rouge">lw</code> and <code class="language-plaintext highlighter-rouge">sw</code> (resp. <code class="language-plaintext highlighter-rouge">lh</code> and <code class="language-plaintext highlighter-rouge">sh</code>) instructions are multiples of 4 (resp. multiples of 2).</p>
 
 <p>Voici un résumé des entrées et sorties de la mémoire :</p>
 
@@ -1661,53 +1661,57 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Nom</th>
+<th style="text-align:center">Name</th>
 <th style="text-align:center">Direction</th>
-<th style="text-align:center">Largeur en bits</th>
+<th style="text-align:center">Width (in bits)</th>
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">WriteAddr</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>Adresse à lire / écrire en mémoire</td>
+<td>Address in memory (despite the name, it is used for read or write instructions)</td>
 </tr>
 <tr>
 <td style="text-align:center">WriteData</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>Valeur à écrire dans la mémoire</td>
+<td>Value to write to memory</td>
 </tr>
 <tr>
 <td style="text-align:center">Write_En</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">4</td>
-<td>Le masque d’écriture pour les instructions qui écrivent dans la mémoire et zéro sinon</td>
+<td>The write mask for instructions that write to memory. Zero otherwise</td>
 </tr>
 <tr>
 <td style="text-align:center">CLK</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">1</td>
-<td>Entrée fournissant l’horloge du CPU</td>
+<td>Input providing the CPU clock</td>
 </tr>
 <tr>
 <td style="text-align:center">ReadData</td>
-<td style="text-align:center">Sortie</td>
+<td style="text-align:center">Output</td>
 <td style="text-align:center">32</td>
-<td>Valeur des données stockées à l’adresse indiquée</td>
+<td>Data read at the specified address</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="info--unité-de-branchement-circuit-branch_compcirc">Info : Unité de Branchement (circuit <code class="language-plaintext highlighter-rouge">branch_comp.circ</code>)</h3>
+<h4 id="the-branching-unit-branch_compcirc-1"><strong>The Branching Unit (<code class="language-plaintext highlighter-rouge">branch_comp.circ</code>)</strong></h4>
 
-<p>L’« Unité de Branchement » (squelette fourni dans le fichier <code class="language-plaintext highlighter-rouge">branch_comp.circ</code>) devrait calculer la nouvelle valeur du compteur ordinal (c.-à-d. newPC) quand l’instruction en cours d’exécution est un branchement ou un saut par « immediat » dans le code.</p>
+<p>The “Branching Unit” (skeleton provided in the <code class="language-plaintext highlighter-rouge">branch_comp.circ</code> file) should calculate the new value of the Program Counter (i.e. newPC) when the currently executing instruction is a branch or an jump to an “immediate”.</p>
 
-<p>Pour éditer ce circuit, modifiez le fichier <code class="language-plaintext highlighter-rouge">branch_comp.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">branch_comp</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">branch_comp.circ</code>, vous devrez fermer et ouvrir <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
+<div class="bs-callout bs-callout-warning">
+  <h4>WARNING</h4>
 
-<p>Voici un résumé des entrées et sorties de cette unité :</p>
+  <p>To implement the "<i>Branching Unit</i>", edit the <code>branch_comp.circ</code> file and <b>not</b> the <code>branch_com</code> virtual circuit included in <code>cpu_*.circ</code>. Note that each time you modify the <code>branch_comp.circ</code> circuit, you will have to close and open <code>cpu_*.circ</code> to apply the changes to your CPU.</p>
+</div>
+
+<p>Here is a summary of the inputs and outputs of this unit:</p>
 
 <table class="styled-table">
 <colgroup>
@@ -1718,9 +1722,9 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Nom</th>
+<th style="text-align:center">Name</th>
 <th style="text-align:center">Direction</th>
-<th style="text-align:center">Largeur en bits</th>
+<th style="text-align:center">Width (in bits)</th>
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
@@ -1728,64 +1732,68 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 
 <tr>
 <td style="text-align:center">inst</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>L’instruction en cours d’exécution</td>
+<td>The current executing instruction</td>
 </tr>
 
 <tr>
 <td style="text-align:center">ximm</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>L’immédiat renvoyé par la sortie <strong>Imm</strong> du « Générateur d’Immédiat » </td>
+<td>The immediate returned by the <strong>Imm</strong> output of the “Immediate Unit”</td>
 </tr>
 
 <tr>
 <td style="text-align:center">PC</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>La valeur du registre PC</td>
+<td>The value of the PC register</td>
 </tr>
 
 <tr>
 <td style="text-align:center">zero</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">1</td>
-<td>La valeur renvoyé par la sortie <strong>zero</strong> de l’UAL</td>
+<td>The value returned by the <strong>zero</strong> output of the UAL</td>
 </tr>
 
 <tr>
 <td style="text-align:center">BrUn</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">2</td>
-<td>Valeur permettant d’identifier l’instruction de branchement/saut à traiter</td>
+<td>Selector to process the ‘right’ branch/jump instruction</td>
 </tr>
 
 <tr>
 <td style="text-align:center">newPC</td>
-<td style="text-align:center">Sortie</td>
+<td style="text-align:center">Output</td>
 <td style="text-align:center">32</td>
-<td>Nouvelle valeur à transmettre au PC</td>
+<td>New value to transmit to the PC</td>
 </tr>
 
 <tr>
 <td style="text-align:center">BrJmp</td>
-<td style="text-align:center">Sortie</td>
+<td style="text-align:center">Output</td>
 <td style="text-align:center">1</td>
-<td>Indique si l’instruction traitée est un branchement/saut dans le code</td>
+<td>Indicates whether the instruction being processed is a branch/jump in the code</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="info--générateur-dimmédiat-circuit-imm_gencirc">Info : Générateur d’Immédiat (circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>)</h3>
+<h4 id="the-immediate-unit-imm_gencirc-1"><strong>The Immediate Unit (<code class="language-plaintext highlighter-rouge">imm_gen.circ</code>)</strong></h4>
 
-<p>l’unité « Générateur d’Immédiat » (squelette fourni dans le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>) devrait calculer les constantes « Imm » des instructions de type I et la valeur du champ « shmt » dans les instructions de décalage. Consultez la figure ci-dessous pour savoir comment chaque immédiat doit être formaté dans votre processeur :</p>
+<p>The <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> file provides a skeleton circuit for the “Immediate Unit”. this unit should generate the “Immediate” constants associated with I-type instructions as well as the constant values encoded by the “shmt” field for shift instructions. See the figure below for how each immediate should be formatted in your processor:</p>
 
 <p><img src="/l2ado/static_files/images/immediat_extensions.png" alt="addi format" height="75%" width="75%" class="aligncenter" /></p>
 
-<p>Pour éditer le « Générateur d’Immédiat », modifiez le fichier <code class="language-plaintext highlighter-rouge">imm_gen.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">imm_gen</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">imm_gen.circ</code>, vous devez fermer et ouvrir le fichier <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
+<div class="bs-callout bs-callout-warning">
+  <h4>WARNING</h4>
 
-<p>Encore une fois, voici un résumé des entrées et sorties de l’unité :</p>
+  <p>To implement the "<i>Immediate Unit</i>", edit the <code>imm_gen.circ</code> file and <b>not</b> the <code>imm_gen</code> virtual circuit included in <code>cpu_*.circ</code>. Note that each time you edit the <code>imm_gen.circ</code> circuit, you must close and open the <code>cpu_*.circ</code> file to apply the changes to your CPU.</p>
+</div>
+
+<p>Here is again a summary of the unit’s inputs and outputs:</p>
 
 <table class="styled-table">
 <colgroup>
@@ -1796,84 +1804,95 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align:center">Nom</th>
+<th style="text-align:center">Name</th>
 <th style="text-align:center">Direction</th>
-<th style="text-align:center">Largeur en bits</th>
+<th style="text-align:center">Width (in bits)</th>
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">inst</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">32</td>
-<td>L’instruction en cours d’exécution</td>
+<td>The instruction currently being executed</td>
 </tr>
 <tr>
 <td style="text-align:center">ImmSel</td>
-<td style="text-align:center">Entrée</td>
+<td style="text-align:center">Input</td>
 <td style="text-align:center">2</td>
-<td>Valeur déterminant comment reconstruire l’immédiat</td>
+<td>A Selector to choose between different immediate generators</td>
 </tr>
 <tr>
 <td style="text-align:center">Imm</td>
-<td style="text-align:center">Sortie</td>
+<td style="text-align:center">Output</td>
 <td style="text-align:center">32</td>
-<td>Valeur de l’immédiat associé à l’instruction</td>
+<td>Generated Immediate</td>
 </tr>
 </tbody>
 </table>
 
-<h3 id="info--unité-de-contrôle-circuit-control_logiccirc">Info : Unité de contrôle (circuit <code class="language-plaintext highlighter-rouge">control_logic.circ</code>)</h3>
+<h4 id="the-control-unit-control_logiccirc-1"><strong>The Control Unit (<code class="language-plaintext highlighter-rouge">control_logic.circ</code>)</strong></h4>
 
-<p>Afin d’exécuter correctement chaque instruction MIPS, les signaux de contrôle jouent un rôle très important dans un processeur (et ce projet !). Le squelette fourni dans le fichier <code class="language-plaintext highlighter-rouge">control_logic.circ</code> est basé sur l’unité de contrôle vue en cour pour un processeur MIPS.</p>
+<p>The <code class="language-plaintext highlighter-rouge">control_logic.circ</code> file provides a skeleton circuit for the “Control Unit”. In order to properly execute each MIPS instruction, control signals play a very important role in a processor (and this project!).</p>
 
-<p>Veuillez jetez un œil sur les présentations Powerpoint du cours pour commencer. Essayez de parcourir le chemin de données avec différents types d’instructions; lorsque vous rencontrez un MUX ou un autre composant, déterminez la valeur du sélecteur ou d’activation dont vous aurez besoin pour cette instruction.</p>
+<p>Review the lecture slides in <a href="https://adminunivalger-my.sharepoint.com/:p:/g/personal/a_benhadid_univ-alger_dz/EVNM4EM0WgVFpYx1qH4Ng3sB8F7fBjJpNq45UjJkQTgyUA?e=uF8TJR">Datapath</a> and try traversing the data path with different types of instructions; when you encounter a MUX or other component, determine what selector or enable value you will need for that instruction.</p>
 
-<p>Vous pouvez, si vous le désirez, ajouter plus d’entrées ou de sorties au circuit de démarrage existant en fonction de votre implémentation du circuit de contrôle. Vous pouvez également choisir de n’utiliser qu’un sous ensemble des ports fournis. Cela dit, veuillez ne modifier ni supprimer aucun des ports existants au cours de ce processus.</p>
+<div class="bs-callout bs-callout-danger">
+  <h4>CAUTION</h4>
 
-<p>Il existe deux approches principales pour implémenter le circuit logique de commande afin qu’il puisse extraire l’« opcode / func » d’une instruction et définir les signaux de commande de manière appropriée. La première méthode est le contrôle par circuit câblé. C’est généralement l’approche préférée pour les architectures RISC telles que MIPS et RISC-V. Ici, on utilisera les portes logiques « ET », « OU » et « NON » avec les divers composants qui peuvent être construits à partir de ces portes (comme les MUX et les DEMUX) pour implémenter des tables de vérité et de <a href="https://fr.wikipedia.org/wiki/Table_de_Karnaugh">Karnaugh</a> correspondant aux fonctions identifiées.</p>
+ <p>During the implementation of your "Control Unit", you can add extra input or output ports to <code>control_logic.circ</code>. You can also use the already provided ports (or a subset of them) depending on the needs of your implementation. That said, <b>do not modify or delete</b> any of the existing ports during this process.</p>
+</div>
 
-<p>L’autre façon de faire est d’utiliser une mémoire ROM (mémoire en lecture seule). Chaque instruction implémentée par un processeur est mappée à une adresse dans cette mémoire où on y stocke le mot de commande et de contrôle pour cette instruction. Un décodeur d’adresse prend donc une instruction en entrée (c.-à-d. le « opcode / func ») et identifie l’adresse du mot contenant les signaux de contrôle pour cette instruction. Cette approche est courante dans les architectures CISC telles que les processeurs Intel x86-64 et offre une certaine flexibilité, car elle peut être reprogrammée en modifiant le contenu de la mémoire ROM.</p>
+<p>There are two main approaches to implementing the “Control Unit” so that it can extract the “opcode/func” of an instruction and set the control signals appropriately. The first method is hardwired control. This is generally the preferred approach for RISC architectures such as MIPS and RISC-V. Here, to implement truth and <a href="https://fr.wikipedia.org/wiki/Table_de_Karnaugh">Karnaugh</a> tables corresponding to the identified functions, we will use the logic gates “AND”, “OR” and “NOT” with the various components that can be built from these gates (such as MUXes and DEMUXes).</p>
 
-<p>Pour éditer l’unité de contrôle, modifiez le fichier <code class="language-plaintext highlighter-rouge">control_logic.circ</code> et non le circuit virtuel <code class="language-plaintext highlighter-rouge">control_logic</code> inclus dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>. Notez qu’à chaque modification du circuit <code class="language-plaintext highlighter-rouge">control_logic.circ</code>, vous devrez fermer et ouvrir <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> pour appliquer les modifications dans votre CPU.</p>
+<p>The other way is to use a ROM (read-only memory). Each instruction implemented by a processor is mapped to an address in this memory where the command and control word for that instruction is stored. An address decoder therefore takes an instruction as input (i.e. the “opcode/func”) and identifies the address of the word containing the control signals for that instruction. This approach is common in CISC architectures such as Intel/AMD x86-64 processors and offers some flexibility since it can be easily reprogrammed by changing the ROM’s content.</p>
 
-<h3 id="info-processeur-circuit-cpu_circ">Info: Processeur (circuit <code class="language-plaintext highlighter-rouge">cpu_*.circ</code>)</h3>
+<div class="bs-callout bs-callout-warning">
+  <h4>WARNING</h4>
 
-<p>Le circuit dans <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> doit implémenter le chemin de données principal et connecter tous les sous-circuits ensemble (UAL, Unité de Branchement, unité de contrôle, Générateur d’Immédiat, mémoire RAM et Banc de Registres).</p>
+  <p>To implement the "<i>Control Unit</i>", edit the <code>control_logic.circ</code> file and <b>not</b> the <code>control_logic</code> virtual circuit included in <code>cpu_*.circ</code>. Note that each time you edit the <code>control_logic.circ</code> circuit, you must close and open the <code>cpu_*.circ</code> file to apply the changes to your CPU.</p>
+</div>
 
-<p>Dans la partie A, vous avez implémenté un simple pipeline en deux étages dans votre processeur. Vous devez réaliser que les « aléas de données » ne posent PAS de problème ici car tous les accès à toutes les sources de données se produisent dans une seule étape du pipeline (le deuxième étage).</p>
+<h4 id="the-processor-cpucirc-1"><strong>The Processor (<code class="language-plaintext highlighter-rouge">cpu*.circ</code>)</strong></h4>
 
-<p>Cependant, comme la partie B de ce projet nécessite la prise en charge des instructions de branchement et de saut, il y a bien des « aléas de contrôle » à gérer. En particulier, l’instruction immédiatement après un branchement ou un saut n’est pas nécessairement exécutée si la branche est prise. Cela rend votre tâche un peu plus complexe car au moment où vous réalisez qu’une branche ou un saut est en phase d’exécution, vous avez déjà accédé à la mémoire d’instructions et récupéré (éventuellement) la mauvaise prochaine instruction. Vous devez donc « annuler » l’instruction récupérée si l’instruction en cours d’exécution est un saut ou un branchement <strong>validé</strong>. Vous ne devez annuler l’instruction récupérée que si une branche est prise (n’annuler pas autrement). L’annulation d’instructions DOIT être accomplie en insérant un <code class="language-plaintext highlighter-rouge">nop</code> dans l’étape d’exécution du pipeline au lieu de l’instruction récupérée. Notez que l’instruction <code class="language-plaintext highlighter-rouge">sll $0, $0, 0</code> ou le code machine associé <code class="language-plaintext highlighter-rouge">0x00000000</code> est une instruction <code class="language-plaintext highlighter-rouge">nop</code> pour notre processeur.</p>
+<p>The circuit in <code class="language-plaintext highlighter-rouge">cpu_*.circ</code> should implement the main data path and connect all the subcircuits together (ALU, Branching Unit, Control Unit, Immediate Unit, RAM and “Registers File”).</p>
 
-<p>Quelques points à considérer pour votre implémentation :</p>
+<p>In Part A, you implemented a simple two-stage pipeline for your processor. You should realise that “data hazards” do NOT occur here because all data accesses happen in a single stage of the pipeline (i.e. the second stage).</p>
+
+<p>However, since Part B of this project requires support for branch and jump instructions, there are some “control hazards” to deal with. In particular, the instruction immediately after a branch or jump statement is not necessarily executed if the branch is taken. This makes your task a bit more complex because by the time you realize that a branch or jump is being executed, you have already accessed the Instructions Memory and fetched the (possibly wrong) next instruction. So you must “roll back” the fetched instruction if the currently executing instruction will take the jump or branch.</p>
+
+<p>You should only roll back the fetched instruction if a branch is taken (do not roll back otherwise). Instruction rollback MUST be accomplished by inserting a <code class="language-plaintext highlighter-rouge">nop</code> into the execution stage of the pipeline instead of the fetched instruction. Note that the instruction <code class="language-plaintext highlighter-rouge">sll $0, $0, 0</code> or the associated machine code <code class="language-plaintext highlighter-rouge">0x00000000</code> is a <code class="language-plaintext highlighter-rouge">nop</code> instruction for our processor.</p>
+
+<p>Some things to consider for your implementation:</p>
 <ul>
-  <li>Les étapes PIF et PEX auront-elles des valeurs PC identiques ou différentes ?</li>
-  <li>Avez-vous besoin de stocker le PC entre les différentes étapes du pipeline ?</li>
-  <li>Où insérer un <code class="language-plaintext highlighter-rouge">nop</code> éventuel dans le flux d’instructions ?</li>
-  <li>Quelle adresse doit être demandée ensuite pendant que l’étape PEX exécute un <code class="language-plaintext highlighter-rouge">nop</code> ? Est-ce différent de la normale ?</li>
+  <li>Will the PIF and PEX stages have the same or different PC values?</li>
+  <li>Do you need to store the PC between different pipeline stages?</li>
+  <li>Where to insert a possible <code class="language-plaintext highlighter-rouge">nop</code> in the instruction stream?</li>
+  <li>What address should be requested next while the PEX stage is executing a <code class="language-plaintext highlighter-rouge">nop</code>? Is this different than normal?</li>
 </ul>
 
-<h3 id="tester-votre-processeur"><strong>Tester votre Processeur</strong></h3>
+<h3 id="testing-your-processor"><strong>Testing your Processor</strong></h3>
 
-<p>Des tests de cohérence sont fournis pour votre processeur dans <code class="language-plaintext highlighter-rouge">tests/part_b/pipelined</code>.</p>
+<p>Some consistency tests are provided for your processor in <code class="language-plaintext highlighter-rouge">tests/part_b/pipelined</code>. To run the tests, type:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 test_runner.py part_b pipelined
 </code></pre></div></div>
+<p>You can view the <code class="language-plaintext highlighter-rouge">.s</code> (MIPS) and <code class="language-plaintext highlighter-rouge">.hex</code> (machine code) files used for testing in <code class="language-plaintext highlighter-rouge">tests/part_b/pipelined/inputs</code>.</p>
 
-<p>Vous pouvez consulter les fichiers <code class="language-plaintext highlighter-rouge">.s</code> (MIPS) et <code class="language-plaintext highlighter-rouge">.hex</code> (code machine) utilisés pour les tests dans <code class="language-plaintext highlighter-rouge">tests/part_b/pipelined/inputs</code>.</p>
+<p>You can also use the Python script <code class="language-plaintext highlighter-rouge">binary_to_hex_cpu.py</code>, as in task #3 of this project, to visualise and better interpret your results.</p>
 
-<p>Vous pouvez également utiliser le script Python <code class="language-plaintext highlighter-rouge">binary_to_hex_cpu.py</code>, comme dans la tache n° 3 ce projet, afin visualiser et mieux interpréter vos résultats.</p>
+<h2 id="submit-part-b-of-the-assignment">Submit part B of the assignment</h2>
 
-<h2 id="soumettre-la-partie-b-du-devoir">Soumettre la partie B du devoir</h2>
+<p>If you finished task #4, you have completed part B of the project… Congratulations on your new processor 🎉!</p>
 
-<p>Si vous avez terminé la tâche n° 4, vous avez terminé la partie B du projet. Félicitations pour votre nouveau processeur !</p>
+<p>Make sure again that you have not moved/modified your I/O ports and that your circuits fit into the provided test harnesses without any problems.</p>
 
-<p>Assurez-vous à nouveau que vous n’avez pas déplacé/modifié vos ports d’entrée/sortie et que vos circuits s’insèrent sans problème dans les socles de test fournis.</p>
+<p>For the evaluation of this part of the project, submit a <strong>zipped</strong> file containing all the circuits that you need to implement</p>
 
-<p>Pour soumettre votre travail, créez un fichier <strong>zippé</strong> contenant tous les circuits que vous deviez implémenter dans les deux parties de ce projets. C.-à-d. les circuits <strong>alu.circ</strong>, <strong>regfile.circ</strong>, <strong>branch_comp.circ</strong>, <strong>imm_gen.circ</strong>, <strong>control_logic.circ</strong>, <strong>cpu_single.circ</strong> et <strong>cpu_pipelined.circ</strong>.</p>
+<p>(i.e. the <strong>alu.circ</strong>, <strong>regfile.circ</strong>, <strong>branch_comp.circ</strong>, <strong>imm_gen.circ</strong>, <strong>control_logic.circ</strong>, <strong>cpu_single.circ</strong> and <strong>cpu_pipelined.circ</strong>.circuits).</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>votre_fichier.zip
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>your_zipped_file.zip
  ├── alu.circ
  ├── regfile.circ
  ├── imm_gen.circ
@@ -1883,16 +1902,16 @@ In MIPS, an instruction is 32-bit in width and occupy thus four bytes in memory 
  └── cpu_pipelined.circ
 </code></pre></div></div>
 
-<p>Par exemple, pour mettre les fichiers <strong>file1.circ</strong> et <strong>file2.circ</strong> dans un fichier zip nommé  <strong>votre_fichier.zip</strong> :</p>
+<p>If you’re using the VM provided for this course to do this project, you can zip two files (or more) <strong>file1.circ</strong> and <strong>file2.circ</strong> into a file named <strong>your_zipped_file.zip</strong> with the following steps:</p>
 <ol>
-  <li>Ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers <strong>file1.circ</strong> et <strong>file2.circ</strong>.</li>
-  <li>Tapez la commande :
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zip votre_fichier.zip  file1.circ file2.circ
+  <li>Open a terminal then, with the <code class="language-plaintext highlighter-rouge">cd</code> bash command, go to the folder containing the files <strong>file1.circ</strong> and <strong>file2.circ</strong>.</li>
+  <li>Type the command:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zip your_zipped_file.zip file1.circ file2.circ
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<p>Soumettez ensuite le fichier résultat <strong>votre_fichier.zip</strong> à l’évaluateur automatique. Cette partie du projet utilisera les mêmes fichiers de test déjà fournis dans le kit de démarrage pour l’évaluation de votre travail ainsi que d’autres tests cachés.</p>
+<p>Then submit the file <strong>your_file.zip</strong> for evaluation. For this part of the project, the Autograder uses the same test files already provided in the starter kit and some additional hidden tests!</p>
 
   </article>
 
