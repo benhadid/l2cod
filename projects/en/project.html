@@ -741,7 +741,7 @@ The “<strong>Registers File</strong>” in <code class="language-plaintext hig
     <p>It is recommended not to use the “<code class="language-plaintext highlighter-rouge">enable</code>” input on your MUXes. In fact, you can even disable this feature from the Logisim panel. It is also recommended to set the “three-state?” property to “<code class="language-plaintext highlighter-rouge">off</code>”.</p>
   </li>
   <li>
-    <p>See step 2 of the <a href="/l2ado/labs/en/07_lab">Circuit Design with Logisim</a> lab to see what each input/output of a Logisim register corresponds to.</p>
+    <p>See step 2 of “Design example 2” in the “<a href="/l2ado/docs/en/Logisim_tutoriel">Logisim tutorial</a>” document to see what each input/output of a Logisim register corresponds to.</p>
   </li>
   <li>
     <p>As with the ALU task, multiplexers will be very useful (demultiplexers, too).</p>
@@ -1042,8 +1042,7 @@ The instructions Memory (IMEM) is the ROM module in the <code class="language-pl
 2. In <code class="language-plaintext highlighter-rouge">cpu*.circ</code> circuits, how would changing the address passed through <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> affect the <code class="language-plaintext highlighter-rouge">INSTRUCTION</code> input?
 </summary>
 <p style="color: DarkSlateGrey">
-The instruction that <code class="language-plaintext highlighter-rouge">run_*.circ</code> passes to the processor must be the instruction fetched from the <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> (or <code class="language-plaintext highlighter-rouge">FETCH_ADDR</code>) address in Instructions memory (IMEM).
-</p>
+The instruction that <code class="language-plaintext highlighter-rouge">run_*.circ</code> passes to the processor must be the instruction found at address <code class="language-plaintext highlighter-rouge">IMEM_ADDRESS</code> in Instructions Memory (IMEM). The IMEM memory, implemented in the <code class="language-plaintext highlighter-rouge">test_*_harness.circ</code> harnesses, is connected to the <code class="language-plaintext highlighter-rouge">test_harness</code> output port IMEM_ADDRESS with a wire labeled <code class="language-plaintext highlighter-rouge">fetch_addr</code>.</p>
 </details>
 
 <details close="">
@@ -1090,7 +1089,7 @@ Since the <code class="language-plaintext highlighter-rouge">PC</code> register 
 
 <details close="">
 <summary>
-2. In Logisim, what tool would do you use to separate different groups of bits?
+2. In Logisim, what tool would you use to separate different groups of bits?
 </summary>
 <p style="color: DarkSlateGrey">
 Splitters!
@@ -1150,7 +1149,7 @@ It selects what operation the ALU should perform.
 
 <details close="">
 <summary>
-3. Since we are implementing the <code class="language-plaintext highlighter-rouge">addi</code>instruction only for now, it is possible for to just paste a constant for <code class="language-plaintext highlighter-rouge">ALUSel</code>. Why would this be discouraged if you take into consideration that other instructions will be implemented in the future?
+3. Since we are implementing the <code class="language-plaintext highlighter-rouge">addi</code>instruction only for now, you can just paste a constant for <code class="language-plaintext highlighter-rouge">ALUSel</code>. Why would this be discouraged if you take into consideration that other instructions will be implemented in the future?
 </summary>
 <p style="color: DarkSlateGrey">
 When implementing more instructions, <code class="language-plaintext highlighter-rouge">ALUSel</code> might change depending on the requested operation. So, we need some kind of circuit that changes the value of <code class="language-plaintext highlighter-rouge">ALUSel</code> depending on the instruction being executed.
