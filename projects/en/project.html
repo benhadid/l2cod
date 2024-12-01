@@ -237,7 +237,7 @@
 
 <p>In this project, you will implement a basic version of a MIPS processor. The assignment is organized into two parts: A and B.</p>
 
-<p>In part A (tasks 1 to 3), you are required to build an “Arithmetic Logic Unit (ALU)” and a “Register File” for a basic MIPS processor, as well as an implementation of a single-cycle datapath for executing <code class="language-plaintext highlighter-rouge">addi</code> instructions. In Part B (Task 4), you need to add other circuit components to your basic processor to produce an advanced version that will execute real MIPS instructions!</p>
+<p>In part A (tasks 1 to 3), you are required to build an “Arithmetic Logic Unit (ALU)” and a “Register File” for a basic MIPS processor, as well as an implementation of a single-cycle datapath for executing <code class="language-plaintext highlighter-rouge">addi</code> instructions. In Part B (Task 4), you need to add other circuit components to your basic processor to produce an advanced version that will execute “real” MIPS instructions!</p>
 
 <p>Start by downloading the startup file and unzipping its contents to the directory of your choice. Here is the list of files you must have:</p>
 
@@ -606,9 +606,7 @@ A skeleton circuit of the “<strong>Registers File</strong>” is provided in <
 <th style="text-align:center">Description</th>
 </tr>
 </thead>
-
 <tbody>
-
 <tr>
 <td style="text-align:left"> <strong>Clock</strong></td>
 <td style="text-align:center">1</td>
@@ -741,7 +739,7 @@ The “<strong>Registers File</strong>” in <code class="language-plaintext hig
     <p>It is recommended not to use the “<code class="language-plaintext highlighter-rouge">enable</code>” input on your MUXes. In fact, you can even disable this feature from the Logisim panel. It is also recommended to set the “three-state?” property to “<code class="language-plaintext highlighter-rouge">off</code>”.</p>
   </li>
   <li>
-    <p>See step 2 of “Design example 2” in the “<a href="/l2ado/docs/en/Logisim_tutoriel">Logisim tutorial</a>” document to see what each input/output of a Logisim register corresponds to.</p>
+    <p>See step 4 of “Design example 2” in the “<a href="/l2ado/docs/en/Logisim_tutoriel">Logisim tutorial</a>” document to see what each input/output of a Logisim register corresponds to.</p>
   </li>
   <li>
     <p>As with the ALU task, multiplexers will be very useful (demultiplexers, too).</p>
