@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> MIPS Exceptionsc - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Objectives      Understand exception and interrupt handling in MIPS        Learn how to write exception handlers in MIPS.  Exercise 1: (Exception types)Run t...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/06_lab">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Resources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">MIPS Exceptionsc</h1>
+    <p class="post-meta">Published on 
+      <!--
+      Sunday
+      10/11/2024
+      -->
+      
+      Sunday
+      10
+      
+      November
+      2024
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold"> Due on 
+      <!-- 18/11/2024 -->
+
+      
+      Monday
+      18
+      
+      November
+      2024
+    </span>
+    
+
+    <br />
+    
+
+    
+    <p style="font-weight: bold">Download
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/exceptions_handler.s"> starter</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Understand exception and interrupt handling in MIPS</p>
+  </li>
+  <li>
+    <p>Learn how to write exception handlers in MIPS.</p>
+  </li>
+</ul>
+
+<h1 id="exercise-1-exception-types">Exercise 1: (Exception types)</h1>
+
+<p>Run the following sample code in MARS, then answer the questions below.</p>
+
+<pre><code class="language-assembly">   .text
+   .globl main  
+main:
+  li $t0, 2147483647   #
+  li $t1, 5000
+  add $a0, $t0, $t1    #
+
+  li $v0, 10           # exit
+  syscall
+</code></pre>
+
+<ol>
+  <li>
+    <p>What is the value (in hexadecimal) of the <strong>status</strong> register of coprocessor 0?</p>
+  </li>
+  <li>
+    <p>What is the value (in hexadecimal) of the <strong>cause</strong> register of coprocessor 0?</p>
+  </li>
+  <li>
+    <p>What type of exception occurred?</p>
+  </li>
+  <li>
+    <p>At what address (in hexadecimal) did the exception occur?</p>
+  </li>
+</ol>
+
+<h1 id="exercise-2--interrupts">Exercise 2 : (Interrupts)</h1>
+
+<p>Enabling interrupts on a MIPS processor is a two-step process:</p>
+
+<ul>
+  <li>
+    <p><strong>Configure the device in question to send interrupt signals</strong>
+This usually requires setting an interrupt enable bit in a control register in the device.</p>
+  </li>
+  <li>
+    <p><strong>Configure coprocessor 0 to accept interrupt signals</strong>
+This is done by setting bit 0 of the status register ($12) to enable interrupts globally, and then setting specific bits in the status register to enable specific interrupts. Bits 8 through 15 of the status register allow for 8 different levels of interrupts. For example, bits 3 and 4 of the mask (bits 11 and 12 of the status register) enable keyboard and display interrupts, respectively.</p>
+  </li>
+</ul>
+
+<p>If we wanted to enable <strong>all</strong> interrupts in MIPS, complete the bitmask for the <code class="language-plaintext highlighter-rouge">ori</code> instruction:</p>
+
+<pre><code class="language-assembly">   mfc0    $s1, $12         # read into $s1 the contents of the status register  
+   ori     $s1, _________   # &lt;&lt;&lt;&lt;&lt; to compete
+   mtc0    $s1, $12         # update of the contents of the status register
+</code></pre>
+
+<p>If we wanted to enable <strong>only</strong> the keyboard and display interrupts, complete the bitmask for the <code class="language-plaintext highlighter-rouge">ori</code> instruction:</p>
+
+<pre><code class="language-assembly">   mfc0    $s1, $12         # # read into $s1 the contents of the status register 
+   ori     $s1, _________   # &lt;&lt;&lt;&lt;&lt; to compete
+   mtc0    $s1, $12         # update of the contents of the status register
+</code></pre>
+
+<h1 id="exercise-3-exception-handler">Exercise 3: (Exception handler)</h1>
+
+<p>An exception handler must report the address of the instruction that caused the exception, the exception code, and must resume (or terminate) program execution after handling the exception.</p>
+
+<ol>
+  <li>
+    <p>For this exercise, we will use a custom exception handler instead of the one that is already built into MARS. To install our exception handler, follow these instructions:</p>
+
+    <ol>
+      <li>
+        <p>Begin by downloading the starter file available at the top of this document. The file (<code class="language-plaintext highlighter-rouge">exceptions_handler.s</code>) is a custom MIPS exception handler.</p>
+      </li>
+      <li>
+        <p>In MARS, click to unroll “<strong>Settings</strong>” from the menu<br />
+<img src="/l2ado/static_files/images/mars_exception_handler.png" alt="Mars exception handler" /></p>
+      </li>
+      <li>
+        <p>Check the box “Initialize Program Counter to global ‘main’ if defined”</p>
+      </li>
+      <li>
+        <p>unroll again the “<strong>Settings</strong>” menu and click on “<strong>Exception Handler</strong>”. A new dialog box will appear
+<img src="/l2ado/static_files/images/mars_ehandler2.png" alt="Mars exception handler 2" /></p>
+      </li>
+      <li>
+        <p>Check the box “<strong>Include this exception handler file in all assemble operations</strong>”, then enter the path to the exception handler file you downloaded. Choose OK to finish.</p>
+      </li>
+      <li>
+        <p>MARS is now configured to use our new exception handler instead of the built-in handler.</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>In the MARS editor, write a program including instructions that cause: overflow, accesses to invalid memory addresses, trap instructions, and breakpoint instructions. Your program <strong>must</strong> start with this two lines of code:</p>
+
+    <pre><code class="language-assembly">.globl
+main:
+</code></pre>
+  </li>
+  <li>
+    <p>Modify the exception handler to display the invalid <strong>vaddr</strong> when the exception is caused by a load, store, or instruction fetch (i.e. exception code 4 or 5). Test your exception handler by writing load and store instructions that generate invalid memory addresses.</p>
+  </li>
+  <li>
+    <p>Using memory-mapped I/O and polling (cf. « <a href="/l2ado/docs/en/Exceptions"> Exception mechanisms in MIPS</a> »), write a function <code class="language-plaintext highlighter-rouge">print_string</code> that prints a string to the screen without using any system calls (i.e., do not use <code class="language-plaintext highlighter-rouge">syscall</code> instructions). The address of the string is passed in the register <code class="language-plaintext highlighter-rouge">$a0</code> and the string must be terminated by the NUL (i.e. zero) character. Test this function by calling it from the main function. Make sure to enable the MMIO keyboard and display simulator from the menu (<strong>Tools | Keyboard and Display MMIO Simulator</strong>) and connect this simulator to MARS by clicking the « <strong>Connect to MIPS</strong> » button.</p>
+  </li>
+  <li>
+    <p>Still using memory-mapped I/O and polling, write a program that reads characters directly from the keyboard (cf. « <a href="/l2ado/docs/en/Exceptions"> Exception mechanisms in MIPS</a> »). To demonstrate how slow the keyboard is, print the character entered and the number of iterations after exiting the <code class="language-plaintext highlighter-rouge">wait_keyboard</code> loop. Repeat the execution of the program until you press the <kbd>↩</kbd> (Return) key on the keyboard. Make sure to run the MARS simulator at maximum speed.</p>
+  </li>
+  <li>
+    <p>If the keyboard interrupt enable bit is set, the keyboard will interrupt the processor every time a key is pressed. Write a simple <strong>interrupt handler</strong> that returns the entered character to the <code class="language-plaintext highlighter-rouge">$v0</code> register. Rewrite the main function from question #4 using keyboard interrupts.</p>
+  </li>
+  <li>
+    <p>Using memory-mapped I/O and polling, write a <code class="language-plaintext highlighter-rouge">read_string</code> function that reads a string directly from the keyboard. The function will retrieve the characters from the keyboard and store them in an array pointed to by the <code class="language-plaintext highlighter-rouge">$a0</code> register. The function should continue until <code class="language-plaintext highlighter-rouge">n-1</code> characters are read or the newline character is received (i.e. <kbd>↩</kbd> (Return) key is pressed). The <code class="language-plaintext highlighter-rouge">n</code> parameter should be passed in the <code class="language-plaintext highlighter-rouge">$a1</code> register. The function should insert a <code class="language-plaintext highlighter-rouge">NUL</code> byte at the end of the string and should return the actual number of characters read in <code class="language-plaintext highlighter-rouge">$v0</code> register. Make sure to enable the MMIO Keyboard and Display Simulator and connect the simulator to Mars. Write a main function to test <code class="language-plaintext highlighter-rouge">read_string</code> multiple times and to display the string after each call.</p>
+  </li>
+</ol>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
