@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KMKZK4Z38"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5KMKZK4Z38');
+  </script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Cache memory - Computer Design / Fall 2024 </title>
+  <meta name="description" content="Objectives      Learn how memory access patterns determine cache hit rates.        Determine which memory access patterns produce GOOD hit rates.  “Data Cach...">
+  
+  <!--for gitlab pages -->
+  
+
+  <!-- automatic favicons -->
+  
+
+    <!--for github pages -->
+  <link rel="shortcut icon" href="https://benhadid.github.io/l2ado/favicon.ico?"> 
+  <!--for github-->
+
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="https://benhadid.github.io/l2ado/labs/en/08_lab">
+  <link rel="alternate" type="application/rss+xml" title="Computer Design / Fall 2024 - " href="https://benhadid.github.io/l2ado/feed.xml" />
+
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+  
+
+  
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- MathJax -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>      
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Computer Design / Fall 2024 - "><b>Computer Design</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Fall 2024</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1> <ul class="menu">
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/">
+        <i class="fa fa-home fa-lg"></i> Home
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/schedule/">
+        <i class="fas fa-calendar-alt"></i> Schedule
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/lectures/">
+        <i class="fas fa-book-reader"></i> Lectures
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/discussions/">
+        <i class="fas fa-user-graduate"></i> Seminars
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/labs/">
+        <i class="fas fa-laptop-code"></i> Labs
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/quizzes/">
+        <i class="fas fa-question-circle"></i> Quizzes
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/projects/">
+        <i class="fas fa-user-graduate"></i> Projects
+      </a>
+
+    </li>
+    
+    <li>
+
+      
+      
+
+      <a class="page-link" href="/l2ado/materials/">
+        <i class="fas fa-book"></i> Resources
+      </a>
+
+    </li>
+    
+</ul>
+ </div>  
+    
+    </nav>
+  </div>
+
+  <div></div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; background-image: url( /l2ado/_images/pattern.png );" >
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Cache memory</h1>
+    <p class="post-meta">Published on 
+      <!--
+      Sunday
+      08/12/2024
+      -->
+      
+      Sunday
+      8
+      
+      December
+      2024
+    </p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold"> Due on 
+      <!-- 16/12/2024 -->
+
+      
+      Monday
+      16
+      
+      December
+      2024
+    </span>
+    
+
+    <br />
+    
+
+    
+    <p style="font-weight: bold">Download
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/cache.s"> starter</a>]
+      
+
+      
+    </p>
+        
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectives">Objectives</h1>
+
+<ul>
+  <li>
+    <p>Learn how memory access patterns determine cache hit rates.</p>
+  </li>
+  <li>
+    <p>Determine which memory access patterns produce GOOD hit rates.</p>
+  </li>
+</ul>
+
+<h1 id="data-cache-simulator-and-visualisation-in-mars">“Data Cache Simulator and Visualisation” in MARS</h1>
+
+<p>This lab uses cache/memory visualization tools in MARS in order to illustrate cache behaviour and performance measurement.</p>
+
+<p>First, download the starter file (i.e. <code class="language-plaintext highlighter-rouge">cache.s</code>) to a directory of your choice. Then, load the <code class="language-plaintext highlighter-rouge">cache.s</code> file in MARS and examine its contents to get a rough idea of ​​what the program does before proceeding further.</p>
+
+<ul>
+  <li>
+    <p>The most important part of the program to understand is the section called “PSEUDOCODE” at the top of the file. Basically, we’re just going to reset some elements of an array (option 0) or increment them (option 1).</p>
+  </li>
+  <li>
+    <p>The elements accessed in the array is determined by <code class="language-plaintext highlighter-rouge">step size</code> ($a1) and the number of times we do this is controlled by the <code class="language-plaintext highlighter-rouge">repcount</code> parameter ($a2). <strong>These two parameters will directly affect the cache hit and miss rates</strong>. The option parameter ($a3) will also have some impact on the execution performance as will the cache’s own parameters.</p>
+  </li>
+</ul>
+
+<p>For each of the scenarios below, repeat the following steps:</p>
+
+<ol>
+  <li>
+    <p>Set the appropriate program parameters in <code class="language-plaintext highlighter-rouge">caches.s</code> as shown at the beginning of each scenario (by changing the immediate values ​​of the <code class="language-plaintext highlighter-rouge">li</code> instructions of the lines 23 – 26 in the <code class="language-plaintext highlighter-rouge">main</code> function)</p>
+  </li>
+  <li>
+    <p>Run « <strong>Tools | Data Cache Simulator</strong> ».</p>
+  </li>
+  <li>
+    <p>Set the appropriate cache parameters as shown at the beginning of each scenario.</p>
+  </li>
+  <li>
+    <p>Enable the Runtime Log and click “Connect to MIPS”.</p>
+  </li>
+  <li>
+    <p>Run « <strong>Tools | Memory Reference Visualization</strong> » and click “Connect to MIPS”.</p>
+  </li>
+  <li>
+    <p>As you step through the code in MARS (i.e. using <img src="/l2ado/static_files/images/mars_execute_step.png" alt="STEP" />), any access to the data segment (load or store) will be visualised (access to the code segement is not displayed).</p>
+  </li>
+</ol>
+
+<p>The « <strong>Data Cache Simulator</strong> » will display the state of your data cache and the « <strong>Memory Reference Visualization</strong> » will show which parts of memory are accessed and how many times. Remember that these tools work independently of your code, so if you « reassemble/reset » the <code class="language-plaintext highlighter-rouge">cache.s</code> code, you must also reset the contents of the cache and memory visualisation tools!</p>
+
+<p><strong>NOTE</strong>: If you run the code in one go (instead of stepping through it), you will get the final state of the cache and the hit rate. In order to better see which « steps/iterations » affect the hit and miss rates in the program, insert a « breakpoint » in the <strong>loop</strong> <code class="language-plaintext highlighter-rouge">wordLoop</code> just before or after each memory access.</p>
+
+<h2 id="tasks">Tasks:</h2>
+
+<p>Simulate the following scenarios for the <code class="language-plaintext highlighter-rouge">cache.s</code> program and take note of the final cache hit rates. Try to infer what the hit rate will be BEFORE you run the code. After running each simulation, make sure you understand WHY you got these results (this might end up as a question on the exam)!</p>
+
+<p>to help you better understand the given problems in the scenarios below, here are some questions you should be able to answer:</p>
+
+<ul>
+  <li>How big is the memory block/cache line?</li>
+  <li>How many consecutive accesses (taking into account the step size) access the same block?</li>
+  <li>How much data fits in the ENTIRE cache?</li>
+  <li>How far apart in memory are the blocks that map to the same cache line (and thus could create conflicts)?</li>
+  <li>What is cache type (i.e. associativity)?</li>
+  <li>Where in the cache will a particular block in memory be mapped?</li>
+  <li>To decide whether a specific cache access is a miss or a hit: has that data been accessed before? If so, is it still in the cache or not?</li>
+</ul>
+
+<h1 id="exercise-1-cache-scenario-1">Exercise 1 (Cache Scenario 1):</h1>
+
+<p><strong>Cache settings:</strong> (to be set in the « <strong>Data Cache Simulator</strong> » window)</p>
+
+<ul>
+  <li><strong>Placement Policy:</strong> Direct Mapping.</li>
+  <li><strong>Block Replacement Policy:</strong> LRU.</li>
+  <li><strong>Set size (i.e. number of blocks per cache line):</strong> 1. (MARS will not allow you to change this value. Why?)</li>
+  <li><strong>Number of blocks:</strong> 4.</li>
+  <li><strong>Cache block size:</strong> 2 (in words).</li>
+</ul>
+
+<p><strong>Program parameters:</strong> (to be set by initialising registers <strong>$a?</strong> in <code class="language-plaintext highlighter-rouge">cache.s</code>: lines 23 – 26)</p>
+
+<ul>
+  <li><strong>Array Size:</strong> 128 (bytes).</li>
+  <li><strong>Step Size:</strong> 8.</li>
+  <li><strong>repcount:</strong> 4.</li>
+  <li><strong>Option:</strong> 0.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>What combination of parameters produces the hit rate you observe? (Hint: Your answer should be of the form: «Because [parameter A] in bytes is exactly equal to [parameter B] in bytes.»). <strong>Note:</strong> Recall that the cache size is implicitly defined by the « block size » and the « number of blocks » in the cache.</p>
+  </li>
+  <li>
+    <p>What is the cache hit rate if we arbitrarily increase the <code class="language-plaintext highlighter-rouge">repcount</code> parameter? Why?</p>
+  </li>
+  <li>
+    <p>How could we change a parameter in the program to increase our hit rate? (Hint: Your answer should be of the form: “Replace [parameter] with [value]”). <strong>Note:</strong> It does not matter whether we access the same array elements. Just give a change to the program parameters that would increase the hit rate. Make sure, however, that the value you give is valid.</p>
+  </li>
+</ol>
+
+<p><strong>Hint:</strong> If you have trouble visualising what is being cached on each memory access by simply looking at the code, try drawing on a piece of paper a sketch of the cache memory and write down what the (Tag/Index/Offset) decomposition of the 32-bit addresses would be. this will help you determine which memory addresses map to which line in the cache using the ‘Index’ bits.</p>
+
+<h1 id="exercise-2-cache-scenario-2">Exercise 2 (Cache Scenario 2):</h1>
+
+<p><strong>Cache Parameters:</strong></p>
+
+<ul>
+  <li><strong>Placement Policy:</strong> N-way Set Associative.</li>
+  <li><strong>Block Replacement Policy:</strong> LRU.</li>
+  <li><strong>Set size:</strong> 4.</li>
+  <li><strong>Number of blocks:</strong> 16.</li>
+  <li><strong>Cache block size:</strong> 4 (in words)</li>
+</ul>
+
+<p><strong>Program Parameters:</strong></p>
+
+<ul>
+  <li><strong>Array Size:</strong> 256 (bytes)</li>
+  <li><strong>Step Size:</strong> 2</li>
+  <li><strong>repcount:</strong> 1</li>
+  <li><strong>Option:</strong> 1</li>
+</ul>
+
+<ol>
+  <li>
+    <p>How many memory accesses are there per iteration of the inner loop? (not the one involving <code class="language-plaintext highlighter-rouge">repcount</code>)? It’s not 1!</p>
+  </li>
+  <li>
+    <p>What is the repeating pattern of hits/misses? WHY? (<strong>Hint:</strong> they repeat every 4 accesses). Give the hit rate in terms of this repeating pattern.</p>
+  </li>
+  <li>
+    <p>What happens to our hit rate if the number of repetitions <code class="language-plaintext highlighter-rouge">repcount</code> goes to infinity (i.e. our loop becomes infinite)? Why?</p>
+  </li>
+</ol>
+
+<p>You should have noticed that the hit rate was quite high for scenario 2, and your answer to the previous question should help you understand why this is the case. If you don’t know why, consider the size of the array and compare it to the size of the cache.</p>
+
+<p>Now, consider the following: Suppose we have a program that iterates <code class="language-plaintext highlighter-rouge">repcount</code> times over a very large array (i.e., much larger than the cache size). During each iteration, we map a different function to the elements of our array (e.g., if <code class="language-plaintext highlighter-rouge">repcount = 1024</code>, we map 1024 different functions to each of the elements in the array). For reference, we only had one increment function and one iteration up to now.</p>
+
+<ol start="4">
+  <li>Given the above description, how can we restructure accesses to the array to achieve a hit rate like the one we got before (assuming that each element of the array is modified independently of the others, i.e. it doesn’t matter if iteration k is applied to element <code class="language-plaintext highlighter-rouge">arr[i+1]</code> before it is applied to element <code class="language-plaintext highlighter-rouge">arr[i]</code>, etc.)?</li>
+</ol>
+
+<p><strong>Hint:</strong> It would not make sense to scan the entire array on each iteration because it is much larger than your cache. This would reduce the amount of temporal locality exposed by your program and thus negatively impact the cache hit rate.</p>
+
+<p>The idea is to expose more locality so that our caches can take advantage of our predictable behavior. So, we should try to access ________ of the array at once and apply all the ________ to those ________ before continuing with a new ________. This will allow us to keep _______ of the array nice and warm in the cache during the whole procedure and not have to go around later! (The 1st, 3rd, and 5th spaces must be the same. This is not a specific vocabulary term that you should use to fill them. It is more of an idea that you should have).</p>
+
+<!--
+Les caches exploitent la localité spatiale et temporelle des accès mémoire. Bien que le code présente naturellement ces deux choses, nous pouvons généralement le modifier pour qu'il présente PLUS de ces deux choses, améliorant ainsi notre taux de réussite du cache et augmentant ainsi notre vitesse d'exécution.
+-->
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad<br />
+16000 Alger<br />
+ 
+        </p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
